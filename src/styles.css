@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  /*background-color: #fad59e;*/
+}
+:root{
+  --corDeFundoClara: #fad59e;
+  --corDeFundoEscura: #7a4f25;
+  --corGradiente: #f69d3c;
+  --corGradienteEscura: rgba(122,79,37,0.6);
+}
+body{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--corDeFundoEscura);
+}
+a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}

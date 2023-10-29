@@ -1,0 +1,72 @@
+<main>
+
+  <div class="area-promocao">
+    <div class="promocao">
+      <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+        <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+            <img src="{{ slide.img }}" alt="" class="img-style">
+        </div>
+      </ngx-slick-carousel>
+    </div>
+  </div>
+
+  <div>
+      <div class="container">
+          <div class="cards">
+              <a href="./produto.html">
+                  <img class="card-img" src="../../../assets/img/1.png" alt="">
+                  <h3 class="nome-produto">Ração Pedigree muito top com cereais de manteiga</h3>
+                  <p class="sabor-produto">Carne</p>
+                  <p class="preco-produto">
+                      R$ <span class="bold">129,99</span>
+                  </p>
+              </a>
+          </div>
+          <div class="cards">
+              <a href="./produto2.html">
+                  <img class="card-img"  src="../../../assets/img/2.png" alt="">
+                  <h3 class="nome-produto">Ração Pedigree muito top com cereais de manteiga 2</h3>
+                  <p class="sabor-produto">Carne</p>
+                  <p class="preco-produto">
+                      R$ <span class="bold">129,99</span>
+                  </p>
+            </a>
+          </div>
+          <div class="cards">
+              <img class="card-img"  src="../../../assets/img/3.png" alt="">
+              <h3 class="nome-produto">Ração Pedigree muito top com cereais de manteiga</h3>
+              <p class="sabor-produto">Carne</p>
+              <p class="preco-produto">
+                  R$ <span class="bold">129,99</span>
+              </p>
+          </div>
+          <div class="cards">
+              <img class="card-img"  src="../../../assets/img/4.png" alt="">
+              <h3 class="nome-produto">Ração Pedigree muito top com cereais de manteiga</h3>
+              <p class="sabor-produto">Carne</p>
+              <p class="preco-produto">
+                  R$ <span class="bold">129,99</span>
+              </p>
+          </div>
+          <div class="cards">
+              <img class="card-img"  src="../../../assets/img/5.png" alt="">
+              <h3 class="nome-produto">Ração Pedigree muito top com cereais de manteiga</h3>
+              <p class="sabor-produto">Carne</p>
+              <p class="preco-produto">
+                  R$ <span class="bold">129,99</span>
+              </p>
+          </div>
+          <div class="cards">
+              <img class="card-img"  src="../../../assets/img/6.png" alt="">
+              <h3 class="nome-produto">Ração Pedigree muito top com cereais de manteiga</h3>
+              <p class="sabor-produto">Carne</p>
+              <p class="preco-produto">
+                  R$ <span class="bold">129,99</span>
+              </p>
+          </div>
+      </div>
+  </div>
+  <div>
+      <img src="../../../assets/img/Nina fundo transparente.png" alt="">
+  </div>
+</main>
