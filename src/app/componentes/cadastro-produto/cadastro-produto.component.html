@@ -1,0 +1,29 @@
+<div class="container">
+
+  <mat-card>
+    <mat-card-title>Cadastro de Produto</mat-card-title>
+    <mat-card-content>
+      <div action="" class="contact-form">
+
+        <mat-form-field>
+          <mat-label>Nome</mat-label>
+          <input required [(ngModel)]="nome" name="nome" matInput placeholder="Informe um nome">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input required [(ngModel)]="email" matInput name="email" type="email" placeholder="Informe um email">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Mensagem</mat-label>
+          <textarea [(ngModel)]="mensagem" name="mensagem" matInput placeholder="Mensagem"></textarea>
+        </mat-form-field>
+
+        <button mat-raised-button (click)="enviarFormulario()" color="primary">Enviar</button>
+
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+</div>

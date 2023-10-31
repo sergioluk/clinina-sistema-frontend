@@ -10,6 +10,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { CardHomeComponent } from './componentes/card-home/card-home.component';
 import { HomeComponent } from './componentes/home/home.component';
+import { CadastroProdutoComponent } from './componentes/cadastro-produto/cadastro-produto.component';
+import {MatCardModule} from '@angular/material/card';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -17,14 +23,20 @@ import { HomeComponent } from './componentes/home/home.component';
     HeaderComponent,
     FooterComponent,
     CardHomeComponent,
-    HomeComponent
+    HomeComponent,
+    CadastroProdutoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    SlickCarouselModule
+    SlickCarouselModule,
+    MatCardModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
