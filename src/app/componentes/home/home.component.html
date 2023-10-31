@@ -1,5 +1,4 @@
 <main>
-
   <div class="area-promocao">
     <div class="promocao">
       <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
@@ -12,6 +11,11 @@
 
   <div>
       <div class="container">
+        
+          <div *ngFor="let card of listaCards">
+            <app-card-home [card]="card"></app-card-home>
+          </div>
+
           <div class="cards">
               <a href="./produto.html">
                   <img class="card-img" src="../../../assets/img/1.png" alt="">

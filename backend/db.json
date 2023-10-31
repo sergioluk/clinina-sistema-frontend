@@ -1,0 +1,19 @@
+{
+  "produtos": [
+    {
+      "produto": "Lata",
+      "sabor": "Chocolate",
+      "preco": 12
+    },
+    {
+      "produto": "Bola",
+      "sabor": "Azul",
+      "preco": 32
+    },
+    {
+      "produto": "Lua",
+      "sabor": "Marron",
+      "preco": 5
+    }
+  ]
+}

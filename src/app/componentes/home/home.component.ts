@@ -1,16 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { CardHome } from '../card-home/card-home';
+import { CardHomeComponent } from '../card-home/card-home.component';
+import { CardHomeService } from '../card-home.service';
 
 @Component({
   selector: 'app-home',
-  standalone: true,
-  imports: [CommonModule, SlickCarouselModule],
+  //standalone: true,
+  //imports: [CommonModule, SlickCarouselModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
-
+export class HomeComponent implements OnInit {
   slides = [
     {img: "/assets/img/promocao.png"},
     {img: "/assets/img/promocao2.png"},
@@ -53,6 +55,14 @@ export class HomeComponent {
 
   };
 
+  listaCards: CardHome[] = [];
 
+  constructor(private service: CardHomeService){}
+
+  ngOnInit(): void {
+    this.service.listar().subscribe((listaCards) =>{
+      this.listaCards = listaCards
+    })
+  }
 
 }

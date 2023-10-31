@@ -1,0 +1,47 @@
+.cards{
+  background-color: #ffecb3;
+  border: 1px solid green;
+  border-radius: 20px;
+  width: 350px;
+  height: 500px;
+  margin: 60px;
+  box-shadow: 10px 10px 40px 7px rgba(0, 0, 0, 0.5);
+}
+.cards a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.cards:hover{
+  border: 2px solid blue;
+  box-shadow: 10px 10px 40px 7px rgba(0, 0, 0, 0.6);
+  background-color: #f3e0a4;
+  transform: scale(1.02,1.02);
+  transition: transform 0.5s ease-out;
+}
+.cards:active{
+  border: 3px solid red;
+}
+.card-img{
+  padding-left: 60px;
+  width: 280px;
+  height: 360px;
+  object-fit: cover;
+}
+.nome-produto {
+  margin: 0 25px;
+  font-size: 20px;
+}
+.sabor-produto{
+  margin: 0 25px;
+  font-size: 20px;
+  font-weight: bold;
+  padding-bottom: 5px;
+}
+.preco-produto{
+  margin: 0 25px;
+  font-size: 25px;
+}
+.bold{
+  font-weight: bold;
+}

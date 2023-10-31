@@ -51,6 +51,8 @@ main{
   align-items: center;
   /*border: 1px solid blue;*/
 }
+
+/*
 .cards{
   background-color: #ffecb3;
   border: 1px solid green;
@@ -98,7 +100,7 @@ main{
 .bold{
   font-weight: bold;
 }
-
+*/
 
 
 
@@ -122,3 +124,13 @@ main{
     margin-right: 10px !important;
   }
 }
+
+/*
+body .slick-prev,
+body .slick-next {
+    height: 45px;
+    width: 40px;
+    background: grey !important;
+    z-index: 100;
+}
+*/

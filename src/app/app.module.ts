@@ -8,12 +8,16 @@ import { FooterComponent } from './componentes/footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { CardHomeComponent } from './componentes/card-home/card-home.component';
+import { HomeComponent } from './componentes/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    CardHomeComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
