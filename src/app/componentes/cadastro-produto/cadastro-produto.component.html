@@ -6,21 +6,63 @@
       <div action="" class="contact-form">
 
         <mat-form-field>
-          <mat-label>Nome</mat-label>
-          <input required [(ngModel)]="nome" name="nome" matInput placeholder="Informe um nome">
+          <mat-label>Produto</mat-label>
+          <input required [(ngModel)]="cadastroProduto.produto" name="produto" matInput placeholder="Informe um nome">
+        </mat-form-field>
+
+        <!--
+        <mat-form-field>
+          <mat-label>Categoria</mat-label>
+          <input required [(ngModel)]="cadastroProduto.categoria" matInput name="email" type="email" placeholder="Informe um email">
+        </mat-form-field>
+        -->
+
+        <mat-form-field>
+          <mat-label>Categoria</mat-label>
+          <input required [(ngModel)]="cadastroProduto.categoria" name="categoria" matInput placeholder="Informe uma categoria">
         </mat-form-field>
 
         <mat-form-field>
-          <mat-label>Email</mat-label>
-          <input required [(ngModel)]="email" matInput name="email" type="email" placeholder="Informe um email">
+          <mat-label>Animal</mat-label>
+          <input required [(ngModel)]="cadastroProduto.animal" name="animal" matInput placeholder="Informe um animal">
         </mat-form-field>
 
         <mat-form-field>
-          <mat-label>Mensagem</mat-label>
+          <mat-label>Informação</mat-label>
+          <input required [(ngModel)]="cadastroProduto.informacao" name="informacao" matInput placeholder="Informe uma informacao">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Peso</mat-label>
+          <input required [(ngModel)]="cadastroProduto.peso" name="peso" matInput placeholder="Informe um peso">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Preço</mat-label>
+          <input required [(ngModel)]="cadastroProduto.preco" name="preco" matInput placeholder="Informe um preco">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Desconto</mat-label>
+          <input required [(ngModel)]="cadastroProduto.desconto" name="desconto" matInput placeholder="Informe um desconto">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Quantidade de Estoque</mat-label>
+          <input required [(ngModel)]="cadastroProduto.qtd_estoque" name="qtd_estoque" matInput placeholder="Informe uma quantidade de estoque">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Quantidade Vendido</mat-label>
+          <input required [(ngModel)]="cadastroProduto.qtd_vendido" name="qtd_vendido" matInput placeholder="Informe uma quanditade de vendidos">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Mensagem Ignora</mat-label>
           <textarea [(ngModel)]="mensagem" name="mensagem" matInput placeholder="Mensagem"></textarea>
         </mat-form-field>
 
-        <button mat-raised-button (click)="enviarFormulario()" color="primary">Enviar</button>
+        <button mat-raised-button (click)="cadastrarProduto()" color="primary">Enviar</button>
 
       </div>
     </mat-card-content>

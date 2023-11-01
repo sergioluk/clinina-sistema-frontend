@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { CardHomeService } from '../card-home.service';
+import { Router } from '@angular/router';
+import { CardHome } from '../card-home/card-home';
+import { CadastroProduto } from './cadastro-produto';
 
 @Component({
   selector: 'app-cadastro-produto',
@@ -11,7 +15,26 @@ export class CadastroProdutoComponent {
   email:string;
   mensagem:string;
 
-  constructor(){
+  produto: CardHome = {
+
+    produto: '',
+    preco: 0,
+
+  }
+
+  cadastroProduto: CadastroProduto = {
+    produto: '',
+    categoria: '',
+    animal: '',
+    informacao: '',
+    peso: 0,
+    preco: 0,
+    desconto: 0,
+    qtd_estoque: 0,
+    qtd_vendido: 0
+  }
+
+  constructor(private service: CardHomeService, private router: Router){
     this.nome="";
     this.email="";
     this.mensagem="";
@@ -20,5 +43,12 @@ export class CadastroProdutoComponent {
   enviarFormulario(): void {
     console.log('Ok nome: ' + this.nome + " email: " + this.email + " msg: " + this.mensagem)
   }
+
+  cadastrarProduto(){
+    this.service.criar(this.cadastroProduto).subscribe(() => {
+      this.router.navigate(['/home']);
+    })
+  }
+
 
 }
