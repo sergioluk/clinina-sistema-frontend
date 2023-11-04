@@ -38,6 +38,11 @@
         </mat-form-field>
 
         <mat-form-field>
+          <mat-label>Castrado</mat-label>
+          <input required [(ngModel)]="cadastroProduto.castrado" name="castrado" matInput placeholder="Informe 0 para nao castrado ou 1 para castrado">
+        </mat-form-field>
+
+        <mat-form-field>
           <mat-label>Informação</mat-label>
           <input required [(ngModel)]="cadastroProduto.informacao" name="informacao" matInput placeholder="Informe uma informacao">
         </mat-form-field>

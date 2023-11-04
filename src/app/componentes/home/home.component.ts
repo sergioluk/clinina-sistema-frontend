@@ -56,16 +56,16 @@ export class HomeComponent implements OnInit {
 
   };
 
-  listaCards: CardHome[] = [];
+  //listaCards: CardHome[] = [];
 
   listaCards2: CadastroProduto[] = []
 
   constructor(private service: CardHomeService){}
 
   ngOnInit(): void {
-    this.service.listar().subscribe((listaCards) =>{
+   /* this.service.listar().subscribe((listaCards) =>{
       this.listaCards = listaCards
-    })
+    })*/
 
     this.service.listar2().subscribe((listaCards2) =>{
       this.listaCards2 = listaCards2

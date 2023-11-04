@@ -1,5 +1,5 @@
 
-var acc = document.getElementsByClassName("accordion");
+var acc = document.getElementsByClassName("accordion2511");
 var i;
 
 for (i = 0; i < acc.length; i++) {

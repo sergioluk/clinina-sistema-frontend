@@ -35,19 +35,27 @@ export class ProdutoComponent implements OnInit{
     private service: CardHomeService,
     private router: Router,
     private route: ActivatedRoute
-    ) {}
+  ) {}
 
 
 
 
 
 
-    ngOnInit(): void {
+  ngOnInit(): void {
       const id = this.route.snapshot.paramMap.get('id')
       this.service.buscarPorId(parseInt(id!)).subscribe((produto) =>{
         this.produto = produto;
+        this.listaInformacao(produto.informacao);
     });
 
+  }
+
+
+  informacaoArray: Array<string> = []
+
+  listaInformacao(descricao: string){
+    this.informacaoArray = descricao.split(":");
   }
 
 }
