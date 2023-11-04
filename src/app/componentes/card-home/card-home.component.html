@@ -1,10 +1,11 @@
 <div class="cards">
-  <a href="./produto.html">
+  <!--<a href="./produto.html">-->
+    <a routerLink="/home/produto/{{ produto.id }}">
       <img class="card-img" src="../../../assets/img/1.png" alt="">
-      <h3 class="nome-produto">{{ card.produto }}</h3>
-      <p class="sabor-produto">{{ card.preco }}</p>
+      <h3 class="nome-produto">{{ produto.produto }}</h3>
+      <p class="sabor-produto">{{ produto.categoria }}</p>
       <p class="preco-produto">
-          R$ <span class="bold">{{ card.preco }}</span>
+          R$ <span class="bold">{{ produto.preco }}</span>
       </p>
   </a>
 </div>

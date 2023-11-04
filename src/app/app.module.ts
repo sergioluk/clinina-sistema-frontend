@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
+import { ProdutoComponent } from './componentes/produto/produto.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {MatInputModule} from '@angular/material/input';
     FooterComponent,
     CardHomeComponent,
     HomeComponent,
-    CadastroProdutoComponent
+    CadastroProdutoComponent,
+    ProdutoComponent
   ],
   imports: [
     BrowserModule,

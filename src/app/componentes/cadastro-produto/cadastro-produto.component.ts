@@ -24,14 +24,22 @@ export class CadastroProdutoComponent {
 
   cadastroProduto: CadastroProduto = {
     produto: '',
+    sabor: '',
+    idade: '',
     categoria: '',
     animal: '',
     informacao: '',
     peso: 0,
     preco: 0,
     desconto: 0,
-    qtd_estoque: 0,
-    qtd_vendido: 0
+    estoque: 0,
+    venda: 0,
+    castrado: 0,
+    fornecedor: '',
+    litros: '',
+    imagemP: '',
+    imagens: ''
+
   }
 
   constructor(private service: CardHomeService, private router: Router){
@@ -46,7 +54,7 @@ export class CadastroProdutoComponent {
 
   cadastrarProduto(){
     this.service.criar(this.cadastroProduto).subscribe(() => {
-      this.router.navigate(['/home']);
+      //this.router.navigate(['/home']);
     })
   }
 

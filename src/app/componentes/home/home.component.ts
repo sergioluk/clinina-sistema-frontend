@@ -4,6 +4,7 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { CardHome } from '../card-home/card-home';
 import { CardHomeComponent } from '../card-home/card-home.component';
 import { CardHomeService } from '../card-home.service';
+import { CadastroProduto } from '../cadastro-produto/cadastro-produto';
 
 @Component({
   selector: 'app-home',
@@ -57,11 +58,17 @@ export class HomeComponent implements OnInit {
 
   listaCards: CardHome[] = [];
 
+  listaCards2: CadastroProduto[] = []
+
   constructor(private service: CardHomeService){}
 
   ngOnInit(): void {
     this.service.listar().subscribe((listaCards) =>{
       this.listaCards = listaCards
+    })
+
+    this.service.listar2().subscribe((listaCards2) =>{
+      this.listaCards2 = listaCards2
     })
   }
 

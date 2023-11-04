@@ -18,9 +18,27 @@ export class CardHomeService {
     return this.http.get<CardHome[]>(this.API);
   }
 
+  listar2(): Observable<CadastroProduto[]>{
+    return this.http.get<CadastroProduto[]>(this.API);
+  }
+
   criar(produto: CadastroProduto): Observable<CadastroProduto>{
     return this.http.post<CadastroProduto>(this.API, produto);
   }
 
+  excluir(id: number): Observable<CadastroProduto>{
+    const url = `${this.API}/${id}`;
+    return this.http.delete<CadastroProduto>(url);
+  }
+
+  buscarPorId(id: number): Observable<CadastroProduto>{
+    const url = `${this.API}/${id}`;
+    return this.http.get<CadastroProduto>(url);
+  }
+
+  editar(produto: CadastroProduto): Observable<CadastroProduto>{
+    const url = `${this.API}/${produto.id}`;
+    return this.http.put<CadastroProduto>(url, produto);
+  }
 
 }

@@ -10,6 +10,16 @@
           <input required [(ngModel)]="cadastroProduto.produto" name="produto" matInput placeholder="Informe um nome">
         </mat-form-field>
 
+        <mat-form-field>
+          <mat-label>Sabor</mat-label>
+          <input required [(ngModel)]="cadastroProduto.sabor" name="produto" matInput placeholder="Informe um sabor">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Idade</mat-label>
+          <input required [(ngModel)]="cadastroProduto.idade" name="produto" matInput placeholder="Informe uma idade">
+        </mat-form-field>
+
         <!--
         <mat-form-field>
           <mat-label>Categoria</mat-label>
@@ -49,12 +59,32 @@
 
         <mat-form-field>
           <mat-label>Quantidade de Estoque</mat-label>
-          <input required [(ngModel)]="cadastroProduto.qtd_estoque" name="qtd_estoque" matInput placeholder="Informe uma quantidade de estoque">
+          <input required [(ngModel)]="cadastroProduto.estoque" name="estoque" matInput placeholder="Informe uma quantidade de estoque">
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Quantidade Vendido</mat-label>
-          <input required [(ngModel)]="cadastroProduto.qtd_vendido" name="qtd_vendido" matInput placeholder="Informe uma quanditade de vendidos">
+          <input required [(ngModel)]="cadastroProduto.venda" name="venda" matInput placeholder="Informe uma quanditade de vendidos">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Fornecedor</mat-label>
+          <input required [(ngModel)]="cadastroProduto.fornecedor" name="fornecedor" matInput placeholder="Informe um fornecedor">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Litros</mat-label>
+          <input required [(ngModel)]="cadastroProduto.litros" name="litros" matInput placeholder="Informe uma quanditade de litros">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Imagem Principal</mat-label>
+          <input required [(ngModel)]="cadastroProduto.imagemP" name="imagemP" matInput placeholder="Informe uma url da imagem">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Imagens</mat-label>
+          <input required [(ngModel)]="cadastroProduto.imagens" name="imagens" matInput placeholder="Informe uma url da imagem">
         </mat-form-field>
 
         <mat-form-field>

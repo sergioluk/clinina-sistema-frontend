@@ -1,12 +1,20 @@
 export interface CadastroProduto {
     id?: number
     produto: string
-    categoria: string
-    animal: string
-    informacao: string
+    sabor: string
+    idade: string
     peso: number
+    castrado: number
+    estoque: number
+    venda: number
+    informacao: string
+    animal: string
     preco: number
     desconto: number
-    qtd_estoque: number
-    qtd_vendido: number
+    fornecedor: string
+    litros: string
+    categoria: string
+    imagemP: string
+    imagens: string
+
   }

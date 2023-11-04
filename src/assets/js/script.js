@@ -49,7 +49,7 @@ function preco(id) {
   document.getElementById("valor").innerText = preco;
   document.getElementById(id).style.backgroundColor = corSelecionada
 }
-
+/*
 //Consumindo uma API
 
 function fazGet(url){
@@ -123,3 +123,4 @@ function produto(produto){
 
 }
 
+*/
