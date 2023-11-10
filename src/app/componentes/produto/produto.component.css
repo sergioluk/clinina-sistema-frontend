@@ -174,7 +174,23 @@ main{
   height: 300px;
   width: 180px;
 }
-.card-vcPodeGostar img{
+
+.nome-produto {
+  margin: 0 25px;
+  font-size: 20px;
+}
+.sabor-produto{
+  margin: 0 25px;
+  font-size: 20px;
+  font-weight: bold;
+  padding-bottom: 5px;
+}
+.preco-produto{
+  margin: 0 25px;
+  font-size: 25px;
+}
+
+.card-vcPodeGostar__img{
   border: 1px solid pink;
   width: 165px;
 }
@@ -335,4 +351,15 @@ main{
 color: #bbb;
 text-decoration: none;
 cursor: pointer;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.slick-prev, .slick-next:before {
+  width: 90px;
+  font-size: 50px;
+  color: #000;
+  left: 0;
 }

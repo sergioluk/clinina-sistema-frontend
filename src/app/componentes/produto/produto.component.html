@@ -15,13 +15,6 @@
                               <img src="{{ slide.img }}" alt="" class="imagensGrandes">
                             </div>
                           </ngx-slick-carousel>
-                          <!--<img class="imagensGrandes" src="{{ produto.imagemP }}" alt="Ração">-->
-                          <!--<img class="imagensGrandes" src="./img/biscrok/1 grande.png" alt="Ração">-->
-                          <!--<img class="imagensGrandes" src="./img/biscrok/2 grande.png" alt="">
-                          <img class="imagensGrandes" src="./img/biscrok/3 grande.png" alt="">
-                          <img class="imagensGrandes" src="./img/biscrok/4 grande.png" alt="">
-                          <img class="imagensGrandes" src="./img/biscrok/5 grande.png" alt="">
-                          <img class="imagensGrandes" src="./img/biscrok/6 grande.png" alt="">-->
                       </div>
                       <div class="area-slider-produto">
                           <div class="slider-produto">
@@ -30,24 +23,6 @@
                                   <img src="{{ slide.img }}" alt="" class="areaImg">
                               </div>
                             </ngx-slick-carousel>
-                             <!-- <div class="areaImg">
-                                  <img src="./img/biscrok/1 pequeno.png" alt="">
-                              </div>
-                              <div class="areaImg">
-                                  <img src="./img/biscrok/2 pequeno.png" alt="">
-                              </div>
-                              <div class="areaImg">
-                                  <img src="./img/biscrok/3 pequeno.png" alt="">
-                              </div>
-                              <div class="areaImg">
-                                  <img src="./img/biscrok/4 pequeno.png" alt="">
-                              </div>
-                              <div class="areaImg">
-                                  <img src="./img/biscrok/5 pequeno.png" alt="">
-                              </div>
-                              <div class="areaImg">
-                                  <img src="./img/biscrok/6 pequeno.png" alt="">
-                              </div>-->
                           </div>
                       </div>
                   </div>
@@ -69,56 +44,22 @@
                   </div>
                   <div class="divs area-vcPodeGostar">
                       <div class="slider-vcPodeGostar">
-                          <div class="card-vcPodeGostar">
+
+                        <ngx-slick-carousel  #slickModal="slick-carousel" [config]="slideConfig3">
+                          <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+                            <div class="card-vcPodeGostar">
                               <a href="#">
-                                  <img src="https://petbox.vteximg.com.br/arquivos/ids/163778-1000-1000/d2f54242a166e358c65273c8522ac1978ee87927.gif?v=638107924379770000" alt="">
-                                  <h3 class="nome-produto">Ração Pedigree muito top com cereais de manteiga</h3>
-                                  <p class="sabor-produto">Carne</p>
-                                  <p class="preco-produto">
-                                   R$ <span class="bold">129,99</span>
-                                </p>
+                                <img src="{{ slide.img }}" alt="" class="card-vcPodeGostar__img">
+                                <h3 class="nome-produto">{{ produto.produto }}</h3>
+                                <p class="sabor-produto">{{ produto.sabor }}</p>
+                                <p class="preco-produto">
+                                  R$ <span class="bold">{{ produto.preco }}</span>
+                               </p>
                               </a>
-                          </div>
-                          <div class="card-vcPodeGostar">
-                              <a href="#">
-                                  <img src="https://petbox.vteximg.com.br/arquivos/ids/163778-1000-1000/d2f54242a166e358c65273c8522ac1978ee87927.gif?v=638107924379770000" alt="">
-                                  <h3 class="nome-produto">Ração Pedigree muito top com cereais de manteiga</h3>
-                                  <p class="sabor-produto">Carne</p>
-                                  <p class="preco-produto">
-                                   R$ <span class="bold">129,99</span>
-                                </p>
-                              </a>
-                          </div>
-                          <div class="card-vcPodeGostar">
-                              <a href="#">
-                                  <img src="https://petbox.vteximg.com.br/arquivos/ids/163778-1000-1000/d2f54242a166e358c65273c8522ac1978ee87927.gif?v=638107924379770000" alt="">
-                                  <h3 class="nome-produto">Ração Pedigree muito top com cereais de manteiga</h3>
-                                  <p class="sabor-produto">Carne</p>
-                                  <p class="preco-produto">
-                                   R$ <span class="bold">129,99</span>
-                                </p>
-                              </a>
-                          </div>
-                          <div class="card-vcPodeGostar">
-                              <a href="#">
-                                  <img src="https://petbox.vteximg.com.br/arquivos/ids/163778-1000-1000/d2f54242a166e358c65273c8522ac1978ee87927.gif?v=638107924379770000" alt="">
-                                  <h3 class="nome-produto">Ração Pedigree muito top com cereais de manteiga</h3>
-                                  <p class="sabor-produto">Carne</p>
-                                  <p class="preco-produto">
-                                   R$ <span class="bold">129,99</span>
-                                </p>
-                              </a>
-                          </div>
-                          <div class="card-vcPodeGostar">
-                              <a href="#">
-                                  <img src="https://petbox.vteximg.com.br/arquivos/ids/163778-1000-1000/d2f54242a166e358c65273c8522ac1978ee87927.gif?v=638107924379770000" alt="">
-                                  <h3 class="nome-produto">Ração Pedigree muito top com cereais de manteiga</h3>
-                                  <p class="sabor-produto">Carne</p>
-                                  <p class="preco-produto">
-                                   R$ <span class="bold">129,99</span>
-                                </p>
-                              </a>
-                          </div>
+                            </div>
+                         </div>
+                        </ngx-slick-carousel>
+
                       </div>
                   </div>
               </div>

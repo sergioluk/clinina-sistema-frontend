@@ -76,6 +76,13 @@ export class ProdutoComponent implements OnInit{
     "asNavFor": '.carousel-produto'
   };
 
+  slideConfig3 = {
+    "infinite": true,
+    "slidesToShow": 4,
+    "slidesToScroll": 1,
+    "arrows": true
+  };
+
   constructor(
     private service: CardHomeService,
     private router: Router,
