@@ -39,10 +39,10 @@ export class ProdutoComponent implements OnInit{
     "dots": false,
     "centerMode": false,
     "arrows": true,
-   "centerPadding": '0px',
+    "centerPadding": '0px',
     "autoplaySpeed": 5000,
     "pauseOnHover": true,
-    "asNavFor:": '.slider-produto',
+    "asNavFor": '.carousel-cardImagem',
     "infinite": true,
     "responsive":[
       {
@@ -73,7 +73,7 @@ export class ProdutoComponent implements OnInit{
     "slidesToScroll": 1,
     "arrows": false,
     "fade": true,
-    "asNavFor:": '.cardImagem'
+    "asNavFor": '.carousel-produto'
   };
 
   constructor(
