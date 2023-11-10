@@ -10,7 +10,12 @@
                   <div class="divs imagens-produto">
                       <div class="divs cardImagem">
 
-                          <img class="imagensGrandes" src="{{ produto.imagemP }}" alt="Ração">
+                        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig2">
+                            <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+                              <img src="{{ slide.img }}" alt="" class="imagensGrandes">
+                            </div>
+                          </ngx-slick-carousel>
+                          <!--<img class="imagensGrandes" src="{{ produto.imagemP }}" alt="Ração">-->
                           <!--<img class="imagensGrandes" src="./img/biscrok/1 grande.png" alt="Ração">-->
                           <!--<img class="imagensGrandes" src="./img/biscrok/2 grande.png" alt="">
                           <img class="imagensGrandes" src="./img/biscrok/3 grande.png" alt="">
@@ -20,6 +25,11 @@
                       </div>
                       <div class="area-slider-produto">
                           <div class="slider-produto">
+                            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig">
+                              <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+                                  <img src="{{ slide.img }}" alt="" class="areaImg">
+                              </div>
+                            </ngx-slick-carousel>
                              <!-- <div class="areaImg">
                                   <img src="./img/biscrok/1 pequeno.png" alt="">
                               </div>

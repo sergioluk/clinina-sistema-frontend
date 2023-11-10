@@ -103,13 +103,15 @@ main{
   background-color: #98a2d7
 }
 .area-slider-produto{
- margin: auto;
+  margin: auto;
   height: 75px;
   width: 410px;
   overflow: hidden;
   padding-left: 45px;
+  padding-right: 45px;
 }
 .areaImg{
+  margin-left: 15px;
   height: 75px;
   width: 75px;
 

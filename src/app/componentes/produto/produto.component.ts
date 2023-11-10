@@ -30,6 +30,51 @@ export class ProdutoComponent implements OnInit{
     imagens: ''
   }
 
+  slides = [{'img':''}];
+
+  slideConfig = {
+    "slidesToShow": 3,
+    "slidesToScroll": 1,
+    "autoplay": false,
+    "dots": false,
+    "centerMode": false,
+    "arrows": true,
+   "centerPadding": '0px',
+    "autoplaySpeed": 5000,
+    "pauseOnHover": true,
+    "asNavFor:": '.slider-produto',
+    "infinite": true,
+    "responsive":[
+      {
+        "breakpoint": 992,
+        "settings":{
+          "arrows":true,
+          "infinite":true,
+          "slidesToShow": 3,
+          "slidesToScroll": 3
+        }
+      },
+      {
+        "breakpoint": 768,
+        "settings":{
+          "arrows":true,
+          "infinite":true,
+          "slidesToShow": 1,
+          "slidesToScroll": 1
+        }
+      }
+    ]
+
+  };
+
+
+  slideConfig2 = {
+    "slidesToShow": 1,
+    "slidesToScroll": 1,
+    "arrows": false,
+    "fade": true,
+    "asNavFor:": '.cardImagem'
+  };
 
   constructor(
     private service: CardHomeService,
@@ -47,15 +92,38 @@ export class ProdutoComponent implements OnInit{
       this.service.buscarPorId(parseInt(id!)).subscribe((produto) =>{
         this.produto = produto;
         this.listaInformacao(produto.informacao);
+        this.listaUrl(produto.imagens);
+        this.adicionarImgsNoSlide(this.fotosCarroselArray.length);
+        for(let i = 0; i < this.slides.length; i++){
+          this.slides[i].img = this.fotosCarroselArray[i];
+        }
     });
 
   }
 
 
   informacaoArray: Array<string> = []
+  fotosCarroselArray: Array<string> = []
 
   listaInformacao(descricao: string){
     this.informacaoArray = descricao.split(":");
+  }
+
+  listaUrl(urls: string){
+    this.fotosCarroselArray = urls.split(":@:");
+  }
+
+  //so coloca a quantidade certa de objetos com a propriedade img em slides
+  adicionarImgsNoSlide(num : number) {
+    this.slides = [];
+    var obj;
+
+    for (var i = 0; i < num; i++) {
+      obj = {'img':''};
+      this.slides.push(obj);
+    }
+
+    return this.slides;
   }
 
 }
