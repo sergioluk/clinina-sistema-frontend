@@ -10,6 +10,26 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProdutoComponent implements OnInit{
 
+  itemClicked() {
+    if (this.active == true){
+      this.active = false;
+    } else {
+      this.active = true;
+    }
+
+  }
+
+  detalhesClicked(){
+    if (this.detalhesDoProduto == true){
+      this.detalhesDoProduto = false;
+    } else {
+      this.detalhesDoProduto = true;
+    }
+  }
+
+  detalhesDoProduto: boolean = true;
+  active: boolean = true;
+
   produto: CadastroProduto = {
     id: 0,
     produto: '',

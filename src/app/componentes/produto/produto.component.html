@@ -1,361 +1,374 @@
- <main>
-      <div id="overlay" onclick="off()">
-          <!-- Botão de fechar -->
-          <span class="close">&times;</span>
-          <img id="overlayImg" src="" alt="">
-      </div>
-      <div class="divs container-produto-compra">
-          <div class="conteiner-descricao">
-              <div class="container-imagens">
-                  <div class="divs imagens-produto">
-                      <div class="divs cardImagem">
-
-                        <ngx-slick-carousel class="carousel-cardImagem" #slickModal="slick-carousel" [config]="slideConfig2">
-                            <div ngxSlickItem *ngFor="let slide of slides" class="slide">
-                              <img src="{{ slide.img }}" alt="" class="imagensGrandes">
-                            </div>
-                          </ngx-slick-carousel>
-                      </div>
-                      <div class="area-slider-produto">
-                          <div class="slider-produto">
-                            <ngx-slick-carousel class="carousel-produto" #slickModal="slick-carousel" [config]="slideConfig">
-                              <div ngxSlickItem *ngFor="let slide of slides" class="slide">
-                                  <img src="{{ slide.img }}" alt="" class="areaImg">
-                              </div>
-                            </ngx-slick-carousel>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="divs container-desc">
-                      <h1>{{ produto.produto }} {{ produto.sabor }} {{ produto.peso }} kg</h1>
-                      <div class="desc">
-                          <p>Informações</p><br>
-                          <ul *ngFor="let informacao of informacaoArray">
-                            <li>{{informacao}}</li>
-                          </ul>
-                      </div>
-                  </div>
-
+<main>
+  <div id="overlay" onclick="off()">
+    <!-- Botão de fechar -->
+    <span class="close">&times;</span>
+    <img id="overlayImg" src="" alt="" />
+  </div>
+  <div class="divs container-produto-compra">
+    <div class="conteiner-descricao">
+      <div class="container-imagens">
+        <div class="divs imagens-produto">
+          <div class="divs cardImagem">
+            <ngx-slick-carousel
+              class="carousel-cardImagem"
+              #slickModal="slick-carousel"
+              [config]="slideConfig2"
+            >
+              <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+                <img src="{{ slide.img }}" alt="" class="imagensGrandes" />
               </div>
-
-              <div class="divs vcPodeGostar">
-                  <div >
-                      <h2>Você também pode gostar</h2>
-                  </div>
-                  <div class="divs area-vcPodeGostar">
-                      <div class="slider-vcPodeGostar">
-
-                        <ngx-slick-carousel  #slickModal="slick-carousel" [config]="slideConfig3">
-                          <div ngxSlickItem *ngFor="let slide of slides" class="slide">
-                            <div class="card-vcPodeGostar">
-                              <a href="#">
-                                <img src="{{ slide.img }}" alt="" class="card-vcPodeGostar__img">
-                                <h3 class="nome-produto">{{ produto.produto }}</h3>
-                                <p class="sabor-produto">{{ produto.sabor }}</p>
-                                <p class="preco-produto">
-                                  R$ <span class="bold">{{ produto.preco }}</span>
-                               </p>
-                              </a>
-                            </div>
-                         </div>
-                        </ngx-slick-carousel>
-
-                      </div>
-                  </div>
-              </div>
-              <div class="divs ficha">
-                  <button class="accordion2511">
-                      <svg width="35px" height="35px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 17H15M9 13H15M9 9H10M13 3H8.2C7.0799 3 6.51984 3 6.09202 3.21799C5.71569 3.40973 5.40973 3.71569 5.21799 4.09202C5 4.51984 5 5.0799 5 6.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.0799 21 8.2 21H15.8C16.9201 21 17.4802 21 17.908 20.782C18.2843 20.5903 18.5903 20.2843 18.782 19.908C19 19.4802 19 18.9201 19 17.8V9M13 3L19 9M13 3V7.4C13 7.96005 13 8.24008 13.109 8.45399C13.2049 8.64215 13.3578 8.79513 13.546 8.89101C13.7599 9 14.0399 9 14.6 9H19" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
-                      <h2>Ficha técnica</h2>
-                  </button>
-                  <div class="panel">
-                      <div class="item">
-                          <div class="categoria">
-                              Porte
-                          </div>
-                          <div class="categoriaResposta">
-                              Raças Minis, Raças Pequenas
-                          </div>
-                      </div>
-                      <div class="item">
-                          <div class="categoria">
-                              Idade
-                          </div>
-                          <div class="categoriaResposta">
-                              Adulto
-                          </div>
-                      </div>
-                      <div class="item">
-                          <div class="categoria">
-                              Corante
-                          </div>
-                          <div class="categoriaResposta">
-                              Sem Corante
-                          </div>
-                      </div>
-                      <div class="item">
-                          <div class="categoria">
-                              Tipo da Ração
-                          </div>
-                          <div class="categoriaResposta">
-                              Super Premium
-                          </div>
-                      </div>
-                      <div class="item">
-                          <div class="categoria">
-                              Peso da Ração
-                          </div>
-                          <div class="categoriaResposta">
-                              1 kg, 2.5 kg, 15 kg, 20 kg
-                          </div>
-                      </div>
-                      <div class="item">
-                          <div class="categoria">
-                              Sabor da Ração
-                          </div>
-                          <div class="categoriaResposta">
-                              Frango
-                          </div>
-                      </div>
-                      <div class="item">
-                          <div class="categoria">
-                              Raças de Cachorro
-                          </div>
-                          <div class="categoriaResposta">
-                              Beagle, Boston Terrier, Chihuahua, Dachshund, Lhasa Apso, Lulu da Pomerânia, Maltês, Pinscher, Poodle, Pug, Shih Tzu, Yorkshire Terrier
-                          </div>
-                      </div>
-                      <div class="item">
-                          <div class="categoria">
-                              Transgênico
-                          </div>
-                          <div class="categoriaResposta">
-                              Com transgênico
-                          </div>
-                      </div>
-                      <div class="item">
-                          <div class="categoria">
-                              Indicação
-                          </div>
-                          <div class="categoriaResposta">
-                              Alimentação diária para cães adultos de porte pequeno a partir de 12 meses
-                          </div>
-                      </div>
-                      <div class="item">
-                          <div class="categoria">
-                              Marca
-                          </div>
-                          <div class="categoriaResposta">
-                              Premier
-                          </div>
-                      </div>
-                      <div class="item">
-                          <div class="categoria">
-                              Linha
-                          </div>
-                          <div class="categoriaResposta">
-                              Formula
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="divs ficha">
-                  <button class="accordion2511">
-                      <svg width="30px" height="30px" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M320 89.6h640v76.8H320V89.6z m0 768h640v76.8H320v-76.8z m-256-768h128v76.8H64V89.6z m256 384h640v76.8H320V473.6z m-256 0h128v76.8H64V473.6z m0 384h128v76.8H64v-76.8z" fill="#000000"></path></g></svg>
-                      <h2>Detalhes do produto</h2>
-                  </button>
-                  <div class="panel">
-                      <br>
-                      <h3>Ração Premier Formula Cães Adultos Raças Pequenas Frango</h3>
-                      <br>
-                      <p>A <strong>Ração Premier Formula Cães Adultos Raças Pequenas</strong> é elaborada com ingredientes naturais nobres, sem corantes e aromatizantes artificiais, selecionados sob rigoroso controle de qualidade, garantindo um alimento muito mais nutritivo e saboroso.</p>
-                      <br>
-                      <p>Sua composição ajuda a ter pele e pelagem saudáveis e bonitas. Além de contribuir para a saúde e vitalidade do seu bichinho, proporciona uma pelagem mais bonita, fezes em menor volume, melhor digestibilidade e mais saúde.</p>
-                      <br>
-                      <p>Na Cobasi você encontra a <strong>Ração Premier Formula Cães Adultos Raças Pequenas com preço</strong> imperdível. Compre pelo Site, App ou loja física.</p>
-                      <br>
-                      <h3>Dica de Amigo Cobasi</h3>
-                      <br>
-                      <p>Um dos cuidados mais importante que podemos ter com os nossos bichinhos é oferecer uma alimentação que seja adequada à sua idade e ao seu porte. Assim, você evita a obesidade e outros problemas decorrentes dela. Faça acompanhamento com o um médico veterinário. Seu amigo merece esse cuidado!</p>
-                      <br>
-                      <h3>Ingredientes</h3>
-                      <br>
-                      <p>Farinha de vísceras de frango, glúten de milho*, grão de milho*, quirera de arroz, polpa desidratada de beterraba, banha refinada, gordura de frango, óleo de peixes refinado, cloreto de potássio, cloreto de sódio, levedura de cana-de-açúcar autolisada e desidratada, ácido propiônico, bentonita, BHA (Butilhidroxianisol), BHT (Butilhidroxitolueno), hidrolisado de fígado de aves e suíno, parede celular de levedura (mananoligossacarídeos), acetato de DL-alfa tocoferol, acetato de retinol, ácido ascórbico monofosfato, ácido fólico, ácido pantotênico, biotina, bissulfito de menadiona nicotinamida, cianocobalamina, cloreto de colina, colecalciferol, niacina (ácido nicotínico), piridoxina, riboflavina, tiamina, ferro aminoácido quelato, iodeto de cálcio, manganês aminoácido quelato, selenometionina hidroxi análoga, sulfato de cobre pentahidratado, sulfato de ferro, sulfato de manganês, sulfato de zinco monohidratado, zinco aminoácido quelato.</p>
-                      <br>
-                      <p>*Contém milho e glúten de milho transgênicos (espécies doadoras de gene: Bacillus thuringiensis, Agrobacterium tumefaciens, Streptomyces viridochromogenes).</p>
-                      <br>
-                      <h3>Níveis de garantia da Ração Premier Cães Adultos Raças Pequenas</h3>
-                      <br>
-                      <div class="detalhes">
-                          <div class="listaDetalhes">
-                              Umidade(máx.)
-                          </div>
-                          <div class="listaDetalhes">
-                              10,00%
-                          </div>
-                          <div class="listaDetalhes">
-                              100g/kg
-                          </div>
-                      </div>
-                      <div class="detalhes">
-                          <div class="listaDetalhes">
-                              Proteína Bruta(mín.)
-                          </div>
-                          <div class="listaDetalhes">
-                              26,00%
-                          </div>
-                          <div class="listaDetalhes">
-                              260g/kg
-                          </div>
-                      </div>
-                      <div class="detalhes">
-                          <div class="listaDetalhes">
-                              Extrato Etéro(mín.)
-                          </div>
-                          <div class="listaDetalhes">
-                              16,00%
-                          </div>
-                          <div class="listaDetalhes">
-                              160g/kg
-                          </div>
-                      </div>
-                      <div class="detalhes">
-                          <div class="listaDetalhes">
-                              Matéria Mineral (máx.)
-                          </div>
-                          <div class="listaDetalhes">
-                              7,50%
-                          </div>
-                          <div class="listaDetalhes">
-                              75g/kg
-                          </div>
-                      </div>
-                      <div class="detalhes">
-                          <div class="listaDetalhes">
-                              Matéria Fibrosa (máx.)
-                          </div>
-                          <div class="listaDetalhes">
-                              3,00%
-                          </div>
-                          <div class="listaDetalhes">
-                              30g/kg
-                          </div>
-                      </div>
-                      <div class="detalhes">
-                          <div class="listaDetalhes">
-                              Cálcio (máx.)
-                          </div>
-                          <div class="listaDetalhes">
-                              1,50%
-                          </div>
-                          <div class="listaDetalhes">
-                              15g/kg
-                          </div>
-                      </div>
-                      <div class="detalhes">
-                          <div class="listaDetalhes">
-                              Cálcio (mín.)
-                          </div>
-                          <div class="listaDetalhes">
-                              0,70%
-                          </div>
-                          <div class="listaDetalhes">
-                              7.000mg/kg
-                          </div>
-                      </div>
-                      <div class="detalhes">
-                          <div class="listaDetalhes">
-                              Fósforo (mín.)
-                          </div>
-                          <div class="listaDetalhes">
-                              0,60%
-                          </div>
-                          <div class="listaDetalhes">
-                              6.000mg/kg
-                          </div>
-                      </div>
-                      <div class="detalhes">
-                          <div class="listaDetalhes">
-                              Sódio (mín.)
-                          </div>
-                          <div class="listaDetalhes">
-                              0,20%
-                          </div>
-                          <div class="listaDetalhes">
-                              2.000mg/kg
-                          </div>
-                      </div>
-                      <div class="detalhes">
-                          <div class="listaDetalhes">
-                              Potássio (mín.)
-                          </div>
-                          <div class="listaDetalhes">
-                              0,58%
-                          </div>
-                          <div class="listaDetalhes">
-                              5.800mg/kg
-                          </div>
-                      </div>
-                      <div class="detalhes">
-                          <div class="listaDetalhes">
-                              Ômega 6 (mín.)
-                          </div>
-                          <div class="listaDetalhes">
-                              2,50%
-                          </div>
-                          <div class="listaDetalhes">
-                              25g/kg
-                          </div>
-                      </div>
-                      <div class="detalhes">
-                          <div class="listaDetalhes">
-                              Ômega 3 (mín.)
-                          </div>
-                          <div class="listaDetalhes">
-                              0,28%
-                          </div>
-                          <div class="listaDetalhes">
-                              2.800mg/kg
-                          </div>
-                      </div>
-                      <div class="detalhes">
-                          <div class="listaDetalhes">
-                              Energia Metabolizável
-                          </div>
-                          <div class="listaDetalhes">
-                              -
-                          </div>
-                          <div class="listaDetalhes">
-                              4.040 kcal/kg
-                          </div>
-                      </div>
-                      <br>
-                      <br>
-                      <h3>Enriquecimento mínimo por kg</h3>
-                      <br>
-                      <p>Ácido fólico 1,50mg, Ácido pantotênico 21,32mg, Biotina 0,10mg, Cobre 10,37mg, Colina 1.900,00mg, Ferro 52,12mg, Iodo 1,50mg, Manganês 8,37mg, Niacina 24,57mg, Selênio 0,20mg, Vitamina A 9.126,00 UI, Vitamina B1 3,25mg, Vitamina B 12 50,31mcg, Vitamina B 2 8,97mg, Vitamina B 6 2,21mg, Vitamina C 20,00mg, Vitamina D3 830,70 UI, Vitamina E 100,00 UI, Vitamina K3 0,56mg, Zinco 125,00mg.
-                      </p>
-                      <br>
-                      <h3>Guia para troca de ração</h3>
-                      <br>
-                      <p>Caso haja necessidade em inserir uma nova ração para seu pet, é importante que a troca seja gradual e crescente. Para garantir uma perfeita adaptação e aceitação, você pode seguir a sugestão abaixo ou conforme orientação do médico-veterinário:</p>
-                      <br>
-                  </div>
-              </div>
+            </ngx-slick-carousel>
           </div>
-          <div class="preco">
-              <h3>Escolha uma opção:</h3>
-              <div class="escolha-kilo">
-                  <div class="btn-kg" id="a1" onclick="preco(id)">1 KG</div>
-                  <div class="btn-kg" id="2.5" onclick="preco(id)">2.5 KG</div>
-                  <div class="btn-kg" id="15" onclick="preco(id)">15 KG</div>
-                  <div class="btn-kg" id="20" onclick="preco(id)">20 KG</div>
-              </div>
-              <div class="preco-qtd">
-                  <span id="valor">R$ 36,90</span>
-                  <p>à vista</p>
-              </div>
-              <button>Adicionar ao carrinho</button>
+          <div class="area-slider-produto">
+            <div class="slider-produto">
+              <ngx-slick-carousel
+                class="carousel-produto"
+                #slickModal="slick-carousel"
+                [config]="slideConfig"
+              >
+                <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+                  <img src="{{ slide.img }}" alt="" class="areaImg" />
+                </div>
+              </ngx-slick-carousel>
+            </div>
           </div>
+        </div>
+        <div class="divs container-desc">
+          <h1>
+            {{ produto.produto }} {{ produto.sabor }} {{ produto.peso }} kg
+          </h1>
+          <div class="desc">
+            <p>Informações</p>
+            <br />
+            <ul *ngFor="let informacao of informacaoArray">
+              <li>{{ informacao }}</li>
+            </ul>
+          </div>
+        </div>
       </div>
-  </main>
+
+      <div class="divs vcPodeGostar">
+        <div>
+          <h2>Você também pode gostar</h2>
+        </div>
+        <div class="divs area-vcPodeGostar">
+          <div class="slider-vcPodeGostar">
+            <ngx-slick-carousel
+              #slickModal="slick-carousel"
+              [config]="slideConfig3"
+            >
+              <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+                <div class="card-vcPodeGostar">
+                  <a href="#">
+                    <img
+                      src="{{ slide.img }}"
+                      alt=""
+                      class="card-vcPodeGostar__img"
+                    />
+                    <h3 class="nome-produto">{{ produto.produto }}</h3>
+                    <p class="sabor-produto">{{ produto.sabor }}</p>
+                    <p class="preco-produto">
+                      R$ <span class="bold">{{ produto.preco }}</span>
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </ngx-slick-carousel>
+          </div>
+        </div>
+      </div>
+      <div class="divs ficha">
+        <div id="container">
+          <div class="itemm">
+            <div class="accordion2511" (click)="itemClicked()">
+              <svg
+                width="35px"
+                height="35px"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    d="M9 17H15M9 13H15M9 9H10M13 3H8.2C7.0799 3 6.51984 3 6.09202 3.21799C5.71569 3.40973 5.40973 3.71569 5.21799 4.09202C5 4.51984 5 5.0799 5 6.2V17.8C5 18.9201 5 19.4802 5.21799 19.908C5.40973 20.2843 5.71569 20.5903 6.09202 20.782C6.51984 21 7.0799 21 8.2 21H15.8C16.9201 21 17.4802 21 17.908 20.782C18.2843 20.5903 18.5903 20.2843 18.782 19.908C19 19.4802 19 18.9201 19 17.8V9M13 3L19 9M13 3V7.4C13 7.96005 13 8.24008 13.109 8.45399C13.2049 8.64215 13.3578 8.79513 13.546 8.89101C13.7599 9 14.0399 9 14.6 9H19"
+                    stroke="#000000"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </g>
+              </svg>
+              <h2>Ficha técnica</h2>
+            </div>
+            <div class="content" [ngClass]="{ active: active }">
+              <div class="item">
+                <div class="categoria">Porte</div>
+                <div class="categoriaResposta">Raças Minis, Raças Pequenas</div>
+              </div>
+              <div class="item">
+                <div class="categoria">Idade</div>
+                <div class="categoriaResposta">Adulto</div>
+              </div>
+              <div class="item">
+                <div class="categoria">Corante</div>
+                <div class="categoriaResposta">Sem Corante</div>
+              </div>
+              <div class="item">
+                <div class="categoria">Tipo da Ração</div>
+                <div class="categoriaResposta">Super Premium</div>
+              </div>
+              <div class="item">
+                <div class="categoria">Peso da Ração</div>
+                <div class="categoriaResposta">1 kg, 2.5 kg, 15 kg, 20 kg</div>
+              </div>
+              <div class="item">
+                <div class="categoria">Sabor da Ração</div>
+                <div class="categoriaResposta">Frango</div>
+              </div>
+              <div class="item">
+                <div class="categoria">Raças de Cachorro</div>
+                <div class="categoriaResposta">
+                  Beagle, Boston Terrier, Chihuahua, Dachshund, Lhasa Apso, Lulu
+                  da Pomerânia, Maltês, Pinscher, Poodle, Pug, Shih Tzu,
+                  Yorkshire Terrier
+                </div>
+              </div>
+              <div class="item">
+                <div class="categoria">Transgênico</div>
+                <div class="categoriaResposta">Com transgênico</div>
+              </div>
+              <div class="item">
+                <div class="categoria">Indicação</div>
+                <div class="categoriaResposta">
+                  Alimentação diária para cães adultos de porte pequeno a partir
+                  de 12 meses
+                </div>
+              </div>
+              <div class="item">
+                <div class="categoria">Marca</div>
+                <div class="categoriaResposta">Premier</div>
+              </div>
+              <div class="item">
+                <div class="categoria">Linha</div>
+                <div class="categoriaResposta">Formula</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divs ficha">
+        <div id="container">
+          <div class="itemm">
+            <div class="accordion2511" (click)="detalhesClicked()">
+              <svg
+                width="30px"
+                height="30px"
+                viewBox="0 0 1024 1024"
+                class="icon"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="#000000"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    d="M320 89.6h640v76.8H320V89.6z m0 768h640v76.8H320v-76.8z m-256-768h128v76.8H64V89.6z m256 384h640v76.8H320V473.6z m-256 0h128v76.8H64V473.6z m0 384h128v76.8H64v-76.8z"
+                    fill="#000000"
+                  ></path>
+                </g>
+              </svg>
+              <h2>Detalhes do produto</h2>
+            </div>
+            <div class="content" [ngClass]="{ active: detalhesDoProduto }">
+              <br />
+              <h3>Ração Premier Formula Cães Adultos Raças Pequenas Frango</h3>
+              <br />
+              <p>
+                A
+                <strong
+                  >Ração Premier Formula Cães Adultos Raças Pequenas</strong
+                >
+                é elaborada com ingredientes naturais nobres, sem corantes e
+                aromatizantes artificiais, selecionados sob rigoroso controle de
+                qualidade, garantindo um alimento muito mais nutritivo e
+                saboroso.
+              </p>
+              <br />
+              <p>
+                Sua composição ajuda a ter pele e pelagem saudáveis e bonitas.
+                Além de contribuir para a saúde e vitalidade do seu bichinho,
+                proporciona uma pelagem mais bonita, fezes em menor volume,
+                melhor digestibilidade e mais saúde.
+              </p>
+              <br />
+              <p>
+                Na Cobasi você encontra a
+                <strong
+                  >Ração Premier Formula Cães Adultos Raças Pequenas com
+                  preço</strong
+                >
+                imperdível. Compre pelo Site, App ou loja física.
+              </p>
+              <br />
+              <h3>Dica de Amigo Cobasi</h3>
+              <br />
+              <p>
+                Um dos cuidados mais importante que podemos ter com os nossos
+                bichinhos é oferecer uma alimentação que seja adequada à sua
+                idade e ao seu porte. Assim, você evita a obesidade e outros
+                problemas decorrentes dela. Faça acompanhamento com o um médico
+                veterinário. Seu amigo merece esse cuidado!
+              </p>
+              <br />
+              <h3>Ingredientes</h3>
+              <br />
+              <p>
+                Farinha de vísceras de frango, glúten de milho*, grão de milho*,
+                quirera de arroz, polpa desidratada de beterraba, banha
+                refinada, gordura de frango, óleo de peixes refinado, cloreto de
+                potássio, cloreto de sódio, levedura de cana-de-açúcar
+                autolisada e desidratada, ácido propiônico, bentonita, BHA
+                (Butilhidroxianisol), BHT (Butilhidroxitolueno), hidrolisado de
+                fígado de aves e suíno, parede celular de levedura
+                (mananoligossacarídeos), acetato de DL-alfa tocoferol, acetato
+                de retinol, ácido ascórbico monofosfato, ácido fólico, ácido
+                pantotênico, biotina, bissulfito de menadiona nicotinamida,
+                cianocobalamina, cloreto de colina, colecalciferol, niacina
+                (ácido nicotínico), piridoxina, riboflavina, tiamina, ferro
+                aminoácido quelato, iodeto de cálcio, manganês aminoácido
+                quelato, selenometionina hidroxi análoga, sulfato de cobre
+                pentahidratado, sulfato de ferro, sulfato de manganês, sulfato
+                de zinco monohidratado, zinco aminoácido quelato.
+              </p>
+              <br />
+              <p>
+                *Contém milho e glúten de milho transgênicos (espécies doadoras
+                de gene: Bacillus thuringiensis, Agrobacterium tumefaciens,
+                Streptomyces viridochromogenes).
+              </p>
+              <br />
+              <h3>
+                Níveis de garantia da Ração Premier Cães Adultos Raças Pequenas
+              </h3>
+              <br />
+              <div class="detalhes">
+                <div class="listaDetalhes">Umidade(máx.)</div>
+                <div class="listaDetalhes">10,00%</div>
+                <div class="listaDetalhes">100g/kg</div>
+              </div>
+              <div class="detalhes">
+                <div class="listaDetalhes">Proteína Bruta(mín.)</div>
+                <div class="listaDetalhes">26,00%</div>
+                <div class="listaDetalhes">260g/kg</div>
+              </div>
+              <div class="detalhes">
+                <div class="listaDetalhes">Extrato Etéro(mín.)</div>
+                <div class="listaDetalhes">16,00%</div>
+                <div class="listaDetalhes">160g/kg</div>
+              </div>
+              <div class="detalhes">
+                <div class="listaDetalhes">Matéria Mineral (máx.)</div>
+                <div class="listaDetalhes">7,50%</div>
+                <div class="listaDetalhes">75g/kg</div>
+              </div>
+              <div class="detalhes">
+                <div class="listaDetalhes">Matéria Fibrosa (máx.)</div>
+                <div class="listaDetalhes">3,00%</div>
+                <div class="listaDetalhes">30g/kg</div>
+              </div>
+              <div class="detalhes">
+                <div class="listaDetalhes">Cálcio (máx.)</div>
+                <div class="listaDetalhes">1,50%</div>
+                <div class="listaDetalhes">15g/kg</div>
+              </div>
+              <div class="detalhes">
+                <div class="listaDetalhes">Cálcio (mín.)</div>
+                <div class="listaDetalhes">0,70%</div>
+                <div class="listaDetalhes">7.000mg/kg</div>
+              </div>
+              <div class="detalhes">
+                <div class="listaDetalhes">Fósforo (mín.)</div>
+                <div class="listaDetalhes">0,60%</div>
+                <div class="listaDetalhes">6.000mg/kg</div>
+              </div>
+              <div class="detalhes">
+                <div class="listaDetalhes">Sódio (mín.)</div>
+                <div class="listaDetalhes">0,20%</div>
+                <div class="listaDetalhes">2.000mg/kg</div>
+              </div>
+              <div class="detalhes">
+                <div class="listaDetalhes">Potássio (mín.)</div>
+                <div class="listaDetalhes">0,58%</div>
+                <div class="listaDetalhes">5.800mg/kg</div>
+              </div>
+              <div class="detalhes">
+                <div class="listaDetalhes">Ômega 6 (mín.)</div>
+                <div class="listaDetalhes">2,50%</div>
+                <div class="listaDetalhes">25g/kg</div>
+              </div>
+              <div class="detalhes">
+                <div class="listaDetalhes">Ômega 3 (mín.)</div>
+                <div class="listaDetalhes">0,28%</div>
+                <div class="listaDetalhes">2.800mg/kg</div>
+              </div>
+              <div class="detalhes">
+                <div class="listaDetalhes">Energia Metabolizável</div>
+                <div class="listaDetalhes">-</div>
+                <div class="listaDetalhes">4.040 kcal/kg</div>
+              </div>
+              <br />
+              <br />
+              <h3>Enriquecimento mínimo por kg</h3>
+              <br />
+              <p>
+                Ácido fólico 1,50mg, Ácido pantotênico 21,32mg, Biotina 0,10mg,
+                Cobre 10,37mg, Colina 1.900,00mg, Ferro 52,12mg, Iodo 1,50mg,
+                Manganês 8,37mg, Niacina 24,57mg, Selênio 0,20mg, Vitamina A
+                9.126,00 UI, Vitamina B1 3,25mg, Vitamina B 12 50,31mcg,
+                Vitamina B 2 8,97mg, Vitamina B 6 2,21mg, Vitamina C 20,00mg,
+                Vitamina D3 830,70 UI, Vitamina E 100,00 UI, Vitamina K3 0,56mg,
+                Zinco 125,00mg.
+              </p>
+              <br />
+              <h3>Guia para troca de ração</h3>
+              <br />
+              <p>
+                Caso haja necessidade em inserir uma nova ração para seu pet, é
+                importante que a troca seja gradual e crescente. Para garantir
+                uma perfeita adaptação e aceitação, você pode seguir a sugestão
+                abaixo ou conforme orientação do médico-veterinário:
+              </p>
+              <br />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="preco">
+      <h3>Escolha uma opção:</h3>
+      <div class="escolha-kilo">
+        <div class="btn-kg" id="a1" onclick="preco(id)">1 KG</div>
+        <div class="btn-kg" id="2.5" onclick="preco(id)">2.5 KG</div>
+        <div class="btn-kg" id="15" onclick="preco(id)">15 KG</div>
+        <div class="btn-kg" id="20" onclick="preco(id)">20 KG</div>
+      </div>
+      <div class="preco-qtd">
+        <span id="valor">R$ 36,90</span>
+        <p>à vista</p>
+      </div>
+      <button>Adicionar ao carrinho</button>
+    </div>
+  </div>
+</main>

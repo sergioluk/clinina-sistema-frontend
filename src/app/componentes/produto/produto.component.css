@@ -258,10 +258,11 @@ main{
   right: 2%;
   margin-left: 5px;
 }
-
+/*
 .active:after {
-  content: "\2796"; /* Unicode character for "minus" sign (-) */
+  content: "\2796"; /* Unicode character for "minus" sign (-) 
 }
+*/
 .active, .accordion2511:hover {
   background-color: #ccc;
 }
@@ -293,13 +294,13 @@ main{
   font-size: 20px;
   color: rgb(68, 68, 68);
   font-weight: 400;
-  overflow-y: auto;
+  /*overflow-y: auto;*/
 }
 
-.panel .item:nth-child(even) {
+.content .item:nth-child(even) {
   background-color: #ccc;
 }
-.panel .item:last-child{
+.content .item:last-child{
   border: none;
 }
 .detalhes{
@@ -363,3 +364,28 @@ cursor: pointer;
   color: #000;
   left: 0;
 }
+
+#container {
+  width: 100%;
+}
+
+.content {
+  display: none;
+  background-color: #e8eaf6;
+  padding: 0px 20px;
+  max-height: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.active {
+  display: block;
+  padding: 0px 20px;
+  max-height: inherit;
+}
+
+h3 {
+  font-weight: bold;
+}
+/*.active::after{
+  display: none;
+}*/
