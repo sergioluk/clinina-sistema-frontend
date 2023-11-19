@@ -93,6 +93,11 @@
         </mat-form-field>
 
         <mat-form-field>
+          <mat-label>Linha</mat-label>
+          <input required [(ngModel)]="cadastroProduto.imagens" name="linha" matInput placeholder="Informe uma url da linha">
+        </mat-form-field>
+
+        <mat-form-field>
           <mat-label>Mensagem Ignora</mat-label>
           <textarea [(ngModel)]="mensagem" name="mensagem" matInput placeholder="Mensagem"></textarea>
         </mat-form-field>

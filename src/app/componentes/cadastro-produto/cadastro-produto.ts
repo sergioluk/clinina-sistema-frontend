@@ -16,5 +16,5 @@ export interface CadastroProduto {
     categoria: string
     imagemP: string
     imagens: string
-
+    
   }
