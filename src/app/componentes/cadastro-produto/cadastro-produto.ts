@@ -16,5 +16,13 @@ export interface CadastroProduto {
     categoria: string
     imagemP: string
     imagens: string
-    
+
+    porte: string
+    corante: boolean
+    tipoDaRacao: string
+    raca: string
+    transgenico: boolean
+    indicacao: string
+    marca: string
+    linha: string
   }
