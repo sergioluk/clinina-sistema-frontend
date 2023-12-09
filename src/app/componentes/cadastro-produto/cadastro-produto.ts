@@ -17,6 +17,7 @@ export interface CadastroProduto {
     imagemP: string
     imagens: string
 
+    /*
     porte: string
     corante: boolean
     tipoDaRacao: string
@@ -25,4 +26,5 @@ export interface CadastroProduto {
     indicacao: string
     marca: string
     linha: string
+    */
   }

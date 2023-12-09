@@ -3,21 +3,22 @@
   <mat-card>
     <mat-card-title>Cadastro de Produto</mat-card-title>
     <mat-card-content>
-      <div action="" class="contact-form">
+      <div action="" class="contact-form" [formGroup]="formulario">
 
         <mat-form-field>
           <mat-label>Produto</mat-label>
-          <input required [(ngModel)]="cadastroProduto.produto" name="produto" matInput placeholder="Informe um nome">
+          <!--<input required [(ngModel)]="cadastroProduto.produto" name="produto" matInput placeholder="Informe um nome">-->
+          <input required formControlName="produto" name="produto" matInput placeholder="Informe um nome">
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Sabor</mat-label>
-          <input required [(ngModel)]="cadastroProduto.sabor" name="produto" matInput placeholder="Informe um sabor">
+          <input required formControlName="sabor" name="sabor" matInput placeholder="Informe um sabor">
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Idade</mat-label>
-          <input required [(ngModel)]="cadastroProduto.idade" name="produto" matInput placeholder="Informe uma idade">
+          <input required formControlName="idade" name="idade" matInput placeholder="Informe uma idade">
         </mat-form-field>
 
         <!--
@@ -29,69 +30,70 @@
 
         <mat-form-field>
           <mat-label>Categoria</mat-label>
-          <input required [(ngModel)]="cadastroProduto.categoria" name="categoria" matInput placeholder="Informe uma categoria">
+          <input required formControlName="categoria" name="categoria" matInput placeholder="Informe uma categoria">
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Animal</mat-label>
-          <input required [(ngModel)]="cadastroProduto.animal" name="animal" matInput placeholder="Informe um animal">
+          <input required formControlName="animal" name="animal" matInput placeholder="Informe um animal">
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Castrado</mat-label>
-          <input required [(ngModel)]="cadastroProduto.castrado" name="castrado" matInput placeholder="Informe 0 para nao castrado ou 1 para castrado">
+          <input required formControlName="castrado" name="castrado" matInput placeholder="Informe 0 para nao castrado ou 1 para castrado">
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Informação</mat-label>
-          <input required [(ngModel)]="cadastroProduto.informacao" name="informacao" matInput placeholder="Informe uma informacao">
+          <input required formControlName="informacao" name="informacao" matInput placeholder="Informe uma informacao">
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Peso</mat-label>
-          <input required [(ngModel)]="cadastroProduto.peso" name="peso" matInput placeholder="Informe um peso">
+          <input required formControlName="peso" name="peso" matInput placeholder="Informe um peso">
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Preço</mat-label>
-          <input required [(ngModel)]="cadastroProduto.preco" name="preco" matInput placeholder="Informe um preco">
+          <input required formControlName="preco" name="preco" matInput placeholder="Informe um preco">
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Desconto</mat-label>
-          <input required [(ngModel)]="cadastroProduto.desconto" name="desconto" matInput placeholder="Informe um desconto">
+          <input required formControlName="desconto" name="desconto" matInput placeholder="Informe um desconto">
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Quantidade de Estoque</mat-label>
-          <input required [(ngModel)]="cadastroProduto.estoque" name="estoque" matInput placeholder="Informe uma quantidade de estoque">
+          <input required formControlName="estoque" name="estoque" matInput placeholder="Informe uma quantidade de estoque">
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Quantidade Vendido</mat-label>
-          <input required [(ngModel)]="cadastroProduto.venda" name="venda" matInput placeholder="Informe uma quanditade de vendidos">
+          <input required formControlName="venda" name="venda" matInput placeholder="Informe uma quanditade de vendidos">
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Fornecedor</mat-label>
-          <input required [(ngModel)]="cadastroProduto.fornecedor" name="fornecedor" matInput placeholder="Informe um fornecedor">
+          <input required formControlName="fornecedor" name="fornecedor" matInput placeholder="Informe um fornecedor">
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Litros</mat-label>
-          <input required [(ngModel)]="cadastroProduto.litros" name="litros" matInput placeholder="Informe uma quanditade de litros">
+          <input required formControlName="litros" name="litros" matInput placeholder="Informe uma quanditade de litros">
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Imagem Principal</mat-label>
-          <input required [(ngModel)]="cadastroProduto.imagemP" name="imagemP" matInput placeholder="Informe uma url da imagem">
+          <input required formControlName="imagemP" name="imagemP" matInput placeholder="Informe uma url da imagem">
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Imagens</mat-label>
-          <input required [(ngModel)]="cadastroProduto.imagens" name="imagens" matInput placeholder="Informe uma url da imagem">
+          <input required formControlName="imagens" name="imagens" matInput placeholder="Informe uma url da imagem">
         </mat-form-field>
 
+        <!--
         <mat-form-field>
           <mat-label>Linha</mat-label>
           <input required [(ngModel)]="cadastroProduto.imagens" name="linha" matInput placeholder="Informe uma url da linha">
@@ -106,6 +108,7 @@
           <mat-label>Mensagem Ignora</mat-label>
           <textarea [(ngModel)]="mensagem" name="mensagem" matInput placeholder="Mensagem"></textarea>
         </mat-form-field>
+        -->
 
         <button mat-raised-button (click)="cadastrarProduto()" color="primary">Enviar</button>
 
