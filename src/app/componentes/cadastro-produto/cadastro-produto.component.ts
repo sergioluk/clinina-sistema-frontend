@@ -12,9 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CadastroProdutoComponent implements OnInit {
 
-  nome:string;
-  email:string;
-  mensagem:string;
+
 
   produto: CardHome = {
 
@@ -23,6 +21,7 @@ export class CadastroProdutoComponent implements OnInit {
 
   }
 
+  /*
   cadastroProduto: CadastroProduto = {
     produto: '',
     sabor: '',
@@ -41,7 +40,7 @@ export class CadastroProdutoComponent implements OnInit {
     imagemP: '',
     imagens: ''
 
-  }
+  }*/
 
   formulario!: FormGroup
 
@@ -49,9 +48,7 @@ export class CadastroProdutoComponent implements OnInit {
      private router: Router,
      private formBuilder: FormBuilder
      ){
-    this.nome="";
-    this.email="";
-    this.mensagem="";
+
 
 
 
@@ -60,6 +57,7 @@ export class CadastroProdutoComponent implements OnInit {
     this.formulario = this.formBuilder.group({
       produto: ['', Validators.compose([
         Validators.required,
+        Validators.minLength(3),
         //Validators.pattern(/(.|\s)*\S(.|\s)*/)
       ])],
       sabor: ['', Validators.compose([
@@ -68,7 +66,9 @@ export class CadastroProdutoComponent implements OnInit {
         //minusculoValidator
       ])],
       idade: [''],
-      categoria: [''],
+      categoria: ['', Validators.compose([
+        Validators.required
+      ])],
       animal: [''],
       informacao: [''],
       peso: [0],
@@ -85,7 +85,7 @@ export class CadastroProdutoComponent implements OnInit {
   }
 
   enviarFormulario(): void {
-    console.log('Ok nome: ' + this.nome + " email: " + this.email + " msg: " + this.mensagem)
+
   }
 
   cadastrarProduto(){

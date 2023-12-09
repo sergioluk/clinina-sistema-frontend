@@ -10,6 +10,8 @@
           <!--<input required [(ngModel)]="cadastroProduto.produto" name="produto" matInput placeholder="Informe um nome">-->
           <input required formControlName="produto" name="produto" matInput placeholder="Informe um nome">
         </mat-form-field>
+        <app-mensagem-erro *ngIf="formulario.get('produto')?.errors?.['required'] && formulario.get('produto')?.touched" mensagem="produto é obrigatório!"></app-mensagem-erro>
+        <app-mensagem-erro *ngIf="formulario.get('produto')?.errors?.['minlength'] && formulario.get('produto')?.touched" mensagem="O nome do produto precisa ser maior!"></app-mensagem-erro>
 
         <mat-form-field>
           <mat-label>Sabor</mat-label>
@@ -30,8 +32,9 @@
 
         <mat-form-field>
           <mat-label>Categoria</mat-label>
-          <input required formControlName="categoria" name="categoria" matInput placeholder="Informe uma categoria">
+          <input formControlName="categoria" name="categoria" matInput placeholder="Informe uma categoria">
         </mat-form-field>
+        <app-mensagem-erro *ngIf="(formulario.get('categoria')?.errors?.['required'] && formulario.get('categoria')?.touched) || formulario.get('categoria')?.dirty " mensagem="Categoria é obrigatório!"></app-mensagem-erro>
 
         <mat-form-field>
           <mat-label>Animal</mat-label>

@@ -17,6 +17,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import { ProdutoComponent } from './componentes/produto/produto.component';
+import { MensagemErroComponent } from './componentes/mensagem-erro/mensagem-erro.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ProdutoComponent } from './componentes/produto/produto.component';
     CardHomeComponent,
     HomeComponent,
     CadastroProdutoComponent,
-    ProdutoComponent
+    ProdutoComponent,
+    MensagemErroComponent
   ],
   imports: [
     BrowserModule,
