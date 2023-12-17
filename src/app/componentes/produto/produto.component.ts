@@ -32,6 +32,7 @@ export class ProdutoComponent implements OnInit{
 
   produto: CadastroProduto = {
     id: 0,
+    codigoDeBarras: '',
     produto: '',
     sabor: '',
     idade: '',

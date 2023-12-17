@@ -1,5 +1,6 @@
 export interface CadastroProduto {
     id?: number
+    codigoDeBarras: string
     produto: string
     sabor: string
     idade: string

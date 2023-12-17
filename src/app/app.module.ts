@@ -18,6 +18,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import { ProdutoComponent } from './componentes/produto/produto.component';
 import { MensagemErroComponent } from './componentes/mensagem-erro/mensagem-erro.component';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { MensagemErroComponent } from './componentes/mensagem-erro/mensagem-erro
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

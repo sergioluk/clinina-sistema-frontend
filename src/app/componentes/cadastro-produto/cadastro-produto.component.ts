@@ -5,12 +5,16 @@ import { CardHome } from '../card-home/card-home';
 import { CadastroProduto } from './cadastro-produto';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+
+
+
 @Component({
   selector: 'app-cadastro-produto',
   templateUrl: './cadastro-produto.component.html',
   styleUrls: ['./cadastro-produto.component.css']
 })
 export class CadastroProdutoComponent implements OnInit {
+
 
 
 
@@ -55,6 +59,7 @@ export class CadastroProdutoComponent implements OnInit {
   }
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
+      codigoDeBarras: [''],
       produto: ['', Validators.compose([
         Validators.required,
         Validators.minLength(3),
@@ -66,17 +71,17 @@ export class CadastroProdutoComponent implements OnInit {
         //minusculoValidator
       ])],
       idade: [''],
-      categoria: ['', Validators.compose([
+      categoria: ['Ração', Validators.compose([
         Validators.required
       ])],
-      animal: [''],
+      animal: ['Cachorro'],
       informacao: [''],
-      peso: [0],
-      preco: [0],
-      desconto: [0],
-      estoque: [0],
-      venda: [0],
-      castrado: [0],
+      peso: [],
+      preco: [],
+      desconto: [],
+      estoque: [],
+      venda: [],
+      castrado: [],
       fornecedor: [''],
       litros: [''],
       imagemP: [''],
@@ -93,7 +98,10 @@ export class CadastroProdutoComponent implements OnInit {
     this.service.criar(this.cadastroProduto).subscribe(() => {
       //this.router.navigate(['/home']);
     })*/
-
+    console.log('ola')
+    console.log(this.formulario.get('categoria')?.value);
+    console.log(this.formulario.get('animal')?.value);
+    console.log(this.formulario.get('castrado')?.value);
     if (this.formulario.valid){
       this.service.criar(this.formulario.value).subscribe(() => {
         //this.router.navigate(['/home']);
@@ -102,5 +110,12 @@ export class CadastroProdutoComponent implements OnInit {
 
   }
 
+  teste(){
+    const informações = 'Recomendado para cães filhotes; Filhotes mais felizes; Ossos mais fortes; Sem corantes.';
+
+    const linhasDeInformações = informações.split(';');
+
+    console.log(linhasDeInformações);
+  }
 
 }

@@ -4,7 +4,8 @@
           <img class="logo" src="../../../assets/img/nina1.png" alt="">
           <img class="logo-2" src="../../../assets/img/nina2.png" alt="">
       </a>
-      <input type="search" class="barra-de-pesquisa" size="70" style="padding: 20px" placeholder="Pesquisar em Clinina">
+      <input type="search" autofocus class="barra-de-pesquisa" size="70" style="padding: 20px" [(ngModel)]="input" placeholder="Pesquisar em Clinina" (keyup)="onEnter()">
+
       <div class="login">
           <img src="../../../assets/img/conecte-se.png" alt="">
           <div class="login2">
@@ -75,3 +76,9 @@
   </nav>
 
 </header>
+
+<div *ngIf="produto.produto">
+  <h1>Produto: {{ produto.produto }}</h1>
+  <h2>Preço: {{ produto.preco }} </h2>
+  <img src="{{produto.imagemP}}" alt="">
+</div>

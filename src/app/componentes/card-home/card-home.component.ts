@@ -18,6 +18,7 @@ export class CardHomeComponent {
 
   @Input() produto: CadastroProduto = {
     id: 0,
+    codigoDeBarras: '',
     produto: 'Ola',
     preco: 29,
     sabor: '',

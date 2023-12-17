@@ -22,6 +22,11 @@ export class CardHomeService {
     return this.http.get<CadastroProduto[]>(this.API);
   }
 
+  pesquisarPorCodigoDeBarras(codigoDeBarras: string): Observable<CadastroProduto>{
+    const url = `${this.API}/codigo-de-barras/${codigoDeBarras}`;
+    return this.http.get<CadastroProduto>(url);
+  }
+
   criar(produto: CadastroProduto): Observable<CadastroProduto>{
     return this.http.post<CadastroProduto>(this.API, produto);
   }
