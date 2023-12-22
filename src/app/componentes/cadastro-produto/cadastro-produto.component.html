@@ -14,14 +14,39 @@
         <label for="categoria">Categoria:</label>
         <div>
           <select id="categoria" formControlName="categoria">
-            <option value="Ração">Ração</option>
-            <option value="Sachê">Sachê</option>
-            <option value="Acessório">Acessório</option>
+              <option *ngFor="let opcaoCategoria of listaDeCategoria" value="{{ opcaoCategoria }}">{{ opcaoCategoria }}</option>
           </select>
-          <button class="botao botao-adicionar">+</button>
-          <button class="botao botao-remover">x</button>
+          <button class="botao botao-adicionar" (click)="modalCategoria()">+</button>
+          <button class="botao botao-remover" (click)="modalRemoverCategoria()">&times;</button>
         </div>
       </div>
+
+      <!--Modal Adicionar -->
+      <div class="modal" *ngIf="modal">
+        <!-- Modal content -->
+        <div class="modal-content" [formGroup]="formularioSecundario">
+          <span class="close" (click)="fecharModalCategoria()">&times;</span>
+          <label for="categorianova">Digite a nova categoria abaixo:</label>
+          <br>
+          <input class="inputsNovos" type="text" id="categorianova" formControlName="categoriaNovaForm" placeholder="Digite o nome da nova categoria.">
+          <button class="botao-adicionar separar-botao" (click)="adicionarCategoria()">Adicionar</button>
+        </div>
+      </div>
+
+      <!--Modal Remover -->
+      <div class="modal" *ngIf="removerCategoria">
+        <!-- Modal content -->
+        <div class="modal-content" [formGroup]="formularioSecundario">
+          <span class="close" (click)="fecharRemoverCategoria()">&times;</span>
+          <h2>Lista de Categoria:</h2>
+          <div class="divs remover-coisas" *ngFor="let opcaoCategoria of listaDeCategoria; index as i">
+            <p >{{ i + 1 }} {{ opcaoCategoria }}</p>
+            <button class="botao botao-remover separar-botao" (click)="acaoRemoverCategoria(i)">&times;</button>
+          </div>
+
+        </div>
+      </div>
+
       <!--Produto-->
       <div class="divs formulario__cadastro__produto">
         <label for="produto">Nome do produto:</label>
@@ -29,19 +54,22 @@
         <input type="text" id="produto" formControlName="produto" placeholder="Digite o nome do produto">
       </div>
       <!--Imagem-->
-      <div class="divs formulario__cadastro__imagem">
+      <div class="divs formulario__cadastro__imagem" [formGroup]="formularioSecundario">
         <label for="imagemP">Imagens:</label>
-        <button class="botao botao-adicionar separar-botao">+</button>
+        <button class="botao botao-adicionar separar-botao" (click)="adicionarImagem()">+</button>
         <br>
-        <input type="text" id="imagemP" formControlName="imagemP" placeholder="Digite a url da imagem principal">
-        <button class="botao botao-remover separar-botao">x</button>
+        <div class="divs formulario__cadastro__imagem__input-imagem-apagar" *ngFor="let imagem of listaDeImagens; index as i">
+          <input type="text" id="imagemP" formControlName="imagemNovaForm" placeholder="Digite a url da imagem principal" (keyup)="populandoListaDeImagens(i)">
+          <button class="botao botao-remover separar-botao" (click)="removerImagem(i)">&times;</button>
+        </div>
+
       </div>
       <!--Sabor Idade-->
       <div class="divs formulario__cadastro__sabor-idade">
         <div>
           <label for="sabor">Sabor:</label>
           <button class="botao botao-adicionar separar-botao">+</button>
-          <button class="botao botao-remover separar-botao">x</button>
+          <button class="botao botao-remover separar-botao">&times;</button>
           <br>
           <select id="sabor" formControlName="sabor">
             <option value="Carne">Carne</option>
@@ -52,7 +80,7 @@
         <div>
           <label for="idade">Idade:</label>
           <button class="botao botao-adicionar separar-botao">+</button>
-          <button class="botao botao-remover separar-botao">x</button>
+          <button class="botao botao-remover separar-botao">&times;</button>
           <br>
           <select id="idade" formControlName="idade">
             <option value="Adulto">Adulto</option>
@@ -138,7 +166,7 @@
         <button class="botao botao-adicionar separar-botao">+</button>
         <br>
         <input type="text" id="informacao" formControlName="informacao" placeholder="Digite as informações">
-        <button class="botao botao-remover separar-botao">x</button>
+        <button class="botao botao-remover separar-botao">&times;</button>
       </div>
 
       <!--Fornecedor-->
@@ -151,7 +179,7 @@
           <option value="FVO">FVO</option>
         </select>
         <button class="botao botao-adicionar separar-botao">+</button>
-        <button class="botao botao-remover separar-botao">x</button>
+        <button class="botao botao-remover separar-botao">&times;</button>
       </div>
 
 
@@ -161,15 +189,14 @@
       <div class="divs formulario__preview__FotosDescricao">
         <div class="divs formulario__preview__FotosDescricao__fotos">
           <div class="divs formulario__preview__FotosDescricao__fotos__ImagemPrincipal">
-            <img src="{{ formulario.get('imagemP')?.value }}" alt="Imagem">
+            <img src="{{ formulario.get('imagemP')?.value[0] }}" alt="Imagem">
           </div>
           <div class="divs formulario__preview__FotosDescricao__fotos__ImagensSecundarias">
-            <img src="../../../assets/img/1.png" alt="">
-            <img src="../../../assets/img/2.png" alt="">
-            <img src="../../../assets/img/3.png" alt="">
-            <img src="../../../assets/img/1.png" alt="">
-            <img src="../../../assets/img/2.png" alt="">
-            <img src="../../../assets/img/3.png" alt="">
+            <div class="divs" *ngFor="let imagem of listaDeImagens; index as i">
+              <img src="{{ formulario.get('imagemP')?.value[i] }}" alt="">
+            </div>
+
+
           </div>
         </div>
         <div class="divs formulario__preview__FotosDescricao__descricao">
@@ -193,7 +220,7 @@
           <p>Fornecedor: {{ formulario.get('fornecedor')?.value }}</p>
           <br>
           <div class="divs formulario__preview__FotosDescricao__descricao__acoes">
-            <button class="botao-adicionar">Cadastrar</button>
+            <button class="botao-adicionar" (click)="cadastrarProduto()">Cadastrar</button>
             <button class="botao-remover">Cancelar</button>
           </div>
         </div>
@@ -203,4 +230,7 @@
 
 
 </div>
+
+
+
 

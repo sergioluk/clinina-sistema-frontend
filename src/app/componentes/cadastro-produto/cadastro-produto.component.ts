@@ -3,7 +3,7 @@ import { CardHomeService } from '../card-home.service';
 import { Router } from '@angular/router';
 import { CardHome } from '../card-home/card-home';
 import { CadastroProduto } from './cadastro-produto';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 
@@ -14,6 +14,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./cadastro-produto.component.css']
 })
 export class CadastroProdutoComponent implements OnInit {
+
+  modal: boolean = false;
+  removerCategoria: boolean = false;
+  categoriaNova!: string;
+
+  listaDeCategoria: string [] = [
+    "Ração","Sachê","Acessório"
+  ];
+
+  listaDeImagens: string [] = [''];
 
 
 
@@ -46,7 +56,8 @@ export class CadastroProdutoComponent implements OnInit {
 
   }*/
 
-  formulario!: FormGroup
+  formulario!: FormGroup;
+  formularioSecundario!: FormGroup;
 
   constructor(private service: CardHomeService,
      private router: Router,
@@ -84,9 +95,14 @@ export class CadastroProdutoComponent implements OnInit {
       castrado: [],
       fornecedor: [''],
       litros: [''],
-      imagemP: [''],
+      imagemP: [this.listaDeImagens],
       imagens: ['']
     })
+
+    this.formularioSecundario = new FormGroup({
+      categoriaNovaForm: new FormControl(),
+      imagemNovaForm: new FormControl([])
+    });
   }
 
   enviarFormulario(): void {
@@ -102,6 +118,8 @@ export class CadastroProdutoComponent implements OnInit {
     console.log(this.formulario.get('categoria')?.value);
     console.log(this.formulario.get('animal')?.value);
     console.log(this.formulario.get('castrado')?.value);
+    console.log(this.formulario.get('imagemP')?.value[0]);
+    console.log(this.formulario);
     if (this.formulario.valid){
       this.service.criar(this.formulario.value).subscribe(() => {
         //this.router.navigate(['/home']);
@@ -117,5 +135,49 @@ export class CadastroProdutoComponent implements OnInit {
 
     console.log(linhasDeInformações);
   }
+
+  modalCategoria(){
+    this.modal = true;
+  }
+  fecharModalCategoria(){
+    this.modal = false;
+  }
+  adicionarCategoria(){
+    this.categoriaNova = this.formularioSecundario.get('categoriaNovaForm')?.value;
+    this.listaDeCategoria.push(this.categoriaNova);
+    this.formularioSecundario.get('categoriaNovaForm')?.setValue('');
+    console.log(this.listaDeCategoria)
+    this.fecharModalCategoria();
+  }
+
+  modalRemoverCategoria(){
+    this.removerCategoria = true;
+  }
+
+  fecharRemoverCategoria(){
+    this.removerCategoria = false;
+  }
+
+  acaoRemoverCategoria(index: number){
+    this.listaDeCategoria.splice(index, 1);
+  }
+
+  adicionarImagem(){
+    //const imagemNova = this.formularioSecundario.get('imagemNovaForm')?.value;
+    //this.listaDeImagens.push(imagemNova);
+
+    this.listaDeImagens.push('');
+    //this.formularioSecundario.get('imagemNovaForm')?.setValue('');
+
+  }
+
+  removerImagem(index: number){
+    this.listaDeImagens.splice(index, 1);
+  }
+
+  populandoListaDeImagens(index: number){
+    this.listaDeImagens[index] = this.formularioSecundario.get('imagemNovaForm')?.value;
+  }
+
 
 }
