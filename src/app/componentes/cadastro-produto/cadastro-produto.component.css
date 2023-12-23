@@ -23,6 +23,7 @@ h3 {
   justify-content: center;
   gap: 100px;
   padding-bottom: 50px;
+  flex-wrap: wrap;
 }
 
 .formulario label, .formulario h3 {
@@ -290,6 +291,8 @@ mat-card-title{
   justify-content: space-between;
 }
 
-.formulario__cadastro__imagem__input-imagem-apagar {
+.formulario__cadastro__imagem__input-imagem-apagar,
+.formulario__cadastro__preco--peso--desconto__desconto,
+.formulario__cadastro__informacao-input-informacao-apagar {
   display: flex;
 }
