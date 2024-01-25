@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CardHomeService } from '../card-home.service';
 import { Router } from '@angular/router';
 import { CardHome } from '../card-home/card-home';
-import { CadastroProduto } from './cadastro-produto';
+import { CadastroProduto, Categoria } from './cadastro-produto';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs/operators';
 
@@ -45,9 +45,6 @@ export class CadastroProdutoComponent implements OnInit {
   listaDeFornecedor: string [] = [
     "Admax", "Donizete", "FVO"
   ];
-
-
-
 
   produto: CardHome = {
 
@@ -92,33 +89,32 @@ export class CadastroProdutoComponent implements OnInit {
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
       codigoDeBarras: [''],
+      categoria: ['Ração', Validators.compose([
+        Validators.required
+      ])],
       produto: ['', Validators.compose([
         Validators.required,
         Validators.minLength(3),
         //Validators.pattern(/(.|\s)*\S(.|\s)*/)
       ])],
+      imagens: [this.listaDeImagens], /** */
       sabor: ['Carne', Validators.compose([
         Validators.required,
         //Validators.minLength(3)
         //minusculoValidator
       ])],
       idade: ['Adulto'],
-      categoria: ['Ração', Validators.compose([
-        Validators.required
-      ])],
-      animal: ['Cachorro'],
-      informacao: [this.listaDeInformacao],
-      peso: [],
       preco: [],
-      desconto: [],
-      estoque: [],
-      venda: [],
+      peso: [],
+      desconto: [0],
+      animal: ['Cachorro'],
       castrado: [0],
-      fornecedor: ['Admax'],
       porte: this.buildPortes(),
-      litros: [''],
-      imagemP: [this.listaDeImagens],
-      imagens: ['']
+      informacao: [this.listaDeInformacao],
+      fornecedor: ['Admax'],
+      estoque: [1],
+      imagemP: [''],
+
     })
 /*
     this.formularioSecundario = this.formBuilder.group({
@@ -165,18 +161,44 @@ export class CadastroProdutoComponent implements OnInit {
     console.log(this.formulario.get('imagemP')?.value[0]);
     console.log(this.formulario);
 
+
+    let imagemPrincipal = this.formulario.get('imagens')?.value[0];
+    this.formulario.get('imagemP')?.setValue(imagemPrincipal);
+
+    //por enquanto, quando eu terminar de fazer a categoria ser salva no banco ai revejo isso
+    let cat = this.formulario.get('categoria')?.value;
+    let idCat = 0;
+    if (cat == 'Ração') {
+      idCat = 1;
+    }
+    if (cat == 'Sachê') {
+      idCat = 2;
+    }
+    if (cat == 'Acessório') {
+      idCat = 3;
+    }
+
+    //fim por enquanto
+    let categoria: Categoria = {
+      id: idCat,
+      nome: this.formulario.get('categoria')?.value
+    }
+    this.formulario.get('categoria')?.setValue(categoria); //forma de enviar no json o objeto categoria
     //só teste
     let valueSubmit = Object.assign({}, this.formulario.value);
     valueSubmit = Object.assign(valueSubmit, {
       porte: valueSubmit.porte.map((v: any,i: number) => v ? this.porte[i] : null).filter((v: null) => v !== null)
     });
 
-    console.log('pingamoanidaba',valueSubmit);
 
+
+    console.log('pingamoanidaba',valueSubmit);
+    console.log("valido:" + this.formulario.valid);
     if (this.formulario.valid){
       //this.service.criar(this.formulario.value).subscribe(() => {
         this.service.criar(valueSubmit).subscribe(() => {//provavelmente é assim, só testando pra saber
         //this.router.navigate(['/home']);
+        window.location.reload();
       })
     }
 
@@ -365,6 +387,7 @@ export class CadastroProdutoComponent implements OnInit {
   getPorteControls() {
     return this.formulario.get('porte') ? (<FormArray>this.formulario.get('porte')).controls : null;
   }
+
 
 
 }

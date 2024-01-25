@@ -1,0 +1,224 @@
+.mainru {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ justify-content: center;
+  border-radius: 2px;
+  height: 763px;
+  background: var(--cor-de-fundo-da-pagina);
+}
+
+h1, h3 {
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+}
+
+.barra-de-pesquisa{
+  margin-right: 10px;
+  border-radius: 7px;
+  border: 0 none;
+  color: black;
+  height: 40px;
+  font-size: 20px;
+}
+
+.Caixa-aberto {
+  color: blue;
+  background: var(--cor-de-fundo-da-pagina);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  width: 1150px;
+  height: 70px;
+  font-size: 30px;
+}
+
+.Caixa-enorme {
+  display: flex;
+  justify-content: center;
+  border-radius: 2px;
+  height: 650px;
+  gap: 10px;
+}
+
+.Caixa-da-Esquerda {
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 2px;
+  width: 566px;
+  height: 645px;
+}
+
+.Caixa-do-row-da-esquerda {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 99%;
+  height: 427px;
+
+  gap: 10px;
+}
+
+.Caixa-da-img {
+
+  height: 330px;
+
+}
+.Caixa-da-img img {
+  height: 330px;
+  width: 330px;
+}
+
+.Caixa-dos-3-negocios-da-direita-na-equerda {
+  display: flex;
+  flex-direction: column;
+  width: 57%;
+  height: 78%;
+  gap: 10px;
+  margin-bottom: 50px;
+}
+
+.primeira-caixa {
+
+margin-top: 35px;
+margin-bottom: 35px;
+}
+
+.segunda-caixa {
+margin-top: 35px;
+margin-bottom: 35px;
+}
+
+.terceira-caixa {
+  margin-top: 35px;
+margin-bottom: 35px;
+}
+
+
+.Caixa-da-Direita {
+  display: flex;
+  flex-direction: column;
+  border-radius: 2px;
+  width: 750px;
+  height: 645px;
+}
+
+
+
+.Caixa-da-table {
+  min-height: 400px;
+  background: white;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  width: 100%;
+}
+
+.coluna-item {
+  width: 50px;
+}
+
+table{
+  width: 100%;
+}
+
+table, th, td {
+  background: white;
+  border:1px solid black;
+
+}
+
+td {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.Caixa-da-parada-azul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  color: white;
+  background: rgb(0, 63, 106);
+  height: 20px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  font-size: 17px;
+}
+
+.Caixa-do-valor {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  color: rgb(0, 63, 106);
+  background: white;
+  height: 30px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  font-size: 20px;
+}
+
+.Caixa-pra-os-2-negocios-da-direita {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 2px;
+  height: 45px;
+  gap: 10px;
+}
+
+.Caixa-de-baixo-da-esquerda {
+  width: 50%;
+
+}
+
+.Caixa-de-baixo-da-direita {
+  width: 50%;
+}
+
+.botao {
+  width: fit-content;
+  border: 2px solid gray;
+  padding: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  border-radius: 7px;
+}
+
+.vender {
+  background-color: rgb(54, 192, 54);
+  color: white;
+  transition: all 1s ease-in-out;
+  cursor: pointer;
+}
+
+.vender:hover {
+  background-color: rgb(45, 131, 45);
+}
+
+.cadastro {
+  background-color: rgb(205, 238, 16);
+  color: black;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+.cadastro:hover {
+  background-color: rgb(194, 149, 25);
+}
+
+.cadastrar-codigo {
+  display: flex;
+  gap: 30px;
+}
+
+.modo-cadastrar {
+  background-color: green;
+}

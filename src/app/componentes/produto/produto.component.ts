@@ -38,17 +38,16 @@ export class ProdutoComponent implements OnInit{
     idade: '',
     categoria: '',
     animal: '',
-    informacao: '',
-    peso: 0,
+    informacao: [],
+    peso: '',
     preco: 0,
     desconto: 0,
     estoque: 0,
-    venda: 0,
-    castrado: 0,
+    castrado: false,
     fornecedor: '',
-    litros: '',
-    imagemP: '',
-    imagens: ''
+    imagens: [],
+    porte: '',
+    imagemP: ''
   }
 
   slides = [{'img':''}];
@@ -119,8 +118,8 @@ export class ProdutoComponent implements OnInit{
       const id = this.route.snapshot.paramMap.get('id')
       this.service.buscarPorId(parseInt(id!)).subscribe((produto) =>{
         this.produto = produto;
-        this.listaInformacao(produto.informacao);
-        this.listaUrl(produto.imagens);
+        //this.listaInformacao(produto.informacao); tirei os dois so pra compilar, vou ter que refazer esse sistema mais tarde...
+        //this.listaUrl(produto.imagens);
         this.adicionarImgsNoSlide(this.fotosCarroselArray.length);
         for(let i = 0; i < this.slides.length; i++){
           this.slides[i].img = this.fotosCarroselArray[i];

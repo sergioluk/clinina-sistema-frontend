@@ -23,18 +23,17 @@ export class CardHomeComponent {
     preco: 29,
     sabor: '',
     idade: '',
-    peso: 0,
-    castrado: 0,
+    peso: '',
+    castrado: false,
     estoque: 0,
-    venda: 0,
-    informacao: '',
+    informacao: [],
     animal: '',
     desconto: 0,
     fornecedor: '',
-    litros: '',
     categoria: '',
-    imagemP: '',
-    imagens: ''
+    imagens: [],
+    porte: '',
+    imagemP: ''
   }
 
 }

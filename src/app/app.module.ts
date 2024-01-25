@@ -19,6 +19,8 @@ import {MatInputModule} from '@angular/material/input';
 import { ProdutoComponent } from './componentes/produto/produto.component';
 import { MensagemErroComponent } from './componentes/mensagem-erro/mensagem-erro.component';
 import {MatSelectModule} from '@angular/material/select';
+import { HomeClininaComponent } from './componentes/home-clinina/home-clinina.component';
+import { VendaComponent } from './componentes/venda/venda.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import {MatSelectModule} from '@angular/material/select';
     HomeComponent,
     CadastroProdutoComponent,
     ProdutoComponent,
-    MensagemErroComponent
+    MensagemErroComponent,
+    HomeClininaComponent,
+    VendaComponent
   ],
   imports: [
     BrowserModule,

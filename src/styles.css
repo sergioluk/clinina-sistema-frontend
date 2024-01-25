@@ -10,6 +10,7 @@
   --corDeFundoEscura: #7a4f25;
   --corGradiente: #f69d3c;
   --corGradienteEscura: rgba(122,79,37,0.6);
+  --cor-de-fundo-da-pagina: rgb(92,131,174);
 }
 body{
   height: 100vh;

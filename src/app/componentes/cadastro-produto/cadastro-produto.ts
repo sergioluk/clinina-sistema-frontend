@@ -1,22 +1,21 @@
 export interface CadastroProduto {
     id?: number
     codigoDeBarras: string
+    categoria: string
     produto: string
+    imagens: string[]
     sabor: string
     idade: string
-    peso: number
-    castrado: number
-    estoque: number
-    venda: number
-    informacao: string
-    animal: string
     preco: number
+    peso: string
     desconto: number
+    animal: string
+    castrado: boolean
+    porte: string
+    informacao: string[]
     fornecedor: string
-    litros: string
-    categoria: string
+    estoque: number
     imagemP: string
-    imagens: string
 
     /*
     porte: string
@@ -28,4 +27,36 @@ export interface CadastroProduto {
     marca: string
     linha: string
     */
+  }
+  export interface Categoria {
+    id?: number
+    nome: string
+  }
+
+  //nao ta sendo usado
+  export interface Venda {
+    id: number
+    codigoDeBarras: string
+    produto: string
+    preco: number
+    imagemP: string
+  }
+
+  //usado só na tabela de venda
+  export interface VendaComQtd {
+    id: number
+    codigoDeBarras: string,
+    produto: string,
+    preco: number,
+    imagemP: string,
+    quantidade: number
+  }
+
+  export interface Vender {
+    id?: number
+    produto_id: number
+    quantidade: number
+    precoUnitario: number
+    precoTotal: number
+    data: Date
   }

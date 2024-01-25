@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CardHome } from './card-home/card-home';
-import { CadastroProduto } from './cadastro-produto/cadastro-produto';
+import { CadastroProduto, Venda, Vender } from './cadastro-produto/cadastro-produto';
 
 @Injectable({
   providedIn: 'root'
@@ -22,9 +22,9 @@ export class CardHomeService {
     return this.http.get<CadastroProduto[]>(this.API);
   }
 
-  pesquisarPorCodigoDeBarras(codigoDeBarras: string): Observable<CadastroProduto>{
+  pesquisarPorCodigoDeBarras(codigoDeBarras: string): Observable<Venda>{
     const url = `${this.API}/codigo-de-barras/${codigoDeBarras}`;
-    return this.http.get<CadastroProduto>(url);
+    return this.http.get<Venda>(url);
   }
 
   criar(produto: CadastroProduto): Observable<CadastroProduto>{
@@ -44,6 +44,16 @@ export class CardHomeService {
   editar(produto: CadastroProduto): Observable<CadastroProduto>{
     const url = `${this.API}/${produto.id}`;
     return this.http.put<CadastroProduto>(url, produto);
+  }
+
+  vender(produtos: Vender[]): Observable<Vender[]>{
+    const url = "http://localhost:8080/vender";
+    return this.http.post<Vender[]>(url, produtos);
+  }
+
+  aumentarEstoque(codigoDeBarras: string): Observable<Venda>{
+    const url = `${this.API}/codigo-de-barras/editar/${codigoDeBarras}`;
+    return this.http.get<Venda>(url);
   }
 
 }

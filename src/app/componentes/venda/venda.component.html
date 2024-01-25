@@ -1,0 +1,110 @@
+<div class="mainru">
+  <div class="Caixa-central">
+
+      <div class="Caixa-aberto">
+        <div class="cadastrar-codigo">
+          <div class="botao cadastro" (click)="cadastrar()">
+            Cadastrar
+          </div>
+          <div *ngIf="divAviso">Produto Adicionado</div>
+          <input type="search" autofocus [ngClass]="cadastrarOuPesquisar()" size="70" style="padding: 20px" [(ngModel)]="input" placeholder="Código de Barras" (keydown.enter)="ApertandoEnter()">
+        </div>
+      </div>
+
+      <div class="Caixa-enorme">
+          <div class="Caixa-da-Esquerda">
+              <div class="Caixa-do-row-da-esquerda">
+                  <div class="Caixa-da-img">
+                      <img src="{{ produto.imagemP }}">
+                  </div>
+                  <div class="Caixa-dos-3-negocios-da-direita-na-equerda">
+                      <div class="primeira-caixa">
+                          <div class="Caixa-da-parada-azul">
+                          <h1>CÓDIGO DE BARRAS</h1>
+                      </div>
+                          <div class="Caixa-do-valor">
+                              <h3>{{ produto.codigoDeBarras }}</h3>
+                          </div>
+                      </div>
+                      <div class="segunda-caixa">
+                          <div class="Caixa-da-parada-azul">
+                          <h1>VALOR UNITÁRIO</h1>
+                      </div>
+                          <div class="Caixa-do-valor">
+                              <h3>{{ produto.preco | currency:'BRL':'symbol':'1.2-2' }}</h3>
+                          </div>
+                      </div>
+                      <div class="terceira-caixa">
+                          <div class="Caixa-da-parada-azul">
+                          <h1>TOTAL DO ITEM</h1>
+                      </div>
+                          <div class="Caixa-do-valor">
+                              <h3>-</h3>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div>
+                  <div class="Caixa-da-parada-azul">
+                      <h1>NOME</h1>
+                  </div>
+                  <div class="Caixa-do-valor">
+                      <h3>{{ produto.produto }}</h3>
+                  </div>
+              </div>
+
+          </div>
+
+          <div class="Caixa-da-Direita">
+              <div class="Caixa-da-parada-azul">
+                  <h1>LISTA DE PRODUTOS</h1>
+              </div>
+              <div class="Caixa-da-table">
+                  <table>
+                    <tr>
+                        <th class="coluna-item">N item</th><th>Codigo</th><th>Descrição</th><th>Qtd</th><th>V unit</th><th>Total</th>
+                    </tr>
+                    <tr *ngFor="let item of listaDeProdutos; index as i">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ item.codigoDeBarras }}</td>
+                        <td>{{ item.produto }}</td>
+                        <td>{{ item.quantidade }}</td>
+                        <td>{{ item.preco | currency:'BRL':'symbol':'1.2-2' }}</td>
+                        <td>{{ item.preco * item.quantidade | currency:'BRL':'symbol':'1.2-2' }}</td>
+                    </tr>
+                  </table>
+              </div>
+
+              <div class="Caixa-da-parada-azul">
+                  <h1>SUBTOTAL</h1>
+              </div>
+              <div class="Caixa-do-valor">
+                  <h3>{{ total | currency:'BRL':'symbol':'1.2-2' }}</h3>
+              </div>
+              <div class="Caixa-pra-os-2-negocios-da-direita">
+                  <div class="Caixa-de-baixo-da-esquerda">
+                      <div class="Caixa-da-parada-azul">
+                          <h1>TOTAL RECEBIDO</h1>
+                      </div>
+                      <div class="Caixa-do-valor">
+                          <h3>{{ total | currency:'BRL':'symbol':'1.2-2' }}</h3>
+                      </div>
+                  </div>
+                  <div class="Caixa-de-baixo-da-direita">
+                      <div class="Caixa-da-parada-azul">
+                          <h1>TROCO</h1>
+                      </div>
+                      <div class="Caixa-do-valor">
+                          <h3>-</h3>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="botao vender" (click)="venda()">
+    Concluir Venda
+  </div>
+</div>
+

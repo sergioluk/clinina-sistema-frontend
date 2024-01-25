@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CardHomeService } from '../card-home.service';
-import { CadastroProduto } from '../cadastro-produto/cadastro-produto';
+import { CadastroProduto, Venda } from '../cadastro-produto/cadastro-produto';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +11,7 @@ export class HeaderComponent {
 
   input: string = '';
 
+  /*
   produto: CadastroProduto = {
     produto: '',
     codigoDeBarras: '',
@@ -18,20 +19,25 @@ export class HeaderComponent {
     idade: '',
     categoria: '',
     animal: '',
-    informacao: '',
-    peso: 0,
+    informacao: [],
+    peso: '',
     preco: 0,
     desconto: 0,
     estoque: 0,
-    venda: 0,
-    castrado: 0,
+    castrado: false,
     fornecedor: '',
-    litros: '',
-    imagemP: '',
-    imagens: ''
-
+    imagens: [],
+    porte: '',
+    imagemP: ''
   }
-
+*/
+produto: Venda = {
+  codigoDeBarras: '',
+  produto: '',
+  preco: 0,
+  imagemP: '',
+  id: 0
+}
 constructor(private service: CardHomeService){}
 
 onEnter(){

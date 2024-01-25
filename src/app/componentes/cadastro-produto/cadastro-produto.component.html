@@ -266,7 +266,7 @@
       <div class="divs formulario__preview__FotosDescricao">
         <div class="divs formulario__preview__FotosDescricao__fotos">
           <div class="divs formulario__preview__FotosDescricao__fotos__ImagemPrincipal">
-            <img src="{{ formulario.get('imagemP')?.value[0] }}" alt="Imagem">
+            <img src="{{ formulario.get('imagens')?.value[0] }}" alt="Imagem">
           </div>
           <div class="divs formulario__preview__FotosDescricao__fotos__ImagensSecundarias">
             <div class="divs" *ngFor="let imagem of imagensFormArray.value; index as i">
