@@ -129,7 +129,7 @@ table{
 table, th, td {
   background: white;
   border:1px solid black;
-
+  border-collapse: collapse;
 }
 
 td {
@@ -160,7 +160,7 @@ td {
   border-radius: 2px;
   color: rgb(0, 63, 106);
   background: white;
-  height: 30px;
+  height: fit-content;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   font-size: 20px;
@@ -221,4 +221,17 @@ td {
 
 .modo-cadastrar {
   background-color: green;
+}
+.recarregar {
+  background-color: white;
+  cursor: pointer;
+}
+.botoes-flex {
+  display: flex;
+  justify-content: center;
+  gap: 300px;
+}
+.imagem-menos {
+  width: 20px;
+  cursor: pointer;
 }

@@ -10,11 +10,11 @@
         <input type="text" class="input" id="codigoDeBarras" formControlName="codigoDeBarras" placeholder="Aponte para o código de barras">
       </div>
       <!--Categoria-->
-      <div class="divs formulario__cadastro__categoria">
+      <div class=" formulario__cadastro__categoria">
         <label for="categoria">Categoria:</label>
         <div>
           <select id="categoria" formControlName="categoria">
-              <option *ngFor="let opcaoCategoria of listaDeCategoria" value="{{ opcaoCategoria }}">{{ opcaoCategoria }}</option>
+              <option *ngFor="let opcaoCategoria of listaDeCategoria" value="{{ opcaoCategoria.nome }}">{{ opcaoCategoria.nome }}</option>
           </select>
           <button class="botao botao-adicionar" (click)="modalCategoria()">+</button>
           <button class="botao botao-remover" (click)="modalRemoverCategoria()">&times;</button>
@@ -39,7 +39,7 @@
         <div class="modal-content" [formGroup]="formularioSecundario">
           <span class="close" (click)="fecharRemoverCategoria()">&times;</span>
           <h2>Lista de Categoria:</h2>
-          <div class="divs remover-coisas" *ngFor="let opcaoCategoria of listaDeCategoria; index as i">
+          <div class=" remover-coisas" *ngFor="let opcaoCategoria of listaDeCategoria; index as i">
             <p >{{ i + 1 }} {{ opcaoCategoria }}</p>
             <button class="botao botao-remover separar-botao" (click)="acaoRemoverCategoria(i)">&times;</button>
           </div>
@@ -48,30 +48,30 @@
       </div>
 
       <!--Produto-->
-      <div class="divs formulario__cadastro__produto">
+      <div class=" formulario__cadastro__produto">
         <label for="produto">Nome do produto:</label>
         <br>
         <input type="text" id="produto" formControlName="produto" placeholder="Digite o nome do produto">
       </div>
       <!--Imagem-->
-      <div class="divs formulario__cadastro__imagem" [formGroup]="formularioSecundario">
+      <div class=" formulario__cadastro__imagem" [formGroup]="formularioSecundario">
         <label for="imagemP">Imagens:</label>
         <button class="botao botao-adicionar separar-botao" (click)="adicionarImagem()">+</button>
         <br>
-        <div class="divs formulario__cadastro__imagem__input-imagem-apagar" *ngFor="let imagem of imagensFormArray.controls; index as i">
+        <div class=" formulario__cadastro__imagem__input-imagem-apagar" *ngFor="let imagem of imagensFormArray.controls; index as i">
           <input type="text" id="imagemP" [formControl]="getImagensByIndex(i)" placeholder="Digite a url da imagem" (keyup)="populandoListaDeImagens(i)" (change)="populandoListaDeImagens(i)">
           <button class="botao botao-remover separar-botao" (click)="removerImagem(i)">&times;</button>
         </div>
       </div>
       <!--Sabor Idade-->
-      <div class="divs formulario__cadastro__sabor-idade">
+      <div class=" formulario__cadastro__sabor-idade">
         <div>
           <label for="sabor">Sabor:</label>
           <button class="botao botao-adicionar separar-botao" (click)="abrirFecharModalSabor()">+</button>
           <button class="botao botao-remover separar-botao" (click)="abrirFecharModalRemoverSabor()">&times;</button>
           <br>
           <select id="sabor" formControlName="sabor">
-            <option *ngFor="let opcaoSabor of listaDeSabor" value="{{ opcaoSabor }}">{{ opcaoSabor }}</option>
+            <option *ngFor="let opcaoSabor of listaDeSabor" value="{{ opcaoSabor.nome }}">{{ opcaoSabor.nome }}</option>
           </select>
         </div>
 
@@ -93,7 +93,7 @@
           <div class="modal-content" [formGroup]="formularioSecundario">
             <span class="close" (click)="abrirFecharModalRemoverSabor()">&times;</span>
             <h2>Lista de Sabor:</h2>
-            <div class="divs remover-coisas" *ngFor="let opcaoSabor of listaDeSabor; index as i">
+            <div class=" remover-coisas" *ngFor="let opcaoSabor of listaDeSabor; index as i">
               <p >{{ i + 1 }} {{ opcaoSabor }}</p>
               <button class="botao botao-remover separar-botao" (click)="acaoRemoverSabor(i)">&times;</button>
             </div>
@@ -109,7 +109,7 @@
           <button class="botao botao-remover separar-botao" (click)="abrirRemoverModalIdade()">&times;</button>
           <br>
           <select id="idade" formControlName="idade">
-            <option *ngFor="let opcaoIdade of listaDeIdade" value="{{ opcaoIdade }}">{{ opcaoIdade }}</option>
+            <option *ngFor="let opcaoIdade of listaDeIdade" value="{{ opcaoIdade.nome }}">{{ opcaoIdade.nome }}</option>
         </select>
         </div>
       </div>
@@ -132,7 +132,7 @@
         <div class="modal-content" [formGroup]="formularioSecundario">
           <span class="close" (click)="fecharRemoverIdade()">&times;</span>
           <h2>Lista de Idade:</h2>
-          <div class="divs remover-coisas" *ngFor="let opcaoIdade of listaDeIdade; index as i">
+          <div class=" remover-coisas" *ngFor="let opcaoIdade of listaDeIdade; index as i">
             <p >{{ i + 1 }} {{ opcaoIdade }}</p>
             <button class="botao botao-remover separar-botao" (click)="acaoRemoverIdade(i)">&times;</button>
           </div>
@@ -140,22 +140,23 @@
       </div>
 
       <!--Preço Peso Desconto-->
-      <div class="divs  formulario__cadastro__preco--peso--desconto">
+      <div class="  formulario__cadastro__preco--peso--desconto">
 
-        <div class="divs">
+        <div class="">
           <label for="preco">Preço:</label>
           <br>
           <input type="text" id="preco" formControlName="preco" placeholder="Preço">
         </div>
 
-        <div class="divs">
+        <div class="">
           <label for="peso">Peso:</label><br>
-          <div class="divs formulario__cadastro__preco--peso--desconto__desconto">
+          <div class=" formulario__cadastro__preco--peso--desconto__desconto">
             <input type="text" id="peso" formControlName="peso" placeholder="Peso">
             <div [formGroup]="formularioSecundario" >
               <select name="unidade" id="unidadeDedo" formControlName="unidadeNovaForm">
                 <option value="kg">kg</option>
                 <option value="g">g</option>
+                <option value="mg">mg</option>
                 <option value="l">l</option>
                 <option value="ml">ml</option>
               </select>
@@ -165,7 +166,7 @@
 
         </div>
 
-        <div class="divs">
+        <div class="">
           <label for="desconto">Desconto:</label>
           <br>
           <input type="text" id="desconto" formControlName="desconto" placeholder="Desconto">
@@ -174,17 +175,20 @@
       </div>
 
       <!--Animal-->
-      <div class="divs formulario__cadastro__animal">
+      <div class=" formulario__cadastro__animal">
         <h3>Animal:</h3>
-        <div class="divs">
+        <div class="">
           <label class="teste" for="cachorro">Cachorro:</label>
           <input type="radio" id="cachorro" value="Cachorro" formControlName="animal">
 
           <label for="gato">Gato:</label>
           <input type="radio" id="gato" value="Gato" formControlName="animal">
+
+          <label for="passaro">Pássaro:</label>
+          <input type="radio" id="passaro" value="Pássaro" formControlName="animal">
         </div>
 
-        <div class="divs">
+        <div class="">
           <label for="todos">Todos:</label>
           <input type="radio" id="todos" value="Todos" formControlName="animal">
 
@@ -195,7 +199,7 @@
       </div>
 
       <!--Castrado-->
-      <div class="divs formulario__cadastro__castrado">
+      <div class=" formulario__cadastro__castrado">
         <h3>Castrado:</h3>
         <label for="castrado">Sim:</label>
         <input type="radio" id="castrado" [value]=1 formControlName="castrado">
@@ -204,20 +208,20 @@
       </div>
 
       <!--Porte-->
-      <div class="divs formulario__cadastro__porte">
+      <div class=" formulario__cadastro__porte">
         <h3>Porte:</h3>
-        <div class="divs" formArrayName="porte" *ngFor="let item of getPorteControls(); let i = index">
+        <div class="" formArrayName="porte" *ngFor="let item of getPorteControls(); let i = index">
           <label>{{ porte[i] }}</label>
           <input type="checkbox" [formControlName]="i">
         </div>
       </div>
 
       <!--Informação-->
-      <div class="divs formulario__cadastro__informacao" [formGroup]="formularioSecundario">
+      <div class=" formulario__cadastro__informacao" [formGroup]="formularioSecundario">
         <label for="informacao">Informações:</label>
         <button class="botao botao-adicionar separar-botao" (click)="adicionarInformacao()">+</button>
         <br>
-        <div class="divs formulario__cadastro__informacao-input-informacao-apagar" *ngFor="let informacao of informacoesFormArray.controls; index as i">
+        <div class=" formulario__cadastro__informacao-input-informacao-apagar" *ngFor="let informacao of informacoesFormArray.controls; index as i">
           <input type="text" id="informacao"  [formControl]="getInformacoesByIndex(i)" placeholder="Digite as informações"  (keyup)="populandoListaDeInformacao(i)" (change)="populandoListaDeInformacao(i)">
           <button class="botao botao-remover separar-botao" (click)="removerInformacao(i)">&times;</button>
         </div>
@@ -225,11 +229,11 @@
       </div>
 
       <!--Fornecedor-->
-      <div class="divs formulario__cadastro__fornecedor">
+      <div class=" formulario__cadastro__fornecedor">
         <label for="fornecedor">Fornecedor:</label>
         <br>
         <select id="fornecedor" formControlName="fornecedor">
-          <option *ngFor="let opcaoFornecedor of listaDeFornecedor" value="{{ opcaoFornecedor }}">{{ opcaoFornecedor }}</option>
+          <option *ngFor="let opcaoFornecedor of listaDeFornecedor" value="{{ opcaoFornecedor.nome }}">{{ opcaoFornecedor.nome }}</option>
         </select>
         <button class="botao botao-adicionar separar-botao" (click)="abrirFecharModalFornecedor()">+</button>
         <button class="botao botao-remover separar-botao" (click)="abrirFecharModalRemoverFornecedor()">&times;</button>
@@ -253,7 +257,7 @@
         <div class="modal-content" [formGroup]="formularioSecundario">
           <span class="close" (click)="abrirFecharModalRemoverFornecedor()">&times;</span>
           <h2>Lista de Fornecedores:</h2>
-          <div class="divs remover-coisas" *ngFor="let opcaoFornecedor of listaDeFornecedor; index as i">
+          <div class=" remover-coisas" *ngFor="let opcaoFornecedor of listaDeFornecedor; index as i">
             <p >{{ i + 1 }} {{ opcaoFornecedor }}</p>
             <button class="botao botao-remover separar-botao" (click)="acaoRemoverFornecedor(i)">&times;</button>
           </div>
@@ -262,14 +266,14 @@
 
 
     </div>
-    <div class="divs formulario__preview">
-      <div class="divs formulario__preview__FotosDescricao">
-        <div class="divs formulario__preview__FotosDescricao__fotos">
-          <div class="divs formulario__preview__FotosDescricao__fotos__ImagemPrincipal">
+    <div class=" formulario__preview">
+      <div class=" formulario__preview__FotosDescricao">
+        <div class=" formulario__preview__FotosDescricao__fotos">
+          <div class=" formulario__preview__FotosDescricao__fotos__ImagemPrincipal">
             <img src="{{ formulario.get('imagens')?.value[0] }}" alt="Imagem">
           </div>
-          <div class="divs formulario__preview__FotosDescricao__fotos__ImagensSecundarias">
-            <div class="divs" *ngFor="let imagem of imagensFormArray.value; index as i">
+          <div class=" formulario__preview__FotosDescricao__fotos__ImagensSecundarias">
+            <div class="" *ngFor="let imagem of imagensFormArray.value; index as i">
               <!--<img src="{{ imagensFormArray.at(i).value }}" alt="">-->
               <img src="{{ listaDeImagens[i] }}" alt="">
             </div>
@@ -277,7 +281,7 @@
 
           </div>
         </div>
-        <div class="divs formulario__preview__FotosDescricao__descricao">
+        <div class=" formulario__preview__FotosDescricao__descricao">
           <h3>Produto: {{ formulario.get('produto')?.value }}</h3>
           <p>Informações:</p>
           <ul>
@@ -294,7 +298,7 @@
           <p>Porte: {{ formulario.get('porte')?.value }}</p>
           <p>Fornecedor: {{ formulario.get('fornecedor')?.value }}</p>
           <br>
-          <div class="divs formulario__preview__FotosDescricao__descricao__acoes">
+          <div class=" formulario__preview__FotosDescricao__descricao__acoes">
             <button class="botao-adicionar" (click)="cadastrarProduto()">Cadastrar</button>
             <button class="botao-remover">Cancelar</button>
           </div>

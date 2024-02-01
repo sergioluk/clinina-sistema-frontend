@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CadastroProduto, Venda, VendaComQtd, Vender } from '../cadastro-produto/cadastro-produto';
 import { CardHomeService } from '../card-home.service';
 import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-venda',
@@ -10,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class VendaComponent {
 
+  //só pra pegar o id do input pra fazer o autofocus quando apertar em cadastrar
+  @ViewChild('idDoInput') inputCodigoBarras!: ElementRef;
   input: string = '';
   total: number = 0;
   modoCadastrar : boolean = false;
@@ -73,8 +76,23 @@ export class VendaComponent {
 
   }
 
+  removerItemDaLista(index: number) {
+    if (this.listaDeProdutos[index].quantidade > 1) {
+      this.listaDeProdutos[index].quantidade -= 1;
+    } else {
+      this.listaDeProdutos.splice(index,1);
+    }
+    this.calcularTotal();
+  }
+
+  recarregar(){
+    window.location.reload();
+  }
+
   cadastrar(){
     this.modoCadastrar = !this.modoCadastrar;
+    //fazer o focus automatico no input
+    this.inputCodigoBarras.nativeElement.focus();
   }
 
   cadastrarOuPesquisar() {
@@ -115,6 +133,7 @@ export class VendaComponent {
       }
       if (produto == null) {
         alert("Produto não encontrado!!!!");
+        this.input = '';
         return;
       }
       this.produto = produto;
@@ -143,14 +162,18 @@ export class VendaComponent {
         this.listaDeProdutos.push(produtoComQtd);
       }
       //só pra pegar o total
-      let listaTotal = 0;
+      this.calcularTotal();
+    });
+
+
+  }
+
+  calcularTotal(){
+    let listaTotal = 0;
       for (let index = 0; index < this.listaDeProdutos.length; index++) {
         listaTotal += (this.listaDeProdutos[index].preco * this.listaDeProdutos[index].quantidade);
       }
       this.total = listaTotal;
-    });
-
-
   }
 
 }

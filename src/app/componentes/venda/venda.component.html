@@ -7,7 +7,7 @@
             Cadastrar
           </div>
           <div *ngIf="divAviso">Produto Adicionado</div>
-          <input type="search" autofocus [ngClass]="cadastrarOuPesquisar()" size="70" style="padding: 20px" [(ngModel)]="input" placeholder="Código de Barras" (keydown.enter)="ApertandoEnter()">
+          <input type="search" #idDoInput autofocus [ngClass]="cadastrarOuPesquisar()" size="70" style="padding: 20px" [(ngModel)]="input" placeholder="Código de Barras" (keydown.enter)="ApertandoEnter()">
         </div>
       </div>
 
@@ -62,9 +62,10 @@
               <div class="Caixa-da-table">
                   <table>
                     <tr>
-                        <th class="coluna-item">N item</th><th>Codigo</th><th>Descrição</th><th>Qtd</th><th>V unit</th><th>Total</th>
+                        <th></th><th class="coluna-item">N item</th><th>Codigo</th><th>Descrição</th><th>Qtd</th><th>V unit</th><th>Total</th>
                     </tr>
                     <tr *ngFor="let item of listaDeProdutos; index as i">
+                        <td><img src="../../../assets/img/menos.svg" alt="" class="imagem-menos" (click)="removerItemDaLista(i)"></td>
                         <td>{{ i + 1 }}</td>
                         <td>{{ item.codigoDeBarras }}</td>
                         <td>{{ item.produto }}</td>
@@ -103,8 +104,14 @@
           </div>
       </div>
   </div>
-  <div class="botao vender" (click)="venda()">
-    Concluir Venda
+  <div class="botoes-flex">
+    <div class="botao recarregar" (click)="recarregar()">
+      Recarregar Página
+    </div>
+    <div class="botao vender" (click)="venda()">
+      Concluir Venda
+    </div>
   </div>
+
 </div>
 

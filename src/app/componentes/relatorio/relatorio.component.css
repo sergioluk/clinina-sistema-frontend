@@ -1,0 +1,74 @@
+h1,h2,h3 {
+  margin: 0;
+}
+.fundo-branco {
+  width: 100%;
+  background-color: white;
+}
+.header {
+  text-align: center;
+  width: 80%;
+  background-color: black;
+  color: white;
+  margin: 0 auto;
+  padding: 10px;
+  margin-top: 70px;
+}
+.titulo {
+  margin-top: 30px;
+  text-align: center;
+}
+table {
+  width: 80%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+th {
+  background-color: #aaa;
+}
+td , th {
+  border: 1px solid #ccc;
+  text-align: left;
+  padding: 8px;
+}
+td {
+  height: 70px;
+}
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+td img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+.foto {
+  width: 5%;
+}
+.nome-do-produto {
+  width: 50%;
+}
+.total {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+}
+.sem-borda {
+  border: none;
+}
+
+@media (max-width:810px)  {
+  .nome-do-produto {
+    width: 40%;
+  }
+  .valor-total {
+    width: 13%;
+  }
+  .valor-unitario {
+    width: 13%;
+  }
+  th {
+    font-weight: normal;
+  }
+}

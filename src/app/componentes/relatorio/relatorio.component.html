@@ -1,0 +1,34 @@
+<div class="fundo-branco" id="conteudoParaImprimir">
+  <div class="header">
+    <h1>Relatório De Vendas</h1>
+    <h2>31/01/24</h2>
+  </div>
+  <div class="titulo">
+    <h2>Lista de Produtos Vendidos</h2>
+  </div>
+  <table>
+    <tr>
+      <th class="foto">Foto</th>
+      <th class="nome-do-produto">Nome do Produto</th>
+      <th class="quantidade">Qtd</th>
+      <th class="valor-unitario">Valor unitário</th>
+      <th class="valor-total">Valor Total</th>
+      <th>Hora Venda</th>
+    </tr>
+    <tr *ngFor="let item of listaDeItensVendidos">
+      <td><img src="{{ item.imagemP }}" alt=""></td>
+      <td>{{ item.produto }}</td>
+      <td>{{ item.quantidade }}</td>
+      <td>{{ item.precoUnitario | currency:'R$ ':'symbol':'1.2-2' }}</td>
+      <td>{{ item.precoTotal | currency:'R$ ':'symbol':'1.2-2' }}</td>
+      <td>{{ item.data | date:'HH:mm' }}</td>
+    </tr>
+    <tr>
+      <td colspan="3" class="sem-borda"></td>
+      <td colspan="3" class="total">Total: {{ total | currency:'R$ ':'symbol':'1.2-2' }}</td>
+    </tr>
+  </table>
+
+  <!--<button (click)="imprimirConteudo()">Imprimir Conteúdo</button>-->
+
+</div>

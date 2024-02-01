@@ -52,9 +52,39 @@ export interface CadastroProduto {
     quantidade: number
   }
 
+  //usado para guardar no banco
   export interface Vender {
     id?: number
     produto_id: number
+    quantidade: number
+    precoUnitario: number
+    precoTotal: number
+    data: Date
+  }
+
+  //salvar no banco um sabor
+  export interface Sabor {
+    id?: number
+    nome: string
+  }
+
+  //salvar no banco um sabor
+  export interface Idade {
+    id?: number
+    nome: string
+  }
+
+  //salvar no banco um sabor
+  export interface Fornecedor {
+    id?: number
+    nome: string
+  }
+
+  //Para o relatório
+  export interface Relatorio {
+    id?: number
+    imagemP: string
+    produto: string
     quantidade: number
     precoUnitario: number
     precoTotal: number

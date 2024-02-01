@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CardHome } from './card-home/card-home';
-import { CadastroProduto, Venda, Vender } from './cadastro-produto/cadastro-produto';
+import { CadastroProduto, Categoria, Fornecedor, Idade, Relatorio, Sabor, Venda, Vender } from './cadastro-produto/cadastro-produto';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +54,51 @@ export class CardHomeService {
   aumentarEstoque(codigoDeBarras: string): Observable<Venda>{
     const url = `${this.API}/codigo-de-barras/editar/${codigoDeBarras}`;
     return this.http.get<Venda>(url);
+  }
+
+  pegarListaCategoria(): Observable<Categoria[]>{
+    const url = this.API + "/listaCategoria";
+    return this.http.get<Categoria[]>(url);
+  }
+
+  pegarListaSabor(): Observable<Sabor[]>{
+    const url = this.API + "/listaSabor";
+    return this.http.get<Sabor[]>(url);
+  }
+
+  pegarListaIdade(): Observable<Idade[]>{
+    const url = this.API + "/listaIdade";
+    return this.http.get<Idade[]>(url);
+  }
+
+  pegarListaFornecedor(): Observable<Fornecedor[]>{
+    const url = this.API + "/listaFornecedor";
+    return this.http.get<Fornecedor[]>(url);
+  }
+
+  adicionarCategoria(categoria: Categoria): Observable<Categoria>{
+    const url = this.API + "/adicionarCategoria";
+    return this.http.post<Categoria>(url, categoria);
+  }
+
+  adicionarIdade(idade: Idade): Observable<Idade>{
+    const url = this.API + "/adicionarIdade";
+    return this.http.post<Idade>(url, idade);
+  }
+
+  adicionarSabor(sabor: Sabor): Observable<Sabor>{
+    const url = this.API + "/adicionarSabor";
+    return this.http.post<Sabor>(url, sabor);
+  }
+
+  adicionarFornecedor(fornecedor: Fornecedor): Observable<Fornecedor>{
+    const url = this.API + "/adicionarFornecedor";
+    return this.http.post<Fornecedor>(url, fornecedor);
+  }
+
+  pegarListaDeItensVendidos(): Observable<Relatorio[]>{
+    const url = this.API + "/relatorio";
+    return this.http.get<Relatorio[]>(url);
   }
 
 }

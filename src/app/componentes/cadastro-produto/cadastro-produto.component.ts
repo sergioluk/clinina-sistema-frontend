@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CardHomeService } from '../card-home.service';
 import { Router } from '@angular/router';
 import { CardHome } from '../card-home/card-home';
-import { CadastroProduto, Categoria } from './cadastro-produto';
+import { CadastroProduto, Categoria, Fornecedor, Idade, Sabor } from './cadastro-produto';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs/operators';
+import { ViewportScroller } from '@angular/common';
 
 
 
@@ -26,24 +27,24 @@ export class CadastroProdutoComponent implements OnInit {
   modalFornecedor: boolean = false;
   modalRemoverFornecedor: boolean = false;
 
-  listaDeCategoria: string [] = [
-    "Ração","Sachê","Acessório"
+  listaDeCategoria: Categoria [] = [
+    //"Ração","Sachê","Acessório"
   ];
 
   listaDeImagens: string [] = [''];
 
   listaDeInformacao: string [] = [''];
 
-  listaDeIdade: string [] = [
-    "Adulto","Filhote","Idoso"
+  listaDeIdade: Idade [] = [
+    //"Adulto","Filhote","Idoso"
   ];
 
-  listaDeSabor: string [] = [
-    "Carne","Frango","Peixe"
+  listaDeSabor: Sabor [] = [
+    //"Carne","Frango","Peixe"
   ];
 
-  listaDeFornecedor: string [] = [
-    "Admax", "Donizete", "FVO"
+  listaDeFornecedor: Fornecedor [] = [
+    //"Admax", "Donizete", "FVO"
   ];
 
   produto: CardHome = {
@@ -79,14 +80,43 @@ export class CadastroProdutoComponent implements OnInit {
 
   constructor(private service: CardHomeService,
      private router: Router,
-     private formBuilder: FormBuilder
-     ){
+     private formBuilder: FormBuilder,
+     private viewportScroller: ViewportScroller
+  ){}
 
+  listaCards2: CadastroProduto[] = []
 
+    listarCategoria() {
+      this.service.pegarListaCategoria().subscribe((listaDeCategoria) =>{
+        this.listaDeCategoria = listaDeCategoria;
+      });
+    }
 
+    listarSabor() {
+      this.service.pegarListaSabor().subscribe((listaDeSabor) =>{
+        this.listaDeSabor = listaDeSabor;
+      });
+    }
 
-  }
+    listarIdade() {
+      this.service.pegarListaIdade().subscribe((listaDeIdade) =>{
+        this.listaDeIdade = listaDeIdade;
+      });
+    }
+
+    listarFornecedor() {
+      this.service.pegarListaFornecedor().subscribe((listaDeFornecedor) =>{
+        this.listaDeFornecedor = listaDeFornecedor;
+      });
+    }
+
   ngOnInit(): void {
+    //Carregar os selects
+    this.listarCategoria();
+    this.listarSabor();
+    this.listarIdade();
+    this.listarFornecedor();
+
     this.formulario = this.formBuilder.group({
       codigoDeBarras: [''],
       categoria: ['Ração', Validators.compose([
@@ -165,26 +195,68 @@ export class CadastroProdutoComponent implements OnInit {
     let imagemPrincipal = this.formulario.get('imagens')?.value[0];
     this.formulario.get('imagemP')?.setValue(imagemPrincipal);
 
-    //por enquanto, quando eu terminar de fazer a categoria ser salva no banco ai revejo isso
-    let cat = this.formulario.get('categoria')?.value;
-    let idCat = 0;
-    if (cat == 'Ração') {
-      idCat = 1;
-    }
-    if (cat == 'Sachê') {
-      idCat = 2;
-    }
-    if (cat == 'Acessório') {
-      idCat = 3;
-    }
+    //colocar o peso com a sua unidade
+    let unidadePeso = this.formularioSecundario.get('unidadeNovaForm')?.value;
+    let peso = this.formulario.get('peso')?.value;
+    let pesoComUnidade = peso + unidadePeso;
+    this.formulario.get('peso')?.setValue(pesoComUnidade);
 
-    //fim por enquanto
+    //Salvar categoria - Enviar o JSON como objeto categoria
+    let nomeCategoria = this.formulario.get('categoria')?.value;
+    let idCat: number | undefined = 0;
+    for (let i = 0; i < this.listaDeCategoria.length; i++) {
+      if (nomeCategoria === this.listaDeCategoria[i].nome){
+        idCat = this.listaDeCategoria[i].id;
+      }
+    }
     let categoria: Categoria = {
       id: idCat,
       nome: this.formulario.get('categoria')?.value
     }
     this.formulario.get('categoria')?.setValue(categoria); //forma de enviar no json o objeto categoria
-    //só teste
+
+    //Salvar sabor - Enviar o JSON como objeto sabor
+    let nomeSabor = this.formulario.get('sabor')?.value;
+    let idSabor: number | undefined = 0;
+    for (let i = 0; i < this.listaDeSabor.length; i++) {
+      if (nomeSabor === this.listaDeSabor[i].nome){
+        idSabor = this.listaDeSabor[i].id;
+      }
+    }
+    let sabor: Sabor = {
+      id: idSabor,
+      nome: nomeSabor
+    }
+    this.formulario.get('sabor')?.setValue(sabor); //forma de enviar no json o objeto sabor
+
+    //Salvar idade - Enviar o JSON como objeto idade
+    let nomeIdade = this.formulario.get('idade')?.value;
+    let idIdade: number | undefined = 0;
+    for (let i = 0; i < this.listaDeIdade.length; i++) {
+      if (nomeIdade === this.listaDeIdade[i].nome){
+        idIdade = this.listaDeIdade[i].id;
+      }
+    }
+    let idade: Idade = {
+      id: idIdade,
+      nome: nomeIdade
+    }
+    this.formulario.get('idade')?.setValue(idade); //forma de enviar no json o objeto idade
+
+    //Salvar fornecedor - Enviar o JSON como objeto fornecedor
+    let nomeFornecedor = this.formulario.get('fornecedor')?.value;
+    let idFornecedor: number | undefined = 0;
+    for (let i = 0; i < this.listaDeFornecedor.length; i++) {
+      if (nomeFornecedor === this.listaDeFornecedor[i].nome){
+        idFornecedor = this.listaDeFornecedor[i].id;
+      }
+    }
+    let fornecedor: Fornecedor = {
+      id: idFornecedor,
+      nome: nomeFornecedor
+    }
+    this.formulario.get('fornecedor')?.setValue(fornecedor); //forma de enviar no json o objeto fornecedor
+
     let valueSubmit = Object.assign({}, this.formulario.value);
     valueSubmit = Object.assign(valueSubmit, {
       porte: valueSubmit.porte.map((v: any,i: number) => v ? this.porte[i] : null).filter((v: null) => v !== null)
@@ -198,6 +270,7 @@ export class CadastroProdutoComponent implements OnInit {
       //this.service.criar(this.formulario.value).subscribe(() => {
         this.service.criar(valueSubmit).subscribe(() => {//provavelmente é assim, só testando pra saber
         //this.router.navigate(['/home']);
+        this.viewportScroller.scrollToPosition([0, 0]);
         window.location.reload();
       })
     }
@@ -219,11 +292,21 @@ export class CadastroProdutoComponent implements OnInit {
     this.modal = false;
   }
   adicionarCategoria(){
-    this.categoriaNova = this.formularioSecundario.get('categoriaNovaForm')?.value;
-    this.listaDeCategoria.push(this.categoriaNova);
+    let novaCategoria = this.formularioSecundario.get('categoriaNovaForm')?.value;
+    //this.listaDeCategoria.push(this.categoriaNova); por enquanto para compilar
     this.formularioSecundario.get('categoriaNovaForm')?.setValue('');
-    console.log(this.listaDeCategoria)
+    //console.log(this.listaDeCategoria)
+
+
+    let categoria: Categoria = {
+      nome: novaCategoria
+    }
+    this.service.adicionarCategoria(categoria).subscribe(() => {
+      this.listarCategoria();
+    });
+
     this.fecharModalCategoria();
+
   }
 
   modalRemoverCategoria(){
@@ -263,9 +346,14 @@ export class CadastroProdutoComponent implements OnInit {
   }
 
   adicionarIdade() {
-    this.listaDeIdade.push(this.formularioSecundario.get('idadeNovaForm')?.value);
+    let idadeNova = this.formularioSecundario.get('idadeNovaForm')?.value;
     this.formularioSecundario.get('idadeNovaForm')?.setValue('');
-    console.log(this.listaDeIdade);
+    let idade: Idade = {
+      nome: idadeNova
+    }
+    this.service.adicionarIdade(idade).subscribe(() => {
+      this.listarIdade();
+    });
     this.fecharModalIdade();
   }
 
@@ -278,9 +366,14 @@ export class CadastroProdutoComponent implements OnInit {
   }
 
   adicionarSabor() {
-    this.listaDeSabor.push(this.formularioSecundario.get('saborNovaForm')?.value);
+    let saborNova = this.formularioSecundario.get('saborNovaForm')?.value;
     this.formularioSecundario.get('saborNovaForm')?.setValue('');
-    console.log(this.listaDeSabor);
+    let sabor: Sabor = {
+      nome: saborNova
+    }
+    this.service.adicionarSabor(sabor).subscribe(() => {
+      this.listarSabor();
+    });
     this.abrirFecharModalSabor();
   }
 
@@ -299,9 +392,14 @@ export class CadastroProdutoComponent implements OnInit {
   }
 
   adicionarFornecedor() {
-    this.listaDeFornecedor.push(this.formularioSecundario.get('fornecedorNovaForm')?.value);
+    let fornecedorNova = this.formularioSecundario.get('fornecedorNovaForm')?.value;
     this.formularioSecundario.get('fornecedorNovaForm')?.setValue('');
-    console.log(this.listaDeFornecedor);
+    let fornecedor: Fornecedor = {
+      nome: fornecedorNova
+    }
+    this.service.adicionarFornecedor(fornecedor).subscribe(() => {
+      this.listarFornecedor();
+    });
     this.abrirFecharModalFornecedor();
   }
 

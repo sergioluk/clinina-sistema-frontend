@@ -16,7 +16,8 @@ body{
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: var(--corDeFundoEscura);
+  /*background-color: var(--corDeFundoEscura);*/
+  background-color: white;
 }
 a {
   text-decoration: none;

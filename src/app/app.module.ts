@@ -21,6 +21,7 @@ import { MensagemErroComponent } from './componentes/mensagem-erro/mensagem-erro
 import {MatSelectModule} from '@angular/material/select';
 import { HomeClininaComponent } from './componentes/home-clinina/home-clinina.component';
 import { VendaComponent } from './componentes/venda/venda.component';
+import { RelatorioComponent } from './componentes/relatorio/relatorio.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { VendaComponent } from './componentes/venda/venda.component';
     ProdutoComponent,
     MensagemErroComponent,
     HomeClininaComponent,
-    VendaComponent
+    VendaComponent,
+    RelatorioComponent
   ],
   imports: [
     BrowserModule,
