@@ -235,3 +235,87 @@ td {
   width: 20px;
   cursor: pointer;
 }
+
+.fundo-cinza {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: none; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-peso {
+  position: absolute;
+  width: 500px;
+  background-color: #c0c0c0;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+  top: 10%;
+  left: 35%;
+}
+
+.modal-peso__titulo {
+  background-color: rgb(0, 63, 106);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  font-size: 25px;
+  color: #eeeeee;
+}
+
+.modal-peso__titulo img {
+  width: 30px;
+  cursor: pointer;
+}
+
+.modal-peso h2 {
+  margin-top: 15px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.modal-peso__input {
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+  gap: 30px;
+}
+
+.peso-input {
+  display: flex;
+  gap: 10px;
+}
+
+.input-text {
+  width: 100px;
+  height: 25px;
+  border-radius: 5px;
+  font-size: 20px;
+  padding: 10px;
+}
+
+.modal-peso__valor {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 30px;
+  gap: 38%;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.modal-peso__valor__botao {
+  background-color: rgb(57, 175, 57);
+  padding: 10px 10px;
+  border-radius: 10px;
+  transition: 0.3s all;
+  cursor: pointer;
+}
+
+.modal-peso__valor__botao:hover {
+  background-color: rgb(120, 197, 57);
+}

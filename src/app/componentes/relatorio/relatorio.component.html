@@ -17,7 +17,7 @@
     </tr>
     <tr *ngFor="let item of listaDeItensVendidos">
       <td><img src="{{ item.imagemP }}" alt=""></td>
-      <td>{{ item.produto }}</td>
+      <td>{{ item.produto }} <span *ngIf="verificarSeFoiFracionado(item.peso)"> ({{ item.peso }})</span></td>
       <td>{{ item.quantidade }}</td>
       <td>{{ item.precoUnitario | currency:'R$ ':'symbol':'1.2-2' }}</td>
       <td>{{ item.precoTotal | currency:'R$ ':'symbol':'1.2-2' }}</td>

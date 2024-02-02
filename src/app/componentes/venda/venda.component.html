@@ -112,6 +112,26 @@
       Concluir Venda
     </div>
   </div>
-
 </div>
 
+<div *ngIf="pesagem" class="fundo-cinza">
+  <div class="modal-peso">
+    <div class="modal-peso__titulo">
+      <p>Ração Fracionada</p>
+      <img src="../../../assets/img/close.svg" alt="" (click)="fecharModalPesagem()">
+    </div>
+    <h2>{{ produtoPesagem.produto }}</h2>
+    <div class="modal-peso__input">
+      <div class="peso-input">
+        <p>Peso: </p>
+        <input class="input-text" type="text" [(ngModel)]="inputPeso" (keyup)="calcularPrecoPorPeso($event)">
+      </div>
+      <p>{{ produtoPesagem.preco }} R$/Kg</p>
+    </div>
+    <div class="modal-peso__valor">
+      <p>{{ totalPeso | currency:'R$ ':'symbol':'1.2-2' }}</p>
+      <div class="modal-peso__valor__botao" (click)="adicionarProdutoPesadoNaLista()" >Confirmar</div>
+    </div>
+  </div>
+
+</div>

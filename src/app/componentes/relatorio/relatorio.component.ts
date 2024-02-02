@@ -27,6 +27,8 @@ export class RelatorioComponent implements OnInit {
         console.log(this.listaDeItensVendidos[1].produto)
         console.log(this.listaDeItensVendidos[2].id)
         console.log(this.listaDeItensVendidos[2].produto)
+        console.log("nome: " + this.listaDeItensVendidos[0].produto)
+        console.log("peso: " + this.listaDeItensVendidos[0].peso)
         this.calcularTotal();
       });
 
@@ -38,6 +40,13 @@ export class RelatorioComponent implements OnInit {
       soma += item.precoTotal;
     }
     this.total = soma;
+  }
+
+  verificarSeFoiFracionado(peso: string) {
+    if(peso == '' || peso == null){
+      return false;
+    }
+    return true;
   }
 
   imprimirConteudo() {

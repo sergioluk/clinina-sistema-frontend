@@ -49,6 +49,7 @@ export interface CadastroProduto {
     produto: string,
     preco: number,
     imagemP: string,
+    peso: string,
     quantidade: number
   }
 
@@ -59,6 +60,7 @@ export interface CadastroProduto {
     quantidade: number
     precoUnitario: number
     precoTotal: number
+    peso: string
     data: Date
   }
 
@@ -88,5 +90,6 @@ export interface CadastroProduto {
     quantidade: number
     precoUnitario: number
     precoTotal: number
+    peso: string
     data: Date
   }
