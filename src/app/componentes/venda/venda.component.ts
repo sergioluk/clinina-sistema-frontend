@@ -199,6 +199,7 @@ export class VendaComponent {
 
   fecharModalPesagem() {
     this.pesagem = false;
+    this.inputPeso = '';
   }
 
   calcularPrecoPorPeso(event: KeyboardEvent) {
