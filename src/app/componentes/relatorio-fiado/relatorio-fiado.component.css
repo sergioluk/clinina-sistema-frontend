@@ -1,0 +1,124 @@
+h1,h2,h3 {
+  margin: 0;
+}
+.fundo-branco {
+  width: 100%;
+  background-color: white;
+}
+.titulo {
+  margin-top: 30px;
+  text-align: center;
+}
+table {
+  width: 95%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+th {
+  background-color: #aaa;
+}
+td , th {
+  border: 1px solid #ccc;
+  text-align: left;
+  padding: 8px;
+}
+td {
+  height: 70px;
+}
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+td img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.itens-flex {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.edit {
+  cursor: pointer;
+}
+
+
+.fundo-cinza {
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: none; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-fiado {
+  position: absolute;
+  width: 500px;
+  background-color: #c0c0c0;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
+  top: 10%;
+  left: 35%;
+}
+
+.modal-fiado__titulo {
+  background-color: rgb(0, 63, 106);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  font-size: 25px;
+  color: #eeeeee;
+}
+
+.modal-fiado__titulo img {
+  width: 30px;
+  cursor: pointer;
+}
+
+.formulario__fiado {
+  font-size: 17px;
+  padding: 10px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.teste {
+  width: 80px;
+  display: inline-block;
+}
+
+.botao {
+  width: fit-content;
+  border: 2px solid gray;
+  padding: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  border-radius: 7px;
+}
+
+.vender {
+  background-color: rgb(54, 192, 54);
+  color: white;
+  transition: all 1s ease-in-out;
+  cursor: pointer;
+}
+
+.verde {
+  color: darkgreen;
+}
+
+.vermelho {
+  color: darkred;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+}

@@ -248,7 +248,8 @@ td {
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-.modal-peso {
+.modal-peso,
+.modal-forma-de-pagamento {
   position: absolute;
   width: 500px;
   background-color: #c0c0c0;
@@ -257,7 +258,8 @@ td {
   left: 35%;
 }
 
-.modal-peso__titulo {
+.modal-peso__titulo,
+.modal-forma-de-pagamento__titulo {
   background-color: rgb(0, 63, 106);
   display: flex;
   justify-content: space-between;
@@ -267,7 +269,8 @@ td {
   color: #eeeeee;
 }
 
-.modal-peso__titulo img {
+.modal-peso__titulo img,
+.modal-forma-de-pagamento__titulo img {
   width: 30px;
   cursor: pointer;
 }
@@ -318,4 +321,28 @@ td {
 
 .modal-peso__valor__botao:hover {
   background-color: rgb(120, 197, 57);
+}
+
+.formulario__forma-de-pagamento {
+  font-size: 17px;
+  padding: 10px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.teste {
+  width: 80px;
+  display: inline-block;
+}
+
+.cadastro-fiado {
+  margin-top: 20px;
+}
+
+.input {
+  height: 30px;
+  font-size: 17px;
+  padding-left: 10px;
+  width: 95%;
 }

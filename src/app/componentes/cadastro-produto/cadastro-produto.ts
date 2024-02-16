@@ -62,6 +62,10 @@ export interface CadastroProduto {
     precoTotal: number
     peso: string
     data: Date
+    pagamento: string
+    nome?: string
+    telefone?: string
+    endereco?: string
   }
 
   //salvar no banco um sabor
@@ -92,4 +96,33 @@ export interface CadastroProduto {
     precoTotal: number
     peso: string
     data: Date
+  }
+
+  //Para o relatório de fiado
+  export interface RelatorioFiado {
+    id?: number
+    nome: string
+    telefone: string
+    endereco: string
+    data: Date
+    valorTotal: number
+    itens: Itens[]
+    pagou: number
+  }
+  //para ser usado nos itens de cada fiado
+  export interface Itens {
+    id: number
+    produto: string,
+    precoUnitario: number,
+    imagemP: string,
+    peso: string,
+    quantidade: number,
+    data: Date
+    precoTotal: number
+  }
+
+  //usado para editar a situação de fiado
+  export interface Fiado {
+    id?: number
+    pagou: number
   }

@@ -22,6 +22,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { HomeClininaComponent } from './componentes/home-clinina/home-clinina.component';
 import { VendaComponent } from './componentes/venda/venda.component';
 import { RelatorioComponent } from './componentes/relatorio/relatorio.component';
+import { RelatorioFiadoComponent } from './componentes/relatorio-fiado/relatorio-fiado.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { RelatorioComponent } from './componentes/relatorio/relatorio.component'
     MensagemErroComponent,
     HomeClininaComponent,
     VendaComponent,
-    RelatorioComponent
+    RelatorioComponent,
+    RelatorioFiadoComponent
   ],
   imports: [
     BrowserModule,

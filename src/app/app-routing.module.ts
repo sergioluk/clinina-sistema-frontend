@@ -5,11 +5,12 @@ import { CadastroProdutoComponent } from './componentes/cadastro-produto/cadastr
 import { ProdutoComponent } from './componentes/produto/produto.component';
 import { VendaComponent } from './componentes/venda/venda.component';
 import { RelatorioComponent } from './componentes/relatorio/relatorio.component';
+import { RelatorioFiadoComponent } from './componentes/relatorio-fiado/relatorio-fiado.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'venda',
     pathMatch: 'full'
   },
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'relatorio',
     component: RelatorioComponent
+  },
+  {
+    path: 'fiado',
+    component: RelatorioFiadoComponent
   }
   /*
   {

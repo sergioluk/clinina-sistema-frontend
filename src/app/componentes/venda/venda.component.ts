@@ -1,7 +1,8 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CadastroProduto, Venda, VendaComQtd, Vender } from '../cadastro-produto/cadastro-produto';
 import { CardHomeService } from '../card-home.service';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './venda.component.html',
   styleUrls: ['./venda.component.css']
 })
-export class VendaComponent {
+export class VendaComponent implements OnInit {
 
   //só pra pegar o id do input pra fazer o autofocus quando apertar em cadastrar
   @ViewChild('idDoInput') inputCodigoBarras!: ElementRef;
@@ -20,6 +21,19 @@ export class VendaComponent {
   modoCadastrar : boolean = false;
   divAviso : boolean = false;
   pesagem: boolean = false;
+  formaDePagamento: boolean = false;
+
+  formulario!: FormGroup;
+
+  ngOnInit(): void {
+    this.formulario = this.formBuilder.group({
+      formaPagamento: ['Dinheiro'],
+      nome: [],
+      telefone: [],
+      endereco: []
+    })
+  }
+
 /*
   produto: CadastroProduto = {
     produto: '',
@@ -61,22 +75,43 @@ export class VendaComponent {
   }
 
   constructor(private service: CardHomeService,
-    private router: Router){}
+    private router: Router,
+    private formBuilder: FormBuilder){}
 
   venda(){
 
     let listaDeVenda: Vender[] = [];
     for (let produto of this.listaDeProdutos) {
 
-      let produtosVender: Vender = {
-        produto_id: produto.id,
-        quantidade: produto.quantidade,
-        precoUnitario: produto.preco,
-        precoTotal: produto.preco * produto.quantidade,
-        peso: produto.peso,
-        data: new Date()
+      if (this.formulario.get('formaPagamento')?.value == 'Fiado') {
+        let produtosVender: Vender = {
+          produto_id: produto.id,
+          quantidade: produto.quantidade,
+          precoUnitario: produto.preco,
+          precoTotal: produto.preco * produto.quantidade,
+          peso: produto.peso,
+          data: new Date(),
+          pagamento: this.formulario.get('formaPagamento')?.value,
+          nome: this.formulario.get('nome')?.value,
+          telefone: this.formulario.get('telefone')?.value,
+          endereco: this.formulario.get('endereco')?.value
+        }
+        listaDeVenda.push(produtosVender);
+      } else {
+        let produtosVender: Vender = {
+          produto_id: produto.id,
+          quantidade: produto.quantidade,
+          precoUnitario: produto.preco,
+          precoTotal: produto.preco * produto.quantidade,
+          peso: produto.peso,
+          data: new Date(),
+          pagamento: this.formulario.get('formaPagamento')?.value,
+        }
+        listaDeVenda.push(produtosVender);
       }
-      listaDeVenda.push(produtosVender);
+
+
+
     }
     if (listaDeVenda.length > 0) {
       this.service.vender(listaDeVenda).subscribe(() => {
@@ -120,6 +155,11 @@ export class VendaComponent {
     this.divAviso = !this.divAviso;
   }
 
+  listarFiado(){
+    //this.router.navigate(['/fiado']);
+    window.open('/fiado', '_blank');
+  }
+
   ApertandoEnter(){
     console.log("Codigo de barras: " + this.input);
     let data = new Date().toLocaleString('pt-BR');
@@ -134,7 +174,7 @@ export class VendaComponent {
           return;
         } else {
           this.service.aumentarEstoque(this.input).subscribe((produto) => {
-
+            this.input = '';
             this.divAviso = true;
             const tempoDesejado = 1000;
             setTimeout(() => {
@@ -200,6 +240,18 @@ export class VendaComponent {
   fecharModalPesagem() {
     this.pesagem = false;
     this.inputPeso = '';
+  }
+
+  vendaFormaDePagamento() {
+    if (this.listaDeProdutos.length < 1){
+      alert('Não há itens na lista!');
+      return;
+    }
+    this.formaDePagamento = true;
+  }
+
+  fecharModalPagamento() {
+    this.formaDePagamento = false;
   }
 
   calcularPrecoPorPeso(event: KeyboardEvent) {
@@ -291,6 +343,13 @@ export class VendaComponent {
       listaTotal += (this.listaDeProdutos[index].preco * this.listaDeProdutos[index].quantidade);
     }
     this.total = listaTotal;
+  }
+
+  ehFiado(){
+    if (this.formulario.get('formaPagamento')?.value == 'Fiado'){
+      return true;
+    }
+    return false;
   }
 
 }

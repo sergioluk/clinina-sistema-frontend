@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CardHome } from './card-home/card-home';
-import { CadastroProduto, Categoria, Fornecedor, Idade, Relatorio, Sabor, Venda, Vender } from './cadastro-produto/cadastro-produto';
+import { CadastroProduto, Categoria, Fiado, Fornecedor, Idade, Relatorio, RelatorioFiado, Sabor, Venda, Vender } from './cadastro-produto/cadastro-produto';
 
 @Injectable({
   providedIn: 'root'
@@ -99,6 +99,16 @@ export class CardHomeService {
   pegarListaDeItensVendidos(): Observable<Relatorio[]>{
     const url = this.API + "/relatorio";
     return this.http.get<Relatorio[]>(url);
+  }
+
+  pegarListaDeFiado(): Observable<RelatorioFiado[]>{
+    const url = this.API + "/relatorio-fiado";
+    return this.http.get<RelatorioFiado[]>(url);
+  }
+
+  editarFiado(fiado: Fiado): Observable<Fiado> {
+    const url = `${this.API}/editar-fiado/${fiado.id}`
+    return this.http.put<Fiado>(url, fiado )
   }
 
 }
