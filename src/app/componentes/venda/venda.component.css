@@ -1,3 +1,104 @@
+.notebook {
+  border: 1px solid red;
+  width: 1366px;
+  height: 636px;
+  display: flex;
+}
+.menu-container {
+  width: 23.86%;
+  height: 100%;
+  border: 1px solid red;
+}
+.ponto-de-venda {
+  width: 76.14%;
+  border: 1px solid red;
+  display: flex;
+
+}
+.ponto-de-venda__detalhes {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  width: 27.88%;
+}
+.menu fa-icon {
+  font-size: 33px;
+  color: var(--corPrincipal);
+}
+.logo {
+  margin: 0 auto;
+}
+.info {
+  border: 1px solid var(--corPrincipal);
+  height: 40px;
+  width: 100%;
+}
+.info .texto{
+  height: 17px;
+  font-weight: normal;
+  color: var(--corBranco);
+  font-size: var(--fontePequena);
+  background-color: var(--corPrincipal);
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+}
+.info .valor{
+  color: var(--corTexto);
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  font-size: var(--fonteNormal);
+}
+.un-qtd {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.un-qtd fa-icon {
+  color: var(--corTexto);
+  font-size: 15px;
+}
+.img-container {
+  height: 217px;
+  border: 1px solid var(--corPrincipal);
+}
+.img-container img {
+  display: block;
+  margin: 0 auto;
+  height: 100%;
+}
+.acoes {
+  display: flex;
+  justify-content: space-between;
+}
+.btn {
+  width: 115px;
+  height: 40px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--corBranco);
+  font-size: var(--fonteMuitoPequena);
+  font-weight: bold;
+}
+.btn fa-icon{
+  font-size: 20px;
+}
+.vermelho {
+  background-color: var(--corVermelho);
+}
+.verde {
+  background-color: var(--corVerde);
+}
+
+
+
+
 .mainru {
   display: flex;
   flex-direction: column;

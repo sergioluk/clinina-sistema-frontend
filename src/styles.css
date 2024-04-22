@@ -11,6 +11,14 @@
   --corGradiente: #f69d3c;
   --corGradienteEscura: rgba(122,79,37,0.6);
   --cor-de-fundo-da-pagina: rgb(92,131,174);
+  --corPrincipal: #23BEB6;
+  --corTexto: #6F5E5C;
+  --corVermelho: #B95D5D;
+  --corVerde: #5BB059;
+  --corBranco: #fff;
+  --fontePequena: 13px;
+  --fonteMuitoPequena: 10px;
+  --fonteNormal: 14px;
 }
 body{
   height: 100vh;

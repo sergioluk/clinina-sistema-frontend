@@ -3,6 +3,9 @@ import { CadastroProduto, Venda, VendaComQtd, Vender } from '../cadastro-produto
 import { CardHomeService } from '../card-home.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 
 
 @Component({
@@ -11,6 +14,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./venda.component.css']
 })
 export class VendaComponent implements OnInit {
+
+  faXmark = faXmark;
+  faCircleXmark = faCircleXmark;
+  faBars = faBars;
 
   //só pra pegar o id do input pra fazer o autofocus quando apertar em cadastrar
   @ViewChild('idDoInput') inputCodigoBarras!: ElementRef;

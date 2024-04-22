@@ -23,6 +23,7 @@ import { HomeClininaComponent } from './componentes/home-clinina/home-clinina.co
 import { VendaComponent } from './componentes/venda/venda.component';
 import { RelatorioComponent } from './componentes/relatorio/relatorio.component';
 import { RelatorioFiadoComponent } from './componentes/relatorio-fiado/relatorio-fiado.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { RelatorioFiadoComponent } from './componentes/relatorio-fiado/relatorio
     MatButtonModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
