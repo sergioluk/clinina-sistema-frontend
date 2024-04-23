@@ -8,7 +8,16 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
+import { faStethoscope } from '@fortawesome/free-solid-svg-icons';
+import { faChartLine } from '@fortawesome/free-solid-svg-icons';
+import { faDog } from '@fortawesome/free-solid-svg-icons';
+import { faHandHoldingDollar } from '@fortawesome/free-solid-svg-icons';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { faRectangleList } from '@fortawesome/free-regular-svg-icons';
+
 
 
 @Component({
@@ -24,6 +33,14 @@ export class VendaComponent implements OnInit {
   faMagnifyingGlass = faMagnifyingGlass;
   faPencil = faPencil;
   faTrashCan = faTrashCan;
+  faFloppyDisk = faFloppyDisk;
+  faEnvelope = faEnvelope;
+  faStethoscope = faStethoscope;
+  faHandHoldingDollar = faHandHoldingDollar;
+  faRectangleList = faRectangleList;
+  faChartLine = faChartLine;
+  faCircleInfo = faCircleInfo;
+  faDog = faDog;
 
   //só pra pegar o id do input pra fazer o autofocus quando apertar em cadastrar
   @ViewChild('idDoInput') inputCodigoBarras!: ElementRef;

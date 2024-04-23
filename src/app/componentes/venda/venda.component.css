@@ -1,12 +1,44 @@
 .notebook {
   width: 1366px;
-  height: 636px;
+  /*height: 606px;*/
+  height: 606px;
   display: flex;
+  margin: 0 auto;
 }
 .menu-container {
   width: 23.86%;
   height: 100%;
-  border: 1px solid red;
+}
+.img-logo {
+  width: 100%;
+  height: 100%;
+}
+.menu-oculto {
+  width: 100%;
+  height: 100%;
+  background-color: var(--corPrincipal);
+  color: var(--corBranco);
+  font-size: 15px;
+}
+.menu-oculto hr {
+  margin: 10px 20px;
+  color: var(--corBranco);
+}
+.menu-opcao {
+  padding: 10px 20px;
+}
+.menu-opcao:hover {
+  background-color: var(--corHighlight);
+  cursor: pointer;
+}
+.menu-oculto img {
+  width: 100px;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.menu-opcao fa-icon {
+  margin-right: 10px;
+  font-size: 14px;
 }
 .ponto-de-venda {
   width: 76.14%;
@@ -173,7 +205,7 @@ th, td, tr {
   padding-left: 10px;
 }
 tr {
-  border-bottom: 1px solid var(--corPrincipal);
+  border-bottom: 1px solid var(--corAzulClaro);
   height: fit-content;
   font-size: var(--fonteNormal);
   color: var(--corTexto);
