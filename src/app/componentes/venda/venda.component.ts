@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faPencil } from '@fortawesome/free-solid-svg-icons';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 
 
@@ -18,6 +21,9 @@ export class VendaComponent implements OnInit {
   faXmark = faXmark;
   faCircleXmark = faCircleXmark;
   faBars = faBars;
+  faMagnifyingGlass = faMagnifyingGlass;
+  faPencil = faPencil;
+  faTrashCan = faTrashCan;
 
   //só pra pegar o id do input pra fazer o autofocus quando apertar em cadastrar
   @ViewChild('idDoInput') inputCodigoBarras!: ElementRef;

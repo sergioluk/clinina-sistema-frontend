@@ -1,14 +1,29 @@
 <div class="notebook">
   <div class="menu-container"></div>
   <div class="ponto-de-venda">
-    <div class="ponto-de-venda__detalhes">
-      <div class="menu">
+    <div class="flex">
+      <div class="menu detalhes">
         <fa-icon [icon]="faBars"></fa-icon>
       </div>
-      <div class="logo">
+      <h1 class="titulo">CLININA - PONTO DE VENDA</h1>
+    </div>
+    <div class="flex">
+      <div class="logo detalhes">
         <img src="../../../assets/img/clinina-logo.png" alt="Logo">
       </div>
-      <div class="un-qtd">
+      <div class="procurar-produto">
+        <div class="btn">
+          <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+          BUSCAR ITEM
+        </div>
+        <div class="campo-de-pesquisa">
+          <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+          <input type="text" placeholder="Nome do Produto">
+        </div>
+      </div>
+    </div>
+    <div class="flex">
+      <div class="un-qtd detalhes">
         <div class="info">
           <div class="texto">Valor Un.</div>
           <div class="valor">R$ 72,50</div>
@@ -20,17 +35,62 @@
         </div>
       </div>
       <div class="info">
-        <div class="texto">Subtotal</div>
-        <div class="valor">R$ 72,50 - R$ 10,00 = R$ 62,50</div>
+        <div class="texto">Produto</div>
+        <div class="valor">Nome do Produto</div>
       </div>
-      <div class="info">
-        <div class="texto">Código de barras</div>
-        <div class="valor">9878413104758</div>
+    </div>
+    <div class="flex">
+      <div class="cod-img-sub detalhes">
+        <div class="info">
+          <div class="texto">Subtotal</div>
+          <div class="valor">R$ 72,50 - R$ 10,00 = R$ 62,50</div>
+        </div>
+        <div class="info">
+          <div class="texto">Código de barras</div>
+          <div class="valor">9878413104758</div>
+        </div>
+        <div class="img-container">
+          <img src="../../../assets/img/3.png" alt="Imagem do produto">
+        </div>
       </div>
-      <div class="img-container">
-        <img src="../../../assets/img/3.png" alt="Imagem do produto">
+      <div class="tabela">
+        <table>
+          <tr class="cabecalho-tabela">
+            <th> </th>
+            <th>Foto</th>
+            <th class="nome__tabela">Nome do produto</th>
+            <th>Qtd</th>
+            <th>Valor Un. (R$)</th>
+            <th>Desc (R$)</th>
+            <th>Total (R$)</th>
+            <td> </td>
+          </tr>
+          <tr>
+            <td><fa-icon class="apagar" [icon]="faTrashCan"></fa-icon></td>
+            <td><img class="table__img" src="../../../assets/img/3.png" alt="Imagem do produto"></td>
+            <td>Ração Fracionada Magnus Todo Dia Carne (400g)</td>
+            <td>2</td>
+            <td>12,50</td>
+            <td> </td>
+            <td>15,00</td>
+            <td><fa-icon class="editar" [icon]="faPencil"></fa-icon></td>
+          </tr>
+          <tr>
+            <td><fa-icon class="apagar" [icon]="faTrashCan"></fa-icon></td>
+            <td><img class="table__img" src="../../../assets/img/3.png" alt="Imagem do produto"></td>
+            <td>Ração Fracionada Magnus Todo Dia Carne (400g)</td>
+            <td>2</td>
+            <td>12,50</td>
+            <td>-15,00</td>
+            <td>15,00</td>
+            <td><fa-icon class="editar" [icon]="faPencil"></fa-icon></td>
+          </tr>
+        </table>
       </div>
-      <div class="acoes">
+      
+    </div>
+    <div class="flex">
+      <div class="acoes detalhes">
         <div class="btn vermelho">
           <fa-icon [icon]="faCircleXmark"></fa-icon>
           CANCELAR
@@ -40,9 +100,23 @@
           VENDER
         </div>
       </div>
+      <div class="desconto-total">
+        <div class="info">
+          <div class="texto">Desconto</div>
+          <div class="valor">R$ -10,00</div>
+        </div>
+        <div class="info">
+          <div class="texto">Total</div>
+          <div class="valor">R$ 77,60</div>
+        </div>
+      </div>
     </div>
+
   </div>
 </div>
+
+
+
 
 <div class="mainru">
   <div class="Caixa-central">
