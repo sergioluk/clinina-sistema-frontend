@@ -5,6 +5,9 @@
   display: flex;
   margin: 0 auto;
 }
+.width {
+  width: 100%;
+}
 .menu-container {
   width: 23.86%;
   height: 100%;
@@ -55,28 +58,6 @@
 .logo {
   display: flex;
   justify-content: center;
-}
-.info {
-  border: 1px solid var(--corPrincipal);
-  height: 40px;
-  width: 100%;
-}
-.info .texto{
-  height: 17px;
-  font-weight: normal;
-  color: var(--corBranco);
-  font-size: var(--fontePequena);
-  background-color: var(--corPrincipal);
-  padding-left: 10px;
-  display: flex;
-  align-items: center;
-}
-.info .valor{
-  color: var(--corTexto);
-  padding-left: 10px;
-  display: flex;
-  align-items: center;
-  font-size: var(--fonteNormal);
 }
 .un-qtd {
   display: flex;

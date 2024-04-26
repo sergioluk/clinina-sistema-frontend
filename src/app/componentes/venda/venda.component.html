@@ -64,31 +64,16 @@
     </div>
     <div class="flex">
       <div class="un-qtd detalhes">
-        <div class="info">
-          <div class="texto">Valor Un.</div>
-          <div class="valor">R$ 72,50</div>
-        </div>
+        <app-info class="width" titulo="Valor Un." valor="R$ 72,50"></app-info>
         <fa-icon [icon]="faXmark"></fa-icon>
-        <div class="info">
-          <div class="texto">Quantidade</div>
-          <div class="valor">1</div>
-        </div>
+        <app-info class="width" titulo="Quantidade" valor="1"></app-info>
       </div>
-      <div class="info">
-        <div class="texto">Produto</div>
-        <div class="valor">Nome do Produto</div>
-      </div>
+      <app-info class="width" titulo="Produto" valor="Nome do Produto"></app-info>
     </div>
     <div class="flex">
       <div class="cod-img-sub detalhes">
-        <div class="info">
-          <div class="texto">Subtotal</div>
-          <div class="valor">R$ 72,50 - R$ 10,00 = R$ 62,50</div>
-        </div>
-        <div class="info">
-          <div class="texto">Código de barras</div>
-          <div class="valor">9878413104758</div>
-        </div>
+        <app-info titulo="Subtotal" valor="R$ 72,50 - R$ 10,00 = R$ 62,50"></app-info>
+        <app-info titulo="Código de barras" valor="9878413104758"></app-info>
         <div class="img-container">
           <img src="../../../assets/img/3.png" alt="Imagem do produto">
         </div>

@@ -24,6 +24,7 @@ import { VendaComponent } from './componentes/venda/venda.component';
 import { RelatorioComponent } from './componentes/relatorio/relatorio.component';
 import { RelatorioFiadoComponent } from './componentes/relatorio-fiado/relatorio-fiado.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { InfoComponent } from './layout/info/info.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HomeClininaComponent,
     VendaComponent,
     RelatorioComponent,
-    RelatorioFiadoComponent
+    RelatorioFiadoComponent,
+    InfoComponent
   ],
   imports: [
     BrowserModule,
