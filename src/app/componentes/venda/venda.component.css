@@ -82,24 +82,7 @@
   display: flex;
   justify-content: space-between;
 }
-.btn {
-  /*width: 115px;*/
-  min-width: 115px;
-  width: fit-content;
-  height: 40px;
-  border-radius: 7px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  color: var(--corBranco);
-  font-size: var(--fonteMuitoPequena);
-  font-weight: bold;
-  background-color: var(--corPrincipal);
-}
-.btn fa-icon {
-  font-size: 20px;
-}
+
 .vermelho {
   background-color: var(--corVermelho);
 }
@@ -218,7 +201,7 @@ tr fa-icon {
   gap: 20px;
   width: 100%;
 }
-.desconto-total .info {
+.desconto-total app-info {
   width: 120px;
 }
 

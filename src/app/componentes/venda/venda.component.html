@@ -52,10 +52,7 @@
         <img src="../../../assets/img/clinina-logo.png" alt="Logo">
       </div>
       <div class="procurar-produto">
-        <div class="btn">
-          <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
-          BUSCAR ITEM
-        </div>
+        <app-botao-grande texto="BUSCAR ITEM" cor="var(--corPrincipal)" icone="fa-magnifying-glass"></app-botao-grande>
         <div class="campo-de-pesquisa">
           <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
           <input type="text" placeholder="Nome do Produto">
@@ -116,24 +113,12 @@
     </div>
     <div class="flex">
       <div class="acoes detalhes">
-        <div class="btn vermelho">
-          <fa-icon [icon]="faCircleXmark"></fa-icon>
-          CANCELAR
-        </div>
-        <div class="btn verde">
-          <fa-icon [icon]="faCircleXmark"></fa-icon>
-          VENDER
-        </div>
+        <app-botao-grande texto="CANCELAR" cor="var(--corVermelho)" icone="fa-circle-xmark"></app-botao-grande>
+        <app-botao-grande texto="VENDER" cor="var(--corVerde)" icone="fa-cart-shopping"></app-botao-grande>
       </div>
       <div class="desconto-total">
-        <div class="info">
-          <div class="texto">Desconto</div>
-          <div class="valor">R$ -10,00</div>
-        </div>
-        <div class="info">
-          <div class="texto">Total</div>
-          <div class="valor">R$ 77,60</div>
-        </div>
+        <app-info titulo="Desconto" valor="R$ -10,00"></app-info>
+        <app-info titulo="Total" valor="R$ 77,60"></app-info>
       </div>
     </div>
 

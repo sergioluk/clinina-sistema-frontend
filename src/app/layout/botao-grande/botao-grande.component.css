@@ -1,0 +1,18 @@
+.btn {
+    /*width: 115px;*/
+    min-width: 115px;
+    width: fit-content;
+    height: 40px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--corBranco);
+    font-size: var(--fonteMuitoPequena);
+    font-weight: bold;
+    /*background-color: var(--corPrincipal);*/
+  }
+  .btn fa-icon {
+    font-size: 20px;
+  }
