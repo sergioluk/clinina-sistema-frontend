@@ -1,0 +1,16 @@
+.menu-opcao {
+    padding: 10px 20px;
+  }
+  .menu-opcao:hover {
+    background-color: var(--corHighlight);
+    cursor: pointer;
+  }
+  .menu-oculto img {
+    width: 100px;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+  .menu-opcao fa-icon {
+    margin-right: 10px;
+    font-size: 14px;
+  }

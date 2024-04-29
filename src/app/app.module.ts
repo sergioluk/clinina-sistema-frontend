@@ -26,7 +26,9 @@ import { RelatorioFiadoComponent } from './componentes/relatorio-fiado/relatorio
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { InfoComponent } from './layout/info/info.component';
 import { BotaoGrandeComponent } from './layout/botao-grande/botao-grande.component';
-import { IconesComponent } from './layout/icones/icones.component';
+import { ContainerImageComponent } from './layout/container-image/container-image.component';
+import { MenuOpcaoComponent } from './layout/menu-opcao/menu-opcao.component';
+import { InputSimplesComponent } from './layout/input-simples/input-simples.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { IconesComponent } from './layout/icones/icones.component';
     RelatorioFiadoComponent,
     InfoComponent,
     BotaoGrandeComponent,
-    IconesComponent
+    ContainerImageComponent,
+    MenuOpcaoComponent,
+    InputSimplesComponent
   ],
   imports: [
     BrowserModule,

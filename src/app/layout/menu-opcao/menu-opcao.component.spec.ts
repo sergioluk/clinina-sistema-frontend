@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IconesComponent } from './icones.component';
+import { MenuOpcaoComponent } from './menu-opcao.component';
 
-describe('IconesComponent', () => {
-  let component: IconesComponent;
-  let fixture: ComponentFixture<IconesComponent>;
+describe('MenuOpcaoComponent', () => {
+  let component: MenuOpcaoComponent;
+  let fixture: ComponentFixture<MenuOpcaoComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [IconesComponent]
+      declarations: [MenuOpcaoComponent]
     });
-    fixture = TestBed.createComponent(IconesComponent);
+    fixture = TestBed.createComponent(MenuOpcaoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

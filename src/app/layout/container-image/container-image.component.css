@@ -1,0 +1,9 @@
+.img-container {
+    height: 217px;
+    border: 1px solid var(--corPrincipal);
+  }
+  .img-container img {
+    display: block;
+    margin: 0 auto;
+    height: 100%;
+  }

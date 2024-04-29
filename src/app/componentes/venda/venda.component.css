@@ -27,22 +27,7 @@
   margin: 10px 20px;
   color: var(--corBranco);
 }
-.menu-opcao {
-  padding: 10px 20px;
-}
-.menu-opcao:hover {
-  background-color: var(--corHighlight);
-  cursor: pointer;
-}
-.menu-oculto img {
-  width: 100px;
-  margin-top: 20px;
-  margin-left: 20px;
-}
-.menu-opcao fa-icon {
-  margin-right: 10px;
-  font-size: 14px;
-}
+
 .ponto-de-venda {
   width: 76.14%;
   display: flex;
@@ -69,15 +54,7 @@
   color: var(--corTexto);
   font-size: 15px;
 }
-.img-container {
-  height: 217px;
-  border: 1px solid var(--corPrincipal);
-}
-.img-container img {
-  display: block;
-  margin: 0 auto;
-  height: 100%;
-}
+
 .acoes {
   display: flex;
   justify-content: space-between;
@@ -105,31 +82,7 @@
   flex-grow: 1;
   gap: 20px;
 }
-.campo-de-pesquisa {
-  border: 1px solid var(--corPrincipal);
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  padding-left: 10px;
-  border-radius: 7px;
-}
-.campo-de-pesquisa fa-icon{
-  font-size: 20px;
-  color: var(--corPrincipal);
-}
-.campo-de-pesquisa input {
-  height: 40px;
-  width: 95%;
-  font-size: var(--fonteNormal);
-  padding-left: 5px;
-  border: none;
-  color: var(--corTexto);
-}
-.campo-de-pesquisa input:focus {
-  
-  outline: none;
-}
+
 .cod-img-sub {
   display: flex;
   flex-direction: column;
