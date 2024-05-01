@@ -29,7 +29,7 @@
       </div>
       <div class="procurar-produto">
         <app-botao-grande texto="BUSCAR ITEM" cor="var(--corPrincipal)" icone="fa-magnifying-glass"></app-botao-grande>
-        <app-input-simples class="width" placeholder="Nome do Produto"></app-input-simples>
+        <app-input-simples class="width" placeholder="Nome do Produto" [(ngModel)]="input" (keydown.enter)="ApertandoEnter()"></app-input-simples>
       </div>
     </div>
     <div class="flex">
