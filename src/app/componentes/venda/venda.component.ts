@@ -65,6 +65,11 @@ export class VendaComponent implements OnInit {
     })
   }
 
+  produtoEncontrado(produto : Venda){
+    this.produto = produto;
+    console.log("Pai recebeu o produto? " + this.produto.produto);
+  }
+
 /*
   produto: CadastroProduto = {
     produto: '',

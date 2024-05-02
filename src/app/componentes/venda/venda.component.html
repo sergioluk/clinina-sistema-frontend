@@ -29,7 +29,7 @@
       </div>
       <div class="procurar-produto">
         <app-botao-grande texto="BUSCAR ITEM" cor="var(--corPrincipal)" icone="fa-magnifying-glass"></app-botao-grande>
-        <app-input-simples class="width" placeholder="Nome do Produto" [(ngModel)]="input" (keydown.enter)="ApertandoEnter()"></app-input-simples>
+        <app-input-simples class="width" placeholder="Nome do Produto" (produto)="produtoEncontrado($event)"></app-input-simples>
       </div>
     </div>
     <div class="flex">
@@ -111,7 +111,7 @@
             Cadastrar
           </div>
           <div *ngIf="divAviso">Produto Adicionado</div>
-          <input id="teste" type="search" #idDoInput autofocus [ngClass]="cadastrarOuPesquisar()" size="70" style="padding: 20px" [(ngModel)]="input" placeholder="Código de Barras" (keydown.enter)="ApertandoEnter()">
+          <input id="teste" type="search" #idDoInput autofocus [ngClass]="cadastrarOuPesquisar()" size="70" style="padding: 20px" [(ngModel)]="input" placeholder="Código de Barras" >
           <div class="botao vender" (click)="vendaFormaDePagamento()">
             Vender
           </div>
