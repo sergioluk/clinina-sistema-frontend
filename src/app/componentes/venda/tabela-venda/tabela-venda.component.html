@@ -1,0 +1,22 @@
+<table>
+    <tr class="cabecalho-tabela">
+      <th> </th>
+      <th>Foto</th>
+      <th class="nome__tabela">Nome do produto</th>
+      <th>Qtd</th>
+      <th>Valor Un. (R$)</th>
+      <th>Desc (R$)</th>
+      <th>Total (R$)</th>
+      <th> </th>
+    </tr>
+  <tr class="tablerow" *ngFor="let item of listaDeProdutos; index as i" (click)="selecionarProduto(i)"> 
+    <td><fa-icon class="apagar" [icon]="faTrashCan" (click)="removerItemDaLista(i)"></fa-icon></td>
+    <td><img class="table__img" src="{{ item.imagemP }}" alt="Imagem do produto"></td>
+    <td>{{ item.produto }}</td>
+    <td>{{ item.quantidade }}</td>
+    <td>{{ item.preco }}</td>
+    <td>{{ item.desconto }}</td>
+    <td>{{ item.preco }}</td>
+    <td><fa-icon class="editar" [icon]="faPencil"></fa-icon></td>
+  </tr>
+</table>

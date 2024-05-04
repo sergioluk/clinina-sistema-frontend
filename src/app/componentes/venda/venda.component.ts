@@ -16,6 +16,7 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';/**/
 
 
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';/**/
+import { ProdutoVenda } from 'src/app/interfaces/produtoVenda';
 
 
 
@@ -64,11 +65,34 @@ export class VendaComponent implements OnInit {
       endereco: []
     })
   }
-
-  produtoEncontrado(produto : Venda){
+  //Novo
+  produtoEncontrado(produto : ProdutoVenda){
     this.produto = produto;
+    this.listaDeProdutos.push(produto);
+    this.calcularTotal();
     console.log("Pai recebeu o produto? " + this.produto.produto);
   }
+
+  retornarSubtotal(){
+    if (this.produto.desconto > 0) {
+      let subtotal = this.produto.preco - this.produto.desconto;
+      return `R$ ${this.produto.preco} - R$ ${this.produto.desconto} = R$ ${subtotal}`;
+    }
+    return `R$ ${this.produto.preco}`
+  }
+
+  calcularTotal(){
+    let listaPrecoTotal = 0;
+    for (let index = 0; index < this.listaDeProdutos.length; index++) {
+      listaPrecoTotal += (this.listaDeProdutos[index].preco * this.listaDeProdutos[index].quantidade);
+    }
+    this.total = listaPrecoTotal;
+  }
+
+  selecionarProduto(produto : ProdutoVenda){
+    this.produto = produto;
+  }
+  //Fim Novo
 
 /*
   produto: CadastroProduto = {
@@ -90,15 +114,19 @@ export class VendaComponent implements OnInit {
     imagemP: ''
   }
   */
-  produto: Venda = {
+  produto: ProdutoVenda = {
     codigoDeBarras: '',
     produto: '',
     preco: 0,
     imagemP: '',
-    id: 0
+    id: 0,
+    peso: '',
+    quantidade: 0,
+    desconto: 0
   }
 
-  listaDeProdutos: VendaComQtd[] = [];
+  listaDeProdutos: ProdutoVenda[] = [];
+  listaDeProdutosAntigoApagar: VendaComQtd[] = [];
 
   produtoPesagem: VendaComQtd = {
     id: 0,
@@ -117,7 +145,7 @@ export class VendaComponent implements OnInit {
   venda(){
 
     let listaDeVenda: Vender[] = [];
-    for (let produto of this.listaDeProdutos) {
+    for (let produto of this.listaDeProdutosAntigoApagar) {
 
       if (this.formulario.get('formaPagamento')?.value == 'Fiado') {
         let produtosVender: Vender = {
@@ -162,10 +190,10 @@ export class VendaComponent implements OnInit {
   }
 
   removerItemDaLista(index: number) {
-    if (this.listaDeProdutos[index].quantidade > 1) {
-      this.listaDeProdutos[index].quantidade -= 1;
+    if (this.listaDeProdutosAntigoApagar[index].quantidade > 1) {
+      this.listaDeProdutosAntigoApagar[index].quantidade -= 1;
     } else {
-      this.listaDeProdutos.splice(index,1);
+      this.listaDeProdutosAntigoApagar.splice(index,1);
     }
     this.calcularTotal();
   }
@@ -246,14 +274,14 @@ export class VendaComponent implements OnInit {
 
       let itemJaNaLista = false;
       let itemIndex = -1;
-      for (let index = 0; index < this.listaDeProdutos.length; index++) {
-        if (this.produto.codigoDeBarras == this.listaDeProdutos[index].codigoDeBarras) { //se ja tiver o item na lista de itens, só aumentar a qtd, se não criar um novo objeto para a lista
+      for (let index = 0; index < this.listaDeProdutosAntigoApagar.length; index++) {
+        if (this.produto.codigoDeBarras == this.listaDeProdutosAntigoApagar[index].codigoDeBarras) { //se ja tiver o item na lista de itens, só aumentar a qtd, se não criar um novo objeto para a lista
           itemJaNaLista = true;
           itemIndex = index;
         }
       }
       if (itemJaNaLista) {
-        this.listaDeProdutos[itemIndex].quantidade++;
+        this.listaDeProdutosAntigoApagar[itemIndex].quantidade++;
       } else {
         let produtoComQtd: VendaComQtd = {
           id: this.produto.id,
@@ -264,7 +292,7 @@ export class VendaComponent implements OnInit {
           peso: '',
           quantidade: 1
         }
-        this.listaDeProdutos.push(produtoComQtd);
+        this.listaDeProdutosAntigoApagar.push(produtoComQtd);
       }
       //só pra pegar o total
       this.calcularTotal();
@@ -279,7 +307,7 @@ export class VendaComponent implements OnInit {
   }
 
   vendaFormaDePagamento() {
-    if (this.listaDeProdutos.length < 1){
+    if (this.listaDeProdutosAntigoApagar.length < 1){
       alert('Não há itens na lista!');
       return;
     }
@@ -356,7 +384,7 @@ export class VendaComponent implements OnInit {
       quantidade: 1
     };
     this.inputPeso = '';
-    this.listaDeProdutos.push(produtoPesado);
+    this.listaDeProdutosAntigoApagar.push(produtoPesado);
 
     //Aparecer a imagem
     this.produto.imagemP = this.produtoPesagem.imagemP;
@@ -373,13 +401,7 @@ export class VendaComponent implements OnInit {
     this.fecharModalPesagem();
   }
 
-  calcularTotal(){
-    let listaTotal = 0;
-    for (let index = 0; index < this.listaDeProdutos.length; index++) {
-      listaTotal += (this.listaDeProdutos[index].preco * this.listaDeProdutos[index].quantidade);
-    }
-    this.total = listaTotal;
-  }
+  
 
   ehFiado(){
     if (this.formulario.get('formaPagamento')?.value == 'Fiado'){

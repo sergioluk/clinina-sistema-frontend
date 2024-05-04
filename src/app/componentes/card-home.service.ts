@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CardHome } from './card-home/card-home';
 import { CadastroProduto, Categoria, Fiado, Fornecedor, Idade, Relatorio, RelatorioFiado, Sabor, Venda, Vender } from './cadastro-produto/cadastro-produto';
+import { ProdutoVenda } from '../interfaces/produtoVenda';
 
 @Injectable({
   providedIn: 'root'
@@ -22,9 +23,9 @@ export class CardHomeService {
     return this.http.get<CadastroProduto[]>(this.API);
   }
 
-  pesquisarPorCodigoDeBarras(codigoDeBarras: string): Observable<Venda>{
+  pesquisarPorCodigoDeBarras(codigoDeBarras: string): Observable<ProdutoVenda>{
     const url = `${this.API}/codigo-de-barras/${codigoDeBarras}`;
-    return this.http.get<Venda>(url);
+    return this.http.get<ProdutoVenda>(url);
   }
 
   criar(produto: CadastroProduto): Observable<CadastroProduto>{

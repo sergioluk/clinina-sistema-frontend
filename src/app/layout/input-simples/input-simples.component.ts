@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { Venda, VendaComQtd } from 'src/app/componentes/cadastro-produto/cadastro-produto';
 import { CardHomeService } from 'src/app/componentes/card-home.service';
+import { ProdutoVenda } from 'src/app/interfaces/produtoVenda';
 
 @Component({
   selector: 'app-input-simples',
@@ -15,7 +15,7 @@ export class InputSimplesComponent {
   @Input() placeholder : string | undefined;
   faMagnifyingGlass = faMagnifyingGlass;
 
-  @Output() produto = new EventEmitter<Venda>();
+  @Output() produto = new EventEmitter<ProdutoVenda>();
   input : string = '';
 
   procurarProduto(codigoDeBarras:string){

@@ -21,7 +21,7 @@
       <div class="menu detalhes">
         <fa-icon [icon]="faBars"></fa-icon>
       </div>
-      <h1 class="titulo">CLININA - PONTO DE VENDA</h1>
+      <h1 class="titulo">CLININA - PONTO DE VENDA 7899838836409</h1>
     </div>
     <div class="flex">
       <div class="logo detalhes">
@@ -34,53 +34,21 @@
     </div>
     <div class="flex">
       <div class="un-qtd detalhes">
-        <app-info class="width" titulo="Valor Un." valor="R$ 80,50"></app-info>
+        <app-info class="width" titulo="Valor Un." valor="{{ produto.preco }}"></app-info>
         <fa-icon [icon]="faXmark"></fa-icon>
-        <app-info class="width" titulo="Quantidade" valor="1"></app-info>
+        <app-info class="width" titulo="Quantidade" valor="{{ produto.quantidade }}"></app-info>
       </div>
-      <app-info class="width" titulo="Produto" valor="Nome do Produto"></app-info>
+      <app-info class="width" titulo="Produto" valor="{{ (produto.produto ? produto.produto : 'Nome do Produto') }}"></app-info>
     </div>
     <div class="flex">
       <div class="cod-img-sub detalhes">
-        <app-info titulo="Subtotal" valor="R$ 72,50 - R$ 10,00 = R$ 62,50"></app-info>
-        <app-info titulo="Código de barras" valor="9878413104758"></app-info>
-        <app-container-image imagem="../../../assets/img/3.png"></app-container-image>
+        <app-info titulo="Subtotal" valor="{{ retornarSubtotal() }}"></app-info>
+        <app-info titulo="Código de barras" valor="{{ (produto.codigoDeBarras ? produto.codigoDeBarras : '-') }}"></app-info>
+        <app-container-image imagem="{{ (produto.imagemP ? produto.imagemP : 'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg') }}"></app-container-image>
       </div>
       <div class="tabela">
-        <table>
-          <tr class="cabecalho-tabela">
-            <th> </th>
-            <th>Foto</th>
-            <th class="nome__tabela">Nome do produto</th>
-            <th>Qtd</th>
-            <th>Valor Un. (R$)</th>
-            <th>Desc (R$)</th>
-            <th>Total (R$)</th>
-            <td> </td>
-          </tr>
-          <tr>
-            <td><fa-icon class="apagar" [icon]="faTrashCan"></fa-icon></td>
-            <td><img class="table__img" src="../../../assets/img/3.png" alt="Imagem do produto"></td>
-            <td>Ração Fracionada Magnus Todo Dia Carne (400g)</td>
-            <td>2</td>
-            <td>12,50</td>
-            <td> </td>
-            <td>15,00</td>
-            <td><fa-icon class="editar" [icon]="faPencil"></fa-icon></td>
-          </tr>
-          <tr>
-            <td><fa-icon class="apagar" [icon]="faTrashCan"></fa-icon></td>
-            <td><img class="table__img" src="../../../assets/img/3.png" alt="Imagem do produto"></td>
-            <td>Ração Fracionada Magnus Todo Dia Carne (400g)</td>
-            <td>2</td>
-            <td>12,50</td>
-            <td>-15,00</td>
-            <td>15,00</td>
-            <td><fa-icon class="editar" [icon]="faPencil"></fa-icon></td>
-          </tr>
-        </table>
+        <app-tabela-venda [listaDeProdutos]="listaDeProdutos" (calcularTotal)="calcularTotal()" (produtoClicado)="selecionarProduto($event)"></app-tabela-venda>
       </div>
-      
     </div>
     <div class="flex">
       <div class="acoes detalhes">
@@ -88,8 +56,8 @@
         <app-botao-grande texto="VENDER" cor="var(--corVerde)" icone="fa-cart-shopping"></app-botao-grande>
       </div>
       <div class="desconto-total">
-        <app-info titulo="Desconto" valor="R$ -10,00"></app-info>
-        <app-info titulo="Total" valor="R$ 77,60"></app-info>
+        <app-info titulo="Desconto Total" valor="R$ 77,60"></app-info>
+        <app-info titulo="Total" valor="R$ {{ total }}"></app-info>
       </div>
     </div>
 

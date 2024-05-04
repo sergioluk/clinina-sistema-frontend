@@ -29,6 +29,7 @@ import { BotaoGrandeComponent } from './layout/botao-grande/botao-grande.compone
 import { ContainerImageComponent } from './layout/container-image/container-image.component';
 import { MenuOpcaoComponent } from './layout/menu-opcao/menu-opcao.component';
 import { InputSimplesComponent } from './layout/input-simples/input-simples.component';
+import { TabelaVendaComponent } from './componentes/venda/tabela-venda/tabela-venda.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { InputSimplesComponent } from './layout/input-simples/input-simples.comp
     BotaoGrandeComponent,
     ContainerImageComponent,
     MenuOpcaoComponent,
-    InputSimplesComponent
+    InputSimplesComponent,
+    TabelaVendaComponent
   ],
   imports: [
     BrowserModule,
