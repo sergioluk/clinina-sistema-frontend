@@ -31,6 +31,7 @@ import { MenuOpcaoComponent } from './layout/menu-opcao/menu-opcao.component';
 import { InputSimplesComponent } from './layout/input-simples/input-simples.component';
 import { TabelaVendaComponent } from './componentes/venda/tabela-venda/tabela-venda.component';
 import { JanelaComponent } from './layout/janela/janela.component';
+import { InputComponent } from './form/input/input.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { JanelaComponent } from './layout/janela/janela.component';
     MenuOpcaoComponent,
     InputSimplesComponent,
     TabelaVendaComponent,
-    JanelaComponent
+    JanelaComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,
