@@ -8,5 +8,42 @@
     </div>
     <div class="body">
         <ng-content></ng-content>
+        <div class="container">
+            <div class="imagem-container">
+                <img src="../../../assets/img/3.png" alt="">
+            </div>
+            <div class="informacoes-container">
+                <span>Ração Fracionada Magnus Todo Dia Carne (400g)</span>
+                <div class="inputs-container">
+                    <div class="input grow">
+                        <label for="quantidade">Quantidade:</label>
+                        <input type="number" id="quantidade">
+                    </div>
+                    <div class="input grow">
+                        <label for="desconto">Desc. (%):</label>
+                        <input type="number" id="desconto">
+                    </div>
+                    <div class="input grow">
+                        <label for="descontodinheiro">Desc. (R$):</label>
+                        <input type="number" id="descontodinheiro">
+                    </div>
+                </div>
+                <div class="infos-container">
+                    <app-info class="grow info" titulo="P.Compra" valor="R$ 72,50"></app-info>
+                    <app-info class="grow info" titulo="Lucro" valor="20%"></app-info>
+                    <app-info class="grow info" titulo="Lucro R$" valor="R$ 90,50"></app-info>
+                </div>
+            </div>
+        </div>
+        <div class="botao-container">
+            <div class="btn red">
+                <fa-icon [icon]="faCircleXmark"></fa-icon>
+                Cancelar
+            </div>
+            <div class="btn green">
+                <fa-icon [icon]="faCircleCheck"></fa-icon>
+                Aplicar
+            </div>
+        </div>
     </div>
 </div>
