@@ -27,14 +27,8 @@
             </div>
         </div>
         <div class="botao-container">
-            <div class="btn red">
-                <fa-icon [icon]="faCircleXmark"></fa-icon>
-                Cancelar
-            </div>
-            <div class="btn green">
-                <fa-icon [icon]="faCircleCheck"></fa-icon>
-                Aplicar
-            </div>
+            <app-botao-pequeno icone="fa-circle-xmark" cor="var(--corVermelho)" texto="Cancelar"></app-botao-pequeno>
+            <app-botao-pequeno icone="fa-circle-check" cor="var(--corVerde)" texto="Aplicar"></app-botao-pequeno>
         </div>
     </div>
 </div>

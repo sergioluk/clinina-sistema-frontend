@@ -32,6 +32,7 @@ import { InputSimplesComponent } from './layout/input-simples/input-simples.comp
 import { TabelaVendaComponent } from './componentes/venda/tabela-venda/tabela-venda.component';
 import { JanelaComponent } from './layout/janela/janela.component';
 import { InputComponent } from './form/input/input.component';
+import { BotaoPequenoComponent } from './layout/botao-pequeno/botao-pequeno.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { InputComponent } from './form/input/input.component';
     InputSimplesComponent,
     TabelaVendaComponent,
     JanelaComponent,
-    InputComponent
+    InputComponent,
+    BotaoPequenoComponent
   ],
   imports: [
     BrowserModule,
