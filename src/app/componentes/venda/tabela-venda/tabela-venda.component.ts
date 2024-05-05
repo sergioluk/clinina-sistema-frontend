@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { ProdutoVenda } from 'src/app/interfaces/produtoVenda';
+import { CardHomeService } from '../../card-home.service';
 
 @Component({
   selector: 'app-tabela-venda',
@@ -10,13 +11,49 @@ import { ProdutoVenda } from 'src/app/interfaces/produtoVenda';
 })
 export class TabelaVendaComponent {
 
-  //@Input() listaDeProdutos: VendaComQtd[] = [];
+  constructor(private service : CardHomeService){}  
+
   @Input() listaDeProdutos: ProdutoVenda[] = [];
-  @Output() calcularTotal = new EventEmitter();
+  @Output() totalCalculado = new EventEmitter<number>();
   @Output() produtoClicado = new EventEmitter<ProdutoVenda>();
 
   faPencil = faPencil;
   faTrashCan = faTrashCan;
+
+  total : number = 0;
+
+  adicionarProdutoNaLista(produto: ProdutoVenda){
+    //Verificar se o produto já está na tabela
+    let itemJaNaLista = false;
+    let itemIndex = 1;
+    for (let i = 0; i < this.listaDeProdutos.length; i++){
+      if (produto.codigoDeBarras == this.listaDeProdutos[i].codigoDeBarras){
+        itemJaNaLista = true;
+        itemIndex = i;
+      }
+    }
+    //Aumentar quantidade do produto se ele já estivar na tabela ou só adicionar na tabela
+    if (itemJaNaLista){
+      this.listaDeProdutos[itemIndex].quantidade++;
+      this.selecionarProduto(itemIndex);
+    } else {
+      this.listaDeProdutos.push(produto);
+      this.selecionarProduto(this.listaDeProdutos.length - 1);
+    }
+  }
+
+  procurarProduto(codigoDeBarras : string){
+    this.service.pesquisarPorCodigoDeBarras(codigoDeBarras).subscribe((produto) => {
+    
+      if (produto == null) {
+        alert("Produto não encontrado!!!!");
+        //this.input = '';
+        return;
+      }
+      this.adicionarProdutoNaLista(produto);
+      this.calcularTotal();
+    });
+  }
 
   removerItemDaLista(index: number) {
     if (this.listaDeProdutos[index].quantidade > 1) {
@@ -26,7 +63,7 @@ export class TabelaVendaComponent {
       //Se remover algum produto, selecionar o ultimo produto da lista
       this.selecionarProduto(this.listaDeProdutos.length - 1);
     }
-    this.calcularTotal.emit();
+    this.calcularTotal();
   }
 
   selecionarProduto(index : number) {
@@ -45,6 +82,15 @@ export class TabelaVendaComponent {
       return;
     }
     this.produtoClicado.emit(this.listaDeProdutos[index]);
+  }
+
+  calcularTotal(){
+    let listaPrecoTotal = 0;
+    for (let index = 0; index < this.listaDeProdutos.length; index++) {
+      listaPrecoTotal += (this.listaDeProdutos[index].preco * this.listaDeProdutos[index].quantidade);
+    }
+    this.total = listaPrecoTotal;
+    this.totalCalculado.emit(this.total);
   }
 
 }

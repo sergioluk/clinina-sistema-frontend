@@ -10,27 +10,15 @@ import { ProdutoVenda } from 'src/app/interfaces/produtoVenda';
 })
 export class InputSimplesComponent {
 
-  constructor(private service : CardHomeService){}
-
   @Input() placeholder : string | undefined;
   faMagnifyingGlass = faMagnifyingGlass;
 
-  @Output() produto = new EventEmitter<ProdutoVenda>();
+  @Output() texto = new EventEmitter<string>();
   input : string = '';
 
-  procurarProduto(codigoDeBarras:string){
-    
-    this.service.pesquisarPorCodigoDeBarras(codigoDeBarras).subscribe((produto) => {
-    
-      if (produto == null) {
-        alert("Produto não encontrado!!!!");
-        this.input = '';
-        return;
-      }
-      this.input = '';
-      this.produto.emit(produto);
-    });
-
+  enviarTexto(texto : string){
+    this.texto.emit(texto);
+    this.input = '';
   }
   
 }

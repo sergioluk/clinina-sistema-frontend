@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CadastroProduto, Venda, VendaComQtd, Vender } from '../cadastro-produto/cadastro-produto';
 import { CardHomeService } from '../card-home.service';
 import { Router } from '@angular/router';
@@ -17,6 +17,7 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';/**/
 
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';/**/
 import { ProdutoVenda } from 'src/app/interfaces/produtoVenda';
+import { TabelaVendaComponent } from './tabela-venda/tabela-venda.component';
 
 
 
@@ -58,6 +59,7 @@ export class VendaComponent implements OnInit {
   formulario!: FormGroup;
 
   ngOnInit(): void {
+
     this.formulario = this.formBuilder.group({
       formaPagamento: ['Dinheiro'],
       nome: [],
@@ -66,27 +68,35 @@ export class VendaComponent implements OnInit {
     })
   }
   //Novo
-  produtoEncontrado(produto : ProdutoVenda){
-    this.produto = produto;
-    this.listaDeProdutos.push(produto);
-    this.calcularTotal();
-    console.log("Pai recebeu o produto? " + this.produto.produto);
+ 
+  listaDeProdutos: ProdutoVenda[] = [];
+
+  produto: ProdutoVenda = {
+    codigoDeBarras: '',
+    produto: '',
+    preco: 0,
+    imagemP: '',
+    id: 0,
+    peso: '',
+    quantidade: 0,
+    desconto: 0
+  }
+  @ViewChild(TabelaVendaComponent) tabela! : TabelaVendaComponent;
+  
+  procurarProduto(codigo : string){
+    this.tabela.procurarProduto(codigo);
   }
 
   retornarSubtotal(){
     if (this.produto.desconto > 0) {
-      let subtotal = this.produto.preco - this.produto.desconto;
-      return `R$ ${this.produto.preco} - R$ ${this.produto.desconto} = R$ ${subtotal}`;
+      let subtotal = (this.produto.preco * this.produto.quantidade) - this.produto.desconto;
+      return `R$ ${this.produto.preco * this.produto.quantidade} - R$ ${this.produto.desconto} = R$ ${subtotal}`;
     }
-    return `R$ ${this.produto.preco}`
+    return `R$ ${this.produto.preco * this.produto.quantidade}`;
   }
 
-  calcularTotal(){
-    let listaPrecoTotal = 0;
-    for (let index = 0; index < this.listaDeProdutos.length; index++) {
-      listaPrecoTotal += (this.listaDeProdutos[index].preco * this.listaDeProdutos[index].quantidade);
-    }
-    this.total = listaPrecoTotal;
+  receberTotalCalculado(totalCalculado: number){
+    this.total = totalCalculado;
   }
 
   selecionarProduto(produto : ProdutoVenda){
@@ -114,18 +124,9 @@ export class VendaComponent implements OnInit {
     imagemP: ''
   }
   */
-  produto: ProdutoVenda = {
-    codigoDeBarras: '',
-    produto: '',
-    preco: 0,
-    imagemP: '',
-    id: 0,
-    peso: '',
-    quantidade: 0,
-    desconto: 0
-  }
+  
 
-  listaDeProdutos: ProdutoVenda[] = [];
+  
   listaDeProdutosAntigoApagar: VendaComQtd[] = [];
 
   produtoPesagem: VendaComQtd = {
@@ -141,6 +142,7 @@ export class VendaComponent implements OnInit {
   constructor(private service: CardHomeService,
     private router: Router,
     private formBuilder: FormBuilder){}
+ 
 
   venda(){
 
@@ -195,7 +197,7 @@ export class VendaComponent implements OnInit {
     } else {
       this.listaDeProdutosAntigoApagar.splice(index,1);
     }
-    this.calcularTotal();
+    //this.calcularTotal();
   }
 
   recarregar(){
@@ -295,7 +297,7 @@ export class VendaComponent implements OnInit {
         this.listaDeProdutosAntigoApagar.push(produtoComQtd);
       }
       //só pra pegar o total
-      this.calcularTotal();
+      //this.calcularTotal();
     });
 
 
@@ -396,7 +398,7 @@ export class VendaComponent implements OnInit {
     this.produtoPesagem.quantidade = 0;
     this.produtoPesagem.preco = 0;
 
-    this.calcularTotal();
+    //this.calcularTotal();
 
     this.fecharModalPesagem();
   }

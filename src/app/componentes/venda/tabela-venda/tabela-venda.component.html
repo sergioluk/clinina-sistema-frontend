@@ -16,7 +16,7 @@
     <td>{{ item.quantidade }}</td>
     <td>{{ item.preco }}</td>
     <td>{{ item.desconto }}</td>
-    <td>{{ item.preco }}</td>
+    <td>{{ (item.preco * item.quantidade) - item.desconto}}</td>
     <td><fa-icon class="editar" [icon]="faPencil"></fa-icon></td>
   </tr>
 </table>

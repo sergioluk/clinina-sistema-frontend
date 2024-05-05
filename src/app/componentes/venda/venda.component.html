@@ -29,12 +29,12 @@
       </div>
       <div class="procurar-produto">
         <app-botao-grande texto="BUSCAR ITEM" cor="var(--corPrincipal)" icone="fa-magnifying-glass"></app-botao-grande>
-        <app-input-simples class="width" placeholder="Nome do Produto" (produto)="produtoEncontrado($event)"></app-input-simples>
+        <app-input-simples class="width" placeholder="Código de Barras do Produto" (texto)="procurarProduto($event)"></app-input-simples>
       </div>
     </div>
     <div class="flex">
       <div class="un-qtd detalhes">
-        <app-info class="width" titulo="Valor Un." valor="{{ produto.preco }}"></app-info>
+        <app-info class="width" titulo="Valor Un." valor="R$ {{ produto.preco }}"></app-info>
         <fa-icon [icon]="faXmark"></fa-icon>
         <app-info class="width" titulo="Quantidade" valor="{{ produto.quantidade }}"></app-info>
       </div>
@@ -47,7 +47,7 @@
         <app-container-image imagem="{{ (produto.imagemP ? produto.imagemP : 'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg') }}"></app-container-image>
       </div>
       <div class="tabela">
-        <app-tabela-venda [listaDeProdutos]="listaDeProdutos" (calcularTotal)="calcularTotal()" (produtoClicado)="selecionarProduto($event)"></app-tabela-venda>
+        <app-tabela-venda [listaDeProdutos]="listaDeProdutos" (totalCalculado)="receberTotalCalculado($event)" (produtoClicado)="selecionarProduto($event)" ></app-tabela-venda>
       </div>
     </div>
     <div class="flex">
@@ -60,9 +60,14 @@
         <app-info titulo="Total" valor="R$ {{ total }}"></app-info>
       </div>
     </div>
-
   </div>
 </div>
+<app-janela>
+  <h1>Ola</h1>
+  <h2>Munbdo</h2>
+  <h3>Lol</h3>
+  <h4>LaL</h4>
+</app-janela>
 
 
 

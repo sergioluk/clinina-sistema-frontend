@@ -30,6 +30,7 @@ import { ContainerImageComponent } from './layout/container-image/container-imag
 import { MenuOpcaoComponent } from './layout/menu-opcao/menu-opcao.component';
 import { InputSimplesComponent } from './layout/input-simples/input-simples.component';
 import { TabelaVendaComponent } from './componentes/venda/tabela-venda/tabela-venda.component';
+import { JanelaComponent } from './layout/janela/janela.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { TabelaVendaComponent } from './componentes/venda/tabela-venda/tabela-ve
     ContainerImageComponent,
     MenuOpcaoComponent,
     InputSimplesComponent,
-    TabelaVendaComponent
+    TabelaVendaComponent,
+    JanelaComponent
   ],
   imports: [
     BrowserModule,

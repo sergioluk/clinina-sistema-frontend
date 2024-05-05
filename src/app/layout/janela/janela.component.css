@@ -1,0 +1,26 @@
+.janela {
+    color: var(--corBranco);
+    font-size: var(--fonteNormal);
+    width: 50%;
+    border: 1px solid var(--corPrincipal);
+    width: fit-content;
+}
+.head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px 10px;
+    background-color: var(--corPrincipal);
+}
+.titulo {
+    display: flex;
+    gap: 10px;
+}
+.fechar {
+    font-size: 18px;
+}
+.body {
+    padding: 10px;
+    height: fit-content;
+    width: fit-content;
+}
