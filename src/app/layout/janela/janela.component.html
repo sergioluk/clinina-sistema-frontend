@@ -1,34 +1,12 @@
 <div class="janela">
     <div class="head">
         <div class="titulo">
-            <fa-icon [icon]="faPencil"></fa-icon>
-            Editar
+            <fa-icon [icon]="iconeParaMostrar()"></fa-icon>
+            {{ titulo }}
         </div>
         <fa-icon class="fechar" [icon]="faXmark"></fa-icon>
     </div>
     <div class="body">
         <ng-content></ng-content>
-        <div class="container">
-            <div class="imagem-container">
-                <img src="../../../assets/img/3.png" alt="">
-            </div>
-            <div class="informacoes-container">
-                <span>Ração Fracionada Magnus Todo Dia Carne (400g)</span>
-                <div class="inputs-container">
-                    <app-input class="grow wd" label="Quantidade:" type="number" placeholder="" for="quantidade"></app-input>
-                    <app-input class="grow wd" label="Desc. (%):" type="number" placeholder="" for="desconto"></app-input>
-                    <app-input class="grow wd" label="Desc. (R$):" type="number" placeholder="" for="descontodinheiro"></app-input>
-                </div>
-                <div class="infos-container">
-                    <app-info class="grow info" titulo="P.Compra" valor="R$ 72,50"></app-info>
-                    <app-info class="grow info" titulo="Lucro" valor="20%"></app-info>
-                    <app-info class="grow info" titulo="Lucro R$" valor="R$ 90,50"></app-info>
-                </div>
-            </div>
-        </div>
-        <div class="botao-container">
-            <app-botao-pequeno icone="fa-circle-xmark" cor="var(--corVermelho)" texto="Cancelar"></app-botao-pequeno>
-            <app-botao-pequeno icone="fa-circle-check" cor="var(--corVerde)" texto="Aplicar"></app-botao-pequeno>
-        </div>
     </div>
 </div>

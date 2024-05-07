@@ -18,6 +18,7 @@ import { faCartShopping } from '@fortawesome/free-solid-svg-icons';/**/
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';/**/
 import { ProdutoVenda } from 'src/app/interfaces/produtoVenda';
 import { TabelaVendaComponent } from './tabela-venda/tabela-venda.component';
+import { EditarDescQtdComponent } from './editar-desc-qtd/editar-desc-qtd.component';
 
 
 
@@ -79,12 +80,19 @@ export class VendaComponent implements OnInit {
     id: 0,
     peso: '',
     quantidade: 0,
-    desconto: 0
+    desconto: 0,
+    precoCompra: 0
   }
   @ViewChild(TabelaVendaComponent) tabela! : TabelaVendaComponent;
+  //@ViewChild(TabelaVendaComponent) editarProduto! : EditarDescQtdComponent;
   
   procurarProduto(codigo : string){
     this.tabela.procurarProduto(codigo);
+  }
+
+  index = 0;
+  abrirJanelaEditar(index: number) {
+    this.index = index;
   }
 
   retornarSubtotal(){

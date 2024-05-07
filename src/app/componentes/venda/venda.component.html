@@ -47,7 +47,11 @@
         <app-container-image imagem="{{ (produto.imagemP ? produto.imagemP : 'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg') }}"></app-container-image>
       </div>
       <div class="tabela">
-        <app-tabela-venda [listaDeProdutos]="listaDeProdutos" (totalCalculado)="receberTotalCalculado($event)" (produtoClicado)="selecionarProduto($event)" ></app-tabela-venda>
+        <app-tabela-venda 
+        [listaDeProdutos]="listaDeProdutos" 
+        (totalCalculado)="receberTotalCalculado($event)" 
+        (produtoClicado)="selecionarProduto($event)"
+        (indexEditarProduto)="abrirJanelaEditar($event)" ></app-tabela-venda>
       </div>
     </div>
     <div class="flex">
@@ -62,12 +66,7 @@
     </div>
   </div>
 </div>
-<app-janela>
-  <!--<h1>Ola</h1>
-  <h2>Munbdo</h2>
-  <h3>Lol</h3>
-  <h4>LaL</h4>-->
-</app-janela>
+<app-editar-desc-qtd [listaDeProdutos]="listaDeProdutos" [index] = "index"></app-editar-desc-qtd>
 
 
 

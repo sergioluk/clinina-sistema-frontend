@@ -16,6 +16,8 @@ export class TabelaVendaComponent {
   @Input() listaDeProdutos: ProdutoVenda[] = [];
   @Output() totalCalculado = new EventEmitter<number>();
   @Output() produtoClicado = new EventEmitter<ProdutoVenda>();
+  //@Output() editarProduto = new EventEmitter<EditarProdutoVenda>();
+  @Output() indexEditarProduto = new EventEmitter<number>();
 
   faPencil = faPencil;
   faTrashCan = faTrashCan;
@@ -32,7 +34,7 @@ export class TabelaVendaComponent {
         itemIndex = i;
       }
     }
-    //Aumentar quantidade do produto se ele já estivar na tabela ou só adicionar na tabela
+    
     if (itemJaNaLista){
       this.listaDeProdutos[itemIndex].quantidade++;
       this.selecionarProduto(itemIndex);
@@ -52,6 +54,7 @@ export class TabelaVendaComponent {
       }
       this.adicionarProdutoNaLista(produto);
       this.calcularTotal();
+      console.log("preco de compra: " + produto.precoCompra);
     });
   }
 
@@ -66,6 +69,10 @@ export class TabelaVendaComponent {
     this.calcularTotal();
   }
 
+  editarItem(index: number) {
+    this.indexEditarProduto.emit(index);
+  }
+
   selecionarProduto(index : number) {
     if (this.listaDeProdutos.length == 0){
       let produtoZerado : ProdutoVenda = {
@@ -76,7 +83,8 @@ export class TabelaVendaComponent {
         imagemP: '',
         peso: '',
         quantidade: 0,
-        desconto: 0
+        desconto: 0,
+        precoCompra: 0
       }
       this.produtoClicado.emit(produtoZerado);
       return;

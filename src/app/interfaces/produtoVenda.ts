@@ -7,7 +7,8 @@ export interface ProdutoVenda {
     imagemP: string,
     peso: string,
     quantidade: number,
-    desconto: number
+    desconto: number,
+    precoCompra: number
   }
 
   //usado para guardar no banco

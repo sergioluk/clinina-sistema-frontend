@@ -33,6 +33,7 @@ import { TabelaVendaComponent } from './componentes/venda/tabela-venda/tabela-ve
 import { JanelaComponent } from './layout/janela/janela.component';
 import { InputComponent } from './form/input/input.component';
 import { BotaoPequenoComponent } from './layout/botao-pequeno/botao-pequeno.component';
+import { EditarDescQtdComponent } from './componentes/venda/editar-desc-qtd/editar-desc-qtd.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { BotaoPequenoComponent } from './layout/botao-pequeno/botao-pequeno.comp
     TabelaVendaComponent,
     JanelaComponent,
     InputComponent,
-    BotaoPequenoComponent
+    BotaoPequenoComponent,
+    EditarDescQtdComponent
   ],
   imports: [
     BrowserModule,
