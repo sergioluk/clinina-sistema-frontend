@@ -86,6 +86,11 @@ export class VendaComponent implements OnInit {
   @ViewChild(TabelaVendaComponent) tabela! : TabelaVendaComponent;
   //@ViewChild(TabelaVendaComponent) editarProduto! : EditarDescQtdComponent;
   
+  abrir = false;
+  teste(){
+    this.abrir = !this.abrir;
+  }
+
   procurarProduto(codigo : string){
     this.tabela.procurarProduto(codigo);
   }

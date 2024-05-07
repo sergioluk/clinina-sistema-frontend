@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProdutoVenda } from 'src/app/interfaces/produtoVenda';
 
 @Component({
@@ -18,7 +18,8 @@ export class EditarDescQtdComponent implements OnInit {
 
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
-      quantidade: 0,
+      //quantidade: 0,
+      quantidade: new FormControl(null, [])
     });
   }
 
