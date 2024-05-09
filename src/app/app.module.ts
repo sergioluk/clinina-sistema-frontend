@@ -34,6 +34,7 @@ import { JanelaComponent } from './layout/janela/janela.component';
 import { InputComponent } from './form/input/input.component';
 import { BotaoPequenoComponent } from './layout/botao-pequeno/botao-pequeno.component';
 import { EditarDescQtdComponent } from './componentes/venda/editar-desc-qtd/editar-desc-qtd.component';
+import { CancelarVendaComponent } from './componentes/venda/cancelar-venda/cancelar-venda.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { EditarDescQtdComponent } from './componentes/venda/editar-desc-qtd/edit
     JanelaComponent,
     InputComponent,
     BotaoPequenoComponent,
-    EditarDescQtdComponent
+    EditarDescQtdComponent,
+    CancelarVendaComponent
   ],
   imports: [
     BrowserModule,

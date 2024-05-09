@@ -51,20 +51,22 @@
         [listaDeProdutos]="listaDeProdutos" 
         (totalCalculado)="receberTotalCalculado($event)" 
         (produtoClicado)="selecionarProduto($event)"
-        (indexEditarProduto)="abrirJanelaEditar($event)" ></app-tabela-venda>
+        (indexEditarProduto)="abrirJanelaEditar($event)"
+        (totalDescontoCalculado)="receberTotalDescontoCalculado($event)"></app-tabela-venda>
       </div>
     </div>
     <div class="flex">
       <div class="acoes detalhes">
-        <app-botao-grande texto="CANCELAR" cor="var(--corVermelho)" icone="fa-circle-xmark"></app-botao-grande>
+        <app-botao-grande texto="CANCELAR" cor="var(--corVermelho)" icone="fa-circle-xmark" (click)="cancelarVenda()"></app-botao-grande>
         <app-botao-grande texto="VENDER" cor="var(--corVerde)" icone="fa-cart-shopping"></app-botao-grande>
       </div>
       <div class="desconto-total">
-        <app-info titulo="Desconto Total" valor="R$ 77,60"></app-info>
+        <app-info titulo="Desconto Total" valor="R$ {{ totalDesconto }}"></app-info>
         <app-info titulo="Total" valor="R$ {{ total }}"></app-info>
       </div>
     </div>
-    <app-editar-desc-qtd *ngIf="abrirEditar" (visivel)="toggleJanela()" [listaDeProdutos]="listaDeProdutos" [index] = "index"></app-editar-desc-qtd>
+    <app-editar-desc-qtd *ngIf="abrirEditar" (calcularDesconto)="calcularDesconto()" (visivel)="toggleJanela()" [listaDeProdutos]="listaDeProdutos" [index] = "index"></app-editar-desc-qtd>
+    <app-cancelar-venda *ngIf="abrirCancelarCompra" (aplicarLimpar)="limparTabela()" (visivel)="toggleCancelarCompra()"></app-cancelar-venda>
   </div>
 </div>
 

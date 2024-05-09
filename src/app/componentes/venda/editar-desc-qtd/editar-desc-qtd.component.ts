@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProdutoVenda } from 'src/app/interfaces/produtoVenda';
+import { TabelaVendaComponent } from '../tabela-venda/tabela-venda.component';
 
 @Component({
   selector: 'app-editar-desc-qtd',
@@ -18,6 +19,7 @@ export class EditarDescQtdComponent implements OnInit {
   lucroPorCento: string | number = '';
   lucroReais: string | number = '';
   @Output() visivel = new EventEmitter();
+  @Output() calcularDesconto = new EventEmitter<number>();
 
   constructor(private formBuilder: FormBuilder){}
 
@@ -119,6 +121,7 @@ export class EditarDescQtdComponent implements OnInit {
     produto.quantidade = this.formulario.get('quantidade')?.value;
     produto.desconto = this.formulario.get('desconto')?.value;
     this.listaDeProdutos[this.index] = produto;
+    this.calcularDesconto.emit();
     this.setVisivel();
   }
   setVisivel() {

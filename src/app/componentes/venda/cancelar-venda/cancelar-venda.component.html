@@ -1,0 +1,10 @@
+<app-janela titulo="Aviso" icone="fa-triangule-exclamation" (toggleJanela)="toggleJanela()">
+    <div class="container">
+        <img src="../../../../assets/img/aviso.png" alt="Simbolo de aviso">
+        <p>Tem certeza de que deseja cancelar a compra e limpar a lista de produtos?</p>
+    </div>
+    <div class="botao-container">
+        <app-botao-pequeno icone="fa-circle-xmark" cor="var(--corVermelho)" texto="Não" (click)="cancelar()"></app-botao-pequeno>
+        <app-botao-pequeno icone="fa-circle-check" cor="var(--corVerde)" texto="Sim" (click)="aplicar()"></app-botao-pequeno>
+    </div>
+</app-janela>

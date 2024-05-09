@@ -71,6 +71,8 @@ export class VendaComponent implements OnInit {
   //Novo
  
   abrirEditar = false;
+  abrirCancelarCompra = false;
+  totalDesconto: number = 0;
 
   listaDeProdutos: ProdutoVenda[] = [];
 
@@ -101,6 +103,12 @@ export class VendaComponent implements OnInit {
   toggleJanela() {
     this.abrirEditar = !this.abrirEditar;
   }
+  toggleCancelarCompra() {
+    this.abrirCancelarCompra = !this.abrirCancelarCompra;
+  }
+  cancelarVenda() {
+    this.toggleCancelarCompra();
+  }
 
   retornarSubtotal(){
     if (this.produto.desconto > 0) {
@@ -110,12 +118,36 @@ export class VendaComponent implements OnInit {
     return `R$ ${this.produto.preco * this.produto.quantidade}`;
   }
 
+  calcularDesconto(){
+    this.tabela.calcularDescontoTotal();
+  }
+
   receberTotalCalculado(totalCalculado: number){
     this.total = totalCalculado;
+  }
+  receberTotalDescontoCalculado (totalDescontoCalculado: number) {
+    if (totalDescontoCalculado > 0) {
+      this.totalDesconto = totalDescontoCalculado * (-1); //Mostrar Negativo no template
+    } else {
+      this.totalDesconto = totalDescontoCalculado;
+    }
+    
   }
 
   selecionarProduto(produto : ProdutoVenda){
     this.produto = produto;
+  }
+
+  limparTabela() {
+    this.listaDeProdutos = [];
+    this.toggleCancelarCompra();
+    this.produto.codigoDeBarras = '';
+    this.produto.preco = 0;
+    this.produto.imagemP = 'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg';
+    this.produto.quantidade = 0;
+    this.produto.produto = '';
+    this.total = 0;
+    this.totalDesconto = 0;
   }
   //Fim Novo
 

@@ -18,6 +18,7 @@ export class TabelaVendaComponent {
   @Output() produtoClicado = new EventEmitter<ProdutoVenda>();
   //@Output() editarProduto = new EventEmitter<EditarProdutoVenda>();
   @Output() indexEditarProduto = new EventEmitter<number>();
+  @Output() totalDescontoCalculado = new EventEmitter<number>();
 
   faPencil = faPencil;
   faTrashCan = faTrashCan;
@@ -95,10 +96,20 @@ export class TabelaVendaComponent {
   calcularTotal(){
     let listaPrecoTotal = 0;
     for (let index = 0; index < this.listaDeProdutos.length; index++) {
-      listaPrecoTotal += (this.listaDeProdutos[index].preco * this.listaDeProdutos[index].quantidade);
+      listaPrecoTotal += (this.listaDeProdutos[index].preco * this.listaDeProdutos[index].quantidade) - this.listaDeProdutos[index].desconto;
     }
     this.total = listaPrecoTotal;
     this.totalCalculado.emit(this.total);
+  }
+  calcularDescontoTotal(){
+    let listaPrecoTotal = 0;
+    let listaDescontoTotal:number = 0;
+    for (let index = 0; index < this.listaDeProdutos.length; index++) {
+      listaPrecoTotal += (this.listaDeProdutos[index].preco * this.listaDeProdutos[index].quantidade) - this.listaDeProdutos[index].desconto;
+      listaDescontoTotal += Number(this.listaDeProdutos[index].desconto);
+    }
+    this.totalDescontoCalculado.emit(Number(listaDescontoTotal));
+    this.totalCalculado.emit(listaPrecoTotal);
   }
 
 }

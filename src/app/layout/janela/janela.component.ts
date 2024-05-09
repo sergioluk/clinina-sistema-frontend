@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 import { faCircleCheck } from '@fortawesome/free-regular-svg-icons';
@@ -22,6 +23,7 @@ export class JanelaComponent {
 
   faCircleXmark = faCircleXmark;
   faCircleCheck = faCircleCheck;
+  faTriangleExclamation = faTriangleExclamation;
 
   iconeParaMostrar(){
 
@@ -33,6 +35,9 @@ export class JanelaComponent {
         break;
       case 'fa-circle-xmark':
         icone = faCircleXmark;
+        break;
+      case 'fa-triangule-exclamation':
+        icone = faTriangleExclamation;
         break;
       default:
         icone = faPencil;

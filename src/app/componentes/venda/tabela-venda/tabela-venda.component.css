@@ -41,9 +41,23 @@ table {
   .apagar {
     color: var(--corVermelho);
     cursor: pointer;
+    padding: 3px 5px;
+    border-radius: 3px;
+    transition: all 0.3s;
   }
   .editar {
     color: var(--corVerde);
-    padding-right: 10px;
+    margin-right: 10px;
+    padding: 3px;
     cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.3s;
+  }
+  .editar:hover {
+    background-color: var(--corVerde);
+    color: var(--corBranco);
+  }
+  .apagar:hover {
+    background-color: var(--corVermelho);
+    color: var(--corBranco);
   }

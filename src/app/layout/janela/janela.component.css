@@ -20,9 +20,12 @@
 .fechar {
     font-size: 18px;
     cursor: pointer;
+    transition: all 0.3s;
+    padding: 0 3px;
 }
 .fechar:hover {
-    background-color: rgba(0,0,0,0.4);
+    background-color: var(--corBranco);
+    color: var(--corPrincipal);
 }
 .body {
     padding: 10px;
