@@ -70,6 +70,8 @@ export class VendaComponent implements OnInit {
   }
   //Novo
  
+  abrirEditar = false;
+
   listaDeProdutos: ProdutoVenda[] = [];
 
   produto: ProdutoVenda = {
@@ -86,11 +88,6 @@ export class VendaComponent implements OnInit {
   @ViewChild(TabelaVendaComponent) tabela! : TabelaVendaComponent;
   //@ViewChild(TabelaVendaComponent) editarProduto! : EditarDescQtdComponent;
   
-  abrir = false;
-  teste(){
-    this.abrir = !this.abrir;
-  }
-
   procurarProduto(codigo : string){
     this.tabela.procurarProduto(codigo);
   }
@@ -98,6 +95,11 @@ export class VendaComponent implements OnInit {
   index = 0;
   abrirJanelaEditar(index: number) {
     this.index = index;
+    this.toggleJanela()
+  }
+
+  toggleJanela() {
+    this.abrirEditar = !this.abrirEditar;
   }
 
   retornarSubtotal(){

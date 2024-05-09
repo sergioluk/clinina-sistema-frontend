@@ -30,6 +30,7 @@
 .inputs-container {
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 10px;
 }
 .grow {
@@ -40,6 +41,9 @@
 }
 .wd {
     width: 100%;
+}
+.h {
+    padding-top: 9px;
 }
 .infos-container {
     display: flex;

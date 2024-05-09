@@ -1,12 +1,14 @@
-<div class="janela">
-    <div class="head">
-        <div class="titulo">
-            <fa-icon [icon]="iconeParaMostrar()"></fa-icon>
-            {{ titulo }}
+<div class="modal">
+    <div class="janela">
+        <div class="head">
+            <div class="titulo">
+                <fa-icon [icon]="iconeParaMostrar()"></fa-icon>
+                {{ titulo }}
+            </div>
+            <fa-icon class="fechar" [icon]="faXmark" (click)="abrirFecharJanela()"></fa-icon>
         </div>
-        <fa-icon class="fechar" [icon]="faXmark"></fa-icon>
-    </div>
-    <div class="body">
-        <ng-content></ng-content>
+        <div class="body">
+            <ng-content></ng-content>
+        </div>
     </div>
 </div>

@@ -64,14 +64,14 @@
         <app-info titulo="Total" valor="R$ {{ total }}"></app-info>
       </div>
     </div>
+    <app-editar-desc-qtd *ngIf="abrirEditar" (visivel)="toggleJanela()" [listaDeProdutos]="listaDeProdutos" [index] = "index"></app-editar-desc-qtd>
   </div>
 </div>
-<button (click)="teste()">OiIIooIIo</button>
-<app-editar-desc-qtd *ngIf="!abrir" [listaDeProdutos]="listaDeProdutos" [index] = "index"></app-editar-desc-qtd>
 
 
 
 
+<!--
 <div class="mainru">
   <div class="Caixa-central">
 
@@ -268,4 +268,4 @@
       </div>
     </form>
   </div>
-</div>
+</div>-->

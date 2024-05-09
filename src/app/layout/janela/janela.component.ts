@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
@@ -15,6 +15,7 @@ export class JanelaComponent {
 
   @Input() icone: string | undefined;
   @Input() titulo: string | undefined;
+  @Output() toggleJanela = new EventEmitter();
 
   faPencil = faPencil;
   faXmark = faXmark;
@@ -37,6 +38,10 @@ export class JanelaComponent {
         icone = faPencil;
     }
     return icone;
+  }
+
+  abrirFecharJanela() {
+    this.toggleJanela.emit();
   }
 
 }
