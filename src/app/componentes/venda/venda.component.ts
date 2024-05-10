@@ -72,6 +72,7 @@ export class VendaComponent implements OnInit {
  
   abrirEditar = false;
   abrirCancelarCompra = false;
+  metodoPagamento = false;
   totalDesconto: number = 0;
 
   listaDeProdutos: ProdutoVenda[] = [];
@@ -106,8 +107,20 @@ export class VendaComponent implements OnInit {
   toggleCancelarCompra() {
     this.abrirCancelarCompra = !this.abrirCancelarCompra;
   }
+  toggleMetodoPagamento() {
+    this.metodoPagamento = !this.metodoPagamento;
+  }
   cancelarVenda() {
+    if (this.listaDeProdutos.length <= 0) {
+      return;
+    }
     this.toggleCancelarCompra();
+  }
+  vender() {
+    if (this.listaDeProdutos.length <= 0) {
+      return;
+    }
+    this.toggleMetodoPagamento();
   }
 
   retornarSubtotal(){
@@ -140,7 +153,9 @@ export class VendaComponent implements OnInit {
 
   limparTabela() {
     this.listaDeProdutos = [];
-    this.toggleCancelarCompra();
+    if (this.abrirCancelarCompra == true) {
+      this.toggleCancelarCompra();
+    }
     this.produto.codigoDeBarras = '';
     this.produto.preco = 0;
     this.produto.imagemP = 'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg';
@@ -194,7 +209,7 @@ export class VendaComponent implements OnInit {
   venda(){
 
     let listaDeVenda: Vender[] = [];
-    for (let produto of this.listaDeProdutosAntigoApagar) {
+    for (let produto of this.listaDeProdutos) {
 
       if (this.formulario.get('formaPagamento')?.value == 'Fiado') {
         let produtosVender: Vender = {
@@ -205,6 +220,7 @@ export class VendaComponent implements OnInit {
           peso: produto.peso,
           data: new Date(),
           pagamento: this.formulario.get('formaPagamento')?.value,
+          desconto: produto.desconto,
           nome: this.formulario.get('nome')?.value,
           telefone: this.formulario.get('telefone')?.value,
           endereco: this.formulario.get('endereco')?.value
@@ -219,6 +235,7 @@ export class VendaComponent implements OnInit {
           peso: produto.peso,
           data: new Date(),
           pagamento: this.formulario.get('formaPagamento')?.value,
+          desconto: produto.desconto
         }
         listaDeVenda.push(produtosVender);
       }

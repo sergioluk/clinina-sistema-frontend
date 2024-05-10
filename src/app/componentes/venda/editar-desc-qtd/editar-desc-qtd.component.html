@@ -5,7 +5,7 @@
         </div>
         <div class="informacoes-container">
             <!--<span>{{ produto.produto }}</span>-->
-            <span (click)="teste()">{{ nomeDoProduto() }}</span>
+            <span>{{ nomeDoProduto() }}</span>
             <form [formGroup]="formulario" class="inputs-container">
                 <app-input class="grow wd" label="Quantidade:" type="number" placeholder="" for="quantidade" formControlName="quantidade"></app-input>
                 <app-input class="grow wd" label="Desc. (R$):" type="number" placeholder="" for="desconto" formControlName="desconto"></app-input>

@@ -35,6 +35,7 @@ import { InputComponent } from './form/input/input.component';
 import { BotaoPequenoComponent } from './layout/botao-pequeno/botao-pequeno.component';
 import { EditarDescQtdComponent } from './componentes/venda/editar-desc-qtd/editar-desc-qtd.component';
 import { CancelarVendaComponent } from './componentes/venda/cancelar-venda/cancelar-venda.component';
+import { MetodoPagamentoComponent } from './componentes/venda/metodo-pagamento/metodo-pagamento.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { CancelarVendaComponent } from './componentes/venda/cancelar-venda/cance
     InputComponent,
     BotaoPequenoComponent,
     EditarDescQtdComponent,
-    CancelarVendaComponent
+    CancelarVendaComponent,
+    MetodoPagamentoComponent
   ],
   imports: [
     BrowserModule,

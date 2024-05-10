@@ -63,6 +63,7 @@ export interface CadastroProduto {
     peso: string
     data: Date
     pagamento: string
+    desconto: number
     nome?: string
     telefone?: string
     endereco?: string

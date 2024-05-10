@@ -1,0 +1,59 @@
+<app-janela titulo="Método de Pagamento" icone="fa-money-bill-1" (toggleJanela)="toggleJanela()">
+    <div class="container">
+        <form [formGroup]="formulario" class="form-container">
+
+            <label for="credito" class="radio_container">
+                <img src="../../../../assets/img/cartao_credito.png" alt="">
+                Cartão de crédito
+                <input type="radio" id="credito" value="Crédito" formControlName="formaPagamento">
+                <span class="checkmark"></span>
+                <span class="checkmark2"></span>
+                <span class="checkmark3"></span>
+            </label>
+            <label for="debito" class="radio_container">
+                <img src="../../../../assets/img/cartao_debito.png" alt="">
+                Cartão de débito
+                <input type="radio" id="debito" value="Débito" formControlName="formaPagamento">
+                <span class="checkmark"></span>
+                <span class="checkmark2"></span>
+                <span class="checkmark3"></span>
+            </label>
+            <label for="dinheiro" class="radio_container">
+                <img src="../../../../assets/img/dinheiro.png" alt="">
+                Dinheiro
+                <input type="radio" id="dinheiro" value="Dinheiro" formControlName="formaPagamento">
+                <span class="checkmark"></span>
+                <span class="checkmark2"></span>
+                <span class="checkmark3"></span>
+            </label>
+            <label for="pix" class="radio_container">
+                <img src="../../../../assets/img/pix.png" alt="">
+                Pix
+                <input type="radio" id="pix" value="Pix" formControlName="formaPagamento">
+                <span class="checkmark"></span>
+                <span class="checkmark2"></span>
+                <span class="checkmark3"></span>
+            </label>
+            <div >
+                <label for="fiado" ngClass="radio_container {{ fiadoClasse() }}" >
+                    <img src="../../../../assets/img/fiado.png" alt="">
+                    Fiado
+                    <input type="radio" id="fiado" value="Fiado" formControlName="formaPagamento">
+                    <span class="checkmark"></span>
+                    <span class="checkmark2"></span>
+                    <span class="checkmark3"></span>
+                </label>
+                <div *ngIf="ehFiado()" class="fiado-container">
+                    <app-input label="Nome *" type="text" placeholder="Digite o nome" for="nome" formControlName="nome"></app-input>
+                    <app-input label="Telefone" type="tel" placeholder="(85) 9 9999 - 8888" for="telefone" formControlName="telefone"></app-input>
+                    <app-input label="Endereço" type="text" placeholder="Rua Natal 1611" for="endereco" formControlName="endereco"></app-input>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+    <div class="botao-container">
+        <app-botao-pequeno class="w" icone="fa-circle-xmark" cor="var(--corVermelho)" texto="CANCELAR" (click)="cancelar()"></app-botao-pequeno>
+        <app-botao-pequeno class="w" icone="fa-circle-check" cor="var(--corVerde)" texto="VENDER" (click)="vender()"></app-botao-pequeno>
+    </div>
+</app-janela>

@@ -41,17 +41,6 @@ export class EditarDescQtdComponent implements OnInit {
     this.lucroReais = this.calcularLucroReais();
   }
 
-  teste(){
-    console.log("quantidade: " + this.formulario.get('quantidade')?.value);
-    console.log("desconto: " + this.formulario.get('desconto')?.value);
-    let produto = this.listaDeProdutos[this.index];
-    console.log('preco ' + produto.preco);
-    console.log('preco compra ' + produto.precoCompra)
-    console.log('precoVendaAtributo: ' + this.precoVenda)
-    console.log("lucroPorCentoAtributo: " + this.lucroPorCento)
-    console.log("lucroReaisAtributo: " + this.lucroReais)
-  }
-
   imagemDoProduto() {
     if (this.listaVazia()) {
       return "https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg";

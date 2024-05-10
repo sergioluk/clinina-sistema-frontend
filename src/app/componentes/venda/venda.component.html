@@ -58,7 +58,7 @@
     <div class="flex">
       <div class="acoes detalhes">
         <app-botao-grande texto="CANCELAR" cor="var(--corVermelho)" icone="fa-circle-xmark" (click)="cancelarVenda()"></app-botao-grande>
-        <app-botao-grande texto="VENDER" cor="var(--corVerde)" icone="fa-cart-shopping"></app-botao-grande>
+        <app-botao-grande texto="VENDER" cor="var(--corVerde)" icone="fa-cart-shopping" (click)="vender()"></app-botao-grande>
       </div>
       <div class="desconto-total">
         <app-info titulo="Desconto Total" valor="R$ {{ totalDesconto }}"></app-info>
@@ -67,6 +67,7 @@
     </div>
     <app-editar-desc-qtd *ngIf="abrirEditar" (calcularDesconto)="calcularDesconto()" (visivel)="toggleJanela()" [listaDeProdutos]="listaDeProdutos" [index] = "index"></app-editar-desc-qtd>
     <app-cancelar-venda *ngIf="abrirCancelarCompra" (aplicarLimpar)="limparTabela()" (visivel)="toggleCancelarCompra()"></app-cancelar-venda>
+    <app-metodo-pagamento *ngIf="metodoPagamento" (aplicarLimpar)="limparTabela()" (visivel)="toggleMetodoPagamento()" [listaDeProdutos]="listaDeProdutos"></app-metodo-pagamento>
   </div>
 </div>
 
