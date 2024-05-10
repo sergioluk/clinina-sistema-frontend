@@ -66,7 +66,8 @@ export class VendaComponent implements OnInit {
       nome: [],
       telefone: [],
       endereco: []
-    })
+    });
+    this.randomGif();
   }
   //Novo
  
@@ -74,6 +75,7 @@ export class VendaComponent implements OnInit {
   abrirCancelarCompra = false;
   metodoPagamento = false;
   totalDesconto: number = 0;
+  src = '';
 
   listaDeProdutos: ProdutoVenda[] = [];
 
@@ -163,6 +165,34 @@ export class VendaComponent implements OnInit {
     this.produto.produto = '';
     this.total = 0;
     this.totalDesconto = 0;
+
+    this.randomGif();
+  }
+  mostrarOuEsconder() {
+    if (this.listaDeProdutos.length > 0) {
+      return 'mostrar';
+    }
+    return 'esconder';
+  }
+  mostrarOuEsconderGif() {
+    return (this.listaDeProdutos.length <= 0 ? 'mostrar' : 'esconder');
+  }
+  
+  randomGif() {
+    const gifs = [
+      'https://www.portaldodog.com.br/wp-content/uploads/2014/08/tumblr_n06l2mXy1T1scjbypo1_500.gif',
+      'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3A5dXd5cDhocGE0emxsajk4ZHF1ZzdrNHFrNW5pMDZlMXk5em5qbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/gKHGnB1ml0moQdjhEJ/giphy.gif',
+      'https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHpxZnIyNGQwbDZ6d29nZGp4bnZmeDh6Mm1tanF3YXA2MGhtbWRuayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Fu3OjBQiCs3s0ZuLY3/giphy.gif',
+      'https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTN2amtwY21uY3A2ZWxydWUxb21xbXlkaTdnNzEzMm5pdzY3N2VwYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/k1Psl92gw7YPSPYFKm/giphy.gif',
+      'https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZzluNGtqams1M3lxNGJzNG90aDhoZXdlZTR2Y3o5YW16c2EzMm11MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/1QX8qA4I8k6MLe6QFj/giphy.gif',
+      'https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZnBpNDduOWR3NWF6NGs2YTI5YWVmZHp3aWl4amZ6MGh3N3B0cGNjaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Z5xk7fGO5FjjTElnpT/giphy.gif',
+      'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3hpNDExM3l6cWt3bm8yYzdvczByaHVuYmNmejNuaGIweDA2cHoxeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7C0wCAyx9qoKPIeToi/giphy.gif'
+    ];
+    const random = Math.floor(Math.random() * gifs.length);
+    this.src = gifs[random];
+  }
+  handleImageError(event: any) {
+    event.target.src = 'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg';
   }
   //Fim Novo
 

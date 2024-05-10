@@ -47,12 +47,16 @@
         <app-container-image imagem="{{ (produto.imagemP ? produto.imagemP : 'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg') }}"></app-container-image>
       </div>
       <div class="tabela">
-        <app-tabela-venda 
-        [listaDeProdutos]="listaDeProdutos" 
-        (totalCalculado)="receberTotalCalculado($event)" 
-        (produtoClicado)="selecionarProduto($event)"
-        (indexEditarProduto)="abrirJanelaEditar($event)"
-        (totalDescontoCalculado)="receberTotalDescontoCalculado($event)"></app-tabela-venda>
+        <app-tabela-venda ngClass="{{mostrarOuEsconder()}}"
+          [listaDeProdutos]="listaDeProdutos" 
+          (totalCalculado)="receberTotalCalculado($event)" 
+          (produtoClicado)="selecionarProduto($event)"
+          (indexEditarProduto)="abrirJanelaEditar($event)"
+          (totalDescontoCalculado)="receberTotalDescontoCalculado($event)">
+          </app-tabela-venda>
+          <div ngClass="w {{mostrarOuEsconderGif()}}">
+            <img src="{{ src }}" alt="Gif" (error)="handleImageError($event)">
+          </div>
       </div>
     </div>
     <div class="flex">

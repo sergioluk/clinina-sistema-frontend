@@ -115,6 +115,27 @@
 .desconto-total app-info {
   width: 120px;
 }
+.esconder {
+ display: none !important;
+}
+.mostrar {
+  display: block !important;
+}
+.w {
+  text-align: center;
+  padding-top: 10px;
+}
+.w img {
+  max-height: 300px;
+}
+
+
+
+
+
+
+
+
 
 
 
