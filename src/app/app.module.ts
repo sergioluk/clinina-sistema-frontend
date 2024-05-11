@@ -37,6 +37,7 @@ import { EditarDescQtdComponent } from './componentes/venda/editar-desc-qtd/edit
 import { CancelarVendaComponent } from './componentes/venda/cancelar-venda/cancelar-venda.component';
 import { MetodoPagamentoComponent } from './componentes/venda/metodo-pagamento/metodo-pagamento.component';
 import { PesquisarProdutoComponent } from './componentes/venda/pesquisar-produto/pesquisar-produto.component';
+import { ProdutoPesoComponent } from './componentes/venda/produto-peso/produto-peso.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { PesquisarProdutoComponent } from './componentes/venda/pesquisar-produto
     EditarDescQtdComponent,
     CancelarVendaComponent,
     MetodoPagamentoComponent,
-    PesquisarProdutoComponent
+    PesquisarProdutoComponent,
+    ProdutoPesoComponent
   ],
   imports: [
     BrowserModule,

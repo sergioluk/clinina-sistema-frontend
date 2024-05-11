@@ -19,6 +19,8 @@ export class TabelaVendaComponent {
   //@Output() editarProduto = new EventEmitter<EditarProdutoVenda>();
   @Output() indexEditarProduto = new EventEmitter<number>();
   @Output() totalDescontoCalculado = new EventEmitter<number>();
+  @Output() visivelProdutoPeso = new EventEmitter();
+  @Output() produtoComPeso = new EventEmitter<ProdutoVenda>();
 
   faPencil = faPencil;
   faTrashCan = faTrashCan;
@@ -28,15 +30,20 @@ export class TabelaVendaComponent {
   adicionarProdutoNaLista(produto: ProdutoVenda){
     //Verificar se o produto já está na tabela
     let itemJaNaLista = false;
+    let ehPesado = false;
     let itemIndex = 1;
     for (let i = 0; i < this.listaDeProdutos.length; i++){
       if (produto.codigoDeBarras == this.listaDeProdutos[i].codigoDeBarras){
         itemJaNaLista = true;
         itemIndex = i;
+        //Se o for um item pesado, não é pra acumular quantidade na tabela
+        if (produto.codigoDeBarras.length <= 3) {
+          ehPesado = true;
+        }
       }
     }
     
-    if (itemJaNaLista){
+    if (itemJaNaLista && !ehPesado){
       this.listaDeProdutos[itemIndex].quantidade++;
       this.selecionarProduto(itemIndex);
     } else {
@@ -50,13 +57,27 @@ export class TabelaVendaComponent {
     
       if (produto == null) {
         alert("Produto não encontrado!!!!");
-        //this.input = '';
+        return;
+      }
+      if (codigoDeBarras.length <= 3) {
+        this.abrirJanelaProdutoPeso();
+        this.produtoComPeso.emit(produto);
         return;
       }
       this.adicionarProdutoNaLista(produto);
       this.calcularTotal();
-      console.log("preco de compra: " + produto.precoCompra);
     });
+  }
+
+  retornarNome(produto: ProdutoVenda) {
+    if (produto.codigoDeBarras.length <= 3) {
+      return produto.produto + " (" + produto.peso + ")";
+    }
+    return produto.produto;
+  }
+
+  abrirJanelaProdutoPeso() {
+    this.visivelProdutoPeso.emit();
   }
 
   adicionarProdutoPeloPesquisar(produto: ProdutoVenda) {

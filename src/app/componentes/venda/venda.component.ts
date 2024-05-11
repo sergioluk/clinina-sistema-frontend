@@ -75,12 +75,24 @@ export class VendaComponent implements OnInit {
   abrirCancelarCompra = false;
   metodoPagamento = false;
   janelaProcurarProduto = false;
+  janelaProdutoPeso = false;
   totalDesconto: number = 0;
   src = '';
 
   listaDeProdutos: ProdutoVenda[] = [];
 
   produto: ProdutoVenda = {
+    codigoDeBarras: '',
+    produto: '',
+    preco: 0,
+    imagemP: '',
+    id: 0,
+    peso: '',
+    quantidade: 0,
+    desconto: 0,
+    precoCompra: 0
+  }
+  produtoComPeso: ProdutoVenda = {
     codigoDeBarras: '',
     produto: '',
     preco: 0,
@@ -100,6 +112,9 @@ export class VendaComponent implements OnInit {
   enviarProdutoParaAdd(produto: ProdutoVenda) {
     this.tabela.adicionarProdutoPeloPesquisar(produto);
   }
+  adicionarProdutoComPeso(produtoComPeso: ProdutoVenda) {
+    this.produtoComPeso = produtoComPeso;
+  }
 
   index = 0;
   abrirJanelaEditar(index: number) {
@@ -118,6 +133,9 @@ export class VendaComponent implements OnInit {
   }
   toggleProcurarProduto () {
     this.janelaProcurarProduto = !this.janelaProcurarProduto;
+  }
+  toggleProdutoPeso() {
+    this.janelaProdutoPeso = !this.janelaProdutoPeso;
   }
   abrirProcurarProduto() {
     this.toggleProcurarProduto();

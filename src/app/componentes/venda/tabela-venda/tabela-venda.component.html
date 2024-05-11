@@ -12,7 +12,7 @@
   <tr class="tablerow" *ngFor="let item of listaDeProdutos; index as i" (click)="selecionarProduto(i)"> 
     <td><fa-icon class="apagar" [icon]="faTrashCan" (click)="removerItemDaLista(i)"></fa-icon></td>
     <td><img class="table__img" src="{{ item.imagemP }}" alt="Imagem do produto"></td>
-    <td>{{ item.produto }}</td>
+    <td>{{ retornarNome(item) }}</td>
     <td>{{ item.quantidade }}</td>
     <td>{{ item.preco }}</td>
     <td>{{ item.desconto }}</td>

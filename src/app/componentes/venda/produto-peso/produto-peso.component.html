@@ -1,0 +1,25 @@
+<app-janela titulo="Editar" icone="fa-pencil" (toggleJanela)="toggleJanela()">
+    <div class="container">
+        <div class="imagem-container">
+            <img src="{{ produtoComPeso.imagemP }}" alt="Imagem do produto">
+        </div>
+        <div class="informacoes-container">
+            <span>{{ produtoComPeso.produto }}</span>
+            <form [formGroup]="formulario" class="inputs-container">
+                <app-input class="grow wd" label="Peso (kg)" type="number" placeholder="Peso" for="peso" formControlName="peso" (change)="atualizarDinheiro()"></app-input>
+                <app-input class="grow wd" label="Dinheiro (R$):" type="number" placeholder="R$" for="dinheiro" formControlName="dinheiro" (change)="atualizarPeso()"></app-input>                
+            </form>
+            <div class="infos-container">
+                <!-- <app-info class="grow info" titulo="P.Compra" valor="R$ {{ precoDeCompraProduto() }}"></app-info> -->
+                <app-info class="grow info wd h" titulo="Preço por Kilo" valor="R$ {{ produtoComPeso.preco }}"></app-info>
+                <app-info class="grow info wd h" titulo="Total" valor="R$ {{ total }}"></app-info>
+                <!-- <app-info class="grow info" titulo="Lucro" valor="{{ lucroPorCento }}%"></app-info>
+                <app-info class="grow info" titulo="Lucro R$" valor="R$ {{ lucroReais }}"></app-info> -->
+            </div>
+        </div>
+    </div>
+    <div class="botao-container">
+        <app-botao-pequeno icone="fa-circle-xmark" cor="var(--corVermelho)" texto="Cancelar" (click)="cancelar()"></app-botao-pequeno>
+        <app-botao-pequeno icone="fa-circle-check" cor="var(--corVerde)" texto="Aplicar" (click)="aplicar()"></app-botao-pequeno>
+    </div>
+</app-janela>
