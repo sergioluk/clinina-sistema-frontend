@@ -59,6 +59,11 @@ export class TabelaVendaComponent {
     });
   }
 
+  adicionarProdutoPeloPesquisar(produto: ProdutoVenda) {
+    this.adicionarProdutoNaLista(produto);
+    this.calcularTotal();
+  }
+
   removerItemDaLista(index: number) {
     if (this.listaDeProdutos[index].quantidade > 1) {
       this.listaDeProdutos[index].quantidade -= 1;

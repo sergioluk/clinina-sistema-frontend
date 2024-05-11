@@ -28,7 +28,7 @@
         <img src="../../../assets/img/clinina-logo.png" alt="Logo">
       </div>
       <div class="procurar-produto">
-        <app-botao-grande texto="BUSCAR ITEM" cor="var(--corPrincipal)" icone="fa-magnifying-glass"></app-botao-grande>
+        <app-botao-grande texto="BUSCAR ITEM" cor="var(--corPrincipal)" icone="fa-magnifying-glass" (click)="abrirProcurarProduto()"></app-botao-grande>
         <app-input-simples class="width" placeholder="Código de Barras do Produto" (texto)="procurarProduto($event)"></app-input-simples>
       </div>
     </div>
@@ -72,6 +72,7 @@
     <app-editar-desc-qtd *ngIf="abrirEditar" (calcularDesconto)="calcularDesconto()" (visivel)="toggleJanela()" [listaDeProdutos]="listaDeProdutos" [index] = "index"></app-editar-desc-qtd>
     <app-cancelar-venda *ngIf="abrirCancelarCompra" (aplicarLimpar)="limparTabela()" (visivel)="toggleCancelarCompra()"></app-cancelar-venda>
     <app-metodo-pagamento *ngIf="metodoPagamento" (aplicarLimpar)="limparTabela()" (visivel)="toggleMetodoPagamento()" [listaDeProdutos]="listaDeProdutos"></app-metodo-pagamento>
+    <app-pesquisar-produto *ngIf="janelaProcurarProduto" (visivel)="toggleProcurarProduto()" [listaDeProdutos]="listaDeProdutos" (enviarProdutoParaAdd)="enviarProdutoParaAdd($event)" ></app-pesquisar-produto>
   </div>
 </div>
 

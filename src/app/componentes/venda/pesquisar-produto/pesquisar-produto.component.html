@@ -1,0 +1,36 @@
+<app-janela titulo="Pesquisa de produto" icone="fa-magnifying-glass" (toggleJanela)="toggleJanela()">
+    <div class="container-pesquisar">
+        <div class="label">
+            <label>Nome do produto</label>
+            <fa-icon class="icon-pesquisar" [icon]="faMagnifyingGlass"></fa-icon>
+        </div>
+        <app-input-simples class="width" placeholder="Digite o nome do produto" (texto)="procurarProduto($event)"></app-input-simples>
+    </div>
+    <div class="tabela">
+        <table *ngIf="listaDeProdutosEncontrados.length > 0; else nadaEncontrado">
+            <tr class="cabecalho-tabela">
+              <th class="foto">Foto</th>
+              <th>Código</th>
+              <th class="nome__tabela">Nome do produto</th>
+              <th>Preço (R$)</th>
+              <th> </th>
+            </tr>
+          <tr class="tablerow" *ngFor="let item of listaDeProdutosEncontrados; index as i"> 
+            <td><img class="table__img" src="{{ item.imagemP }}" alt="Imagem do produto"></td>
+            <td>{{ item.codigoDeBarras }}</td>
+            <td class="nome__tabela2">{{ item.produto }}</td>
+            <td>{{ item.preco }}</td>
+            <td><fa-icon class="add" [icon]="faCartPlus" (click)="adicionar(i)"></fa-icon></td>
+          </tr>
+        </table>
+    </div>
+    <div class="botao-container">
+        <app-botao-grande icone="fa-circle-left" cor="var(--corVerde)" texto="VOLTAR" (click)="toggleJanela()"></app-botao-grande>
+    </div>
+
+    <ng-template #nadaEncontrado>
+        <span class="span">Nenhum produto encontrado!</span>
+    </ng-template>
+    
+    
+</app-janela>

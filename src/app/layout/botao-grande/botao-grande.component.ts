@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { faCircleLeft } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-botao-grande',
@@ -27,6 +28,9 @@ export class BotaoGrandeComponent {
         break;
       case 'fa-cart-shopping':
         icone = faCartShopping;
+        break;
+      case 'fa-circle-left':
+        icone = faCircleLeft;
         break;
       default:
         icone = faCircleXmark;

@@ -36,6 +36,7 @@ import { BotaoPequenoComponent } from './layout/botao-pequeno/botao-pequeno.comp
 import { EditarDescQtdComponent } from './componentes/venda/editar-desc-qtd/editar-desc-qtd.component';
 import { CancelarVendaComponent } from './componentes/venda/cancelar-venda/cancelar-venda.component';
 import { MetodoPagamentoComponent } from './componentes/venda/metodo-pagamento/metodo-pagamento.component';
+import { PesquisarProdutoComponent } from './componentes/venda/pesquisar-produto/pesquisar-produto.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { MetodoPagamentoComponent } from './componentes/venda/metodo-pagamento/m
     BotaoPequenoComponent,
     EditarDescQtdComponent,
     CancelarVendaComponent,
-    MetodoPagamentoComponent
+    MetodoPagamentoComponent,
+    PesquisarProdutoComponent
   ],
   imports: [
     BrowserModule,

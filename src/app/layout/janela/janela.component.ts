@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { faMoneyBill1 } from '@fortawesome/free-solid-svg-icons';
 
@@ -26,6 +27,7 @@ export class JanelaComponent {
   faCircleCheck = faCircleCheck;
   faTriangleExclamation = faTriangleExclamation;
   faMoneyBill1 = faMoneyBill1;
+  faMagnifyingGlass = faMagnifyingGlass;
 
   iconeParaMostrar(){
 
@@ -43,6 +45,9 @@ export class JanelaComponent {
         break;
       case 'fa-money-bill-1':
         icone = faMoneyBill1;
+        break;
+      case 'fa-magnifying-glass':
+        icone = faMagnifyingGlass;
         break;
       default:
         icone = faPencil;

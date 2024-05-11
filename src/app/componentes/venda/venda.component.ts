@@ -74,6 +74,7 @@ export class VendaComponent implements OnInit {
   abrirEditar = false;
   abrirCancelarCompra = false;
   metodoPagamento = false;
+  janelaProcurarProduto = false;
   totalDesconto: number = 0;
   src = '';
 
@@ -96,6 +97,9 @@ export class VendaComponent implements OnInit {
   procurarProduto(codigo : string){
     this.tabela.procurarProduto(codigo);
   }
+  enviarProdutoParaAdd(produto: ProdutoVenda) {
+    this.tabela.adicionarProdutoPeloPesquisar(produto);
+  }
 
   index = 0;
   abrirJanelaEditar(index: number) {
@@ -111,6 +115,12 @@ export class VendaComponent implements OnInit {
   }
   toggleMetodoPagamento() {
     this.metodoPagamento = !this.metodoPagamento;
+  }
+  toggleProcurarProduto () {
+    this.janelaProcurarProduto = !this.janelaProcurarProduto;
+  }
+  abrirProcurarProduto() {
+    this.toggleProcurarProduto();
   }
   cancelarVenda() {
     if (this.listaDeProdutos.length <= 0) {
@@ -138,7 +148,7 @@ export class VendaComponent implements OnInit {
   }
 
   receberTotalCalculado(totalCalculado: number){
-    this.total = totalCalculado;
+    this.total = Number(totalCalculado.toFixed(2));
   }
   receberTotalDescontoCalculado (totalDescontoCalculado: number) {
     if (totalDescontoCalculado > 0) {

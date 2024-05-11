@@ -51,6 +51,10 @@ export class CardHomeService {
     const url = "http://localhost:8080/vender";
     return this.http.post<Vender[]>(url, produtos);
   }
+  pesquisarPorNome(nome: string): Observable<ProdutoVenda[]>{
+    const url = `http://localhost:8080/vender/nome/${nome}`;
+    return this.http.get<ProdutoVenda[]>(url);
+  }
 
   aumentarEstoque(codigoDeBarras: string): Observable<Venda>{
     const url = `${this.API}/codigo-de-barras/editar/${codigoDeBarras}`;

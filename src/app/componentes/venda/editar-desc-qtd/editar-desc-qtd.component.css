@@ -26,6 +26,10 @@
 .informacoes-container span {
     width: 100%;
     font-weight: bold;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .inputs-container {
     display: flex;
