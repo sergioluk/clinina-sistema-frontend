@@ -7,7 +7,11 @@
   flex-direction: column;
   gap: 20px;
 }
-
+hr {
+  height: 1px;
+  border: 0;
+  border-top: 1px solid var(--corPrincipal);
+}
 .menu {
   font-size: 33px;
   color: var(--corPrincipal);
