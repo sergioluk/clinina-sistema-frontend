@@ -1,5 +1,6 @@
-<div class="menu-opcao">
-    <fa-icon [icon]="iconeParaMostrar()"></fa-icon>
-    <!--faFloppyDisk-->
-    {{ texto }}
-</div>
+<a routerLink="/{{ componente }}">
+    <div class="menu-opcao">
+            <fa-icon [icon]="iconeParaMostrar()"></fa-icon>
+        {{ texto }}
+    </div>
+</a>

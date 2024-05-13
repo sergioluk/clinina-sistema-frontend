@@ -18,6 +18,7 @@ export class MenuOpcaoComponent {
 
   @Input() icone : string | undefined;
   @Input() texto : string | undefined;
+  @Input() componente: string | undefined;
 
   iconeParaMostrar(){
 

@@ -1,83 +1,74 @@
-<div class="notebook">
-  <div class="menu-container">
-    <!--<img class="img-logo" src="../../../assets/img/menu.png" alt="Menu">-->
-    <div class="menu-oculto">
-      <img src="../../../assets/img/menu-logo.png" alt="Menu logo">
-      <hr>
-      <app-menu-opcao texto="Dashboard" icone="fa-floppy-disk"></app-menu-opcao>
-      <app-menu-opcao texto="Estoque" icone="fa-rectangle-list"></app-menu-opcao>
-      <app-menu-opcao texto="Relatório de vendas" icone="fa-chart-line"></app-menu-opcao>
-      <app-menu-opcao texto="Mensagens" icone="fa-envelope"></app-menu-opcao>
-      <app-menu-opcao texto="Lista de fiados" icone="fa-hand-holding-dollar"></app-menu-opcao>
-      <hr>
-      <app-menu-opcao texto="Banho e tosa" icone="fa-dog"></app-menu-opcao>
-      <app-menu-opcao texto="Consultas" icone="fa-stethoscope"></app-menu-opcao>
-      <hr>
-      <app-menu-opcao texto="Auditoria" icone="fa-circle-info"></app-menu-opcao>
+<div class="ponto-de-venda">
+  <div class="flex">
+    <div class="menu detalhes">
+      <fa-icon [icon]="faBars"></fa-icon>
+    </div>
+    <h1 class="titulo">CLININA - PONTO DE VENDA 7899838836409</h1>
+  </div>
+  <div class="flex">
+    <div class="logo detalhes">
+      <img src="../../../assets/img/clinina-logo.png" alt="Logo">
+    </div>
+    <div class="procurar-produto">
+      <app-botao-grande texto="BUSCAR ITEM" cor="var(--corPrincipal)" icone="fa-magnifying-glass"
+        (click)="abrirProcurarProduto()"></app-botao-grande>
+      <app-input-simples class="width" placeholder="Código de Barras do Produto"
+        (texto)="procurarProduto($event)"></app-input-simples>
     </div>
   </div>
-  <div class="ponto-de-venda">
-    <div class="flex">
-      <div class="menu detalhes">
-        <fa-icon [icon]="faBars"></fa-icon>
-      </div>
-      <h1 class="titulo">CLININA - PONTO DE VENDA 7899838836409</h1>
+  <div class="flex">
+    <div class="un-qtd detalhes">
+      <app-info class="width" titulo="Valor Un." valor="R$ {{ produto.preco }}"></app-info>
+      <fa-icon [icon]="faXmark"></fa-icon>
+      <app-info class="width" titulo="Quantidade" valor="{{ produto.quantidade }}"></app-info>
     </div>
-    <div class="flex">
-      <div class="logo detalhes">
-        <img src="../../../assets/img/clinina-logo.png" alt="Logo">
-      </div>
-      <div class="procurar-produto">
-        <app-botao-grande texto="BUSCAR ITEM" cor="var(--corPrincipal)" icone="fa-magnifying-glass" (click)="abrirProcurarProduto()"></app-botao-grande>
-        <app-input-simples class="width" placeholder="Código de Barras do Produto" (texto)="procurarProduto($event)"></app-input-simples>
-      </div>
-    </div>
-    <div class="flex">
-      <div class="un-qtd detalhes">
-        <app-info class="width" titulo="Valor Un." valor="R$ {{ produto.preco }}"></app-info>
-        <fa-icon [icon]="faXmark"></fa-icon>
-        <app-info class="width" titulo="Quantidade" valor="{{ produto.quantidade }}"></app-info>
-      </div>
-      <app-info class="width" titulo="Produto" valor="{{ (produto.produto ? produto.produto : 'Nome do Produto') }}"></app-info>
-    </div>
-    <div class="flex">
-      <div class="cod-img-sub detalhes">
-        <app-info titulo="Subtotal" valor="{{ retornarSubtotal() }}"></app-info>
-        <app-info titulo="Código de barras" valor="{{ (produto.codigoDeBarras ? produto.codigoDeBarras : '-') }}"></app-info>
-        <app-container-image imagem="{{ (produto.imagemP ? produto.imagemP : 'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg') }}"></app-container-image>
-      </div>
-      <div class="tabela">
-        <app-tabela-venda ngClass="{{mostrarOuEsconder()}}"
-          [listaDeProdutos]="listaDeProdutos" 
-          (totalCalculado)="receberTotalCalculado($event)" 
-          (produtoClicado)="selecionarProduto($event)"
-          (indexEditarProduto)="abrirJanelaEditar($event)"
-          (totalDescontoCalculado)="receberTotalDescontoCalculado($event)"
-          (visivelProdutoPeso)="toggleProdutoPeso()"
-          (produtoComPeso)="adicionarProdutoComPeso($event)">
-          </app-tabela-venda>
-          <div ngClass="w {{mostrarOuEsconderGif()}}">
-            <img src="{{ src }}" alt="Gif" (error)="handleImageError($event)">
-          </div>
-      </div>
-    </div>
-    <div class="flex">
-      <div class="acoes detalhes">
-        <app-botao-grande texto="CANCELAR" cor="var(--corVermelho)" icone="fa-circle-xmark" (click)="cancelarVenda()"></app-botao-grande>
-        <app-botao-grande texto="VENDER" cor="var(--corVerde)" icone="fa-cart-shopping" (click)="vender()"></app-botao-grande>
-      </div>
-      <div class="desconto-total">
-        <app-info titulo="Desconto Total" valor="R$ {{ totalDesconto }}"></app-info>
-        <app-info titulo="Total" valor="R$ {{ total }}"></app-info>
-      </div>
-    </div>
-    <app-editar-desc-qtd *ngIf="abrirEditar" (calcularDesconto)="calcularDesconto()" (visivel)="toggleJanela()" [listaDeProdutos]="listaDeProdutos" [index] = "index"></app-editar-desc-qtd>
-    <app-cancelar-venda *ngIf="abrirCancelarCompra" (aplicarLimpar)="limparTabela()" (visivel)="toggleCancelarCompra()"></app-cancelar-venda>
-    <app-metodo-pagamento *ngIf="metodoPagamento" (aplicarLimpar)="limparTabela()" (visivel)="toggleMetodoPagamento()" [listaDeProdutos]="listaDeProdutos"></app-metodo-pagamento>
-    <app-pesquisar-produto *ngIf="janelaProcurarProduto" (visivel)="toggleProcurarProduto()" [listaDeProdutos]="listaDeProdutos" (enviarProdutoParaAdd)="enviarProdutoParaAdd($event)" ></app-pesquisar-produto>
-    <app-produto-peso *ngIf="janelaProdutoPeso" (visivel)="toggleProdutoPeso()" [produtoComPeso]="produtoComPeso" (adicionarProdutoComPeso)="enviarProdutoParaAdd($event)"></app-produto-peso>
+    <app-info class="width" titulo="Produto"
+      valor="{{ (produto.produto ? produto.produto : 'Nome do Produto') }}"></app-info>
   </div>
+  <div class="flex">
+    <div class="cod-img-sub detalhes">
+      <app-info titulo="Subtotal" valor="{{ retornarSubtotal() }}"></app-info>
+      <app-info titulo="Código de barras"
+        valor="{{ (produto.codigoDeBarras ? produto.codigoDeBarras : '-') }}"></app-info>
+      <app-container-image
+        imagem="{{ (produto.imagemP ? produto.imagemP : 'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg') }}"></app-container-image>
+    </div>
+    <div class="tabela">
+      <app-tabela-venda ngClass="{{mostrarOuEsconder()}}" [listaDeProdutos]="listaDeProdutos"
+        (totalCalculado)="receberTotalCalculado($event)" (produtoClicado)="selecionarProduto($event)"
+        (indexEditarProduto)="abrirJanelaEditar($event)"
+        (totalDescontoCalculado)="receberTotalDescontoCalculado($event)" (visivelProdutoPeso)="toggleProdutoPeso()"
+        (produtoComPeso)="adicionarProdutoComPeso($event)">
+      </app-tabela-venda>
+      <div ngClass="w {{mostrarOuEsconderGif()}}">
+        <img src="{{ src }}" alt="Gif" (error)="handleImageError($event)">
+      </div>
+    </div>
+  </div>
+  <div class="flex">
+    <div class="acoes detalhes">
+      <app-botao-grande texto="CANCELAR" cor="var(--corVermelho)" icone="fa-circle-xmark"
+        (click)="cancelarVenda()"></app-botao-grande>
+      <app-botao-grande texto="VENDER" cor="var(--corVerde)" icone="fa-cart-shopping"
+        (click)="vender()"></app-botao-grande>
+    </div>
+    <div class="desconto-total">
+      <app-info titulo="Desconto Total" valor="R$ {{ totalDesconto }}"></app-info>
+      <app-info titulo="Total" valor="R$ {{ total }}"></app-info>
+    </div>
+  </div>
+  <app-editar-desc-qtd *ngIf="abrirEditar" (calcularDesconto)="calcularDesconto()" (visivel)="toggleJanela()"
+    [listaDeProdutos]="listaDeProdutos" [index]="index"></app-editar-desc-qtd>
+  <app-cancelar-venda *ngIf="abrirCancelarCompra" (aplicarLimpar)="limparTabela()"
+    (visivel)="toggleCancelarCompra()"></app-cancelar-venda>
+  <app-metodo-pagamento *ngIf="metodoPagamento" (aplicarLimpar)="limparTabela()" (visivel)="toggleMetodoPagamento()"
+    [listaDeProdutos]="listaDeProdutos"></app-metodo-pagamento>
+  <app-pesquisar-produto *ngIf="janelaProcurarProduto" (visivel)="toggleProcurarProduto()"
+    [listaDeProdutos]="listaDeProdutos" (enviarProdutoParaAdd)="enviarProdutoParaAdd($event)"></app-pesquisar-produto>
+  <app-produto-peso *ngIf="janelaProdutoPeso" (visivel)="toggleProdutoPeso()" [produtoComPeso]="produtoComPeso"
+    (adicionarProdutoComPeso)="enviarProdutoParaAdd($event)"></app-produto-peso>
 </div>
+
 
 
 

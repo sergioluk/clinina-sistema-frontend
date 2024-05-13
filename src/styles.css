@@ -31,8 +31,8 @@ body{
 }
 a {
   text-decoration: none;
-  color: black;
-  font-weight: bold;
+  color: var(--corBranco);
+  /* font-weight: bold; */
 }
 
 html, body { height: 100%; }

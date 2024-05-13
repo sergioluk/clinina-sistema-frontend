@@ -1,3 +1,52 @@
+.cadastro__container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #fdfdfd;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.menu {
+  font-size: 33px;
+  color: var(--corPrincipal);
+}
+.titulo {
+  color: var(--corPrincipal);
+  text-align: center;
+  font-size: 30px;
+  width: 100%;
+}
+.flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px;
+}
+form {
+  font-size: 14px;
+  color: var(--corTexto);
+}
+label {
+  font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 h3 {
   margin: 0;
 }

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { CadastroProduto, Venda, VendaComQtd, Vender } from '../cadastro-produto/cadastro-produto';
 import { CardHomeService } from '../card-home.service';
 import { Router } from '@angular/router';
@@ -68,9 +68,12 @@ export class VendaComponent implements OnInit {
       endereco: []
     });
     this.randomGif();
+    this.titulo.emit("oi");
   }
   //Novo
  
+  @Output() titulo = new EventEmitter<string>();
+
   abrirEditar = false;
   abrirCancelarCompra = false;
   metodoPagamento = false;

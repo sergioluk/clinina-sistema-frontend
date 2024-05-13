@@ -6,6 +6,8 @@ import { CadastroProduto, Categoria, Fornecedor, Idade, Sabor } from './cadastro
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { ViewportScroller } from '@angular/common';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+
 
 
 
@@ -16,6 +18,21 @@ import { ViewportScroller } from '@angular/common';
   styleUrls: ['./cadastro-produto.component.css']
 })
 export class CadastroProdutoComponent implements OnInit {
+
+
+  faBars = faBars;
+
+  /*
+    Meu*/
+
+    estilos() {
+      return {
+        'font-weight':'bold'
+      };
+    }
+
+    /*FIM MEU
+  */
 
   modal: boolean = false;
   removerCategoria: boolean = false;
