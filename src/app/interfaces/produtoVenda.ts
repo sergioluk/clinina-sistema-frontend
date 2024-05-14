@@ -25,3 +25,9 @@ export interface ProdutoVenda {
     telefone?: string
     endereco?: string
   }
+
+  //Usado nos selects de formulários
+  export interface ListaId {
+    id?: number
+    nome: string
+  } 

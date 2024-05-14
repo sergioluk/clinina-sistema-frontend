@@ -19,20 +19,17 @@
       <div>
         <app-input [ngStyle]="estilos()" type="text" for="estoque" label="Estoque *" placeholder="R$" formControlName="estoque"></app-input>
       </div>
-      <div>
-        <app-input [ngStyle]="estilos()" type="text" for="estoque" label="Estoque *" placeholder="R$" formControlName="estoque"></app-input>
+      <div class="form_flex">
+        <app-select [ngStyle]="estilos()" [lista]="listaDeCategoria" for="categoria" label="Categoria" formControlName="categoria"></app-select>
+        <app-select [ngStyle]="estilos()" [lista]="listaDeCategoria" for="sabor" label="Sabor" formControlName="sabor"></app-select>
       </div>
-      <div>
-        <div class="select grow">
-          <!-- <label for="{{ for }}">{{ label }}</label> -->
-          <div>
-            <label for="categoria">Categoria</label>
-            <fa-icon class="editar" [icon]="faPencil"/>
-          </div>
-          <select id="categoria" formControlName="categoria">
-            <option *ngFor="let opcaoSabor of listaDeSabor" value="{{ opcaoSabor.nome }}">{{ opcaoSabor.nome }}</option>
-          </select>
-        </div>
+      <div class="form_flex">
+        <app-select [ngStyle]="estilos()" [lista]="listaDeCategoria" for="idade" label="Idade" formControlName="idade"></app-select>
+        <app-select [ngStyle]="estilos()" [lista]="listaDeCategoria" for="peso" label="Peso" formControlName="peso"></app-select>
+      </div>
+      <div class="form_flex">
+        <app-select [ngStyle]="estilos()" [lista]="listaDeCategoria" for="fornecedor" label="Fornecedor" formControlName="fornecedor"></app-select>
+        <app-select [ngStyle]="estilos()" [lista]="listaDeCategoria" for="desconto" label="Desconto" formControlName="desconto"></app-select>
       </div>
       
     </form>

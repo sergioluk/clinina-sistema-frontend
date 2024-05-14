@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 import { ViewportScroller } from '@angular/common';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
+import { ListaId } from 'src/app/interfaces/produtoVenda';
 
 
 
@@ -24,10 +25,12 @@ export class CadastroProdutoComponent implements OnInit {
 
   /*Meu*/
   faPencil = faPencil;
+  
 
   estilos() {
     return {
-      'font-weight':'bold'
+      'font-weight':'bold',
+      'flex-grow': '1'
     };
   }
 
@@ -333,7 +336,7 @@ export class CadastroProdutoComponent implements OnInit {
     this.removerCategoria = false;
   }
 
-  acaoRemoverCategoria(index: number){
+  acaoRemoverCategoria(index: number) {
     this.listaDeCategoria.splice(index, 1);
     this.formulario.get('categoria')?.setValue( this.listaDeCategoria[0]);
   }

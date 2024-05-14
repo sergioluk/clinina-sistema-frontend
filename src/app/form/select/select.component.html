@@ -1,1 +1,12 @@
-<p>select works!</p>
+<ng-container>
+    <div class="select grow">
+        <!-- <label for="{{ for }}">{{ label }}</label> -->
+        <div>
+          <label for="{{ for }}">{{ label }}</label>
+          <fa-icon class="editar" [icon]="faPencil"/>
+        </div>
+        <select id="{{ for }}"  [(ngModel)]="value" >
+          <option *ngFor="let item of lista" value="{{ item.nome }}">{{ item.nome }}</option>
+        </select>
+    </div>
+</ng-container>

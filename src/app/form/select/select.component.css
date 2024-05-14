@@ -1,0 +1,33 @@
+.grow {
+    flex-grow: 1;
+  }
+  .select {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .select label {
+    width: 100%;
+  }
+  .select select {
+    width: 100%;
+    padding: 6px 10px;
+    border-radius: 7px;
+    border: 1px solid var(--corPrincipal);
+    color: var(--corTexto);
+    background-color: transparent;
+    font-size: var(--fontePequena);
+    font-weight: bold;
+  }
+  .editar {
+    color: var(--corVerde);
+    margin-left: 10px;
+    padding: 3px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.3s;
+  }
+  .editar:hover {
+    background-color: var(--corVerde);
+    color: var(--corBranco);
+  }

@@ -61,6 +61,7 @@ label {
   width: 100%;
 }
 .form_flex {
+  width: 100%;
   display: flex;
   gap: 10px;
 }
