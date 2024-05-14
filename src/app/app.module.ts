@@ -39,6 +39,7 @@ import { MetodoPagamentoComponent } from './componentes/venda/metodo-pagamento/m
 import { PesquisarProdutoComponent } from './componentes/venda/pesquisar-produto/pesquisar-produto.component';
 import { ProdutoPesoComponent } from './componentes/venda/produto-peso/produto-peso.component';
 import { MenuLateralComponent } from './layout/menu-lateral/menu-lateral.component';
+import { SelectComponent } from './form/select/select.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { MenuLateralComponent } from './layout/menu-lateral/menu-lateral.compone
     MetodoPagamentoComponent,
     PesquisarProdutoComponent,
     ProdutoPesoComponent,
-    MenuLateralComponent
+    MenuLateralComponent,
+    SelectComponent
   ],
   imports: [
     BrowserModule,

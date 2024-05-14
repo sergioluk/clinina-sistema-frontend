@@ -6,15 +6,51 @@
     <h1 class="titulo">CADASTRAR PRODUTO</h1>
   </div>
   <hr>
-  <form [formGroup]="formulario">
-    <app-input [ngStyle]="estilos()" type="text" for="codigoDeBarras" label="Código de barras *" placeholder="Aponte para o o código de barras" formControlName="codigoDeBarras"></app-input>
-    <app-input [ngStyle]="estilos()" type="text" for="nome" label="Nome do produto *" placeholder="Digite o nome" formControlName="produto"></app-input>
-    <app-input [ngStyle]="estilos()" type="text" for="imagens" label="Imagens *" placeholder="Digite a url da imagem" formControlName="imagens"></app-input>
-    <app-input [ngStyle]="estilos()" type="text" for="precoCompra" label="Preço de compra *" placeholder="R$" formControlName="precoCompra"></app-input>
-    <app-input [ngStyle]="estilos()" type="text" for="precoVenda" label="Preço de venda *" placeholder="R$" formControlName="precoVenda"></app-input>
-    <app-input [ngStyle]="estilos()" type="text" for="lucro" label="Lucro" placeholder="%"></app-input>
-    <app-input [ngStyle]="estilos()" type="text" for="estoque" label="Estoque *" placeholder="R$" formControlName="estoque"></app-input>
-  </form>
+  <div class="container">
+    <form [formGroup]="formulario" class="formulario">
+      <app-input [ngStyle]="estilos()" type="text" for="codigoDeBarras" label="Código de barras *" placeholder="Aponte para o o código de barras" formControlName="codigoDeBarras"></app-input>
+      <app-input [ngStyle]="estilos()" type="text" for="nome" label="Nome do produto *" placeholder="Digite o nome" formControlName="produto"></app-input>
+      <app-input [ngStyle]="estilos()" type="text" for="imagens" label="Imagens *" placeholder="Digite a url da imagem" formControlName="imagens"></app-input>
+      <div class="form_flex">
+        <app-input [ngStyle]="estilos()" type="text" for="precoCompra" label="Preço compra *" placeholder="R$" formControlName="produto"></app-input>
+        <app-input [ngStyle]="estilos()" type="text" for="precoVenda" label="Preço venda *" placeholder="R$" formControlName="produto"></app-input>
+        <app-input [ngStyle]="estilos()" type="text" for="lucro" label="Lucro" placeholder="%"></app-input>
+      </div>
+      <div>
+        <app-input [ngStyle]="estilos()" type="text" for="estoque" label="Estoque *" placeholder="R$" formControlName="estoque"></app-input>
+      </div>
+      <div>
+        <app-input [ngStyle]="estilos()" type="text" for="estoque" label="Estoque *" placeholder="R$" formControlName="estoque"></app-input>
+      </div>
+      <div>
+        <div class="select grow">
+          <!-- <label for="{{ for }}">{{ label }}</label> -->
+          <div>
+            <label for="categoria">Categoria</label>
+            <fa-icon class="editar" [icon]="faPencil"/>
+          </div>
+          <select id="categoria" formControlName="categoria">
+            <option *ngFor="let opcaoSabor of listaDeSabor" value="{{ opcaoSabor.nome }}">{{ opcaoSabor.nome }}</option>
+          </select>
+        </div>
+      </div>
+      
+    </form>
+    <div class="cadastro__visualizacao">
+      <div class="imagem--e--botaoacao">
+        <app-container-image imagem="../../../assets/img/3.png"></app-container-image>
+        <div class="imagens"></div>
+        <div class="botoes-conteiner">
+          <app-botao-pequeno cor="var(--corVerde)" icone="" texto="Cadastrar"></app-botao-pequeno>
+          <app-botao-pequeno cor="var(--corVermelho)" icone="" texto="Cancelar"></app-botao-pequeno>
+        </div>
+      </div>
+      <div class="informacoes">
+        <app-info titulo="Código de barras" valor="3232313213213213"></app-info>
+      </div>
+    </div>
+  </div>
+  
 </div>
 
 

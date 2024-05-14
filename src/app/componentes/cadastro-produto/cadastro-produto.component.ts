@@ -7,7 +7,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { map } from 'rxjs/operators';
 import { ViewportScroller } from '@angular/common';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-
+import { faPencil } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -22,17 +22,16 @@ export class CadastroProdutoComponent implements OnInit {
 
   faBars = faBars;
 
-  /*
-    Meu*/
+  /*Meu*/
+  faPencil = faPencil;
 
-    estilos() {
-      return {
-        'font-weight':'bold'
-      };
-    }
+  estilos() {
+    return {
+      'font-weight':'bold'
+    };
+  }
 
-    /*FIM MEU
-  */
+  /*FIM MEU*/
 
   modal: boolean = false;
   removerCategoria: boolean = false;
