@@ -31,19 +31,82 @@
         <app-select [ngStyle]="estilos()" [lista]="listaDeCategoria" for="fornecedor" label="Fornecedor" formControlName="fornecedor"></app-select>
         <app-select [ngStyle]="estilos()" [lista]="listaDeCategoria" for="desconto" label="Desconto" formControlName="desconto"></app-select>
       </div>
+      <!--Castrado-->
+      <div class="form_flex">
+        <h3 class="bold tamanho">Castrado</h3>
+        <input type="radio" id="castrado" [value]=1 formControlName="castrado">
+        <label for="castrado">Sim</label>
+        <input type="radio" id="naoCastrado" [value]=0 formControlName="castrado">
+        <label for="naoCastrado">Não</label>
+      </div>
+      <hr>
+      <!--Animal-->
+      <div class="form_flex">
+        <h3  class="bold tamanho">Animal</h3>
+        <input type="radio" id="cachorro" value="Cachorro" formControlName="animal">
+        <label for="cachorro">Cachorro</label>
+          
+        <input type="radio" id="gato" value="Gato" formControlName="animal">
+        <label for="gato">Gato</label>
+          
+        <input type="radio" id="passaro" value="Pássaro" formControlName="animal">
+        <label for="passaro">Pássaro</label>
+      </div>
+      <div class="form_flex">
+        <div class="tamanho"> </div>
+        <input type="radio" id="todos" value="Todos" formControlName="animal">
+        <label for="todos">Todos</label>
+
+        <input type="radio" id="nenhum" value="Nenhum" formControlName="animal">
+        <label for="nenhum">Nenhum</label>
+      </div>
+      <hr>
+      <!--Porte-->
+      <div class="form_flex">
+        <h3 class="bold tamanho">Porte</h3>
+        <div class="form_flex" formArrayName="porte" *ngFor="let item of getPorteControls(); let i = index">
+          <input id="{{ i }}" type="checkbox" [formControlName]="i">
+          <label for="{{ i }}">{{ porte[i] }}</label>
+        </div>
+      </div>
+      <hr>
+      <app-input [ngStyle]="estilos()" type="text" for="informacoes" label="Informações" placeholder="Digite as informações" formControlName="informacao"></app-input>
       
     </form>
     <div class="cadastro__visualizacao">
-      <div class="imagem--e--botaoacao">
+      <div class="imagem--e--botaoacao flex-column">
         <app-container-image imagem="../../../assets/img/3.png"></app-container-image>
         <div class="imagens"></div>
-        <div class="botoes-conteiner">
+        <div class="botoes-conteiner flex-column">
           <app-botao-pequeno cor="var(--corVerde)" icone="" texto="Cadastrar"></app-botao-pequeno>
           <app-botao-pequeno cor="var(--corVermelho)" icone="" texto="Cancelar"></app-botao-pequeno>
         </div>
       </div>
       <div class="informacoes">
         <app-info titulo="Código de barras" valor="3232313213213213"></app-info>
+        <app-info titulo="Nome do produto" valor="Ração Pedigree"></app-info>
+        <div class="info_flex">
+          <app-info class="grow" titulo="Preço de compra" valor="R$ 20,20"></app-info>
+          <app-info class="grow" titulo="Preço de venda" valor="R$ 20,20"></app-info>
+          <app-info class="grow" titulo="Lucro" valor="30%"></app-info>
+        </div>
+        <div class="info_flex">
+          <app-info class="grow" titulo="Estoque" valor="14"></app-info>
+          <app-info class="grow" titulo="Categoria" valor="Ração"></app-info>
+          <app-info class="grow" titulo="Sabor" valor="Carne"></app-info>
+        </div>
+        <div class="info_flex">
+          <app-info class="grow" titulo="Idade" valor="Adulto"></app-info>
+          <app-info class="grow" titulo="Peso" valor="15kg"></app-info>
+          <app-info class="grow" titulo="Fornecedor" valor="ADMAX"></app-info>
+        </div>
+        <div class="info_flex">
+          <app-info class="grow" titulo="Desconto" valor="0"></app-info>
+          <app-info class="grow" titulo="Castrado" valor="Sim"></app-info>
+          <app-info class="grow" titulo="Animal" valor="Cachorro"></app-info>
+        </div>
+        <app-info titulo="Porte" valor="Grande"></app-info>
+        <app-info titulo="Informações" valor="Contém extrato de Yuka"></app-info>
       </div>
     </div>
   </div>

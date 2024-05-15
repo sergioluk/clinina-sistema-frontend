@@ -59,11 +59,15 @@ label {
 }
 .informacoes {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 .form_flex {
   width: 100%;
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 .editar {
   color: var(--corVerde);
@@ -77,16 +81,18 @@ label {
   background-color: var(--corVerde);
   color: var(--corBranco);
 }
-
-
-
-
-
-
-
-
+.bold {
+  font-weight: bold;
+}
+.tamanho {
+  min-width: 67px;
+}
+.info_flex {
+  display: flex;
+  gap: 20px;
+}
 .grow {
-  flex-grow: 1;
+  width: 100%;
 }
 .select {
   display: flex;
@@ -106,7 +112,11 @@ label {
   font-size: var(--fontePequena);
   font-weight: bold;
 }
-
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 
 
 
