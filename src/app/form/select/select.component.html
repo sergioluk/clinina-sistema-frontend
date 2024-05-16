@@ -3,7 +3,7 @@
         <!-- <label for="{{ for }}">{{ label }}</label> -->
         <div>
           <label for="{{ for }}">{{ label }}</label>
-          <fa-icon class="editar" [icon]="faPencil"/>
+          <fa-icon *ngIf="isEditar" class="editar" [icon]="faPencil" (click)="acaoBtn()"/>
         </div>
         <select id="{{ for }}"  [(ngModel)]="value" >
           <option *ngFor="let item of lista" value="{{ item.nome }}">{{ item.nome }}</option>

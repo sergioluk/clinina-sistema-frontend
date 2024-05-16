@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, forwardRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, forwardRef } from '@angular/core';
 import { ListaId } from 'src/app/interfaces/produtoVenda';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -22,9 +22,17 @@ export class SelectComponent<T> implements ControlValueAccessor {
   @Input() isReadOnly = false;
   @Input() lista!: ListaId[];
   @Input() control: any;
+  @Input() isEditar = false;
+  @Output() acao = new EventEmitter();
+
   faPencil = faPencil;
+  
 
   private innerValue: any;
+
+  acaoBtn() {
+    this.acao.emit();
+  }
 
   get value() {
     return this.innerValue;

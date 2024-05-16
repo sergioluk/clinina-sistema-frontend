@@ -47,7 +47,8 @@ export class ProdutoComponent implements OnInit{
     fornecedor: '',
     imagens: [],
     porte: '',
-    imagemP: ''
+    imagemP: '',
+    precoCompra: 0
   }
 
   slides = [{'img':''}];

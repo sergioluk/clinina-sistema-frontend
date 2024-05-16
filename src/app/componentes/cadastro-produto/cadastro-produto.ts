@@ -7,6 +7,7 @@ export interface CadastroProduto {
     sabor: string
     idade: string
     preco: number
+    precoCompra: number
     peso: string
     desconto: number
     animal: string

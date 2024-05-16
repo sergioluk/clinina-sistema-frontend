@@ -33,7 +33,8 @@ export class CardHomeComponent {
     categoria: '',
     imagens: [],
     porte: '',
-    imagemP: ''
+    imagemP: '',
+    precoCompra: 0
   }
 
 }

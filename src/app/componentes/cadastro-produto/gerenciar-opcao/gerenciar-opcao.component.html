@@ -1,0 +1,25 @@
+<app-janela titulo="Adicionar {{ tipo }}" icone="fa-pencil" (toggleJanela)="toggleJanela()">
+    <div class="container">
+        <h3>Adicionar {{ tipo }}</h3>
+        <div class="flex">
+            <app-input-simples class="input" placeholder="Digite a nova {{ tipo }}" (texto)="receberTexto($event)"></app-input-simples>
+            <app-mini-botao class="mini-botao" icone="fa-plus" cor="var(--corVerde)"></app-mini-botao>
+        </div>
+        <table>
+            <tr class="cabecalho-tabela">
+              <th class="nome__tabela">{{ tipo }}</th>
+              <th>Ações</th>
+            </tr>
+          <tr class="tablerow" *ngFor="let item of lista; index as i"> 
+            <td>{{ item.nome }}</td>
+            <td>
+                <fa-icon class="editar" [icon]="faPencil" (click)="editarItem(i)"></fa-icon>
+                <fa-icon class="apagar" [icon]="faTrashCan" (click)="removerItemDaLista(i)"></fa-icon>
+            </td>
+          </tr>
+        </table>
+    </div>
+    <div class="botao-container">
+        <app-botao-pequeno icone="fa-circle-xmark" cor="var(--corVermelho)" texto="Fechar" (click)="cancelar()"></app-botao-pequeno>
+    </div>
+</app-janela>

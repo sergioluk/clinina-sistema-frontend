@@ -10,26 +10,43 @@
     <form [formGroup]="formulario" class="formulario">
       <app-input [ngStyle]="estilos()" type="text" for="codigoDeBarras" label="Código de barras *" placeholder="Aponte para o o código de barras" formControlName="codigoDeBarras"></app-input>
       <app-input [ngStyle]="estilos()" type="text" for="nome" label="Nome do produto *" placeholder="Digite o nome" formControlName="produto"></app-input>
-      <app-input [ngStyle]="estilos()" type="text" for="imagens" label="Imagens *" placeholder="Digite a url da imagem" formControlName="imagens"></app-input>
+      <!-- Criar janelas para criar Categoria, Sabor e etc e testar se está criando mesmo -->
+      <!-- Criar tela do estoque para usar o editar produto até sexta -->
+      <div class="input grow2" [formGroup]="formularioSecundario">
+        <div class="flex-input">
+          <label>Imagens *</label>
+          <app-mini-botao class="mini-botao" icone="fa-plus" cor="var(--corVerde)" (click)="adicionarImagem()"></app-mini-botao>
+        </div>
+        <div class="flex-input" *ngFor="let imagem of imagensFormArray.controls; index as i">
+          <input type="text" id="imagemP{{i}}" placeholder="Digite a url da imagem" [formControl]="getImagensByIndex(i)" (keyup)="populandoListaDeImagens(i)" (change)="populandoListaDeImagens(i)">
+          <app-mini-botao class="mini-botao" icone="fa-x-xmark" cor="var(--corVermelho)" (click)="removerImagem(i)"></app-mini-botao>
+        </div>
+      </div>
+      
       <div class="form_flex">
-        <app-input [ngStyle]="estilos()" type="text" for="precoCompra" label="Preço compra *" placeholder="R$" formControlName="produto"></app-input>
-        <app-input [ngStyle]="estilos()" type="text" for="precoVenda" label="Preço venda *" placeholder="R$" formControlName="produto"></app-input>
-        <app-input [ngStyle]="estilos()" type="text" for="lucro" label="Lucro" placeholder="%"></app-input>
+        <app-input [ngStyle]="estilos()" type="number" for="precoCompra" label="Preço compra *" placeholder="R$" formControlName="precoCompra" (change)="atualizar()"></app-input>
+        <app-input [ngStyle]="estilos()" type="number" for="precoVenda" label="Preço venda *" placeholder="R$" formControlName="preco" (change)="atualizarLucro()"></app-input>
+        <app-input [ngStyle]="estilos()" type="number" for="lucro" label="Lucro" placeholder="%" formControlName="lucro" (change)="atualizarVenda()"></app-input>
       </div>
       <div>
-        <app-input [ngStyle]="estilos()" type="text" for="estoque" label="Estoque *" placeholder="R$" formControlName="estoque"></app-input>
+        <app-input [ngStyle]="estilos()" type="number" for="estoque" label="Estoque *" placeholder="R$" formControlName="estoque"></app-input>
       </div>
       <div class="form_flex">
-        <app-select [ngStyle]="estilos()" [lista]="listaDeCategoria" for="categoria" label="Categoria" formControlName="categoria"></app-select>
-        <app-select [ngStyle]="estilos()" [lista]="listaDeCategoria" for="sabor" label="Sabor" formControlName="sabor"></app-select>
+        <app-select [ngStyle]="estilos()" [lista]="listaDeCategoria" for="categoria" label="Categoria" formControlName="categoria" [isEditar]="true" (acao)="toggleEditarCategoria()"></app-select>
+        <app-select [ngStyle]="estilos()" [lista]="listaDeSabor" for="sabor" label="Sabor" formControlName="sabor" [isEditar]="true" (acao)="toggleEditarSabor()"></app-select>
       </div>
       <div class="form_flex">
-        <app-select [ngStyle]="estilos()" [lista]="listaDeCategoria" for="idade" label="Idade" formControlName="idade"></app-select>
-        <app-select [ngStyle]="estilos()" [lista]="listaDeCategoria" for="peso" label="Peso" formControlName="peso"></app-select>
+        <app-select [ngStyle]="estilos()" [lista]="listaDeIdade" for="idade" label="Idade" formControlName="idade" [isEditar]="true" (acao)="toggleEditarIdade()"></app-select>
+        <div class="unidadeFlex">
+          <app-input [ngStyle]="estilos()" type="number" for="peso" label="Peso" placeholder="Peso" formControlName="peso"></app-input>
+          <div [formGroup]="formularioSecundario" class="unidade">
+            <app-select [ngStyle]="estilos()" [lista]="listaDeUnidades" for="unidade" label="" formControlName="unidadeNovaForm"></app-select>
+          </div>
+        </div>
       </div>
       <div class="form_flex">
-        <app-select [ngStyle]="estilos()" [lista]="listaDeCategoria" for="fornecedor" label="Fornecedor" formControlName="fornecedor"></app-select>
-        <app-select [ngStyle]="estilos()" [lista]="listaDeCategoria" for="desconto" label="Desconto" formControlName="desconto"></app-select>
+        <app-select [ngStyle]="estilos()" [lista]="listaDeFornecedor" for="fornecedor" label="Fornecedor" formControlName="fornecedor" [isEditar]="true" (acao)="toggleEditarFornecedor()"></app-select>
+        <app-input [ngStyle]="estilos()" type="number" for="desconto" label="Desconto" placeholder="Desconto" formControlName="desconto"></app-input>
       </div>
       <!--Castrado-->
       <div class="form_flex">
@@ -70,7 +87,16 @@
         </div>
       </div>
       <hr>
-      <app-input [ngStyle]="estilos()" type="text" for="informacoes" label="Informações" placeholder="Digite as informações" formControlName="informacao"></app-input>
+      <div class="input grow2" [formGroup]="formularioSecundario">
+        <div class="flex-input">
+          <label>Informações</label>
+          <app-mini-botao class="mini-botao" icone="fa-plus" cor="var(--corVerde)" (click)="adicionarInformacao()"></app-mini-botao>
+        </div>
+        <div class="flex-input" *ngFor="let imagem of informacoesFormArray.controls; index as i">
+          <input type="text" id="info{{i}}" placeholder="Digite as informações" [formControl]="getInformacoesByIndex(i)" (keyup)="populandoListaDeInformacao(i)" (change)="populandoListaDeImagens(i)">
+          <app-mini-botao class="mini-botao" icone="fa-x-xmark" cor="var(--corVermelho)" (click)="removerInformacao(i)"></app-mini-botao>
+        </div>
+      </div>
       
     </form>
     <div class="cadastro__visualizacao">
@@ -78,38 +104,42 @@
         <app-container-image imagem="../../../assets/img/3.png"></app-container-image>
         <div class="imagens"></div>
         <div class="botoes-conteiner flex-column">
-          <app-botao-pequeno cor="var(--corVerde)" icone="" texto="Cadastrar"></app-botao-pequeno>
-          <app-botao-pequeno cor="var(--corVermelho)" icone="" texto="Cancelar"></app-botao-pequeno>
+          <app-botao-pequeno cor="var(--corVerde)" icone="" texto="Cadastrar" (click)="cadastrarProduto()"></app-botao-pequeno>
+          <app-botao-pequeno cor="var(--corVermelho)" icone="" texto="Cancelar" (click)="testagemDeValores()"></app-botao-pequeno>
         </div>
       </div>
       <div class="informacoes">
-        <app-info titulo="Código de barras" valor="3232313213213213"></app-info>
-        <app-info titulo="Nome do produto" valor="Ração Pedigree"></app-info>
+        <app-info titulo="Código de barras" valor="{{ formulario.get('codigoDeBarras')?.value }}"></app-info>
+        <app-info titulo="Nome do produto" valor="{{ formulario.get('produto')?.value }}"></app-info>
         <div class="info_flex">
-          <app-info class="grow" titulo="Preço de compra" valor="R$ 20,20"></app-info>
-          <app-info class="grow" titulo="Preço de venda" valor="R$ 20,20"></app-info>
-          <app-info class="grow" titulo="Lucro" valor="30%"></app-info>
+          <app-info class="grow" titulo="Preço de compra" valor="R$ {{ formulario.get('precoCompra')?.value }}"></app-info>
+          <app-info class="grow" titulo="Preço de venda" valor="R$ {{ formulario.get('preco')?.value }}"></app-info>
+          <app-info class="grow" titulo="Lucro" valor="{{ formulario.get('lucro')?.value }}%"></app-info>
         </div>
         <div class="info_flex">
-          <app-info class="grow" titulo="Estoque" valor="14"></app-info>
-          <app-info class="grow" titulo="Categoria" valor="Ração"></app-info>
-          <app-info class="grow" titulo="Sabor" valor="Carne"></app-info>
+          <app-info class="grow" titulo="Estoque" valor="{{ formulario.get('estoque')?.value }}"></app-info>
+          <app-info class="grow" titulo="Categoria" valor="{{ formulario.get('categoria')?.value }}"></app-info>
+          <app-info class="grow" titulo="Sabor" valor="{{ formulario.get('sabor')?.value }}"></app-info>
         </div>
         <div class="info_flex">
-          <app-info class="grow" titulo="Idade" valor="Adulto"></app-info>
-          <app-info class="grow" titulo="Peso" valor="15kg"></app-info>
-          <app-info class="grow" titulo="Fornecedor" valor="ADMAX"></app-info>
+          <app-info class="grow" titulo="Idade" valor="{{ formulario.get('idade')?.value }}"></app-info>
+          <app-info class="grow" titulo="Peso" valor="{{ formulario.get('peso')?.value }}{{ formularioSecundario.get('unidadeNovaForm')?.value }}"></app-info>
+          <app-info class="grow" titulo="Fornecedor" valor="{{ formulario.get('fornecedor')?.value }}"></app-info>
         </div>
         <div class="info_flex">
-          <app-info class="grow" titulo="Desconto" valor="0"></app-info>
-          <app-info class="grow" titulo="Castrado" valor="Sim"></app-info>
-          <app-info class="grow" titulo="Animal" valor="Cachorro"></app-info>
+          <app-info class="grow" titulo="Desconto" valor="{{ formulario.get('desconto')?.value }}"></app-info>
+          <app-info class="grow" titulo="Castrado" valor="{{ formulario.get('castrado')?.value }}"></app-info>
+          <app-info class="grow" titulo="Animal" valor="{{ formulario.get('animal')?.value }}"></app-info>
         </div>
-        <app-info titulo="Porte" valor="Grande"></app-info>
-        <app-info titulo="Informações" valor="Contém extrato de Yuka"></app-info>
+        <app-info titulo="Porte" valor="{{ formulario.get('porte')?.value }}"></app-info>
+        <!-- <app-info titulo="Informações" valor=""></app-info>
+        <li *ngFor="let informacao of listaDeInformacao">{{ informacao }}</li> -->
       </div>
     </div>
   </div>
+
+  <!-- janelaEditarCategoria -->
+  <app-gerenciar-opcao *ngIf="!janelaGerenciar" (toggleJanelaGerenciar)="fecharJanelaGerenciar()" tipo="{{tipo}}" [lista]="lista"></app-gerenciar-opcao>
   
 </div>
 

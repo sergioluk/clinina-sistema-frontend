@@ -40,7 +40,7 @@ label {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  gap: 40px;
+  gap: 20px;
 }
 .cadastro__visualizacao {
   display: flex;
@@ -117,8 +117,43 @@ label {
   flex-direction: column;
   gap: 20px;
 }
-
-
+.unidade {
+  min-width: 60px;
+}
+.unidadeFlex {
+  display: flex;
+  align-items: flex-end;
+  flex-grow: 1;
+  max-width: 55%;
+}
+.mini-botao {
+  max-width: fit-content;
+  max-height: fit-content;
+}
+.grow2 {
+  flex-grow: 1;
+}
+.input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.input input {
+  width: 100%;
+  /*padding-left: 10px;*/
+  padding: 6px 10px;
+  border-radius: 7px;
+  border: 1px solid var(--corPrincipal);
+  color: var(--corTexto);
+  background-color: transparent;
+}
+.flex-input {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 5px;
+}
 
 
 

@@ -40,6 +40,8 @@ import { PesquisarProdutoComponent } from './componentes/venda/pesquisar-produto
 import { ProdutoPesoComponent } from './componentes/venda/produto-peso/produto-peso.component';
 import { MenuLateralComponent } from './layout/menu-lateral/menu-lateral.component';
 import { SelectComponent } from './form/select/select.component';
+import { MiniBotaoComponent } from './layout/mini-botao/mini-botao.component';
+import { GerenciarOpcaoComponent } from './componentes/cadastro-produto/gerenciar-opcao/gerenciar-opcao.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,9 @@ import { SelectComponent } from './form/select/select.component';
     PesquisarProdutoComponent,
     ProdutoPesoComponent,
     MenuLateralComponent,
-    SelectComponent
+    SelectComponent,
+    MiniBotaoComponent,
+    GerenciarOpcaoComponent
   ],
   imports: [
     BrowserModule,
