@@ -1,0 +1,52 @@
+<div class="cadastro__container">
+    <div class="flex">
+      <div class="menu">
+        <fa-icon [icon]="faBars"></fa-icon>
+      </div>
+      <h1 class="titulo">ESTOQUE</h1>
+    </div>
+    <hr>
+    <div class="container">
+        <div class="pesquisa__container">
+            <div class="label-input grow">
+                <span>Buscar produto</span>
+                <app-input-simples placeholder="Digite o nome do produto ou código de barras" (texto)="pesquisar($event)"></app-input-simples>
+            </div>
+            <app-botao-grande icone="fa-magnifying-glass" texto="Pesquisar" cor="var(--corPrincipal)"></app-botao-grande>
+            <app-botao-grande icone="fa-plus" texto="Novo Produto" cor="var(--corPrincipal)" (click)="cadastrarProduto()"></app-botao-grande>
+        </div>
+        <hr>
+        <div class="filtros__container">
+            <!--Criar itens por páginas-->
+        </div>
+        <div class="table__container">
+            <table>
+                <tr class="cabecalho-tabela">
+                  <th>Foto</th>
+                  <th>Código</th>
+                  <th class="nome__tabela">Nome do produto</th>
+                  <th>Estoque</th>
+                  <th>P.custo</th>
+                  <th>P.venda</th>
+                  <th>Lucro</th>
+                  <th>Peso</th>
+                  <th>Ações</th>
+                </tr>
+              <tr class="tablerow" *ngFor="let item of listaDeProdutos; index as i"> 
+                <td><img class="table__img" src="{{ item.imagemP }}" alt="Imagem do produto"></td>
+                <td>{{ item.codigoDeBarras }}</td>
+                <td>{{ item.produto }}</td>
+                <td>{{ item.estoque }}</td>
+                <td>{{ item.precoCompra }}</td>
+                <td>{{ item.preco }}</td>
+                <td>{{ calcularLucro(item) }}</td>
+                <td>{{ item.peso }}</td>
+                <td>
+                    <!-- <app-botao-pequeno texto="Detalhe" cor="var(--corPrincipal)"></app-botao-pequeno> -->
+                    <fa-icon class="editar" [icon]="faPencil" (click)="editarItem(i)"></fa-icon>
+                </td>
+              </tr>
+            </table>
+        </div>
+    </div>
+</div>

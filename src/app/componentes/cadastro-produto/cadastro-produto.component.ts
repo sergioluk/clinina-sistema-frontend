@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CardHomeService } from '../card-home.service';
 import { Router } from '@angular/router';
 import { CardHome } from '../card-home/card-home';
@@ -9,6 +9,7 @@ import { ViewportScroller } from '@angular/common';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { ListaId } from 'src/app/interfaces/produtoVenda';
+import { EnviarProdutoService } from 'src/app/services/enviar-produto.service';
 
 
 
@@ -26,6 +27,8 @@ export class CadastroProdutoComponent implements OnInit {
   /*Meu*/
   faPencil = faPencil;
 
+  produto!: CadastroProduto;
+
   listaDeCategoria: Categoria [] = [];
   listaDeImagens: string [] = [''];
   listaDeInformacao: string [] = [''];
@@ -39,14 +42,18 @@ export class CadastroProdutoComponent implements OnInit {
   janelaGerenciar: boolean = false;
   tipo = "";
   lista = [{id: 0, nome: ""}];
+  modoEdicao: boolean = false;
+  titulo = "Cadastrar";
 
   constructor(private service: CardHomeService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private viewportScroller: ViewportScroller
+    private viewportScroller: ViewportScroller,
+    private enviarProduto: EnviarProdutoService
  ){}
 
  ngOnInit(): void {
+
   //Carregar os selects
   this.listarCategoria();
   this.listarSabor();
@@ -55,12 +62,12 @@ export class CadastroProdutoComponent implements OnInit {
 
   this.formulario = this.formBuilder.group({
     codigoDeBarras: ['', Validators.compose([
-      Validators.required
+      // Validators.required
     ])],
     categoria: ['Ração'],
     produto: ['', Validators.compose([
-      Validators.required,
-      Validators.minLength(3),
+      // Validators.required,
+      // Validators.minLength(3),
       //Validators.pattern(/(.|\s)*\S(.|\s)*/)
     ])],
     imagens: [this.listaDeImagens],
@@ -68,7 +75,7 @@ export class CadastroProdutoComponent implements OnInit {
     idade: ['Adulto'],
     preco: [],
     precoCompra: [],
-    peso: [],
+    peso: [1],
     desconto: [0],
     animal: ['Cachorro'],
     castrado: [0],
@@ -93,6 +100,16 @@ export class CadastroProdutoComponent implements OnInit {
     fornecedorNovaForm: new FormControl(),
     unidadeNovaForm: new FormControl('kg'),
   });
+
+  //Parte do Alterar produto
+  let produtoRecebido = this.enviarProduto.getProduto();
+  if (produtoRecebido != null || produtoRecebido != undefined) {
+    this.modoEdicao = true;
+    this.titulo = "Alterar";
+    this.produto = produtoRecebido;
+    this.enviarProduto.clearProduto();
+    this.setarProdutoNoFormulario();
+  }
 
 }
 
@@ -127,15 +144,49 @@ export class CadastroProdutoComponent implements OnInit {
     console.log('pingamoanidaba',valueSubmit);
     console.log("valido:" + this.formulario.valid);
     if (this.formulario.valid){
+      if (this.modoEdicao) {
+        console.log("modo editar");
+        this.service.editarProduto(valueSubmit).subscribe(() => {
+          this.viewportScroller.scrollToPosition([0, 0]);
+          window.location.reload();
+        });
+      } else {
         this.service.criar(valueSubmit).subscribe(() => {
-        //this.router.navigate(['/home']);
-        this.viewportScroller.scrollToPosition([0, 0]);
-        window.location.reload();
-      })
+          //this.router.navigate(['/home']);
+          this.viewportScroller.scrollToPosition([0, 0]);
+          window.location.reload();
+        });
+      }
     }
-
   }
 
+  verificarCodigoDeBarras() {
+    let codigo = this.formulario.get('codigoDeBarras')?.value;
+    this.service.verificarCodigoDeBarras(codigo).subscribe((resultado) => {
+      if (resultado == true) {
+        alert("Produto Já registrado!!!");
+        window.location.reload();
+      }
+    });
+  }
+
+  setarProdutoNoFormulario() {
+    this.formulario.get('codigoDeBarras')?.setValue(this.produto.codigoDeBarras);
+    this.formulario.get('produto')?.setValue(this.produto.produto);
+    this.formulario.get('imagemP')?.setValue(this.produto.imagemP);
+    if (this.produto.precoCompra != null) {
+      this.formulario.get('precoCompra')?.setValue(this.produto.precoCompra);
+      let lucro = (100*this.produto.preco/this.produto.precoCompra) - 100;
+      this.formulario.get('lucro')?.setValue(lucro.toFixed(2));
+    }
+    this.getImagensByIndex(0).setValue(this.produto.imagemP);
+    this.populandoListaDeImagens(0);
+    this.formulario.get('preco')?.setValue(this.produto.preco);
+    this.formulario.get('estoque')?.setValue(this.produto.estoque);
+  }
+  cancelar() {
+    this.router.navigate(['/venda']);
+  }
   fecharJanelaGerenciar() {
     this.janelaGerenciar = !this.janelaGerenciar;
   }
@@ -182,7 +233,7 @@ export class CadastroProdutoComponent implements OnInit {
     }
     let lucro = this.formulario.get('lucro')?.value;
     let precoVenda = Number((precoCompra*lucro/100)) + Number(precoCompra);
-    this.formulario.get('preco')?.setValue(precoVenda);
+    this.formulario.get('preco')?.setValue(precoVenda.toFixed(2));
   }
   atualizarLucro() {
     let precoCompra = this.formulario.get('precoCompra')?.value;
@@ -191,7 +242,7 @@ export class CadastroProdutoComponent implements OnInit {
     }
     let precoVenda = this.formulario.get('preco')?.value;
     let lucro = (100*precoVenda/precoCompra) - 100;
-    this.formulario.get('lucro')?.setValue(lucro);
+    this.formulario.get('lucro')?.setValue(lucro.toFixed(2));
   }
 
   salvarCategoria(): Categoria {

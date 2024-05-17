@@ -42,6 +42,7 @@ import { MenuLateralComponent } from './layout/menu-lateral/menu-lateral.compone
 import { SelectComponent } from './form/select/select.component';
 import { MiniBotaoComponent } from './layout/mini-botao/mini-botao.component';
 import { GerenciarOpcaoComponent } from './componentes/cadastro-produto/gerenciar-opcao/gerenciar-opcao.component';
+import { EstoqueComponent } from './componentes/estoque/estoque.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { GerenciarOpcaoComponent } from './componentes/cadastro-produto/gerencia
     MenuLateralComponent,
     SelectComponent,
     MiniBotaoComponent,
-    GerenciarOpcaoComponent
+    GerenciarOpcaoComponent,
+    EstoqueComponent
   ],
   imports: [
     BrowserModule,

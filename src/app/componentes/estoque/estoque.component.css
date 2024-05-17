@@ -1,0 +1,125 @@
+.cadastro__container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: var(--corBranco);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+hr {
+    height: 1px;
+    border: 0;
+    border-top: 1px solid var(--corPrincipal);
+}
+.menu {
+    font-size: 33px;
+    color: var(--corPrincipal);
+}
+.titulo {
+    color: var(--corPrincipal);
+    text-align: center;
+    font-size: 30px;
+    width: 100%;
+}
+.flex {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.pesquisa__container {
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+}
+.label-input {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.label-input span {
+    font-size: var(--fonteNormal);
+    color: var(--corTexto);
+    font-weight: bold;
+}
+.grow {
+    flex-grow: 1;
+}
+
+
+
+
+/*CSS da table*/
+.table__container {
+    border: 1px solid var(--corPrincipal);
+    min-height: 307px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .cabecalho-tabela {
+    background-color: var(--corPrincipal);
+    color: var(--corBranco);
+    font-size: var(--fontePequena);
+    height: 17px;
+  }
+  
+  th, td, tr {
+    text-align: start;
+    border: none;
+    border-collapse: collapse;
+    padding-left: 10px;
+  }
+  tr {
+    border-bottom: 1px solid var(--corAzulClaro);
+    height: fit-content;
+    font-size: var(--fonteNormal);
+    color: var(--corTexto);
+  }
+  .tablerow:hover {
+    background-color: rgba(185, 185, 185, 0.274);
+  }
+  td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .table__img {
+    width: 25px;
+    height: 25px;
+  }
+  .nome__tabela {
+    width: 50%;
+  }
+  tr fa-icon {
+    font-size: 14px;
+  }
+  .apagar {
+    color: var(--corVermelho);
+    cursor: pointer;
+    padding: 3px 5px;
+    border-radius: 3px;
+    transition: all 0.3s;
+  }
+  .editar {
+    color: var(--corVerde);
+    margin-right: 10px;
+    padding: 3px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.3s;
+  }
+  .editar:hover {
+    background-color: var(--corVerde);
+    color: var(--corBranco);
+  }
+  .apagar:hover {
+    background-color: var(--corVermelho);
+    color: var(--corBranco);
+  }

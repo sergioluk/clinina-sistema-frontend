@@ -55,6 +55,10 @@ export class CardHomeService {
     const url = `http://localhost:8080/vender/nome/${nome}`;
     return this.http.get<ProdutoVenda[]>(url);
   }
+  pesquisarPorCodigoDeBarrasOuNome(nome: string): Observable<CadastroProduto[]>{
+    const url = `http://localhost:8080/produtos/encontrar/${nome}`;
+    return this.http.get<CadastroProduto[]>(url);
+  }
 
   aumentarEstoque(codigoDeBarras: string): Observable<Venda>{
     const url = `${this.API}/codigo-de-barras/editar/${codigoDeBarras}`;
@@ -114,6 +118,15 @@ export class CardHomeService {
   editarFiado(fiado: Fiado): Observable<Fiado> {
     const url = `${this.API}/editar-fiado/${fiado.id}`
     return this.http.put<Fiado>(url, fiado )
+  }
+  editarProduto(produto: CadastroProduto): Observable<CadastroProduto>{
+    console.log(produto.produto);
+    const url = `http://localhost:8080/produtos/editarProduto/${produto.codigoDeBarras}`;
+    return this.http.patch<CadastroProduto>(url, produto);
+  }
+  verificarCodigoDeBarras(codigoDeBarras: string): Observable<boolean>{
+    const url = `${this.API}/verificarCodigoDeBarras/${codigoDeBarras}`;
+    return this.http.get<boolean>(url);
   }
 
 }

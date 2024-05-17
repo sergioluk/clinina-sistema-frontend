@@ -3,6 +3,7 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { faCircleLeft } from '@fortawesome/free-regular-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-botao-grande',
@@ -31,6 +32,9 @@ export class BotaoGrandeComponent {
         break;
       case 'fa-circle-left':
         icone = faCircleLeft;
+        break;
+      case 'fa-plus':
+        icone = faPlus;
         break;
       default:
         icone = faCircleXmark;
