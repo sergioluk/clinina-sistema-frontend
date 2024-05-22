@@ -6,8 +6,6 @@ import { CadastroProduto, Categoria, Fornecedor, Idade, Sabor } from './cadastro
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs/operators';
 import { ViewportScroller } from '@angular/common';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { ListaId } from 'src/app/interfaces/produtoVenda';
 import { EnviarProdutoService } from 'src/app/services/enviar-produto.service';
 import { IconeService } from 'src/app/services/icone.service';
@@ -22,11 +20,7 @@ import { IconeService } from 'src/app/services/icone.service';
 })
 export class CadastroProdutoComponent implements OnInit {
 
-
-  faBars = faBars;
-
   /*Meu*/
-  faPencil = faPencil;
 
   produto!: CadastroProduto;
 
@@ -51,7 +45,7 @@ export class CadastroProdutoComponent implements OnInit {
     private formBuilder: FormBuilder,
     private viewportScroller: ViewportScroller,
     private enviarProduto: EnviarProdutoService,
-    public icone: IconeService
+    private icone: IconeService
  ){}
 
  ngOnInit(): void {
@@ -115,6 +109,9 @@ export class CadastroProdutoComponent implements OnInit {
 
 }
 
+  setIcone(icone: string) {
+    return this.icone.getIcone(icone);
+  }
   estilos() {
     return {
       'font-weight':'bold',

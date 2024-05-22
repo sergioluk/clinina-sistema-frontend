@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { faPencil } from '@fortawesome/free-solid-svg-icons';
-import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { IconeService } from 'src/app/services/icone.service';
 
 @Component({
   selector: 'app-gerenciar-opcao',
@@ -13,10 +12,13 @@ export class GerenciarOpcaoComponent {
   @Input() lista = [{id: 0, nome: ""}];
   @Output() toggleJanelaGerenciar = new EventEmitter();
 
-  faPencil = faPencil;
-  faTrashCan = faTrashCan;
-
   listaDeProdutos = ["Oi","Selecione uma categoria"];
+
+  constructor(private icone: IconeService){}
+
+  getIcone(icone: string) {
+    return this.icone.getIcone(icone);
+  }
 
   toggleJanela() {
     this.toggleJanelaGerenciar.emit();

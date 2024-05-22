@@ -13,8 +13,8 @@
           <tr class="tablerow" *ngFor="let item of lista; index as i"> 
             <td>{{ item.nome }}</td>
             <td>
-                <fa-icon class="editar" [icon]="faPencil" (click)="editarItem(i)"></fa-icon>
-                <fa-icon class="apagar" [icon]="faTrashCan" (click)="removerItemDaLista(i)"></fa-icon>
+                <fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="editarItem(i)"></fa-icon>
+                <fa-icon class="apagar" [icon]="getIcone('fa-trash-can')" (click)="removerItemDaLista(i)"></fa-icon>
             </td>
           </tr>
         </table>

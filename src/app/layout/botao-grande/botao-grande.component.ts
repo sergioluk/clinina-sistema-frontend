@@ -1,9 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import { faCircleLeft } from '@fortawesome/free-regular-svg-icons';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { IconeService } from 'src/app/services/icone.service';
 
 @Component({
   selector: 'app-botao-grande',
@@ -14,32 +10,12 @@ export class BotaoGrandeComponent {
 
   @Input() texto : string | undefined;
   @Input() cor : string | undefined;
-  @Input() icone :string | undefined;
+  @Input() icone! :string;
 
-  iconeParaMostrar(){
+  constructor(private iconeService: IconeService) {}
 
-    let icone;
-
-    switch(this.icone){
-      case 'fa-magnifying-glass':
-        icone = faMagnifyingGlass;
-        break;
-      case 'fa-circle-xmark':
-        icone = faCircleXmark;
-        break;
-      case 'fa-cart-shopping':
-        icone = faCartShopping;
-        break;
-      case 'fa-circle-left':
-        icone = faCircleLeft;
-        break;
-      case 'fa-plus':
-        icone = faPlus;
-        break;
-      default:
-        icone = faCircleXmark;
-    }
-    return icone;
+  getIcone() {
+    return this.iconeService.getIcone(this.icone);
   }
 
 }

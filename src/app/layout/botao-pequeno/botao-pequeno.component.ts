@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
-import { faCircleCheck } from '@fortawesome/free-regular-svg-icons';
+import { IconeService } from 'src/app/services/icone.service';
 
 @Component({
   selector: 'app-botao-pequeno',
@@ -11,23 +10,12 @@ export class BotaoPequenoComponent {
 
   @Input() texto : string | undefined;
   @Input() cor : string | undefined;
-  @Input() icone :string | undefined;
+  @Input() icone! :string;
 
-  iconeParaMostrar(){
+  constructor(private iconeService: IconeService) {}
 
-    let icone;
-
-    switch(this.icone){
-      case 'fa-circle-xmark':
-        icone = faCircleXmark;
-        break;
-      case 'fa-circle-check':
-        icone = faCircleCheck;
-        break;
-      default:
-        icone = faCircleXmark;
-    }
-    return icone;
+  getIcone() {
+    return this.iconeService.getIcone(this.icone);
   }
 
 }

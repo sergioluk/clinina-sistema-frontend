@@ -1,7 +1,7 @@
 <div class="cadastro__container">
     <div class="flex">
       <div class="menu">
-        <fa-icon [icon]="faBars"></fa-icon>
+        <fa-icon [icon]="getIcone('fa-bars')"></fa-icon>
       </div>
       <h1 class="titulo">ESTOQUE</h1>
     </div>
@@ -43,7 +43,7 @@
                 <td>{{ item.peso }}</td>
                 <td>
                     <!-- <app-botao-pequeno texto="Detalhe" cor="var(--corPrincipal)"></app-botao-pequeno> -->
-                    <fa-icon class="editar" [icon]="faPencil" (click)="editarItem(i)"></fa-icon>
+                    <fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="editarItem(i)"></fa-icon>
                 </td>
               </tr>
             </table>

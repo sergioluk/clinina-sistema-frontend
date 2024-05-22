@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { faPencil } from '@fortawesome/free-solid-svg-icons';
-import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { ProdutoVenda } from 'src/app/interfaces/produtoVenda';
 import { CardHomeService } from '../../card-home.service';
+import { IconeService } from 'src/app/services/icone.service';
 
 @Component({
   selector: 'app-tabela-venda',
@@ -11,7 +10,7 @@ import { CardHomeService } from '../../card-home.service';
 })
 export class TabelaVendaComponent {
 
-  constructor(private service : CardHomeService){}  
+  constructor(private service : CardHomeService, private icone: IconeService){}  
 
   @Input() listaDeProdutos: ProdutoVenda[] = [];
   @Output() totalCalculado = new EventEmitter<number>();
@@ -22,10 +21,11 @@ export class TabelaVendaComponent {
   @Output() visivelProdutoPeso = new EventEmitter();
   @Output() produtoComPeso = new EventEmitter<ProdutoVenda>();
 
-  faPencil = faPencil;
-  faTrashCan = faTrashCan;
-
   total : number = 0;
+
+  getIcone(icone: string) {
+    return this.icone.getIcone(icone);
+  }
 
   adicionarProdutoNaLista(produto: ProdutoVenda){
     //Verificar se o produto já está na tabela

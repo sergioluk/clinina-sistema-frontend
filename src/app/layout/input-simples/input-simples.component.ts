@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { CardHomeService } from 'src/app/componentes/card-home.service';
 import { ProdutoVenda } from 'src/app/interfaces/produtoVenda';
+import { IconeService } from 'src/app/services/icone.service';
 
 @Component({
   selector: 'app-input-simples',
@@ -15,6 +16,12 @@ export class InputSimplesComponent {
 
   @Output() texto = new EventEmitter<string>();
   input : string = '';
+
+  constructor(private icone: IconeService) {}
+
+  getIcone(icone: string) {
+    return this.icone.getIcone(icone);
+  }
 
   enviarTexto(texto : string){
     this.texto.emit(texto);

@@ -1,24 +1,11 @@
-import { AfterViewInit, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { CadastroProduto, Venda, VendaComQtd, Vender } from '../cadastro-produto/cadastro-produto';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { VendaComQtd, Vender } from '../cadastro-produto/cadastro-produto';
 import { CardHomeService } from '../card-home.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { faPencil } from '@fortawesome/free-solid-svg-icons';
-import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';/**/
-
-
-
-
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';/**/
-
-
-import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';/**/
 import { ProdutoVenda } from 'src/app/interfaces/produtoVenda';
 import { TabelaVendaComponent } from './tabela-venda/tabela-venda.component';
-import { EditarDescQtdComponent } from './editar-desc-qtd/editar-desc-qtd.component';
+import { IconeService } from 'src/app/services/icone.service';
 
 
 
@@ -30,21 +17,6 @@ import { EditarDescQtdComponent } from './editar-desc-qtd/editar-desc-qtd.compon
   styleUrls: ['./venda.component.css']
 })
 export class VendaComponent implements OnInit {
-
-  faXmark = faXmark;
-  faCircleXmark = faCircleXmark;
-  faBars = faBars;
-  faMagnifyingGlass = faMagnifyingGlass;/**/
-  faPencil = faPencil;
-  faTrashCan = faTrashCan;
-
- 
-
-
-
-
-
-  faCartShopping = faCartShopping;
 
   //só pra pegar o id do input pra fazer o autofocus quando apertar em cadastrar
   @ViewChild('idDoInput') inputCodigoBarras!: ElementRef;
@@ -58,6 +30,12 @@ export class VendaComponent implements OnInit {
   formaDePagamento: boolean = false;
 
   formulario!: FormGroup;
+
+  constructor(private service: CardHomeService,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private icone: IconeService  
+  ){}
 
   ngOnInit(): void {
 
@@ -109,6 +87,9 @@ export class VendaComponent implements OnInit {
   @ViewChild(TabelaVendaComponent) tabela! : TabelaVendaComponent;
   //@ViewChild(TabelaVendaComponent) editarProduto! : EditarDescQtdComponent;
   
+  getIcone(icone: string) {
+    return this.icone.getIcone(icone);
+  }
   procurarProduto(codigo : string){
     this.tabela.procurarProduto(codigo);
   }
@@ -262,9 +243,7 @@ export class VendaComponent implements OnInit {
     quantidade: 1
   }
 
-  constructor(private service: CardHomeService,
-    private router: Router,
-    private formBuilder: FormBuilder){}
+  
  
 
   venda(){

@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { IconeService } from 'src/app/services/icone.service';
 
 @Component({
   selector: 'app-mini-botao',
@@ -10,22 +9,12 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 export class MiniBotaoComponent {
   
   @Input() cor : string | undefined;
-  @Input() icone :string | undefined;
+  @Input() icone! :string;
 
-  iconeParaMostrar(){
+  constructor(private iconeService: IconeService) {}
 
-    let icone;
-
-    switch(this.icone){
-      case 'fa-x-xmark':
-        icone = faXmark;
-        break;
-      case 'fa-plus':
-        icone = faPlus;
-        break;
-      default:
-        icone = faXmark;
-    }
-    return icone;
+  getIcone() {
+    return this.iconeService.getIcone(this.icone)
   }
+  
 }

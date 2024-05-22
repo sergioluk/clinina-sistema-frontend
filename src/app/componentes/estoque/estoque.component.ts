@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { CadastroProduto } from '../cadastro-produto/cadastro-produto';
 import { Router } from '@angular/router';
 import { CardHomeService } from '../card-home.service';
 import { EnviarProdutoService } from 'src/app/services/enviar-produto.service';
+import { IconeService } from 'src/app/services/icone.service';
 
 @Component({
   selector: 'app-estoque',
@@ -13,12 +12,13 @@ import { EnviarProdutoService } from 'src/app/services/enviar-produto.service';
 })
 export class EstoqueComponent {
 
-  faBars = faBars;
-  faPencil = faPencil;
-
   listaDeProdutos: CadastroProduto[] = [];
 
-  constructor(private router: Router, private service: CardHomeService, private enviarProduto: EnviarProdutoService) {}
+  constructor(private router: Router, private service: CardHomeService, private enviarProduto: EnviarProdutoService, private icone: IconeService) {}
+
+  getIcone(icone: string) {
+    return this.icone.getIcone(icone);
+  }
 
   pesquisar(texto: string) {
     this.service.pesquisarPorCodigoDeBarrasOuNome(texto).subscribe((lista) => {

@@ -1,7 +1,7 @@
 <div class="cadastro__container">
   <div class="flex">
     <div class="menu">
-      <fa-icon [icon]="icone.getIcone('fa-bars')"></fa-icon>
+      <fa-icon [icon]="setIcone('fa-bars')"></fa-icon>
     </div>
     <h1 class="titulo">{{titulo.toUpperCase()}} PRODUTO</h1>
   </div>
@@ -20,7 +20,7 @@
         </div>
         <div class="flex-input" *ngFor="let imagem of imagensFormArray.controls; index as i">
           <input type="text" id="imagemP{{i}}" placeholder="Digite a url da imagem" [formControl]="getImagensByIndex(i)" (keyup)="populandoListaDeImagens(i)" (change)="populandoListaDeImagens(i)">
-          <app-mini-botao class="mini-botao" icone="fa-x-xmark" cor="var(--corVermelho)" (click)="removerImagem(i)"></app-mini-botao>
+          <app-mini-botao class="mini-botao" icone="fa-xmark" cor="var(--corVermelho)" (click)="removerImagem(i)"></app-mini-botao>
         </div>
       </div>
       
@@ -95,7 +95,7 @@
         </div>
         <div class="flex-input" *ngFor="let imagem of informacoesFormArray.controls; index as i">
           <input type="text" id="info{{i}}" placeholder="Digite as informações" [formControl]="getInformacoesByIndex(i)" (keyup)="populandoListaDeInformacao(i)" (change)="populandoListaDeImagens(i)">
-          <app-mini-botao class="mini-botao" icone="fa-x-xmark" cor="var(--corVermelho)" (click)="removerInformacao(i)"></app-mini-botao>
+          <app-mini-botao class="mini-botao" icone="fa-xmark" cor="var(--corVermelho)" (click)="removerInformacao(i)"></app-mini-botao>
         </div>
       </div>
       
@@ -105,8 +105,8 @@
         <app-container-image imagem="../../../assets/img/3.png"></app-container-image>
         <div class="imagens"></div>
         <div class="botoes-conteiner flex-column">
-          <app-botao-pequeno cor="var(--corVerde)" icone="" texto="{{ titulo }}" (click)="cadastrarProduto()"></app-botao-pequeno>
-          <app-botao-pequeno cor="var(--corVermelho)" icone="" texto="Cancelar" (click)="cancelar()"></app-botao-pequeno>
+          <app-botao-pequeno cor="var(--corVerde)" icone="fa-floppy-disk" texto="{{ titulo }}" (click)="cadastrarProduto()"></app-botao-pequeno>
+          <app-botao-pequeno cor="var(--corVermelho)" icone="fa-circle-xmark" texto="Cancelar" (click)="cancelar()"></app-botao-pequeno>
         </div>
       </div>
       <div class="informacoes">

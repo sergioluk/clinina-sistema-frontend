@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { ProdutoVenda } from 'src/app/interfaces/produtoVenda';
 import { CardHomeService } from '../../card-home.service';
+import { IconeService } from 'src/app/services/icone.service';
 
 @Component({
   selector: 'app-pesquisar-produto',
@@ -15,12 +14,13 @@ export class PesquisarProdutoComponent {
   @Output() visivel = new EventEmitter();
   @Output() enviarProdutoParaAdd = new EventEmitter<ProdutoVenda>();
 
-  faMagnifyingGlass = faMagnifyingGlass;
-  faCartPlus = faCartPlus;
-
   listaDeProdutosEncontrados: ProdutoVenda[] = []
 
-  constructor(private service: CardHomeService){}
+  constructor(private service: CardHomeService, private icone: IconeService){}
+
+  getIcone(icone: string) {
+    return this.icone.getIcone(icone);
+  }
 
   procurarProduto(nome: string) {
     this.service.pesquisarPorNome(nome).subscribe((listaProdutosRetornados) => {

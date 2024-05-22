@@ -1,7 +1,7 @@
 <div class="ponto-de-venda">
   <div class="flex">
     <div class="menu detalhes">
-      <fa-icon [icon]="faBars"></fa-icon>
+      <fa-icon [icon]="getIcone('fa-bars')"></fa-icon>
     </div>
     <h1 class="titulo">CLININA - PONTO DE VENDA</h1>
   </div>
@@ -19,7 +19,7 @@
   <div class="flex">
     <div class="un-qtd detalhes">
       <app-info class="width" titulo="Valor Un." valor="R$ {{ produto.preco }}"></app-info>
-      <fa-icon [icon]="faXmark"></fa-icon>
+      <fa-icon [icon]="getIcone('fa-xmark')"></fa-icon>
       <app-info class="width" titulo="Quantidade" valor="{{ produto.quantidade }}"></app-info>
     </div>
     <app-info class="width" titulo="Produto"

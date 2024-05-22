@@ -2,7 +2,7 @@
     <div class="container-pesquisar">
         <div class="label">
             <label>Nome do produto</label>
-            <fa-icon class="icon-pesquisar" [icon]="faMagnifyingGlass"></fa-icon>
+            <fa-icon class="icon-pesquisar" [icon]="getIcone('fa-magnifying-glass')"></fa-icon>
         </div>
         <app-input-simples class="width" placeholder="Digite o nome do produto" (texto)="procurarProduto($event)"></app-input-simples>
     </div>
@@ -20,7 +20,7 @@
             <td>{{ item.codigoDeBarras }}</td>
             <td class="nome__tabela2">{{ item.produto }}</td>
             <td>{{ item.preco }}</td>
-            <td><fa-icon class="add" [icon]="faCartPlus" (click)="adicionar(i)"></fa-icon></td>
+            <td><fa-icon class="add" [icon]="getIcone('fa-cart-plus')" (click)="adicionar(i)"></fa-icon></td>
           </tr>
         </table>
     </div>
