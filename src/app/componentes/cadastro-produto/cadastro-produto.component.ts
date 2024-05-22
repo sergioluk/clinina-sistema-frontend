@@ -10,6 +10,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { ListaId } from 'src/app/interfaces/produtoVenda';
 import { EnviarProdutoService } from 'src/app/services/enviar-produto.service';
+import { IconeService } from 'src/app/services/icone.service';
 
 
 
@@ -49,7 +50,8 @@ export class CadastroProdutoComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private viewportScroller: ViewportScroller,
-    private enviarProduto: EnviarProdutoService
+    private enviarProduto: EnviarProdutoService,
+    public icone: IconeService
  ){}
 
  ngOnInit(): void {
