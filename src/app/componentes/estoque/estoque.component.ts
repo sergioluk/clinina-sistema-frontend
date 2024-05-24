@@ -4,32 +4,58 @@ import { Router } from '@angular/router';
 import { CardHomeService } from '../card-home.service';
 import { EnviarProdutoService } from 'src/app/services/enviar-produto.service';
 import { IconeService } from 'src/app/services/icone.service';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-estoque',
   templateUrl: './estoque.component.html',
-  styleUrls: ['./estoque.component.css']
+  styleUrls: ['./estoque.component.css'],
 })
 export class EstoqueComponent {
 
+  loadingSpinner: boolean = false;
+  durationInSeconds = 5;
   listaDeProdutos: CadastroProduto[] = [];
 
-  constructor(private router: Router, private service: CardHomeService, private enviarProduto: EnviarProdutoService, private icone: IconeService) {}
+  constructor(
+    private router: Router, 
+    private service: CardHomeService, 
+    private enviarProduto: EnviarProdutoService, 
+    private icone: IconeService, 
+    private _snackBar: MatSnackBar) {}
+
+  
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: this.durationInSeconds * 1000,
+      panelClass: ['snackbar-estilo'] //Fazer um css customizado
+    })
+  }
 
   getIcone(icone: string) {
     return this.icone.getIcone(icone);
   }
 
   pesquisar(texto: string) {
-    this.service.pesquisarPorCodigoDeBarrasOuNome(texto).subscribe((lista) => {
-      /*
-      if (produto == null) {
-        alert("Produto não encontrado!!!!");
-        return;
-      }*/
-      this.listaDeProdutos = lista;
-    });
+    this.loadingSpinner = true;
+    this.service.pesquisarPorCodigoDeBarrasOuNome(texto).subscribe(
+      (response: HttpResponse<CadastroProduto[]>) => {
+        this.listaDeProdutos = response.body ? response.body : [];
+        console.log("Código de status HTTP do Estoque: ", response.status);
+        this.loadingSpinner = false;
+        this.openSnackBar("Pesquisa concluída Status: " + response.status, "Fechar");
+      },
+      (error: HttpErrorResponse) => {
+        console.error("Erro: ", error.message); // Mensagem de erro
+        console.error("Código de status HTTP: ", error.status); // Código de status HTTP do erro
+        this.loadingSpinner = false;
+        this.openSnackBar("Algo deu errado!", "Fechar");
+      }
+    );
   }
+
   cadastrarProduto() {
     this.router.navigate(['/cadastrarProduto']);
   }

@@ -3,7 +3,6 @@
     background-color: var(--corBranco);
     font-size: var(--fonteNormal);
     /* width: 50%; */
-    max-width: 500px; /* Ajuste conforme necessário */
     width: 100%; /* Para garantir que o modal não ultrapasse a largura máxima */
     border: 1px solid var(--corPrincipal);
     width: fit-content;

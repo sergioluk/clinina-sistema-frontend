@@ -43,6 +43,9 @@ import { SelectComponent } from './form/select/select.component';
 import { MiniBotaoComponent } from './layout/mini-botao/mini-botao.component';
 import { GerenciarOpcaoComponent } from './componentes/cadastro-produto/gerenciar-opcao/gerenciar-opcao.component';
 import { EstoqueComponent } from './componentes/estoque/estoque.component';
+import { FeedbackComponent } from './layout/feedback/feedback.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -76,7 +79,8 @@ import { EstoqueComponent } from './componentes/estoque/estoque.component';
     SelectComponent,
     MiniBotaoComponent,
     GerenciarOpcaoComponent,
-    EstoqueComponent
+    EstoqueComponent,
+    FeedbackComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +95,9 @@ import { EstoqueComponent } from './componentes/estoque/estoque.component';
     MatInputModule,
     ReactiveFormsModule,
     MatSelectModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

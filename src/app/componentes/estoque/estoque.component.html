@@ -20,7 +20,7 @@
             <!--Criar itens por páginas-->
         </div>
         <div class="table__container">
-            <table>
+            <table *ngIf="loadingSpinner == false; else loading">
                 <tr class="cabecalho-tabela">
                   <th>Foto</th>
                   <th>Código</th>
@@ -49,4 +49,21 @@
             </table>
         </div>
     </div>
+    <ng-template #loading>
+      <div class="loading">
+        <mat-spinner></mat-spinner>
+      </div>
+    </ng-template>
+    <app-feedback texto="Imported coin succesfully."></app-feedback>
+
+    <!-- snackbar -->
+    <mat-form-field>
+      <mat-label>Snack bar duration (seconds)</mat-label>
+      <input type="number" [(ngModel)]="durationInSeconds" matInput>
+    </mat-form-field>
+    
+    <button (click)="openSnackBar('teste','teste')">
+      Pizza party
+    </button>
+    <!-- fim snack-bar -->
 </div>

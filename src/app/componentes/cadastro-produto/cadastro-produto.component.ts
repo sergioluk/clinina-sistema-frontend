@@ -109,7 +109,7 @@ export class CadastroProdutoComponent implements OnInit {
 
 }
 
-  setIcone(icone: string) {
+  getIcone(icone: string) {
     return this.icone.getIcone(icone);
   }
   estilos() {

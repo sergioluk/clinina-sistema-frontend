@@ -51,6 +51,24 @@ hr {
 .grow {
     flex-grow: 1;
 }
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+::ng-deep .snackbar-estilo {
+  --mdc-snackbar-container-color: #fff; /* backgroud */
+  --mdc-snackbar-supporting-text-color: #000; /* Cor do texto */
+  --mdc-snackbar-supporting-text-font: Roboto, "Helvetica Neue", sans-serif;
+  --mdc-snackbar-supporting-text-size: var(--fonteNormal);
+}
+::ng-deep .snackbar-estilo button {
+  --mat-mdc-snack-bar-button-color: #fff; /* backgroud */
+  --mat-snack-bar-button-color: #000; /* Cor do texto */
+  
+}
+
+
 
 
 
