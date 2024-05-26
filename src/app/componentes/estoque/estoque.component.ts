@@ -6,6 +6,7 @@ import { EnviarProdutoService } from 'src/app/services/enviar-produto.service';
 import { IconeService } from 'src/app/services/icone.service';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 @Component({
   selector: 'app-estoque',
@@ -22,7 +23,8 @@ export class EstoqueComponent {
     private router: Router, 
     private service: CardHomeService, 
     private enviarProduto: EnviarProdutoService, 
-    private icone: IconeService, 
+    private icone: IconeService,
+    private snackbar: SnackbarService, 
     private _snackBar: MatSnackBar) {}
 
   
@@ -45,7 +47,8 @@ export class EstoqueComponent {
         this.listaDeProdutos = response.body ? response.body : [];
         console.log("Código de status HTTP do Estoque: ", response.status);
         this.loadingSpinner = false;
-        this.openSnackBar("Pesquisa concluída Status: " + response.status, "Fechar");
+        this.snackbar.openSnackBarSucces("Pesquisa concluída!","Fechar");
+        //this.openSnackBar("Pesquisa concluída Status: " + response.status, "Fechar");
       },
       (error: HttpErrorResponse) => {
         console.error("Erro: ", error.message); // Mensagem de erro
