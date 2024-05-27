@@ -13,7 +13,13 @@ export class SnackbarService {
   openSnackBarSucces(message: string, action: string) {
     this._snackBar.open(message, action, {
       duration: this.durationInSeconds * 1000,
-      panelClass: ['snackbar-estilo'] //Fazer um css customizado
+      panelClass: ['snackbar-sucesso'] //Fazer um css customizado
+    })
+  }
+  openSnackBarFail(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: this.durationInSeconds * 1000,
+      panelClass: ['snackbar-falha']
     })
   }
 }

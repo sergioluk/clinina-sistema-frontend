@@ -16,7 +16,6 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 export class EstoqueComponent {
 
   loadingSpinner: boolean = false;
-  durationInSeconds = 5;
   listaDeProdutos: CadastroProduto[] = [];
 
   constructor(
@@ -24,17 +23,9 @@ export class EstoqueComponent {
     private service: CardHomeService, 
     private enviarProduto: EnviarProdutoService, 
     private icone: IconeService,
-    private snackbar: SnackbarService, 
-    private _snackBar: MatSnackBar) {}
+    private snackbar: SnackbarService) {}
 
   
-
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      duration: this.durationInSeconds * 1000,
-      panelClass: ['snackbar-estilo'] //Fazer um css customizado
-    })
-  }
 
   getIcone(icone: string) {
     return this.icone.getIcone(icone);
@@ -48,13 +39,12 @@ export class EstoqueComponent {
         console.log("Código de status HTTP do Estoque: ", response.status);
         this.loadingSpinner = false;
         this.snackbar.openSnackBarSucces("Pesquisa concluída!","Fechar");
-        //this.openSnackBar("Pesquisa concluída Status: " + response.status, "Fechar");
       },
       (error: HttpErrorResponse) => {
         console.error("Erro: ", error.message); // Mensagem de erro
         console.error("Código de status HTTP: ", error.status); // Código de status HTTP do erro
         this.loadingSpinner = false;
-        this.openSnackBar("Algo deu errado!", "Fechar");
+        this.snackbar.openSnackBarFail("Algo deu errado!", "Fechar");
       }
     );
   }
