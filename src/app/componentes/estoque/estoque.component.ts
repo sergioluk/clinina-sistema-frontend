@@ -33,20 +33,23 @@ export class EstoqueComponent {
 
   pesquisar(texto: string) {
     this.loadingSpinner = true;
-    this.service.pesquisarPorCodigoDeBarrasOuNome(texto).subscribe(
-      (response: HttpResponse<CadastroProduto[]>) => {
+    this.service.pesquisarPorCodigoDeBarrasOuNome(texto).subscribe({
+      next: (response: HttpResponse<CadastroProduto[]>) => {
         this.listaDeProdutos = response.body ? response.body : [];
         console.log("Código de status HTTP do Estoque: ", response.status);
         this.loadingSpinner = false;
         this.snackbar.openSnackBarSucces("Pesquisa concluída!","Fechar");
       },
-      (error: HttpErrorResponse) => {
+      error: (error: HttpErrorResponse) => {
         console.error("Erro: ", error.message); // Mensagem de erro
         console.error("Código de status HTTP: ", error.status); // Código de status HTTP do erro
         this.loadingSpinner = false;
         this.snackbar.openSnackBarFail("Algo deu errado!", "Fechar");
+      },
+      complete: () => {
+        console.log("Requisição completa!!!");
       }
-    );
+    });
   }
 
   cadastrarProduto() {

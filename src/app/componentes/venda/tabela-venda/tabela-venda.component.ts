@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from
 import { ProdutoVenda } from 'src/app/interfaces/produtoVenda';
 import { CardHomeService } from '../../card-home.service';
 import { IconeService } from 'src/app/services/icone.service';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 @Component({
   selector: 'app-tabela-venda',
@@ -10,7 +12,11 @@ import { IconeService } from 'src/app/services/icone.service';
 })
 export class TabelaVendaComponent {
 
-  constructor(private service : CardHomeService, private icone: IconeService){}  
+  constructor(
+    private service : CardHomeService,
+    private icone: IconeService,
+    private snackbar: SnackbarService
+  ){}  
 
   @Input() listaDeProdutos: ProdutoVenda[] = [];
   @Output() totalCalculado = new EventEmitter<number>();
@@ -20,6 +26,7 @@ export class TabelaVendaComponent {
   @Output() totalDescontoCalculado = new EventEmitter<number>();
   @Output() visivelProdutoPeso = new EventEmitter();
   @Output() produtoComPeso = new EventEmitter<ProdutoVenda>();
+  @Output() spinnerEmitter = new EventEmitter<string>();
 
   total : number = 0;
 
@@ -53,21 +60,53 @@ export class TabelaVendaComponent {
   }
 
   procurarProduto(codigoDeBarras : string){
-    this.service.pesquisarPorCodigoDeBarras(codigoDeBarras).subscribe((produto) => {
-    
-      if (produto == null) {
-        alert("Produto não encontrado!!!!");
-        return;
-      }
-      if (codigoDeBarras.length <= 3) {
-        this.abrirJanelaProdutoPeso();
-        this.produtoComPeso.emit(produto);
-        return;
-      }
-      this.adicionarProdutoNaLista(produto);
-      this.calcularTotal();
+    this.spinnerEmitter.emit("true");
+    this.service.pesquisarPorCodigoDeBarras(codigoDeBarras).subscribe({
+        next: (response: HttpResponse<ProdutoVenda>) => {
+          let produto = response.body;
+          this.spinnerEmitter.emit("false");
+          if (produto == null) {
+            this.snackbar.openSnackBarFail("Produto não encontrado!!!!", "Fechar");
+            return;
+          }
+          this.snackbar.openSnackBarSucces("Produto encontrado!","Fechar");
+          if (codigoDeBarras.length <= 3) {
+            this.abrirJanelaProdutoPeso();
+            this.produtoComPeso.emit(produto);
+            return;
+          }
+          this.adicionarProdutoNaLista(produto);
+          this.calcularTotal();
+          console.log("Código de status HTTP do Estoque: ", response.status);
+        },
+        error: (error: HttpErrorResponse) => {
+          console.error("Erro: ", error.message);
+          console.error("Código de status HTTP: ", error.status);
+          this.snackbar.openSnackBarFail("Algo deu errado!", "Fechar");
+          this.spinnerEmitter.emit("false");
+        },
+        complete: () => {
+          console.log("Requisição completa!!!");
+        }
     });
   }
+
+  // procurarProduto2(codigoDeBarras : string){
+  //   this.service.pesquisarPorCodigoDeBarras(codigoDeBarras).subscribe((produto) => {
+    
+  //     if (produto == null) {
+  //       alert("Produto não encontrado!!!!");
+  //       return;
+  //     }
+  //     if (codigoDeBarras.length <= 3) {
+  //       this.abrirJanelaProdutoPeso();
+  //       this.produtoComPeso.emit(produto);
+  //       return;
+  //     }
+  //     this.adicionarProdutoNaLista(produto);
+  //     this.calcularTotal();
+  //   });
+  // }
 
   retornarNome(produto: ProdutoVenda) {
     if (produto.codigoDeBarras.length <= 3) {

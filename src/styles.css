@@ -43,7 +43,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 ::ng-deep .snackbar-sucesso {
-  --mdc-snackbar-container-color: var(--corVerde) !important; /* backgroud */
+  --mdc-snackbar-container-color: var(--corVerde); /* backgroud */
   --mdc-snackbar-supporting-text-color: var(--corBranco); /* Cor do texto */
   --mdc-snackbar-supporting-text-font: Roboto, "Helvetica Neue", sans-serif;
   --mdc-snackbar-supporting-text-size: var(--fonteNormal);

@@ -38,7 +38,8 @@
         (totalCalculado)="receberTotalCalculado($event)" (produtoClicado)="selecionarProduto($event)"
         (indexEditarProduto)="abrirJanelaEditar($event)"
         (totalDescontoCalculado)="receberTotalDescontoCalculado($event)" (visivelProdutoPeso)="toggleProdutoPeso()"
-        (produtoComPeso)="adicionarProdutoComPeso($event)">
+        (produtoComPeso)="adicionarProdutoComPeso($event)"
+        (spinnerEmitter)="toggleSpinner($event)">
       </app-tabela-venda>
       <div ngClass="w {{mostrarOuEsconderGif()}}">
         <img src="{{ src }}" alt="Gif" (error)="handleImageError($event)">
@@ -57,6 +58,9 @@
       <app-info titulo="Total" valor="R$ {{ total }}"></app-info>
     </div>
   </div>
+  <div *ngIf="loadingSpinner" class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
   <app-editar-desc-qtd *ngIf="abrirEditar" (calcularDesconto)="calcularDesconto()" (visivel)="toggleJanela()"
     [listaDeProdutos]="listaDeProdutos" [index]="index"></app-editar-desc-qtd>
   <app-cancelar-venda *ngIf="abrirCancelarCompra" (aplicarLimpar)="limparTabela()"
@@ -68,207 +72,3 @@
   <app-produto-peso *ngIf="janelaProdutoPeso" (visivel)="toggleProdutoPeso()" [produtoComPeso]="produtoComPeso"
     (adicionarProdutoComPeso)="enviarProdutoParaAdd($event)"></app-produto-peso>
 </div>
-
-
-
-
-
-
-<!--
-<div class="mainru">
-  <div class="Caixa-central">
-
-      <div class="Caixa-aberto">
-        <div class="cadastrar-codigo">
-          <div class="botao recarregar" (click)="listarFiado()">
-            Lista Fiado
-          </div>
-          <div class="botao cadastro" (click)="cadastrar()">
-            Cadastrar
-          </div>
-          <div *ngIf="divAviso">Produto Adicionado</div>
-          <input id="teste" type="search" #idDoInput autofocus [ngClass]="cadastrarOuPesquisar()" size="70" style="padding: 20px" [(ngModel)]="input" placeholder="Código de Barras" >
-          <div class="botao vender" (click)="vendaFormaDePagamento()">
-            Vender
-          </div>
-        </div>
-      </div>
-
-      <div class="Caixa-enorme">
-          <div class="Caixa-da-Esquerda">
-              <div class="Caixa-do-row-da-esquerda">
-                  <div class="Caixa-da-img">
-                      <img src="{{ produto.imagemP }}">
-                  </div>
-                  <div class="Caixa-dos-3-negocios-da-direita-na-equerda">
-                      <div class="primeira-caixa">
-                          <div class="Caixa-da-parada-azul">
-                          <h1>CÓDIGO DE BARRAS</h1>
-                      </div>
-                          <div class="Caixa-do-valor">
-                              <h3>{{ produto.codigoDeBarras }}</h3>
-                          </div>
-                      </div>
-                      <div class="segunda-caixa">
-                          <div class="Caixa-da-parada-azul">
-                          <h1>VALOR UNITÁRIO</h1>
-                      </div>
-                          <div class="Caixa-do-valor">
-                              <h3>{{ produto.preco | currency:'BRL':'symbol':'1.2-2' }}</h3>
-                          </div>
-                      </div>
-                      <div class="terceira-caixa">
-                          <div class="Caixa-da-parada-azul">
-                          <h1>TOTAL DO ITEM</h1>
-                      </div>
-                          <div class="Caixa-do-valor">
-                              <h3>-</h3>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div>
-                  <div class="Caixa-da-parada-azul">
-                      <h1>NOME</h1>
-                  </div>
-                  <div class="Caixa-do-valor">
-                      <h3>{{ produto.produto }}</h3>
-                  </div>
-              </div>
-
-          </div>
-
-          <div class="Caixa-da-Direita">
-              <div class="Caixa-da-parada-azul">
-                  <h1>LISTA DE PRODUTOS</h1>
-              </div>
-              <div class="Caixa-da-table">
-                  <table>
-                    <tr>
-                        <th></th><th class="coluna-item">N item</th><th>Codigo</th><th>Descrição</th><th>Qtd</th><th>V unit</th><th>Total</th>
-                    </tr>
-                    <tr *ngFor="let item of listaDeProdutos; index as i">
-                        <td><img src="../../../assets/img/menos.svg" alt="" class="imagem-menos" (click)="removerItemDaLista(i)"></td>
-                        <td>{{ i + 1 }}</td>
-                        <td>{{ item.codigoDeBarras }}</td>
-                        <td>{{ item.produto }}</td>
-                        <td>{{ item.quantidade }}</td>
-                        <td>{{ item.preco | currency:'BRL':'symbol':'1.2-2' }}</td>
-                        <td>{{ item.preco * item.quantidade | currency:'BRL':'symbol':'1.2-2' }}</td>
-                    </tr>
-                  </table>
-              </div>
-
-              <div class="Caixa-da-parada-azul">
-                  <h1>SUBTOTAL</h1>
-              </div>
-              <div class="Caixa-do-valor">
-                  <h3>{{ total | currency:'BRL':'symbol':'1.2-2' }}</h3>
-              </div>
-              <div class="Caixa-pra-os-2-negocios-da-direita">
-                  <div class="Caixa-de-baixo-da-esquerda">
-                      <div class="Caixa-da-parada-azul">
-                          <h1>TOTAL RECEBIDO</h1>
-                      </div>
-                      <div class="Caixa-do-valor">
-                          <h3>{{ total | currency:'BRL':'symbol':'1.2-2' }}</h3>
-                      </div>
-                  </div>
-                  <div class="Caixa-de-baixo-da-direita">
-                      <div class="Caixa-da-parada-azul">
-                          <h1>TROCO</h1>
-                      </div>
-                      <div class="Caixa-do-valor">
-                          <h3>-</h3>
-                      </div>
-                  </div>
-
-              </div>
-          </div>
-      </div>
-  </div>
-  <div class="botoes-flex">
-    <div class="botao recarregar" (click)="recarregar()">
-      Recarregar Página
-    </div>
-    <div class="botao vender" (click)="vendaFormaDePagamento()">
-      Vender
-    </div>
-  </div>
-</div>
-
-<div *ngIf="pesagem" class="fundo-cinza">
-  <div class="modal-peso">
-    <div class="modal-peso__titulo">
-      <p>Ração Fracionada</p>
-      <img src="../../../assets/img/close.svg" alt="" (click)="fecharModalPesagem()">
-    </div>
-    <h2>{{ produtoPesagem.produto }}</h2>
-    <div class="modal-peso__input">
-      <div class="peso-input">
-        <p>Peso: </p>
-        <input class="input-text" type="text" [(ngModel)]="inputPeso" (keyup)="calcularPrecoPorPeso($event)">
-      </div>
-      <p>{{ produtoPesagem.preco }} R$/Kg</p>
-    </div>
-    <div class="modal-peso__valor">
-      <p>{{ totalPeso | currency:'R$ ':'symbol':'1.2-2' }}</p>
-      <div class="modal-peso__valor__botao" (click)="adicionarProdutoPesadoNaLista()" >Confirmar</div>
-    </div>
-  </div>
-</div>
-
-<div *ngIf="formaDePagamento" class="fundo-cinza">
-  <div class="modal-forma-de-pagamento">
-    <div class="modal-forma-de-pagamento__titulo">
-      <p>Forma de Pagamento</p>
-      <img src="../../../assets/img/close.svg" alt="" (click)="fecharModalPagamento()">
-    </div>
-    <form [formGroup]="formulario" class="formulario">
-      <div class="formulario__forma-de-pagamento">
-        <h3>Selecione a forma de pagamento:</h3>
-        <div>
-          <label class="teste" for="dinheiro">Dinheiro:</label>
-          <input type="radio" id="dinheiro" value="Dinheiro" formControlName="formaPagamento">
-        </div>
-        <div>
-          <label class="teste" for="debito">Débito:</label>
-          <input type="radio" id="debito" value="Débito" formControlName="formaPagamento">
-        </div>
-        <div>
-          <label class="teste" for="credito">Crédito:</label>
-          <input type="radio" id="credito" value="Crédito" formControlName="formaPagamento">
-        </div>
-        <div>
-          <label class="teste" for="pix">Pix:</label>
-          <input type="radio" id="pix" value="Pix" formControlName="formaPagamento">
-        </div>
-        <div>
-          <label class="teste" for="fiado">Fiado:</label>
-          <input type="radio" id="fiado" value="Fiado" formControlName="formaPagamento">
-        </div>
-
-        <div class="cadastro-fiado" *ngIf="ehFiado()">
-          <div class="cadastro-fiado__nome">
-            <label for="nome">Nome:</label>
-            <br>
-            <input type="text" class="input" id="nome" formControlName="nome" placeholder="Digite o nome da pessoa.">
-            <br>
-            <label for="nome">Telefone:</label>
-            <br>
-            <input type="tel" class="input" id="telefone" formControlName="telefone" placeholder="Digite o telefone.">
-            <br>
-            <label for="nome">Endereço (Opcional):</label>
-            <br>
-            <input type="text" class="input" id="endereco" formControlName="endereco" placeholder="Digite o endereço.">
-          </div>
-        </div>
-
-        <div class="botao vender" (click)="venda()">
-          Concluir Venda
-        </div>
-
-      </div>
-    </form>
-  </div>
-</div>-->

@@ -59,6 +59,7 @@ export class VendaComponent implements OnInit {
   janelaProdutoPeso = false;
   totalDesconto: number = 0;
   src = '';
+  loadingSpinner = false;
 
   listaDeProdutos: ProdutoVenda[] = [];
 
@@ -206,6 +207,13 @@ export class VendaComponent implements OnInit {
   handleImageError(event: any) {
     event.target.src = 'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg';
   }
+  toggleSpinner(spinnerEmitter: string) {
+    if (spinnerEmitter == 'true') {
+      this.loadingSpinner = true;
+      return;
+    }
+    this.loadingSpinner = false;
+  }
   //Fim Novo
 
 /*
@@ -330,82 +338,82 @@ export class VendaComponent implements OnInit {
     window.open('/fiado', '_blank');
   }
 
-  ApertandoEnter(){
-    console.log("Codigo de barras: " + this.input);
-    let data = new Date().toLocaleString('pt-BR');
-    console.log("Hora: " + data);
+  // ApertandoEnter(){
+  //   console.log("Codigo de barras: " + this.input);
+  //   let data = new Date().toLocaleString('pt-BR');
+  //   console.log("Hora: " + data);
 
-    this.service.pesquisarPorCodigoDeBarras(this.input).subscribe((produto) => {
+  //   this.service.pesquisarPorCodigoDeBarras(this.input).subscribe((produto) => {
 
-      //parte da parte para cadastrar
-      if (this.modoCadastrar){
-        if (produto == null) {
-          this.router.navigate(['/cadastrarProduto']);
-          return;
-        } else {
-          this.service.aumentarEstoque(this.input).subscribe((produto) => {
-            this.input = '';
-            this.divAviso = true;
-            const tempoDesejado = 1000;
-            setTimeout(() => {
-              this.divAviso = false;
-            }, tempoDesejado);
+  //     //parte da parte para cadastrar
+  //     if (this.modoCadastrar){
+  //       if (produto == null) {
+  //         this.router.navigate(['/cadastrarProduto']);
+  //         return;
+  //       } else {
+  //         this.service.aumentarEstoque(this.input).subscribe((produto) => {
+  //           this.input = '';
+  //           this.divAviso = true;
+  //           const tempoDesejado = 1000;
+  //           setTimeout(() => {
+  //             this.divAviso = false;
+  //           }, tempoDesejado);
 
-          });
-        }
-        return;
-      }
+  //         });
+  //       }
+  //       return;
+  //     }
 
-      if (produto == null) {
-        alert("Produto não encontrado!!!!");
-        this.input = '';
-        return;
-      }
-      //aparecer o modal de pesagem
-      if (this.input.length <= 3) {
-        this.pesagem = true;
-        this.input = '';
-        //preenchendo o objeto da pesagem
-        this.produtoPesagem.id = produto.id;
-        this.produtoPesagem.produto = produto.produto;
-        this.produtoPesagem.codigoDeBarras = produto.codigoDeBarras;
-        this.produtoPesagem.imagemP = produto.imagemP;
-        this.produtoPesagem.preco = produto.preco;
-        this.produtoPesagem.quantidade = 1;
-        return;
-      }
-      this.produto = produto;
-      this.input = '';
-      console.log("Produto: " + this.produto.produto);
+  //     if (produto == null) {
+  //       alert("Produto não encontrado!!!!");
+  //       this.input = '';
+  //       return;
+  //     }
+  //     //aparecer o modal de pesagem
+  //     if (this.input.length <= 3) {
+  //       this.pesagem = true;
+  //       this.input = '';
+  //       //preenchendo o objeto da pesagem
+  //       this.produtoPesagem.id = produto.id;
+  //       this.produtoPesagem.produto = produto.produto;
+  //       this.produtoPesagem.codigoDeBarras = produto.codigoDeBarras;
+  //       this.produtoPesagem.imagemP = produto.imagemP;
+  //       this.produtoPesagem.preco = produto.preco;
+  //       this.produtoPesagem.quantidade = 1;
+  //       return;
+  //     }
+  //     this.produto = produto;
+  //     this.input = '';
+  //     console.log("Produto: " + this.produto.produto);
 
-      let itemJaNaLista = false;
-      let itemIndex = -1;
-      for (let index = 0; index < this.listaDeProdutosAntigoApagar.length; index++) {
-        if (this.produto.codigoDeBarras == this.listaDeProdutosAntigoApagar[index].codigoDeBarras) { //se ja tiver o item na lista de itens, só aumentar a qtd, se não criar um novo objeto para a lista
-          itemJaNaLista = true;
-          itemIndex = index;
-        }
-      }
-      if (itemJaNaLista) {
-        this.listaDeProdutosAntigoApagar[itemIndex].quantidade++;
-      } else {
-        let produtoComQtd: VendaComQtd = {
-          id: this.produto.id,
-          codigoDeBarras: this.produto.codigoDeBarras,
-          produto: this.produto.produto,
-          preco: this.produto.preco,
-          imagemP: this.produto.imagemP,
-          peso: '',
-          quantidade: 1
-        }
-        this.listaDeProdutosAntigoApagar.push(produtoComQtd);
-      }
-      //só pra pegar o total
-      //this.calcularTotal();
-    });
+  //     let itemJaNaLista = false;
+  //     let itemIndex = -1;
+  //     for (let index = 0; index < this.listaDeProdutosAntigoApagar.length; index++) {
+  //       if (this.produto.codigoDeBarras == this.listaDeProdutosAntigoApagar[index].codigoDeBarras) { //se ja tiver o item na lista de itens, só aumentar a qtd, se não criar um novo objeto para a lista
+  //         itemJaNaLista = true;
+  //         itemIndex = index;
+  //       }
+  //     }
+  //     if (itemJaNaLista) {
+  //       this.listaDeProdutosAntigoApagar[itemIndex].quantidade++;
+  //     } else {
+  //       let produtoComQtd: VendaComQtd = {
+  //         id: this.produto.id,
+  //         codigoDeBarras: this.produto.codigoDeBarras,
+  //         produto: this.produto.produto,
+  //         preco: this.produto.preco,
+  //         imagemP: this.produto.imagemP,
+  //         peso: '',
+  //         quantidade: 1
+  //       }
+  //       this.listaDeProdutosAntigoApagar.push(produtoComQtd);
+  //     }
+  //     //só pra pegar o total
+  //     //this.calcularTotal();
+  //   });
 
 
-  }
+  // }
 
   fecharModalPesagem() {
     this.pesagem = false;

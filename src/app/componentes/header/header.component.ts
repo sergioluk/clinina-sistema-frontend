@@ -44,7 +44,7 @@ onEnter(){
     console.log(this.input);
 
     this.service.pesquisarPorCodigoDeBarras(this.input).subscribe((produto) => {
-      this.produto = produto;
+      //this.produto = produto;
       this.input = '';
     });
 
