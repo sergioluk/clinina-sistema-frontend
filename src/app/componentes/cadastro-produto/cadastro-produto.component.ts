@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CardHomeService } from '../card-home.service';
 import { Router } from '@angular/router';
-import { CardHome } from '../card-home/card-home';
 import { CadastroProduto, Categoria, Fornecedor, Idade, Sabor } from './cadastro-produto';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { map } from 'rxjs/operators';

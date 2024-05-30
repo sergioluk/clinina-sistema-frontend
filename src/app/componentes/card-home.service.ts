@@ -1,7 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CardHome } from './card-home/card-home';
 import { CadastroProduto, Categoria, Fiado, Fornecedor, Idade, Relatorio, RelatorioFiado, Sabor, Venda, Vender } from './cadastro-produto/cadastro-produto';
 import { ProdutoVenda } from '../interfaces/produtoVenda';
 
@@ -15,9 +14,9 @@ export class CardHomeService {
 
   constructor(private http: HttpClient) { }
 
-  listar(): Observable<CardHome[]>{
-    return this.http.get<CardHome[]>(this.API);
-  }
+  // listar(): Observable<CardHome[]>{
+  //   return this.http.get<CardHome[]>(this.API);
+  // }
 
   listar2(): Observable<CadastroProduto[]>{
     return this.http.get<CadastroProduto[]>(this.API);
