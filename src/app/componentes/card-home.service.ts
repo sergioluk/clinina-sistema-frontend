@@ -10,8 +10,8 @@ import { ProdutoVenda } from '../interfaces/produtoVenda';
 })
 export class CardHomeService {
 
-  private readonly API = 'https://clinina-backend.onrender.com'
-  //private readonly API = 'http://localhost:8080'
+  //private readonly API = 'https://clinina-backend.onrender.com'
+  private readonly API = 'http://localhost:8080'
 
   constructor(private http: HttpClient) { }
 
@@ -48,13 +48,13 @@ export class CardHomeService {
     return this.http.put<CadastroProduto>(url, produto);
   }
 
-  vender(produtos: Vender[]): Observable<Vender[]>{
+  vender(produtos: Vender[]): Observable<HttpResponse<Vender[]>>{
     const url = `${this.API}/vender`;
-    return this.http.post<Vender[]>(url, produtos);
+    return this.http.post<Vender[]>(url, produtos, {observe: 'response'});
   }
-  pesquisarPorNome(nome: string): Observable<ProdutoVenda[]>{
+  pesquisarPorNome(nome: string): Observable<HttpResponse<ProdutoVenda[]>>{
     const url = `${this.API}/vender/nome/${nome}`;
-    return this.http.get<ProdutoVenda[]>(url);
+    return this.http.get<ProdutoVenda[]>(url, {observe: 'response'});
   }
   pesquisarPorCodigoDeBarrasOuNome(nome: string): Observable<HttpResponse<CadastroProduto[]>>{
     const url = `${this.API}/produtos/encontrar/${nome}`;

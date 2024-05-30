@@ -91,23 +91,6 @@ export class TabelaVendaComponent {
     });
   }
 
-  // procurarProduto2(codigoDeBarras : string){
-  //   this.service.pesquisarPorCodigoDeBarras(codigoDeBarras).subscribe((produto) => {
-    
-  //     if (produto == null) {
-  //       alert("Produto não encontrado!!!!");
-  //       return;
-  //     }
-  //     if (codigoDeBarras.length <= 3) {
-  //       this.abrirJanelaProdutoPeso();
-  //       this.produtoComPeso.emit(produto);
-  //       return;
-  //     }
-  //     this.adicionarProdutoNaLista(produto);
-  //     this.calcularTotal();
-  //   });
-  // }
-
   retornarNome(produto: ProdutoVenda) {
     if (produto.codigoDeBarras.length <= 3) {
       return produto.produto + " (" + produto.peso + ")";
@@ -127,10 +110,12 @@ export class TabelaVendaComponent {
   removerItemDaLista(index: number) {
     if (this.listaDeProdutos[index].quantidade > 1) {
       this.listaDeProdutos[index].quantidade -= 1;
+      this.snackbar.openSnackBarSucces("Removido 1 quantidade do produto!","Fechar");
     } else {
       this.listaDeProdutos.splice(index,1);
       //Se remover algum produto, selecionar o ultimo produto da lista
       this.selecionarProduto(this.listaDeProdutos.length - 1);
+      this.snackbar.openSnackBarSucces("Produto removido da lista!","Fechar");
     }
     this.calcularTotal();
   }

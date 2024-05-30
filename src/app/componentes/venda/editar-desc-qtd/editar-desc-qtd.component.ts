@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChange
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProdutoVenda } from 'src/app/interfaces/produtoVenda';
 import { TabelaVendaComponent } from '../tabela-venda/tabela-venda.component';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 @Component({
   selector: 'app-editar-desc-qtd',
@@ -21,7 +22,10 @@ export class EditarDescQtdComponent implements OnInit {
   @Output() visivel = new EventEmitter();
   @Output() calcularDesconto = new EventEmitter<number>();
 
-  constructor(private formBuilder: FormBuilder){}
+  constructor(
+    private formBuilder: FormBuilder,
+    private snackbar: SnackbarService
+  ){}
 
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
@@ -112,6 +116,7 @@ export class EditarDescQtdComponent implements OnInit {
     this.listaDeProdutos[this.index] = produto;
     this.calcularDesconto.emit();
     this.setVisivel();
+    this.snackbar.openSnackBarSucces("Produto editado com sucesso!","Fechar");
   }
   setVisivel() {
     this.visivel.emit();

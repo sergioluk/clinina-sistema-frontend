@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProdutoVenda } from 'src/app/interfaces/produtoVenda';
 import { TabelaVendaComponent } from './tabela-venda/tabela-venda.component';
 import { IconeService } from 'src/app/services/icone.service';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 
 
@@ -34,7 +35,8 @@ export class VendaComponent implements OnInit {
   constructor(private service: CardHomeService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private icone: IconeService  
+    private icone: IconeService ,
+    private snackbar: SnackbarService
   ){}
 
   ngOnInit(): void {
@@ -180,6 +182,8 @@ export class VendaComponent implements OnInit {
     this.totalDesconto = 0;
 
     this.randomGif();
+
+    this.snackbar.openSnackBarSucces("Compra cancelada!","Fechar");
   }
   mostrarOuEsconder() {
     if (this.listaDeProdutos.length > 0) {

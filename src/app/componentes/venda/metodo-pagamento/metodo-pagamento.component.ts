@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProdutoVenda } from 'src/app/interfaces/produtoVenda';
 import { Vender } from '../../cadastro-produto/cadastro-produto';
 import { CardHomeService } from '../../card-home.service';
+import { SnackbarService } from 'src/app/services/snackbar.service';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-metodo-pagamento',
@@ -13,10 +15,14 @@ export class MetodoPagamentoComponent implements OnInit{
 
   @Output() visivel = new EventEmitter();
   @Output() aplicarLimpar = new EventEmitter();
+  @Output() spinnerEmitter = new EventEmitter<string>();
   @Input() listaDeProdutos: ProdutoVenda[] = [];
   formulario!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private service: CardHomeService){}
+  constructor(private formBuilder: FormBuilder,
+     private service: CardHomeService,
+     private snackbar: SnackbarService
+    ){}
   
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
@@ -69,17 +75,30 @@ export class MetodoPagamentoComponent implements OnInit{
       }
 
     if (listaDeVenda.length > 0) {
-      this.service.vender(listaDeVenda).subscribe(() => {
+      this.spinnerEmitter.emit("true");
+      this.service.vender(listaDeVenda).subscribe({
         //this.router.navigate(['/home']);
         //window.location.reload();
-        this.aplicarLimpar.emit();
-        this.toggleJanela();
+        next: (response: HttpResponse<Vender[]>) => {
+          this.aplicarLimpar.emit();
+          this.toggleJanela();
+          console.log("resposta: " + response.body);
+        },
+        error: (error: HttpErrorResponse) => {
+          this.snackbar.openSnackBarFail("Algo deu errado!: " + error.status, "Fechar");
+          this.spinnerEmitter.emit("false");
+        },
+        complete: () => {
+          console.log("Requisição completa!!!");
+          this.spinnerEmitter.emit("false");
+          this.snackbar.openSnackBarSucces("Venda concluída com sucesso!","Fechar");
+        }
+
       });
     } else {
       alert("Não há produtos na lista!!");
       this.toggleJanela();
     }
   }
-  
-  
+
 }
