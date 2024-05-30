@@ -9,6 +9,7 @@ import { ViewportScroller } from '@angular/common';
 import { ListaId } from 'src/app/interfaces/produtoVenda';
 import { EnviarProdutoService } from 'src/app/services/enviar-produto.service';
 import { IconeService } from 'src/app/services/icone.service';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 
 
@@ -45,7 +46,8 @@ export class CadastroProdutoComponent implements OnInit {
     private formBuilder: FormBuilder,
     private viewportScroller: ViewportScroller,
     private enviarProduto: EnviarProdutoService,
-    private icone: IconeService
+    private icone: IconeService,
+    private snackbar: SnackbarService
  ){}
 
  ngOnInit(): void {
@@ -140,7 +142,7 @@ export class CadastroProdutoComponent implements OnInit {
       porte: valueSubmit.porte.map((v: any,i: number) => v ? this.porte[i] : null).filter((v: null) => v !== null)
     });
 
-    console.log('pingamoanidaba',valueSubmit);
+    console.log('valor formulario: ',valueSubmit);
     console.log("valido:" + this.formulario.valid);
     if (this.formulario.valid){
       if (this.modoEdicao) {
@@ -148,12 +150,14 @@ export class CadastroProdutoComponent implements OnInit {
         this.service.editarProduto(valueSubmit).subscribe(() => {
           this.viewportScroller.scrollToPosition([0, 0]);
           window.location.reload();
+          this.snackbar.openSnackBarSucces("Produto alterado com sucesso!", "Fechar");
         });
       } else {
         this.service.criar(valueSubmit).subscribe(() => {
           //this.router.navigate(['/home']);
           this.viewportScroller.scrollToPosition([0, 0]);
           window.location.reload();
+          this.snackbar.openSnackBarSucces("Produto cadastrado com sucesso!", "Fechar");
         });
       }
     }
