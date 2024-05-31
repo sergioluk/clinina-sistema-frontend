@@ -6,20 +6,22 @@
     <h1 class="titulo">RELATÓRIO DE VENDAS</h1>
   </div>
   <hr>
-  <form [formGroup]="formulario">
-    <mat-form-field>
-      <mat-label>Data 1</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="data1">
-      <mat-hint>DD/MM/YYYY</mat-hint>
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  </form>
+  <div class="data">
+    <form [formGroup]="formulario">
+      <mat-form-field>
+        <mat-label>Selecione a data</mat-label>
+        <mat-date-range-input [rangePicker]="picker" disabled>
+          <input matStartDate placeholder="Start date" formControlName="start">
+          <input matEndDate placeholder="End date" formControlName="end">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker disabled="false"></mat-date-range-picker>
+      </mat-form-field>
+    </form>
+    <app-botao-pequeno icone="fa-circle-check" texto="Pesquisar" cor="var(--corVerde)" (click)="pesquisar()"></app-botao-pequeno>
+  </div>
 
-  <h1>Data do input: {{ formulario.get("data1")?.value }}</h1>
-  <h1>Data do input: {{ formulario.get("data1")?.value.getDate() }} / {{ formulario.get("data1")?.value.getMonth() + 1 }} / {{ formulario.get("data1")?.value.getFullYear() }}</h1>
-  
-  <button (click)="atualizar()">Atualizar</button>
+  <h2 class="titulo-data">{{ mostrarData() }}</h2>
 
   <div class="table__container">
     <table>
@@ -33,40 +35,25 @@
           <th>Horário</th>
           <th>Forma de pagamento</th>
         </tr>
-      <tr class="tablerow" *ngFor="let item of listaDeItensVendidos; index as i"> 
+      <tr class="tablerow" *ngFor="let item of listaDeItensVendidos; index as i">
         <td><img class="table__img" src="{{ item.imagemP }}" alt="Imagem do produto" (error)="handleImageError($event)"></td>
         <td>{{ item.produto }} <span *ngIf="verificarSeFoiFracionado(item.peso)"> ({{ item.peso }})</span></td>
         <td>{{ item.quantidade }}</td>
         <td>{{ item.precoUnitario | currency:'R$ ':'symbol':'1.2-2' }}</td>
         <td>{{ item.desconto ? item.desconto : "-" }}</td>
-        <td>{{ item.precoTotal | currency:'R$ ':'symbol':'1.2-2' }}</td>
+        <td>{{ calcularParcial(item) | currency:'R$ ':'symbol':'1.2-2' }}</td>
         <td>{{ item.data | date:'HH:mm'  }}</td>
         <td>{{ item.pagamento }}</td>
       </tr>
     </table>
   </div>
-  <table>
-    <tr>
-      <!-- <th class="foto">Foto</th> -->
-      <th class="nome-do-produto">Nome do Produto</th>
-      <th class="quantidade">Qtd</th>
-      <th class="valor-unitario">Valor unitário</th>
-      <th class="valor-total">Valor Total</th>
-      <th>Hora Venda</th>
-    </tr>
-    <tr *ngFor="let item of listaDeItensVendidos">
-      <!-- <td><img src="{{ item.imagemP }}" alt=""></td> -->
-      <td>{{ item.produto }} <span *ngIf="verificarSeFoiFracionado(item.peso)"> ({{ item.peso }})</span></td>
-      <td>{{ item.quantidade }}</td>
-      <td>{{ item.precoUnitario | currency:'R$ ':'symbol':'1.2-2' }}</td>
-      <td>{{ item.precoTotal | currency:'R$ ':'symbol':'1.2-2' }}</td>
-      <td>{{ item.data | date:'HH:mm' }}</td>
-    </tr>
-    <tr>
-      <td colspan="3" class="sem-borda"></td>
-      <td colspan="3" class="total">Total: {{ total | currency:'R$ ':'symbol':'1.2-2' }}</td>
-    </tr>
-  </table>
+  <div class="total">
+    <app-info titulo="Total" valor="{{ total | currency:'R$ ':'symbol':'1.2-2' }}"></app-info>
+  </div>
+
+  <div *ngIf="loadingSpinner" class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
 
   <!--<button (click)="imprimirConteudo()">Imprimir Conteúdo</button>-->
 

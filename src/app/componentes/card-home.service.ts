@@ -105,16 +105,21 @@ export class CardHomeService {
     return this.http.post<Fornecedor>(url, fornecedor);
   }
 
-  pegarListaDeItensVendidos(data: {dia: number, mes: number, ano: number}): Observable<Relatorio[]>{
+  pegarListaDeItensVendidos(data:
+    {start_dia: number, start_mes: number, start_ano: number,
+      end_dia: number, end_mes: number, end_ano: number}): Observable<HttpResponse<Relatorio[]>>{
     const url = this.API + "/produtos/relatorio";
 
     // Criar os parâmetros da URL
     let params = new HttpParams()
-      .set('dia', data.dia.toString())
-      .set('mes', data.mes.toString())
-      .set('ano', data.ano.toString());
+      .set('start_dia', data.start_dia.toString())
+      .set('start_mes', data.start_mes.toString())
+      .set('start_ano', data.start_ano.toString())
+      .set('end_dia', data.end_dia.toString())
+      .set('end_mes', data.end_mes.toString())
+      .set('end_ano', data.end_ano.toString());
 
-    return this.http.get<Relatorio[]>(url, { params });
+    return this.http.get<Relatorio[]>(url, { params, observe: 'response' });
   }
 
   pegarListaDeFiado(): Observable<RelatorioFiado[]>{
