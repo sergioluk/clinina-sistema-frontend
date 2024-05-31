@@ -1,14 +1,53 @@
-<div class="fundo-branco" id="conteudoParaImprimir">
-  <div class="header">
-    <h1>Relatório De Vendas</h1>
-    <h2>10/05/24</h2>
+<div class="relatorio__container" id="conteudoParaImprimir">
+  <div class="flex">
+    <div class="menu">
+      <fa-icon [icon]="getIcone('fa-bars')"></fa-icon>
+    </div>
+    <h1 class="titulo">RELATÓRIO DE VENDAS</h1>
   </div>
-  <div class="titulo">
-    <h2>Lista de Produtos Vendidos</h2>
+  <hr>
+  <form [formGroup]="formulario">
+    <mat-form-field>
+      <mat-label>Data 1</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="data1">
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </form>
+
+  <h1>Data do input: {{ formulario.get("data1")?.value }}</h1>
+  <h1>Data do input: {{ formulario.get("data1")?.value.getDate() }} / {{ formulario.get("data1")?.value.getMonth() + 1 }} / {{ formulario.get("data1")?.value.getFullYear() }}</h1>
+  
+  <button (click)="atualizar()">Atualizar</button>
+
+  <div class="table__container">
+    <table>
+        <tr class="cabecalho-tabela">
+          <th>Foto</th>
+          <th class="nome__tabela">Nome do produto</th>
+          <th>Qtd</th>
+          <th>Valor Un.</th>
+          <th>Desc.</th>
+          <th>Total</th>
+          <th>Horário</th>
+          <th>Forma de pagamento</th>
+        </tr>
+      <tr class="tablerow" *ngFor="let item of listaDeItensVendidos; index as i"> 
+        <td><img class="table__img" src="{{ item.imagemP }}" alt="Imagem do produto" (error)="handleImageError($event)"></td>
+        <td>{{ item.produto }} <span *ngIf="verificarSeFoiFracionado(item.peso)"> ({{ item.peso }})</span></td>
+        <td>{{ item.quantidade }}</td>
+        <td>{{ item.precoUnitario | currency:'R$ ':'symbol':'1.2-2' }}</td>
+        <td>{{ item.desconto ? item.desconto : "-" }}</td>
+        <td>{{ item.precoTotal | currency:'R$ ':'symbol':'1.2-2' }}</td>
+        <td>{{ item.data | date:'HH:mm'  }}</td>
+        <td>{{ item.pagamento }}</td>
+      </tr>
+    </table>
   </div>
   <table>
     <tr>
-      <th class="foto">Foto</th>
+      <!-- <th class="foto">Foto</th> -->
       <th class="nome-do-produto">Nome do Produto</th>
       <th class="quantidade">Qtd</th>
       <th class="valor-unitario">Valor unitário</th>
@@ -16,7 +55,7 @@
       <th>Hora Venda</th>
     </tr>
     <tr *ngFor="let item of listaDeItensVendidos">
-      <td><img src="{{ item.imagemP }}" alt=""></td>
+      <!-- <td><img src="{{ item.imagemP }}" alt=""></td> -->
       <td>{{ item.produto }} <span *ngIf="verificarSeFoiFracionado(item.peso)"> ({{ item.peso }})</span></td>
       <td>{{ item.quantidade }}</td>
       <td>{{ item.precoUnitario | currency:'R$ ':'symbol':'1.2-2' }}</td>

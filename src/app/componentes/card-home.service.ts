@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CadastroProduto, Categoria, Fiado, Fornecedor, Idade, Relatorio, RelatorioFiado, Sabor, Venda, Vender } from './cadastro-produto/cadastro-produto';
@@ -105,9 +105,16 @@ export class CardHomeService {
     return this.http.post<Fornecedor>(url, fornecedor);
   }
 
-  pegarListaDeItensVendidos(): Observable<Relatorio[]>{
+  pegarListaDeItensVendidos(data: {dia: number, mes: number, ano: number}): Observable<Relatorio[]>{
     const url = this.API + "/produtos/relatorio";
-    return this.http.get<Relatorio[]>(url);
+
+    // Criar os parâmetros da URL
+    let params = new HttpParams()
+      .set('dia', data.dia.toString())
+      .set('mes', data.mes.toString())
+      .set('ano', data.ano.toString());
+
+    return this.http.get<Relatorio[]>(url, { params });
   }
 
   pegarListaDeFiado(): Observable<RelatorioFiado[]>{

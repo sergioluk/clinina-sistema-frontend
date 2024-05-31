@@ -40,6 +40,8 @@ import { EstoqueComponent } from './componentes/estoque/estoque.component';
 import { FeedbackComponent } from './layout/feedback/feedback.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -85,7 +87,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatSelectModule,
     FontAwesomeModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

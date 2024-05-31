@@ -98,6 +98,8 @@ export interface CadastroProduto {
     precoTotal: number
     peso: string
     data: Date
+    pagamento: string
+    desconto: number
   }
 
   //Para o relatório de fiado
