@@ -96,6 +96,10 @@ export class VendaComponent implements OnInit {
   procurarProduto(codigo : string){
     this.tabela.procurarProduto(codigo);
   }
+  enviarProdutoComPesoParaAdd(produto: ProdutoVenda) {
+    this.adicionarProdutoComPeso(produto);
+    this.janelaProdutoPeso = true;
+  }
   enviarProdutoParaAdd(produto: ProdutoVenda) {
     this.tabela.adicionarProdutoPeloPesquisar(produto);
   }

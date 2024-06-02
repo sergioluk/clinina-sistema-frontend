@@ -15,6 +15,7 @@ export class PesquisarProdutoComponent {
   @Input() listaDeProdutos: ProdutoVenda[] = [];
   @Output() visivel = new EventEmitter();
   @Output() enviarProdutoParaAdd = new EventEmitter<ProdutoVenda>();
+  @Output() enviarProdutoComPesoParaAdd = new EventEmitter<ProdutoVenda>();
   @Output() spinnerEmitter = new EventEmitter<string>();
 
   listaDeProdutosEncontrados: ProdutoVenda[] = []
@@ -53,6 +54,11 @@ export class PesquisarProdutoComponent {
   }
   adicionar(index: number) {
     let produto = this.listaDeProdutosEncontrados[index];
+    //se o produto for fracionado, mandar para o componente produto-peso
+    if (produto.codigoDeBarras.length <= 3) {
+      this.enviarProdutoComPesoParaAdd.emit(produto);
+      return;
+    }
     this.enviarProdutoParaAdd.emit(produto);
     //this.listaDeProdutos.push(produto);
   }
