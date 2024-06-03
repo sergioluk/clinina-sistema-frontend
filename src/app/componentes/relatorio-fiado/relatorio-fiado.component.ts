@@ -15,6 +15,8 @@ export class RelatorioFiadoComponent implements OnInit {
   modalEditar: boolean = false;
   indexProp: number = -1;
   formulario!: FormGroup;
+  loadingSpinner: boolean = false;
+  linhaExpandida: number | null = null;
 
   constructor(
     private service: CardHomeService,
@@ -33,10 +35,25 @@ export class RelatorioFiadoComponent implements OnInit {
     });
 
   }
-
+  /*meu*/
   getIcone(icone: string) {
     return this.icone.getIcone(icone);
   }
+  editarItem(index: number) {
+
+  }
+  toggleLinhaExpandida(index: number): void {
+    this.linhaExpandida = this.linhaExpandida === index ? null : index;
+  }
+  /*fim meu */
+
+
+  
+
+  
+ 
+
+
 
   verificarSeFoiFracionado(peso: string) {
     if(peso == '' || peso == null){

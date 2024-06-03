@@ -9,34 +9,56 @@
 
   <div class="table__container">
     <table>
-        <tr class="cabecalho-tabela">
-          <th class="nome__tabela">Nome</th>
-          <th>Telefone</th>
-          <th>Endereço</th>
-          <th>Data da Compra</th>
-          <th>Total Dívida</th>
-          <th>Status</th>
-          <th>Ações</th>
-          <th>Modificado</th>
-        </tr>
-      <tr class="tablerow" *ngFor="let fiado of listaDeFiado; let i = index"> 
-        <td><img class="table__img" src="{{ item.imagemP }}" alt="Imagem do produto"></td>
-        <td>{{ item.codigoDeBarras }}</td>
-        <td>{{ item.produto }}</td>
-        <td>{{ item.estoque }}</td>
-        <td>{{ item.precoCompra }}</td>
-        <td>{{ item.preco }}</td>
-        <td>{{ calcularLucro(item) }}</td>
-        <td>{{ item.peso }}</td>
-        <td>
-            <!-- <app-botao-pequeno texto="Detalhe" cor="var(--corPrincipal)"></app-botao-pequeno> -->
-            <fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="editarItem(i)"></fa-icon>
-        </td>
+      <tr class="cabecalho-tabela">
+        <th class="nome__tabela">Nome</th>
+        <th>Telefone</th>
+        <th>Endereço</th>
+        <th>Data da Compra</th>
+        <th>Pagamento</th>
+        <th>Total Dívida</th>
+        <th>Status</th>
+        <th>Ações</th>
+        <th>Modificado</th>
       </tr>
+      
+      <ng-container *ngFor="let fiado of listaDeFiado; let i = index">
+        <tr class="tablerow" (click)="toggleLinhaExpandida(i)">
+          <td>{{ fiado.nome }}</td>
+          <td>{{ fiado.telefone }}</td>
+          <td>{{ fiado.endereco }}</td>
+          <td>{{ fiado.data }}</td>
+          <td>TODO</td>
+          <td>{{ fiado.valorTotal }}</td>
+          <td>{{ pagou(fiado.pagou) }}</td>
+          <td>
+            <fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="editarItem(i)"></fa-icon>
+            <fa-icon class="apagar" [icon]="getIcone('fa-trash-can')" (click)="editarItem(i)"></fa-icon>
+          </td>
+          <td>TODO</td>
+        </tr>
+        <tr *ngIf="linhaExpandida === i">
+          <td colspan="9">
+            <table>
+              <tr class="tr-sem-borda">
+                <th>Foto</th><th>Produto</th><th>Qtd</th><th>Preço Un.</th><th>Total</th>
+              </tr>
+              <tr class="tr-sem-borda" *ngFor="let itens of listaDeFiado[i].itens">
+                <td><img class="table__img" src="{{ itens.imagemP }}" alt=""></td>
+                <td>{{ itens.produto }}<span *ngIf="verificarSeFoiFracionado(itens.peso)"> ({{ itens.peso }})</span></td>
+                <td>{{ itens.quantidade }}</td>
+                <td>{{ itens.precoUnitario | currency:'R$ ':'symbol':'1.2-2' }}</td>
+                <td>{{ itens.precoTotal | currency:'R$ ':'symbol':'1.2-2'  }}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </ng-container>
     </table>
+
   </div>
 
-  <div *ngIf="loadingSpinner" class="spinner">
+
+  <!-- <div *ngIf="loadingSpinner" class="spinner">
     <mat-spinner></mat-spinner>
   </div>
 
@@ -107,7 +129,7 @@
     <div class="flex">
       <p>Lista de fiado vazia!</p>
     </div>
-  </ng-template>
+  </ng-template> -->
 
   
 
