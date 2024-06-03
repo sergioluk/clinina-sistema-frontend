@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CardHomeService } from '../card-home.service';
 import { Fiado, RelatorioFiado } from '../cadastro-produto/cadastro-produto';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { IconeService } from 'src/app/services/icone.service';
 
 @Component({
   selector: 'app-relatorio-fiado',
@@ -15,8 +16,11 @@ export class RelatorioFiadoComponent implements OnInit {
   indexProp: number = -1;
   formulario!: FormGroup;
 
-  constructor(private service: CardHomeService,
-    private formBuilder: FormBuilder){}
+  constructor(
+    private service: CardHomeService,
+    private formBuilder: FormBuilder,
+    private icone: IconeService
+  ){}
 
   ngOnInit(): void {
 
@@ -28,6 +32,10 @@ export class RelatorioFiadoComponent implements OnInit {
       this.listaDeFiado = listaDeFiado;
     });
 
+  }
+
+  getIcone(icone: string) {
+    return this.icone.getIcone(icone);
   }
 
   verificarSeFoiFracionado(peso: string) {

@@ -1,69 +1,116 @@
-<div class="fundo-branco" id="conteudoParaImprimir">
-  <div class="titulo">
-    <h2>Lista Fiado</h2>
-  </div>
-  <table *ngIf="listaDeFiado.length > 0, else semFiado">
-    <tr>
-      <th class="foto">Nome</th>
-      <th class="nome-do-produto">Telefone</th>
-      <th class="quantidade">Endereço</th>
-      <th class="valor-unitario">Data da compra</th>
-      <th class="valor-total">Valor Total</th>
-      <th>itens</th>
-      <th>Situação</th>
-      <th>Ação</th>
-    </tr>
-    <tr *ngFor="let fiado of listaDeFiado; let i = index">
-      <td>{{ fiado.nome }}</td>
-      <td>{{ fiado.telefone }} </td>
-      <td>{{ fiado.endereco }}</td>
-      <td>{{ fiado.data | date:'dd/MM/yyyy HH:mm' }}</td>
-      <td>{{ fiado.valorTotal | currency:'R$ ':'symbol':'1.2-2' }}</td>
-      <td>
-        <div class="itens-flex" *ngFor="let itens of listaDeFiado[i].itens">
-          <img src="{{ itens.imagemP }}" alt="">
-          <p>- {{ itens.produto }}<span *ngIf="verificarSeFoiFracionado(itens.peso)"> ({{ itens.peso }})</span></p>
-          <p>- Qtd: {{ itens.quantidade }}</p>
-          <p>- Preço Un: {{ itens.precoUnitario | currency:'R$ ':'symbol':'1.2-2' }}</p>
-          <p>- Total: {{ itens.precoTotal | currency:'R$ ':'symbol':'1.2-2'  }}</p>
-        </div>
-      </td>
-      <td [ngClass]="mudarCorVerdeVermelho(fiado.pagou)">{{ pagou(fiado.pagou) }}</td>
-      <td><img (click)="abrirModal(i)" class="edit" src="../../../assets/img/edit.svg" alt=""></td>
-
-    </tr>
-  </table>
-
-</div>
-
-<div *ngIf="modalEditar" class="fundo-cinza">
-  <div class="modal-fiado">
-    <div class="modal-fiado__titulo">
-      <p>Situação</p>
-      <img src="../../../assets/img/close.svg" alt="" (click)="fecharModalEditar()">
-    </div>
-    <form [formGroup]="formulario" class="formulario">
-      <div class="formulario__fiado">
-        <h3>Selecione a nova situação:</h3>
-        <div>
-          <label class="teste" for="devendo">Devendo:</label>
-          <input type="radio" id="devendo" value=0 formControlName="situacao">
-        </div>
-        <div>
-          <label class="teste" for="pago">Pago:</label>
-          <input type="radio" id="pago" value=1 formControlName="situacao">
-        </div>
-        <div class="botao vender" (click)="editar(indexProp)">
-          Aplicar edição
-        </div>
-
-      </div>
-    </form>
-  </div>
-</div>
-
-<ng-template #semFiado>
+<div class="fiado__container">
   <div class="flex">
-    <p>Lista de fiado vazia!</p>
+    <div class="menu">
+      <fa-icon [icon]="getIcone('fa-bars')"></fa-icon>
+    </div>
+    <h1 class="titulo">Lista de Fiados</h1>
   </div>
-</ng-template>
+  <hr>
+
+  <div class="table__container">
+    <table>
+        <tr class="cabecalho-tabela">
+          <th class="nome__tabela">Nome</th>
+          <th>Telefone</th>
+          <th>Endereço</th>
+          <th>Data da Compra</th>
+          <th>Total Dívida</th>
+          <th>Status</th>
+          <th>Ações</th>
+          <th>Modificado</th>
+        </tr>
+      <tr class="tablerow" *ngFor="let fiado of listaDeFiado; let i = index"> 
+        <td><img class="table__img" src="{{ item.imagemP }}" alt="Imagem do produto"></td>
+        <td>{{ item.codigoDeBarras }}</td>
+        <td>{{ item.produto }}</td>
+        <td>{{ item.estoque }}</td>
+        <td>{{ item.precoCompra }}</td>
+        <td>{{ item.preco }}</td>
+        <td>{{ calcularLucro(item) }}</td>
+        <td>{{ item.peso }}</td>
+        <td>
+            <!-- <app-botao-pequeno texto="Detalhe" cor="var(--corPrincipal)"></app-botao-pequeno> -->
+            <fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="editarItem(i)"></fa-icon>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div *ngIf="loadingSpinner" class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div class="fundo-branco" id="conteudoParaImprimir">
+    <div class="titulo">
+      <h2>Lista Fiado</h2>
+    </div>
+    <table *ngIf="listaDeFiado.length > 0, else semFiado">
+      <tr>
+        <th class="foto">Nome</th>
+        <th class="nome-do-produto">Telefone</th>
+        <th class="quantidade">Endereço</th>
+        <th class="valor-unitario">Data da compra</th>
+        <th class="valor-total">Valor Total</th>
+        <th>itens</th>
+        <th>Situação</th>
+        <th>Ação</th>
+      </tr>
+      <tr *ngFor="let fiado of listaDeFiado; let i = index">
+        <td>{{ fiado.nome }}</td>
+        <td>{{ fiado.telefone }} </td>
+        <td>{{ fiado.endereco }}</td>
+        <td>{{ fiado.data | date:'dd/MM/yyyy HH:mm' }}</td>
+        <td>{{ fiado.valorTotal | currency:'R$ ':'symbol':'1.2-2' }}</td>
+        <td>
+          <div class="itens-flex" *ngFor="let itens of listaDeFiado[i].itens">
+            <img src="{{ itens.imagemP }}" alt="">
+            <p>- {{ itens.produto }}<span *ngIf="verificarSeFoiFracionado(itens.peso)"> ({{ itens.peso }})</span></p>
+            <p>- Qtd: {{ itens.quantidade }}</p>
+            <p>- Preço Un: {{ itens.precoUnitario | currency:'R$ ':'symbol':'1.2-2' }}</p>
+            <p>- Total: {{ itens.precoTotal | currency:'R$ ':'symbol':'1.2-2'  }}</p>
+          </div>
+        </td>
+        <td [ngClass]="mudarCorVerdeVermelho(fiado.pagou)">{{ pagou(fiado.pagou) }}</td>
+        <td><img (click)="abrirModal(i)" class="edit" src="../../../assets/img/edit.svg" alt=""></td>
+  
+      </tr>
+    </table>
+  
+  </div>
+  
+  <div *ngIf="modalEditar" class="fundo-cinza">
+    <div class="modal-fiado">
+      <div class="modal-fiado__titulo">
+        <p>Situação</p>
+        <img src="../../../assets/img/close.svg" alt="" (click)="fecharModalEditar()">
+      </div>
+      <form [formGroup]="formulario" class="formulario">
+        <div class="formulario__fiado">
+          <h3>Selecione a nova situação:</h3>
+          <div>
+            <label class="teste" for="devendo">Devendo:</label>
+            <input type="radio" id="devendo" value=0 formControlName="situacao">
+          </div>
+          <div>
+            <label class="teste" for="pago">Pago:</label>
+            <input type="radio" id="pago" value=1 formControlName="situacao">
+          </div>
+          <div class="botao vender" (click)="editar(indexProp)">
+            Aplicar edição
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <ng-template #semFiado>
+    <div class="flex">
+      <p>Lista de fiado vazia!</p>
+    </div>
+  </ng-template>
+
+  
+
+</div>
+
+
