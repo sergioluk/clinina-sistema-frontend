@@ -12,7 +12,7 @@ import { IconeService } from 'src/app/services/icone.service';
 export class RelatorioFiadoComponent implements OnInit {
 
   listaDeFiado: RelatorioFiado[] = [];
-  modalEditar: boolean = false;
+  janelaEditar: boolean = false;
   indexProp: number = -1;
   formulario!: FormGroup;
   loadingSpinner: boolean = false;
@@ -40,10 +40,16 @@ export class RelatorioFiadoComponent implements OnInit {
     return this.icone.getIcone(icone);
   }
   editarItem(index: number) {
-
+    this.toggleEditarStatus();
   }
   toggleLinhaExpandida(index: number): void {
     this.linhaExpandida = this.linhaExpandida === index ? null : index;
+  }
+  getStatus(status: number): string {
+    return status == 1 ? "pago" : "devendo";
+  }
+  toggleEditarStatus() {
+    this.janelaEditar = !this.janelaEditar;
   }
   /*fim meu */
 
@@ -70,7 +76,7 @@ export class RelatorioFiadoComponent implements OnInit {
   }
 
   abrirModal(index: number){
-    this.modalEditar = true;
+    //this.modalEditar = true;
     this.indexProp = index;
   }
 
@@ -92,7 +98,7 @@ export class RelatorioFiadoComponent implements OnInit {
 
 
   fecharModalEditar(){
-    this.modalEditar = false;
+    //this.modalEditar = false;
     this.indexProp = -1;
     this.formulario.get('situacao')?.setValue('');
   }

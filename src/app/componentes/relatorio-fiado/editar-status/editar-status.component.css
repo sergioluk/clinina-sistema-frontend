@@ -1,0 +1,21 @@
+.container, .inputs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.form_flex {
+    display: flex;
+    gap: 10px;
+}
+#devendo {
+    margin-left: 10px;
+}
+h3 {
+    margin: 0;
+}
+.botao-container {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}

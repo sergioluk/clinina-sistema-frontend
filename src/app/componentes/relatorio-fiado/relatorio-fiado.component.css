@@ -46,7 +46,7 @@ hr {
 /*CSS da table*/
 .table__container {
   border: 1px solid var(--corPrincipal);
-  min-height: 307px;
+  height: auto;
 }
 table {
   width: 100%;
@@ -111,6 +111,12 @@ tr fa-icon {
 .apagar:hover {
   background-color: var(--corVermelho);
   color: var(--corBranco);
+}
+.pago {
+  background-color: #CBFFCA;
+}
+.devendo {
+  background-color: #FFC9C9;
 }
 
 

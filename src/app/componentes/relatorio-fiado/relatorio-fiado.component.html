@@ -22,13 +22,13 @@
       </tr>
       
       <ng-container *ngFor="let fiado of listaDeFiado; let i = index">
-        <tr class="tablerow" (click)="toggleLinhaExpandida(i)">
+        <tr [ngClass]="getStatus(fiado.pagou)" class="tablerow" (click)="toggleLinhaExpandida(i)">
           <td>{{ fiado.nome }}</td>
           <td>{{ fiado.telefone }}</td>
           <td>{{ fiado.endereco }}</td>
-          <td>{{ fiado.data }}</td>
+          <td>{{ fiado.data | date:'dd/MM/yyyy HH:mm' }}</td>
           <td>TODO</td>
-          <td>{{ fiado.valorTotal }}</td>
+          <td>{{ fiado.valorTotal | currency:'R$ ':'symbol':'1.2-2' }}</td>
           <td>{{ pagou(fiado.pagou) }}</td>
           <td>
             <fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="editarItem(i)"></fa-icon>
@@ -54,9 +54,10 @@
         </tr>
       </ng-container>
     </table>
-
   </div>
 
+  <app-editar-status *ngIf="janelaEditar" (visivel)="toggleEditarStatus()"></app-editar-status>
+  <app-apagar-fiado></app-apagar-fiado>
 
   <!-- <div *ngIf="loadingSpinner" class="spinner">
     <mat-spinner></mat-spinner>

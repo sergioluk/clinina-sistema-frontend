@@ -6,7 +6,6 @@
     <h1 class="titulo">{{titulo.toUpperCase()}} PRODUTO</h1>
   </div>
   <hr>
-  <p>https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg</p>
   <div class="container">
     <form [formGroup]="formulario" class="formulario">
       <app-input [ngStyle]="estilos()" type="text" for="codigoDeBarras" label="Código de barras *" placeholder="Aponte para o o código de barras" formControlName="codigoDeBarras" (change)="verificarCodigoDeBarras()"></app-input>

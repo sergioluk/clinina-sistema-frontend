@@ -42,6 +42,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import { EditarStatusComponent } from './componentes/relatorio-fiado/editar-status/editar-status.component';
+import { ApagarFiadoComponent } from './componentes/relatorio-fiado/apagar-fiado/apagar-fiado.component';
 
 
 @NgModule({
@@ -71,7 +73,9 @@ import {MatNativeDateModule} from '@angular/material/core';
     MiniBotaoComponent,
     GerenciarOpcaoComponent,
     EstoqueComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    EditarStatusComponent,
+    ApagarFiadoComponent
   ],
   imports: [
     BrowserModule,
