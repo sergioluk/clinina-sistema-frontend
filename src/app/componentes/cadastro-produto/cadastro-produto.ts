@@ -112,6 +112,8 @@ export interface CadastroProduto {
     valorTotal: number
     itens: Itens[]
     pagou: number
+    modified_at: Date
+    pagamento: number
   }
   //para ser usado nos itens de cada fiado
   export interface Itens {
@@ -129,4 +131,6 @@ export interface CadastroProduto {
   export interface Fiado {
     id?: number
     pagou: number
+    pagamento: number
+    modified_at: Date
   }

@@ -124,3 +124,24 @@ tr fa-icon {
   border: none;
   cursor: default;
 }
+
+::ng-deep .snackbar-sucesso {
+  --mdc-snackbar-container-color: var(--corVerde); /* backgroud */
+  --mdc-snackbar-supporting-text-color: var(--corBranco); /* Cor do texto */
+  --mdc-snackbar-supporting-text-font: Roboto, "Helvetica Neue", sans-serif;
+  --mdc-snackbar-supporting-text-size: var(--fonteNormal);
+}
+::ng-deep .snackbar-sucesso button {
+  --mat-mdc-snack-bar-button-color: var(--corVerde); /* backgroud */
+  --mat-snack-bar-button-color: var(--corBranco); /* Cor do texto */
+}
+::ng-deep .snackbar-falha {
+  --mdc-snackbar-container-color: var(--corVermelho); /* backgroud */
+  --mdc-snackbar-supporting-text-color:var(--corBranco); /* Cor do texto */
+  --mdc-snackbar-supporting-text-font: Roboto, "Helvetica Neue", sans-serif;
+  --mdc-snackbar-supporting-text-size: var(--fonteNormal);
+}
+::ng-deep .snackbar-falha button {
+  --mat-mdc-snack-bar-button-color: var(--corVermelho); /* backgroud */
+  --mat-snack-bar-button-color: var(--corBranco); /* Cor do texto */
+}

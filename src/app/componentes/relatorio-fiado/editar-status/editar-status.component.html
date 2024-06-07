@@ -1,7 +1,7 @@
 <app-janela titulo="Editar Status" icone="fa-pencil" (toggleJanela)="toggleJanela()">
     <div class="container">
-        <app-info titulo="Nome" valor="Sergio Junior"></app-info>
-        <span>Total Dívida: R$ 100,00</span>
+        <app-info titulo="Nome" valor="{{ fiado.nome }}"></app-info>
+        <span>Total Dívida: {{ fiado.valorTotal | currency:'R$ ':'symbol':'1.2-2' }}</span>
         <form [formGroup]="formulario" class="inputs-container">
             <app-input class="grow wd" label="Pagamento:" type="number" placeholder="R$" for="pagamento" formControlName="pagamento"></app-input>
             <h3 class="bold tamanho">Status de pagamento</h3>

@@ -9,8 +9,8 @@ import { ProdutoVenda } from '../interfaces/produtoVenda';
 })
 export class CardHomeService {
 
-  private readonly API = 'https://clinina-backend.onrender.com'
-  //private readonly API = 'http://localhost:8080'
+  private readonly API = 'https://clinina-backend.onrender.com';
+  //private readonly API = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 
@@ -49,6 +49,10 @@ export class CardHomeService {
 
   vender(produtos: Vender[]): Observable<HttpResponse<Vender[]>>{
     const url = `${this.API}/vender`;
+    return this.http.post<Vender[]>(url, produtos, {observe: 'response'});
+  }
+  cadastrarFiado(produtos: Vender[]): Observable<HttpResponse<Vender[]>>{
+    const url = `${this.API}/produtos/cadastrarFiado`;
     return this.http.post<Vender[]>(url, produtos, {observe: 'response'});
   }
   pesquisarPorNome(nome: string): Observable<HttpResponse<ProdutoVenda[]>>{
@@ -122,14 +126,14 @@ export class CardHomeService {
     return this.http.get<Relatorio[]>(url, { params, observe: 'response' });
   }
 
-  pegarListaDeFiado(): Observable<RelatorioFiado[]>{
+  pegarListaDeFiado(): Observable<HttpResponse<RelatorioFiado[]>>{
     const url = this.API + "/produtos/relatorio-fiado";
-    return this.http.get<RelatorioFiado[]>(url);
+    return this.http.get<RelatorioFiado[]>(url, {observe: 'response'});
   }
 
-  editarFiado(fiado: Fiado): Observable<Fiado> {
+  editarFiado(fiado: Fiado): Observable<HttpResponse<Fiado>> {
     const url = `${this.API}/produtos/editar-fiado/${fiado.id}`
-    return this.http.put<Fiado>(url, fiado )
+    return this.http.put<Fiado>(url, fiado, {observe: 'response'} )
   }
   editarProduto(produto: CadastroProduto): Observable<CadastroProduto>{
     console.log(produto.produto);

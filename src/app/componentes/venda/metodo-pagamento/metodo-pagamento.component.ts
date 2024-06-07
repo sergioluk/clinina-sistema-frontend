@@ -55,7 +55,6 @@ export class MetodoPagamentoComponent implements OnInit{
     this.setVisivel();
   }
   vender() {
-    console.log("formulario: " + this.formulario.get('formaPagamento')?.value)
     let listaDeVenda: Vender[] = [];
     for (let produto of this.listaDeProdutos) {
         let produtosVender: Vender = {
@@ -74,31 +73,58 @@ export class MetodoPagamentoComponent implements OnInit{
         listaDeVenda.push(produtosVender);
       }
 
-    if (listaDeVenda.length > 0) {
-      this.spinnerEmitter.emit("true");
-      this.service.vender(listaDeVenda).subscribe({
-        //this.router.navigate(['/home']);
-        //window.location.reload();
-        next: (response: HttpResponse<Vender[]>) => {
-          this.aplicarLimpar.emit();
-          this.toggleJanela();
-          console.log("resposta: " + response.body);
-        },
-        error: (error: HttpErrorResponse) => {
-          this.snackbar.openSnackBarFail("Algo deu errado!: " + error.status, "Fechar");
-          this.spinnerEmitter.emit("false");
-        },
-        complete: () => {
-          console.log("Requisição completa!!!");
-          this.spinnerEmitter.emit("false");
-          this.snackbar.openSnackBarSucces("Venda concluída com sucesso!","Fechar");
-        }
-
-      });
-    } else {
+    if (listaDeVenda.length <= 0) {
       alert("Não há produtos na lista!!");
       this.toggleJanela();
+      return;
     }
+    this.spinnerEmitter.emit("true");
+    if (this.formulario.get('formaPagamento')?.value == "Fiado") {
+      this.cadastrarFiado(listaDeVenda);
+      console.log("fiado")
+    } else {
+      console.log("venda")
+      this.cadastrarVenda(listaDeVenda);
+    }
+  }
+
+  cadastrarVenda(listaDeVenda: Vender[]) {
+    this.service.vender(listaDeVenda).subscribe({
+      //this.router.navigate(['/home']);
+      //window.location.reload();
+      next: (response: HttpResponse<Vender[]>) => {
+        this.aplicarLimpar.emit();
+        this.toggleJanela();
+        console.log("resposta: " + response.body);
+      },
+      error: (error: HttpErrorResponse) => {
+        this.snackbar.openSnackBarFail("Algo deu errado!: " + error.status, "Fechar");
+        this.spinnerEmitter.emit("false");
+      },
+      complete: () => {
+        console.log("Requisição completa!!!");
+        this.spinnerEmitter.emit("false");
+        this.snackbar.openSnackBarSucces("Venda concluída com sucesso!","Fechar");
+      }
+
+    });
+  }
+  cadastrarFiado(listaDeVenda: Vender[]) {
+    this.service.cadastrarFiado(listaDeVenda).subscribe({
+      next: (response: HttpResponse<Vender[]>) => {
+        this.aplicarLimpar.emit();
+        this.toggleJanela();
+      },
+      error: (error: HttpErrorResponse) => {
+        this.snackbar.openSnackBarFail("Algo deu errado!: " + error.status, "Fechar");
+        this.spinnerEmitter.emit("false");
+      },
+      complete: () => {
+        console.log("Requisição completa!!!");
+        this.spinnerEmitter.emit("false");
+        this.snackbar.openSnackBarSucces("Fiado cadastrado com sucesso!","Fechar");
+      }
+    });
   }
 
 }

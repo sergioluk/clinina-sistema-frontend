@@ -27,14 +27,14 @@
           <td>{{ fiado.telefone }}</td>
           <td>{{ fiado.endereco }}</td>
           <td>{{ fiado.data | date:'dd/MM/yyyy HH:mm' }}</td>
-          <td>TODO</td>
+          <td>{{ fiado.pagamento ? (fiado.pagamento | currency:'R$ ':'symbol':'1.2-2') : "-" }}</td>
           <td>{{ fiado.valorTotal | currency:'R$ ':'symbol':'1.2-2' }}</td>
           <td>{{ pagou(fiado.pagou) }}</td>
           <td>
-            <fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="editarItem(i)"></fa-icon>
-            <fa-icon class="apagar" [icon]="getIcone('fa-trash-can')" (click)="editarItem(i)"></fa-icon>
+            <fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="editarItem(fiado, i)"></fa-icon>
+            <!-- <fa-icon class="apagar" [icon]="getIcone('fa-trash-can')" (click)="editarItem(fiado, i)"></fa-icon> -->
           </td>
-          <td>TODO</td>
+          <td>{{ fiado.modified_at ? (fiado.modified_at | date:'dd/MM/yyyy HH:mm') : "-"}}</td>
         </tr>
         <tr *ngIf="linhaExpandida === i">
           <td colspan="9">
@@ -56,13 +56,13 @@
     </table>
   </div>
 
-  <app-editar-status *ngIf="janelaEditar" (visivel)="toggleEditarStatus()"></app-editar-status>
-  <app-apagar-fiado></app-apagar-fiado>
+  <app-editar-status *ngIf="janelaEditar" [fiado]="fiado" [index]="index" (visivel)="toggleEditarStatus()" (atualizarLista)="atualizarListaFiado($event)" (spinnerEmitter)="toggleSpinner($event)"></app-editar-status>
+  <!-- <app-apagar-fiado></app-apagar-fiado> -->
 
-  <!-- <div *ngIf="loadingSpinner" class="spinner">
+  <div *ngIf="loadingSpinner" class="spinner">
     <mat-spinner></mat-spinner>
   </div>
-
+  <!-- 
   <div class="fundo-branco" id="conteudoParaImprimir">
     <div class="titulo">
       <h2>Lista Fiado</h2>
