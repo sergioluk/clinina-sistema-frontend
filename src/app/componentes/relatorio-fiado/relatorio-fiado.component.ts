@@ -71,11 +71,9 @@ export class RelatorioFiadoComponent implements OnInit {
     this.janelaEditar = !this.janelaEditar;
   }
   atualizarListaFiado(event: {index: number, fiado: Fiado}) {
-    console.log("chegou aqui 1");
     this.listaDeFiado[event.index].pagou = event.fiado.pagou;
     this.listaDeFiado[event.index].modified_at = event.fiado.modified_at;
     this.listaDeFiado[event.index].pagamento = event.fiado.pagamento;
-    console.log("chegou aqui 2");
   }
   toggleSpinner(bool: boolean) {
     this.loadingSpinner = bool;
