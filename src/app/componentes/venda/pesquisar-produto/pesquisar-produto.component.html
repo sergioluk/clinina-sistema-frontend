@@ -12,14 +12,14 @@
               <th class="foto">Foto</th>
               <th>Código</th>
               <th class="nome__tabela">Nome do produto</th>
-              <th>Preço (R$)</th>
+              <th>Preço</th>
               <th> </th>
             </tr>
           <tr class="tablerow" *ngFor="let item of listaDeProdutosEncontrados; index as i"> 
             <td><img class="table__img" src="{{ item.imagemP }}" alt="Imagem do produto"></td>
             <td>{{ item.codigoDeBarras }}</td>
             <td class="nome__tabela2">{{ item.produto }}</td>
-            <td>{{ item.preco }}</td>
+            <td>{{ item.preco | currency:'R$ ':'symbol':'1.2-2' }}</td>
             <td><fa-icon class="add" [icon]="getIcone('fa-cart-plus')" (click)="adicionar(i)"></fa-icon></td>
           </tr>
         </table>

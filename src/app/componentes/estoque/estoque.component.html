@@ -37,8 +37,8 @@
                 <td>{{ item.codigoDeBarras }}</td>
                 <td>{{ item.produto }}</td>
                 <td>{{ item.estoque }}</td>
-                <td>{{ item.precoCompra }}</td>
-                <td>{{ item.preco }}</td>
+                <td>{{ item.precoCompra | currency:'R$ ':'symbol':'1.2-2' }}</td>
+                <td>{{ item.preco | currency:'R$ ':'symbol':'1.2-2' }}</td>
                 <td>{{ calcularLucro(item) }}</td>
                 <td>{{ item.peso }}</td>
                 <td>

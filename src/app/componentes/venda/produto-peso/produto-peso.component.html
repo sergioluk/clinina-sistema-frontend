@@ -11,8 +11,8 @@
             </form>
             <div class="infos-container">
                 <!-- <app-info class="grow info" titulo="P.Compra" valor="R$ {{ precoDeCompraProduto() }}"></app-info> -->
-                <app-info class="grow info wd h" titulo="Preço por Kilo" valor="R$ {{ produtoComPeso.preco }}"></app-info>
-                <app-info class="grow info wd h" titulo="Total" valor="R$ {{ total }}"></app-info>
+                <app-info class="grow info wd h" titulo="Preço por Kilo" valor="{{ produtoComPeso.preco | currency:'R$ ':'symbol':'1.2-2' }}"></app-info>
+                <app-info class="grow info wd h" titulo="Total" valor="{{ total | currency:'R$ ':'symbol':'1.2-2' }}"></app-info>
                 <!-- <app-info class="grow info" titulo="Lucro" valor="{{ lucroPorCento }}%"></app-info>
                 <app-info class="grow info" titulo="Lucro R$" valor="R$ {{ lucroReais }}"></app-info> -->
             </div>

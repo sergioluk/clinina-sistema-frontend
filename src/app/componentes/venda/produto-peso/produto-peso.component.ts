@@ -32,7 +32,7 @@ export class ProdutoPesoComponent implements OnInit{
   //Chamado ao atualizar o dinheiro
   atualizarPeso() {
     let peso = this.formulario.get('dinheiro')?.value / this.produtoComPeso.preco;
-    this.formulario.get('peso')?.setValue(peso);
+    this.formulario.get('peso')?.setValue(peso.toFixed(3));
     this.total = this.formulario.get('dinheiro')?.value;
   }
 

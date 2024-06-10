@@ -61,7 +61,7 @@ export class EstoqueComponent {
       return "-";
     }
     let lucro = (produto.preco*100/produto.precoCompra) - 100;
-    return lucro.toFixed(2);
+    return lucro.toFixed(2) + "%";
   }
   editarItem(index: number) {
     let produto: CadastroProduto = this.listaDeProdutos[index];

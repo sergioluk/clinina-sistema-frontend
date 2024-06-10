@@ -4,9 +4,9 @@
       <th>Foto</th>
       <th class="nome__tabela">Nome do produto</th>
       <th>Qtd</th>
-      <th>Valor Un.(R$)</th>
-      <th>Desc(R$)</th>
-      <th>Total(R$)</th>
+      <th>Valor Un.</th>
+      <th>Desc</th>
+      <th>Total</th>
       <th> </th>
     </tr>
   <tr class="tablerow" *ngFor="let item of listaDeProdutos; index as i" (click)="selecionarProduto(i)"> 
@@ -14,9 +14,9 @@
     <td><img class="table__img" src="{{ item.imagemP }}" alt="Imagem do produto"></td>
     <td>{{ retornarNome(item) }}</td>
     <td>{{ item.quantidade }}</td>
-    <td>{{ item.preco }}</td>
-    <td>{{ item.desconto }}</td>
-    <td>{{ (item.preco * item.quantidade) - item.desconto}}</td>
+    <td>{{ item.preco | currency:'R$ ':'symbol':'1.2-2' }}</td>
+    <td>{{ item.desconto | currency:'R$ ':'symbol':'1.2-2' }}</td>
+    <td>{{ ((item.preco * item.quantidade) - item.desconto) | currency:'R$ ':'symbol':'1.2-2'}}</td>
     <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="editarItem(i)"></fa-icon></td>
   </tr>
 </table>

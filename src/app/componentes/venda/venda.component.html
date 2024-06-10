@@ -18,7 +18,7 @@
   </div>
   <div class="flex">
     <div class="un-qtd detalhes">
-      <app-info class="width" titulo="Valor Un." valor="R$ {{ produto.preco }}"></app-info>
+      <app-info class="width" titulo="Valor Un." valor="{{ produto.preco | currency:'R$ ':'symbol':'1.2-2' }}"></app-info>
       <fa-icon [icon]="getIcone('fa-xmark')"></fa-icon>
       <app-info class="width" titulo="Quantidade" valor="{{ produto.quantidade }}"></app-info>
     </div>
@@ -54,8 +54,8 @@
         (click)="vender()"></app-botao-grande>
     </div>
     <div class="desconto-total">
-      <app-info titulo="Desconto Total" valor="R$ {{ totalDesconto }}"></app-info>
-      <app-info titulo="Total" valor="R$ {{ total }}"></app-info>
+      <app-info titulo="Desconto Total" valor="{{ totalDesconto | currency:'R$ ':'symbol':'1.2-2' }}"></app-info>
+      <app-info titulo="Total" valor="{{ total | currency:'R$ ':'symbol':'1.2-2' }}"></app-info>
     </div>
   </div>
   <div *ngIf="loadingSpinner" class="spinner">
