@@ -54,6 +54,7 @@
         </tr>
       </ng-container>
     </table>
+    
   </div>
 
   <app-editar-status *ngIf="janelaEditar" [fiado]="fiado" [index]="index" (visivel)="toggleEditarStatus()" (atualizarLista)="atualizarListaFiado($event)" (spinnerEmitter)="toggleSpinner($event)"></app-editar-status>
