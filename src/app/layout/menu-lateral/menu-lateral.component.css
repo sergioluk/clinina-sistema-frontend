@@ -1,6 +1,7 @@
 .notebook {
-    width: 1366px;
+    /* width: 1366px; */
     /*height: 606px;*/
+    width: 100%;
     height: 100%;
     display: flex;
     margin: 0 auto;

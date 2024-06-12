@@ -5,6 +5,7 @@ import { VendaComponent } from './componentes/venda/venda.component';
 import { RelatorioComponent } from './componentes/relatorio/relatorio.component';
 import { RelatorioFiadoComponent } from './componentes/relatorio-fiado/relatorio-fiado.component';
 import { EstoqueComponent } from './componentes/estoque/estoque.component';
+import { MensagensComponent } from './componentes/mensagens/mensagens.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: 'fiado',
     component: RelatorioFiadoComponent
+  },
+  {
+    path: 'mensagens',
+    component: MensagensComponent
   },
   {
     path: 'estoque',
