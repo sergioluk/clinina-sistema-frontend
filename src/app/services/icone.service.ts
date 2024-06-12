@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { faTrashCan, faCircleXmark, faCircleLeft, faCircleCheck, faRectangleList, faEnvelope } from '@fortawesome/free-regular-svg-icons';
+import { faTrashCan, faCircleXmark, faCircleLeft, faCircleCheck, faRectangleList, faEnvelope, faEnvelopeOpen } from '@fortawesome/free-regular-svg-icons';
 import { faMagnifyingGlass, faCartPlus, faXmark, faBars, faPencil, faCartShopping, faPlus, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { faMoneyBill1, faFloppyDisk, faChartLine, faHandHoldingDollar, faDog, faStethoscope, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
@@ -63,6 +63,9 @@ export class IconeService {
         break;
       case 'fa-envelope':
         icone = faEnvelope;
+        break;
+      case 'fa-envelope-open':
+        icone = faEnvelopeOpen;
         break;
       case 'fa-hand-holding-dollar':
         icone = faHandHoldingDollar;

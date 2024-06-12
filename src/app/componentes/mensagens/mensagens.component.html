@@ -1,4 +1,4 @@
-<div class="cadastro__container">
+<div class="msgcomp__container">
     <div class="flex">
       <div class="menu">
         <fa-icon [icon]="getIcone('fa-bars')"></fa-icon>
@@ -9,7 +9,23 @@
     <div class="mensagens-container">
         <div class="msg-container">
             <div class="barra-azul">
-                
+                <fa-icon [icon]="getIcone('fa-envelope-open')"></fa-icon>
+                <fa-icon [icon]="getIcone('fa-trash-can')"></fa-icon>
+            </div>
+            <div class="corpo-mensagem">
+                <div class="msg">
+                    <p>Comprar 5 rações da pedigree</p>
+                </div>
+                <div class="autor-data">
+                    <span>Sérgio</span>
+                    <span>13/04/2024 17:35</span>
+                </div>
+            </div>
+        </div>
+        <div class="msg-container">
+            <div class="barra-azul">
+                <fa-icon [icon]="getIcone('fa-envelope-open')"></fa-icon>
+                <fa-icon [icon]="getIcone('fa-trash-can')"></fa-icon>
             </div>
             <div class="corpo-mensagem">
                 <div class="msg">
@@ -22,4 +38,27 @@
             </div>
         </div>
     </div>
+    <hr>
+    <div class="enviar-msg-container">
+        <div class="msg-container">
+            <div class="barra-azul">
+                <fa-icon [icon]="getIcone('fa-envelope')"></fa-icon>
+                <span>Mensagem</span>
+            </div>
+            <div class="corpo-mensagem">
+                <p>Sua mensagem aqui...</p>
+            </div>
+        </div>
+        <div class="msg-container">
+            <div class="barra-azul">
+                <fa-icon [icon]="getIcone('fa-envelope')"></fa-icon>
+                <span>Autor</span>
+            </div>
+            <div class="corpo-mensagem">
+                <p>Nome do autor</p>
+            </div>
+        </div>
+        <app-botao-pequeno cor="var(--corVerde)" texto="Enviar" icone="fa-envelope"></app-botao-pequeno>
+    </div>
+    
 </div>

@@ -1,4 +1,4 @@
-.cadastro__container {
+.msgcomp__container {
     width: 100%;
     min-height: 100vh;
     padding: 20px;
@@ -33,12 +33,39 @@ hr {
     width: 369px;
     height: 115px;
 }
+.mensagens-container {
+    height: 60vh;
+    border: 1px solid red;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    gap: 20px;
+}
 .barra-azul {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    
+
     width: 100%;
-    height: 17px;
+    padding: 1px 10px;
     background-color: var(--corPrincipal);
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
+}
+.barra-azul fa-icon {
+    font-size: var(--fonteNormal);
+    color: var(--corBranco);
+    padding: 0 2px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.barra-azul fa-icon:hover {
+    color: var(--corPrincipal);
+    background-color: var(--corBranco);
+    
 }
 .corpo-mensagem {
     padding: 10px;
@@ -60,9 +87,12 @@ hr {
     display: flex;
     justify-content: space-between;
 }
-.msg {
-    
-}
+
 .autor-data {
     font-size: var(--fonteMuitoPequena);
+}
+
+.enviar-msg-container {
+    display: flex;
+    gap: 10px;
 }
