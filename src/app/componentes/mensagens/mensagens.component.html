@@ -6,6 +6,10 @@
       <h1 class="titulo">MENSAGENS</h1>
     </div>
     <hr>
+    <div class="botoes-acoes">
+        <fa-icon class="icones" [icon]="getIcone('fa-envelope-open')"></fa-icon>
+        <fa-icon class="icones" [icon]="getIcone('fa-envelope')"></fa-icon>
+    </div>
     <div class="mensagens-container">
         <div class="msg-container">
             <div class="barra-azul">
@@ -41,24 +45,24 @@
     <hr>
     <div class="enviar-msg-container">
         <div class="msg-container">
-            <div class="barra-azul">
+            <div class="barra-azul-input">
                 <fa-icon [icon]="getIcone('fa-envelope')"></fa-icon>
                 <span>Mensagem</span>
             </div>
             <div class="corpo-mensagem">
-                <p>Sua mensagem aqui...</p>
+                <textarea class="inputs" name="" id="" placeholder="Digite sua mensagem aqui..."></textarea>
             </div>
         </div>
-        <div class="msg-container">
-            <div class="barra-azul">
-                <fa-icon [icon]="getIcone('fa-envelope')"></fa-icon>
+        <div class="msg-container2">
+            <div class="barra-azul-input">
+                <fa-icon [icon]="getIcone('fa-user')"></fa-icon>
                 <span>Autor</span>
             </div>
             <div class="corpo-mensagem">
-                <p>Nome do autor</p>
+                <input class="inputs" type="text" placeholder="Nome do autor...">
             </div>
         </div>
-        <app-botao-pequeno cor="var(--corVerde)" texto="Enviar" icone="fa-envelope"></app-botao-pequeno>
+        <app-botao-pequeno cor="var(--corVerde)" texto="Enviar" icone="fa-paper-plane"></app-botao-pequeno>
     </div>
     
 </div>
