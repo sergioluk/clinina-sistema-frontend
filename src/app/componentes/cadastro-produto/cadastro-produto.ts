@@ -134,3 +134,13 @@ export interface CadastroProduto {
     pagamento: number
     modified_at: Date
   }
+
+  export interface Mensagem {
+    id?: number
+    autor: string,
+    mensagem: string,
+    created_at: Date,
+    modified_at?: Date,
+    excluir: number,
+    leitura: number
+  }

@@ -11,46 +11,22 @@
         <fa-icon class="icones" [icon]="getIcone('fa-envelope')"></fa-icon>
     </div>
     <div class="mensagens-container">
-        <div class="msg-container">
-            <div class="barra-azul">
-                <fa-icon [icon]="getIcone('fa-envelope-open')"></fa-icon>
-                <fa-icon [icon]="getIcone('fa-trash-can')"></fa-icon>
-            </div>
-            <div class="corpo-mensagem">
-                <div class="msg">
-                    <p>Comprar 5 rações da pedigree</p>
-                </div>
-                <div class="autor-data">
-                    <span>Sérgio</span>
-                    <span>13/04/2024 17:35</span>
-                </div>
-            </div>
-        </div>
-        <div class="msg-container">
-            <div class="barra-azul">
-                <fa-icon [icon]="getIcone('fa-envelope-open')"></fa-icon>
-                <fa-icon [icon]="getIcone('fa-trash-can')"></fa-icon>
-            </div>
-            <div class="corpo-mensagem">
-                <div class="msg">
-                    <p>Comprar 5 rações da pedigree</p>
-                </div>
-                <div class="autor-data">
-                    <span>Sérgio</span>
-                    <span>13/04/2024 17:35</span>
-                </div>
-            </div>
-        </div>
+        <app-msg *ngFor="let msg of listaDeMensagens; index as i "
+        mensagem="{{msg.mensagem}}" 
+        autor="{{msg.autor}}" 
+        [data]=msg.created_at 
+        (marcarComoLidoOuNaoLido)="handleMarcarComoLidoOuNaoLido(i)"
+        (apagar)="handleApagar(i)"></app-msg>
     </div>
     <hr>
-    <div class="enviar-msg-container">
+    <form [formGroup]="formulario" class="enviar-msg-container">
         <div class="msg-container">
             <div class="barra-azul-input">
                 <fa-icon [icon]="getIcone('fa-envelope')"></fa-icon>
                 <span>Mensagem</span>
             </div>
             <div class="corpo-mensagem">
-                <textarea class="inputs" name="" id="" placeholder="Digite sua mensagem aqui..."></textarea>
+                <textarea class="inputs" name="" id="" placeholder="Digite sua mensagem aqui..." formControlName="mensagem"></textarea>
             </div>
         </div>
         <div class="msg-container2">
@@ -59,10 +35,10 @@
                 <span>Autor</span>
             </div>
             <div class="corpo-mensagem">
-                <input class="inputs" type="text" placeholder="Nome do autor...">
+                <input class="inputs" type="text" placeholder="Nome do autor..." formControlName="autor">
             </div>
         </div>
-        <app-botao-pequeno cor="var(--corVerde)" texto="Enviar" icone="fa-paper-plane"></app-botao-pequeno>
-    </div>
+        <app-botao-pequeno cor="var(--corVerde)" texto="Enviar" icone="fa-paper-plane" (click)="enviarMensagem()"></app-botao-pequeno>
+    </form>
     
 </div>

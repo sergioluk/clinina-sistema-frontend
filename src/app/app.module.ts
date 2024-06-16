@@ -45,6 +45,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { EditarStatusComponent } from './componentes/relatorio-fiado/editar-status/editar-status.component';
 import { ApagarFiadoComponent } from './componentes/relatorio-fiado/apagar-fiado/apagar-fiado.component';
 import { MensagensComponent } from './componentes/mensagens/mensagens.component';
+import { MsgComponent } from './componentes/mensagens/msg/msg.component';
 
 
 @NgModule({
@@ -77,7 +78,8 @@ import { MensagensComponent } from './componentes/mensagens/mensagens.component'
     FeedbackComponent,
     EditarStatusComponent,
     ApagarFiadoComponent,
-    MensagensComponent
+    MensagensComponent,
+    MsgComponent
   ],
   imports: [
     BrowserModule,

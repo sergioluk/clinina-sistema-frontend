@@ -1,0 +1,49 @@
+.msg-container {
+    width: 369px;
+    height: 115px;
+}
+.barra-azul {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    
+
+    width: 100%;
+    padding: 1px 10px;
+    background-color: var(--corPrincipal);
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+.barra-azul fa-icon {
+    font-size: var(--fonteNormal);
+    color: var(--corBranco);
+    padding: 0 2px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.barra-azul fa-icon:hover {
+    color: var(--corPrincipal);
+    background-color: var(--corBranco);
+}
+.corpo-mensagem {
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+    border-left: 1px solid var(--corPrincipal);
+    border-right: 1px solid var(--corPrincipal);
+    border-bottom: 1px solid var(--corPrincipal);
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    font-size: var(--fonteNormal);
+    font-weight: bold;
+    color: var(--corTexto);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.autor-data {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--fonteMuitoPequena);
+}

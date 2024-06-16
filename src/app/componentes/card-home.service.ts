@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CadastroProduto, Categoria, Fiado, Fornecedor, Idade, Relatorio, RelatorioFiado, Sabor, Venda, Vender } from './cadastro-produto/cadastro-produto';
+import { CadastroProduto, Categoria, Fiado, Fornecedor, Idade, Mensagem, Relatorio, RelatorioFiado, Sabor, Venda, Vender } from './cadastro-produto/cadastro-produto';
 import { ProdutoVenda } from '../interfaces/produtoVenda';
 
 @Injectable({
@@ -147,6 +147,15 @@ export class CardHomeService {
   pingar(): Observable<HttpResponse<{ message: string }>>{
     const url = this.API + "/produtos/ping";
     return this.http.get<{ message: string }>(url, { observe: 'response'});
+  }
+
+  listarMensagens(): Observable<HttpResponse<Mensagem[]>>{
+    const url = this.API + "/mensagens";
+    return this.http.get<Mensagem[]>(url, {observe: 'response'});
+  }
+  salvarMensagem(mensagem: Mensagem): Observable<HttpResponse<Mensagem>>{
+    const url = `${this.API}/mensagens`;
+    return this.http.post<Mensagem>(url, mensagem, {observe: 'response'});
   }
 
 }

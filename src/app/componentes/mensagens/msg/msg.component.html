@@ -1,0 +1,15 @@
+<div class="msg-container">
+    <div class="barra-azul">
+        <fa-icon [icon]="getIcone('fa-envelope-open')" (click)="triggerMarcarComoLidoOuNaoLido()"></fa-icon>
+        <fa-icon [icon]="getIcone('fa-trash-can')" (click)="triggerApagar()"></fa-icon>
+    </div>
+    <div class="corpo-mensagem">
+        <div class="msg">
+            <p>{{ mensagem }}</p>
+        </div>
+        <div class="autor-data">
+            <span>{{ autor }}</span>
+            <span>{{ data | date:'dd/MM/yyyy HH:mm' }}</span>
+        </div>
+    </div>
+</div>

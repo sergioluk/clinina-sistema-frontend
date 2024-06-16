@@ -45,12 +45,14 @@ hr {
     color: var(--corBranco);
     background-color: var(--corPrincipal);
 }
+/**/
 .msg-container {
     width: 369px;
     height: 115px;
 }
+/**/
 .mensagens-container {
-    height: 60vh;
+    min-height: 60vh;
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -62,6 +64,7 @@ hr {
     width: 197px;
     height: 53px;
 }
+/**/
 .barra-azul {
     display: flex;
     justify-content: flex-end;
@@ -86,6 +89,7 @@ hr {
     color: var(--corPrincipal);
     background-color: var(--corBranco);
 }
+/**/
 .barra-azul-input {
     display: flex;
     align-items: center;
@@ -97,6 +101,7 @@ hr {
     border-top-right-radius: 7px;
     color: var(--corBranco);
 }
+/**/
 .corpo-mensagem {
     padding: 10px;
     height: 100%;
@@ -113,22 +118,42 @@ hr {
     flex-direction: column;
     justify-content: space-between;
 }
+/**/
 .inputs {
     height: 100%;
     border: none;
     font-size: var(--fonteNormal);
     color: var(--corTexto);
 }
+/**/
 .autor-data {
     display: flex;
     justify-content: space-between;
-}
-
-.autor-data {
     font-size: var(--fonteMuitoPequena);
 }
-
+/**/
 .enviar-msg-container {
     display: flex;
     gap: 10px;
 }
+
+::ng-deep .snackbar-sucesso {
+    --mdc-snackbar-container-color: var(--corVerde); /* backgroud */
+    --mdc-snackbar-supporting-text-color: var(--corBranco); /* Cor do texto */
+    --mdc-snackbar-supporting-text-font: Roboto, "Helvetica Neue", sans-serif;
+    --mdc-snackbar-supporting-text-size: var(--fonteNormal);
+  }
+  ::ng-deep .snackbar-sucesso button {
+    --mat-mdc-snack-bar-button-color: var(--corVerde); /* backgroud */
+    --mat-snack-bar-button-color: var(--corBranco); /* Cor do texto */
+  }
+  ::ng-deep .snackbar-falha {
+    --mdc-snackbar-container-color: var(--corVermelho); /* backgroud */
+    --mdc-snackbar-supporting-text-color:var(--corBranco); /* Cor do texto */
+    --mdc-snackbar-supporting-text-font: Roboto, "Helvetica Neue", sans-serif;
+    --mdc-snackbar-supporting-text-size: var(--fonteNormal);
+  }
+  ::ng-deep .snackbar-falha button {
+    --mat-mdc-snack-bar-button-color: var(--corVermelho); /* backgroud */
+    --mat-snack-bar-button-color: var(--corBranco); /* Cor do texto */
+  }
