@@ -157,5 +157,13 @@ export class CardHomeService {
     const url = `${this.API}/mensagens`;
     return this.http.post<Mensagem>(url, mensagem, {observe: 'response'});
   }
+  editarMensagemVisto(mensagem: Mensagem): Observable<HttpResponse<Mensagem>>{
+    const url = `${this.API}/produtos/editarMensagemVisto/${mensagem.id}`;
+    return this.http.patch<Mensagem>(url, mensagem, {observe: 'response'});
+  }
+  apagarMensagem(mensagem: Mensagem): Observable<HttpResponse<Mensagem>>{
+    const url = `${this.API}/produtos/apagarMensagem/${mensagem.id}`;
+    return this.http.patch<Mensagem>(url, mensagem, {observe: 'response'});
+  }
 
 }

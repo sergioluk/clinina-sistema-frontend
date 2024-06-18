@@ -40,5 +40,7 @@
         </div>
         <app-botao-pequeno cor="var(--corVerde)" texto="Enviar" icone="fa-paper-plane" (click)="enviarMensagem()"></app-botao-pequeno>
     </form>
-    
+    <div *ngIf="loadingSpinner" class="spinner">
+        <mat-spinner></mat-spinner>
+      </div>
 </div>
