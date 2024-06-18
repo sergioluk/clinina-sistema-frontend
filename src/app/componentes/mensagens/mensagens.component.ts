@@ -42,11 +42,37 @@ export class MensagensComponent implements OnInit {
   }
 
   handleMarcarComoLidoOuNaoLido(index: number) {
-    console.log("Lido " + this.listaDeMensagens[index].mensagem);
+    this.loadingSpinner = false;
+    let mensagem = this.listaDeMensagens[index];
+    this.service.editarMensagemVisto(mensagem).subscribe({
+      error: (error: HttpErrorResponse) => {
+        console.error("Erro: ", error.message); // Mensagem de erro
+        console.error("Código de status HTTP: ", error.status); // Código de status HTTP do erro
+        this.loadingSpinner = false;
+        this.snackbar.openSnackBarFail("Algo deu errado!", "Fechar");
+      },
+      complete: () => {
+        this.loadingSpinner = false;
+        this.snackbar.openSnackBarSucces("Ação confirmada!","Fechar");
+      }
+    });
   }
 
   handleApagar(index: number) {
-    console.log("apagar " + this.listaDeMensagens[index].mensagem);
+    this.loadingSpinner = false;
+    let mensagem = this.listaDeMensagens[index];
+    this.service.apagarMensagem(mensagem).subscribe({
+      error: (error: HttpErrorResponse) => {
+        console.error("Erro: ", error.message); // Mensagem de erro
+        console.error("Código de status HTTP: ", error.status); // Código de status HTTP do erro
+        this.loadingSpinner = false;
+        this.snackbar.openSnackBarFail("Algo deu errado!", "Fechar");
+      },
+      complete: () => {
+        this.loadingSpinner = false;
+        this.snackbar.openSnackBarSucces("Mensagem apagada!","Fechar");
+      }
+    });
   }
 
   listarMensagens() {
