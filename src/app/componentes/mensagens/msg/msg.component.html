@@ -1,5 +1,5 @@
 <div class="msg-container">
-    <div class="barra-azul">
+    <div class="barra-azul" ngClass="{{getLeitura()}}">
         <fa-icon [icon]="getIcone('fa-envelope-open')" (click)="triggerMarcarComoLidoOuNaoLido()"></fa-icon>
         <fa-icon [icon]="getIcone('fa-trash-can')" (click)="triggerApagar()"></fa-icon>
     </div>

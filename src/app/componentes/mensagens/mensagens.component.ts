@@ -44,6 +44,7 @@ export class MensagensComponent implements OnInit {
   handleMarcarComoLidoOuNaoLido(index: number) {
     this.loadingSpinner = false;
     let mensagem = this.listaDeMensagens[index];
+    mensagem.leitura == 0 ? mensagem.leitura = 1 : mensagem.leitura = 0;
     this.service.editarMensagemVisto(mensagem).subscribe({
       error: (error: HttpErrorResponse) => {
         console.error("Erro: ", error.message); // Mensagem de erro
@@ -54,6 +55,7 @@ export class MensagensComponent implements OnInit {
       complete: () => {
         this.loadingSpinner = false;
         this.snackbar.openSnackBarSucces("Ação confirmada!","Fechar");
+        this.listaDeMensagens.splice(index,1,mensagem);
       }
     });
   }
@@ -61,6 +63,7 @@ export class MensagensComponent implements OnInit {
   handleApagar(index: number) {
     this.loadingSpinner = false;
     let mensagem = this.listaDeMensagens[index];
+    mensagem.excluir = 1;
     this.service.apagarMensagem(mensagem).subscribe({
       error: (error: HttpErrorResponse) => {
         console.error("Erro: ", error.message); // Mensagem de erro

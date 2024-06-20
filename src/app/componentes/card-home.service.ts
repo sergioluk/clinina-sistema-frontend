@@ -158,11 +158,11 @@ export class CardHomeService {
     return this.http.post<Mensagem>(url, mensagem, {observe: 'response'});
   }
   editarMensagemVisto(mensagem: Mensagem): Observable<HttpResponse<Mensagem>>{
-    const url = `${this.API}/produtos/editarMensagemVisto/${mensagem.id}`;
+    const url = `${this.API}/mensagens/editarMensagemVisto/${mensagem.id}`;
     return this.http.patch<Mensagem>(url, mensagem, {observe: 'response'});
   }
   apagarMensagem(mensagem: Mensagem): Observable<HttpResponse<Mensagem>>{
-    const url = `${this.API}/produtos/apagarMensagem/${mensagem.id}`;
+    const url = `${this.API}/mensagens/apagarMensagem/${mensagem.id}`;
     return this.http.patch<Mensagem>(url, mensagem, {observe: 'response'});
   }
 

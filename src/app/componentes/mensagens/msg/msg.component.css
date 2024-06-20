@@ -11,9 +11,15 @@
 
     width: 100%;
     padding: 1px 10px;
-    background-color: var(--corPrincipal);
+    
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
+}
+.barra-azul-lido {
+    background-color: var(--corAzulClaro);
+}
+.barra-azul-nao-lido {
+    background-color: var(--corPrincipal);
 }
 .barra-azul fa-icon {
     font-size: var(--fonteNormal);

@@ -16,7 +16,8 @@
         autor="{{msg.autor}}" 
         [data]=msg.created_at 
         (marcarComoLidoOuNaoLido)="handleMarcarComoLidoOuNaoLido(i)"
-        (apagar)="handleApagar(i)"></app-msg>
+        (apagar)="handleApagar(i)"
+        [msgObj]=msg></app-msg>
     </div>
     <hr>
     <form [formGroup]="formulario" class="enviar-msg-container">
