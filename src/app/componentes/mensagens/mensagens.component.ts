@@ -17,6 +17,9 @@ export class MensagensComponent implements OnInit {
   listaDeMensagens: Mensagem[] = [];
   formulario!: FormGroup;
 
+  botaoNãoLidoAtivado = false;
+  botaoLidoAtivado = false;
+
   constructor(
     private icone: IconeService, 
     private service: CardHomeService,
@@ -34,7 +37,38 @@ export class MensagensComponent implements OnInit {
         Validators.maxLength(500),
       ])]
     });
-    this.listarMensagens();
+    this.listarMensagens("todos");
+  }
+
+  getCssBotaoNaoLido() {
+    return this.botaoNãoLidoAtivado ? "botao-nao-lido-ativado" : "";
+  }
+  getCssBotaoLido() {
+    return this.botaoLidoAtivado ? "botao-lido-ativado" : "";
+  }
+  botaoBuscarMensagensNaoLidas() {
+    if (this.botaoLidoAtivado) {
+      this.botaoLidoAtivado = false;
+    }
+    if (this.botaoNãoLidoAtivado) {
+      this.botaoNãoLidoAtivado = false;
+      this.listarMensagens("todos");
+      return;
+    }
+    this.botaoNãoLidoAtivado = true;
+    this.listarMensagens("naolido");
+  }
+  botaoBuscarMensagensLidas() {
+    if (this.botaoNãoLidoAtivado) {
+      this.botaoNãoLidoAtivado = false;
+    }
+    if (this.botaoLidoAtivado) {
+      this.botaoLidoAtivado = false;
+      this.listarMensagens("todos");
+      return;
+    }
+    this.botaoLidoAtivado = true;
+    this.listarMensagens("lido");
   }
 
   getIcone(icone: string) {
@@ -78,9 +112,10 @@ export class MensagensComponent implements OnInit {
     });
   }
 
-  listarMensagens() {
+  //todos; lido; naoLido;
+  listarMensagens(estado: string) {
     this.loadingSpinner = true;
-    this.service.listarMensagens().subscribe({
+    this.service.listarMensagens(estado).subscribe({
       next: (response: HttpResponse<Mensagem[]>) => {
         this.listaDeMensagens = response.body ? response.body : [];
       },
@@ -123,7 +158,7 @@ export class MensagensComponent implements OnInit {
       complete: () => {
         this.loadingSpinner = false;
         this.snackbar.openSnackBarSucces("Mensagem enviada!","Fechar");
-        this.listarMensagens();
+        this.listarMensagens("todos");
       }
     });
   }

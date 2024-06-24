@@ -22,6 +22,14 @@ export class MsgComponent {
     return this.icone.getIcone(icone);
   }
 
+  getIconeLidoNaoLido() {
+    let icone: string = 'fa-envelope-open';
+    if (this.msgObj.leitura == 1) {
+      icone = "fa-envelope";
+    }
+    return this.getIcone(icone);
+  }
+
   triggerMarcarComoLidoOuNaoLido() {
     this.marcarComoLidoOuNaoLido.emit();
   }

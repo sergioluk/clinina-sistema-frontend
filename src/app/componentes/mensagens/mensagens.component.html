@@ -7,8 +7,10 @@
     </div>
     <hr>
     <div class="botoes-acoes">
-        <fa-icon class="icones" [icon]="getIcone('fa-envelope-open')"></fa-icon>
-        <fa-icon class="icones" [icon]="getIcone('fa-envelope')"></fa-icon>
+        <!-- <fa-icon class="icones" [icon]="getIcone('fa-envelope-open')" (click)="listarMensagens('lido')" ngClass="{{getCssBotao()}}"></fa-icon>
+        <fa-icon class="icones" [icon]="getIcone('fa-envelope')" (click)="listarMensagens('naolido')" ngClass="{{getCssBotao()}}"></fa-icon> -->
+        <fa-icon class="icones" [icon]="getIcone('fa-envelope')" (click)="botaoBuscarMensagensLidas()" ngClass="{{getCssBotaoLido()}}"></fa-icon>
+        <fa-icon class="icones" [icon]="getIcone('fa-envelope-open')" (click)="botaoBuscarMensagensNaoLidas()" ngClass="{{getCssBotaoNaoLido()}}"></fa-icon>
     </div>
     <div class="mensagens-container">
         <app-msg *ngFor="let msg of listaDeMensagens; index as i "

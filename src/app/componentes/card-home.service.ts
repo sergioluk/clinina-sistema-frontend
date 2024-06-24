@@ -149,9 +149,10 @@ export class CardHomeService {
     return this.http.get<{ message: string }>(url, { observe: 'response'});
   }
 
-  listarMensagens(): Observable<HttpResponse<Mensagem[]>>{
+  listarMensagens(estado: string): Observable<HttpResponse<Mensagem[]>>{
     const url = this.API + "/mensagens";
-    return this.http.get<Mensagem[]>(url, {observe: 'response'});
+    let params = new HttpParams().set('estado',estado);
+    return this.http.get<Mensagem[]>(url, {params , observe: 'response'});
   }
   salvarMensagem(mensagem: Mensagem): Observable<HttpResponse<Mensagem>>{
     const url = `${this.API}/mensagens`;
