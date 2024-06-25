@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    /* border: 2px solid black; */
 }
 hr {
     height: 1px;
@@ -29,9 +30,12 @@ hr {
     gap: 20px;
 }
 .container {
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    height: 100%;
+    /* border: 2px solid red; */
 }
 .pesquisa__container {
     display: flex;
@@ -55,6 +59,7 @@ hr {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 10%;
 }
 
 ::ng-deep .snackbar-sucesso {
@@ -107,7 +112,8 @@ hr {
 /*CSS da table*/
 .table__container {
     border: 1px solid var(--corPrincipal);
-    min-height: 307px;
+    height: 100%;
+    flex-grow: 1;
 }
 table {
     width: 100%;
