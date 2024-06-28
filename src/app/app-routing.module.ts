@@ -6,6 +6,7 @@ import { RelatorioComponent } from './componentes/relatorio/relatorio.component'
 import { RelatorioFiadoComponent } from './componentes/relatorio-fiado/relatorio-fiado.component';
 import { EstoqueComponent } from './componentes/estoque/estoque.component';
 import { MensagensComponent } from './componentes/mensagens/mensagens.component';
+import { DetalhesProdutoComponent } from './componentes/detalhes-produto/detalhes-produto.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
   {
     path: 'mensagens',
     component: MensagensComponent
+  },
+  {
+    path: 'detalhes-produto/:codigo',
+    component: DetalhesProdutoComponent
   },
   {
     path: 'estoque',
