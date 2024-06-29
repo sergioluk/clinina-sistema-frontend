@@ -1,0 +1,19 @@
+
+.caixa-detalhe {
+    width: 100px;
+    padding: 5px;
+    background-color: var(--corVerde);
+    color: var(--corBranco);
+    font-size: var(--fonteNormal);
+    font-weight: bold;
+  }
+  .caixa-detalhe-titulo {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+  }
+  .caixa-detalhe-subtitulo {
+    text-align: end;
+    font-size: var(--fonteMuitoPequena);
+    font-weight: normal;
+  }

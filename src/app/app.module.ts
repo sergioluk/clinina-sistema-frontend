@@ -47,6 +47,7 @@ import { ApagarFiadoComponent } from './componentes/relatorio-fiado/apagar-fiado
 import { MensagensComponent } from './componentes/mensagens/mensagens.component';
 import { MsgComponent } from './componentes/mensagens/msg/msg.component';
 import { DetalhesProdutoComponent } from './componentes/detalhes-produto/detalhes-produto.component';
+import { CaixaDetalheComponent } from './componentes/detalhes-produto/caixa-detalhe/caixa-detalhe.component';
 
 
 @NgModule({
@@ -81,7 +82,8 @@ import { DetalhesProdutoComponent } from './componentes/detalhes-produto/detalhe
     ApagarFiadoComponent,
     MensagensComponent,
     MsgComponent,
-    DetalhesProdutoComponent
+    DetalhesProdutoComponent,
+    CaixaDetalheComponent
   ],
   imports: [
     BrowserModule,
