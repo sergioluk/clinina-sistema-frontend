@@ -22,5 +22,49 @@
             <app-botao-pequeno cor="var(--corPrincipal)" icone="fa-pencil" texto="Editar"></app-botao-pequeno>
         </div>
         <hr>
+        <div class="informacoes-container">
+            <app-label-informacoes propriedade="Nome" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
+            <app-label-informacoes propriedade="Preço de custo" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
+            <app-label-informacoes propriedade="Tipo de animal" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
+            <app-label-informacoes propriedade="Código de barras" valor="Ração Fracionada Magnus "></app-label-informacoes>
+            <app-label-informacoes propriedade="Preço de venda" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
+            <app-label-informacoes propriedade="Peso" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
+            <app-label-informacoes propriedade="Categoria" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
+            <app-label-informacoes propriedade="Desconto" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
+            <app-label-informacoes propriedade="Porte" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
+            <app-label-informacoes propriedade="Sabor" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
+            <app-label-informacoes propriedade="Estoque" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
+            <app-label-informacoes propriedade="Fornecedor" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
+            <app-label-informacoes propriedade="Idade" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
+            <app-label-informacoes propriedade="Quantidade vendido" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
+            <app-label-informacoes propriedade="Castrado" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
+        </div>
+        <hr>
+        <div class="linha-do-tempo-container">
+            <h3>Linha do tempo</h3>
+            <div class="botoes-container">
+                <div class="data">7 dias</div>
+                <div class="data">15 dias</div>
+                <div class="data">30 dias</div>
+                <input class="data input" type="number" placeholder="x dias">
+            </div>
+        </div>
+        <div class="card-linha-do-tempo-container">
+            <div class="card-container">
+                <div class="tipo">Venda</div>
+                <div class="card-detalhes">
+                    <div class="detalhe">
+                        <fa-icon [icon]="getIcone('fa-money-bill')"></fa-icon>
+                        <span>R$ 15,00</span>
+                    </div>
+                    <div class="detalhe">
+                        <fa-icon [icon]="getIcone('fa-cart-shopping')"></fa-icon>
+                        <span>5</span>
+                    </div>
+                    <span>12/05/2024 19:22</span>
+                </div>
+            </div>
+        </div>
+        
     </div>
 </div>

@@ -48,6 +48,7 @@ import { MensagensComponent } from './componentes/mensagens/mensagens.component'
 import { MsgComponent } from './componentes/mensagens/msg/msg.component';
 import { DetalhesProdutoComponent } from './componentes/detalhes-produto/detalhes-produto.component';
 import { CaixaDetalheComponent } from './componentes/detalhes-produto/caixa-detalhe/caixa-detalhe.component';
+import { LabelInformacoesComponent } from './componentes/detalhes-produto/label-informacoes/label-informacoes.component';
 
 
 @NgModule({
@@ -83,7 +84,8 @@ import { CaixaDetalheComponent } from './componentes/detalhes-produto/caixa-deta
     MensagensComponent,
     MsgComponent,
     DetalhesProdutoComponent,
-    CaixaDetalheComponent
+    CaixaDetalheComponent,
+    LabelInformacoesComponent
   ],
   imports: [
     BrowserModule,

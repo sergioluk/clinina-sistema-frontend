@@ -66,12 +66,69 @@
     max-width: 100%;
   }
   .preco-estoque-container {
-    width: 40%;
+    width: 350px;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: center;
   }
+  .informacoes-container {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .linha-do-tempo-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  .linha-do-tempo-container h3 {
+    font-weight: bold;
+    font-size: var(--fonteGrande);
+    color: var(--corPrincipal);
+    margin: 0;
+  }
+  .botoes-container {
+    display: flex;
+  }
+  .data {
+    width: 56px;
+    height: 20px;
+    border: 1px solid var(--corPrincipal);
+    border-collapse: collapse;
+    text-align: center;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .data:hover {
+    background-color: var(--corPrincipal);
+    color: var(--corBranco);
+  }
+  input[type=number]::-webkit-inner-spin-button { 
+    -webkit-appearance: none;
+  }
+  .card-linha-do-tempo-container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .card-container {
+    width: 364px;
+    border: 1px solid var(--corPrincipal);
+    padding: 10px;
+    color: var(--corTexto);
+    box-shadow: 0 4px 4px 0px rgba(0, 0, 0, 0.3);
+  }
+  .tipo {
+    font-weight: bold;
+  }
+  .card-detalhes {
+    display: flex;
+    justify-content: space-between;
+  }
+  .detalhe span {
+    margin-left: 10px;
+  }
+
 
 
 

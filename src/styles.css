@@ -21,6 +21,7 @@
   --fontePequena: 13px;
   --fonteMuitoPequena: 10px;
   --fonteNormal: 14px;
+  --fonteGrande: 16px;
 }
 body{
   height: 100vh;
