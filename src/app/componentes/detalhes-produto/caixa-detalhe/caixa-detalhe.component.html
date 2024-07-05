@@ -1,9 +1,9 @@
-<div class="caixa-detalhe">
+<div class="caixa-detalhe" [ngStyle]=estilos()>
     <div class="caixa-detalhe-titulo">
-        <fa-icon [icon]="getIcone('fa-dollar-sign')"></fa-icon>
-        <span>R$ 35,50</span>
+        <fa-icon [icon]="getIcone(icone)"></fa-icon>
+        <span>{{titulo == "Estoque" ? valor : (valor | currency:'R$ ':'symbol':'1.2-2')}}</span>
     </div>
     <div class="caixa-detalhe-subtitulo">
-        <span>Preço atual</span>
+        <span>{{titulo}}</span>
     </div>
 </div>

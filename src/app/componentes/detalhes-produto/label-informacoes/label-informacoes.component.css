@@ -6,6 +6,7 @@
     color: var(--corTexto);
 }
 .propriedade {
+    min-width: 135px;
     width: 135px;
     font-weight: bold;
 }

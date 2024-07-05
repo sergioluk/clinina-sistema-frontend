@@ -2,7 +2,7 @@ import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CadastroProduto, Categoria, Fiado, Fornecedor, Idade, Mensagem, Relatorio, RelatorioFiado, Sabor, Venda, Vender } from './cadastro-produto/cadastro-produto';
-import { ProdutoVenda } from '../interfaces/produtoVenda';
+import { DetalhesProduto, ProdutoVenda } from '../interfaces/produtoVenda';
 
 @Injectable({
   providedIn: 'root'
@@ -165,6 +165,12 @@ export class CardHomeService {
   apagarMensagem(mensagem: Mensagem): Observable<HttpResponse<Mensagem>>{
     const url = `${this.API}/mensagens/apagarMensagem/${mensagem.id}`;
     return this.http.patch<Mensagem>(url, mensagem, {observe: 'response'});
+  }
+  buscarProdutoDetalhes(codigoDeBarras: string): Observable<HttpResponse<DetalhesProduto>> {
+    const url = `${this.API}/produtos/detalhes-produto/${codigoDeBarras}`;
+    let params = new HttpParams().set("codigoDeBarras", codigoDeBarras);
+
+    return this.http.get<DetalhesProduto>(url, { params, observe: 'response' });
   }
 
 }

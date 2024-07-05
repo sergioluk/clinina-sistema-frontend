@@ -33,7 +33,7 @@
                   <th>Ações</th>
                 </tr>
               <tr class="tablerow" *ngFor="let item of listaDeProdutos; index as i"> 
-                <td><img class="table__img" src="{{ item.imagemP }}" alt="Imagem do produto"></td>
+                <td class="foto"><img class="table__img" src="{{ item.imagemP }}" alt="Imagem do produto"></td>
                 <td>{{ item.codigoDeBarras }}</td>
                 <td>{{ item.produto }}</td>
                 <td>{{ item.estoque }}</td>
@@ -41,9 +41,9 @@
                 <td>{{ item.preco | currency:'R$ ':'symbol':'1.2-2' }}</td>
                 <td>{{ calcularLucro(item) }}</td>
                 <td>{{ item.peso }}</td>
-                <td>
-                    <!-- <app-botao-pequeno texto="Detalhe" cor="var(--corPrincipal)"></app-botao-pequeno> -->
-                    <fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="editarItem(i)"></fa-icon>
+                <td class="acoes">
+                  <fa-icon class="editar" title="Detalhes" [icon]="getIcone('fa-circle-info')" routerLink="/detalhes-produto/{{item.codigoDeBarras}}"></fa-icon>
+                  <fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="editarItem(i)"></fa-icon>
                 </td>
               </tr>
             </table>

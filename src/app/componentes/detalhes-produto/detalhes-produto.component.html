@@ -9,35 +9,35 @@
     <div class="detalhes-container">
         <div class="detalhes-produto">
             <div class="img-produto">
-                <img src="https://m.media-amazon.com/images/I/813qcJIkhpL._AC_SL1500_.jpg" alt="Imagem do produto">
+                <img src="{{detalhesProduto.imagemP}}" alt="Imagem do produto">
             </div>
             <div class="preco-estoque-container">
-                <app-caixa-detalhe></app-caixa-detalhe>
-                <app-caixa-detalhe></app-caixa-detalhe>
-                <app-caixa-detalhe></app-caixa-detalhe>
-                <app-caixa-detalhe></app-caixa-detalhe>
-                <app-caixa-detalhe></app-caixa-detalhe>
-                <app-caixa-detalhe></app-caixa-detalhe>
+                <app-caixa-detalhe icone="fa-dollar-sign" [valor]=detalhesProduto.preco titulo="Preço atual" cor="var(--corPrincipal)"></app-caixa-detalhe>
+                <app-caixa-detalhe icone="fa-bag-shopping" [valor]=0 titulo="Valor última compra" cor="#5986B0"></app-caixa-detalhe>
+                <app-caixa-detalhe icone="fa-warehouse" [valor]=detalhesProduto.estoque titulo="Estoque" cor="#5986B0"></app-caixa-detalhe>
+                <app-caixa-detalhe icone="fa-dollar-sign" [valor]=detalhesProduto.precoCompra?detalhesProduto.precoCompra:0 titulo="Valor custo" cor="transparent" borda="1"></app-caixa-detalhe>
+                <app-caixa-detalhe icone="fa-dollar-sign" [valor]=0 titulo="Valor venda estoque" cor="transparent" borda="1"></app-caixa-detalhe>
+                <app-caixa-detalhe icone="fa-dollar-sign" [valor]=0 titulo="Valor custo estoque" cor="transparent" borda="1"></app-caixa-detalhe>
             </div>
-            <app-botao-pequeno cor="var(--corPrincipal)" icone="fa-pencil" texto="Editar"></app-botao-pequeno>
+            <app-botao-pequeno cor="var(--corPrincipal)" icone="fa-pencil" texto="Editar" (click)="editarItem()"></app-botao-pequeno>
         </div>
         <hr>
         <div class="informacoes-container">
-            <app-label-informacoes propriedade="Nome" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
-            <app-label-informacoes propriedade="Preço de custo" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
-            <app-label-informacoes propriedade="Tipo de animal" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
-            <app-label-informacoes propriedade="Código de barras" valor="Ração Fracionada Magnus "></app-label-informacoes>
-            <app-label-informacoes propriedade="Preço de venda" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
-            <app-label-informacoes propriedade="Peso" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
-            <app-label-informacoes propriedade="Categoria" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
-            <app-label-informacoes propriedade="Desconto" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
-            <app-label-informacoes propriedade="Porte" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
-            <app-label-informacoes propriedade="Sabor" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
-            <app-label-informacoes propriedade="Estoque" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
-            <app-label-informacoes propriedade="Fornecedor" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
-            <app-label-informacoes propriedade="Idade" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
-            <app-label-informacoes propriedade="Quantidade vendido" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
-            <app-label-informacoes propriedade="Castrado" valor="Ração Fracionada Magnus Todo Dia Carne"></app-label-informacoes>
+            <app-label-informacoes propriedade="Nome" valor="{{detalhesProduto.produto}}"></app-label-informacoes>
+            <app-label-informacoes propriedade="Preço de custo" valor="{{detalhesProduto.precoCompra?(detalhesProduto.precoCompra | currency:'R$ ':'symbol':'1.2-2'):'-'}}"></app-label-informacoes>
+            <app-label-informacoes propriedade="Tipo de animal" valor="{{detalhesProduto.animal}}"></app-label-informacoes>
+            <app-label-informacoes propriedade="Código de barras" valor="{{detalhesProduto.codigoDeBarras}}"></app-label-informacoes>
+            <app-label-informacoes propriedade="Preço de venda" valor="{{detalhesProduto.preco | currency:'R$ ':'symbol':'1.2-2'}}"></app-label-informacoes>
+            <app-label-informacoes propriedade="Peso" valor="{{detalhesProduto.peso}}"></app-label-informacoes>
+            <app-label-informacoes propriedade="Categoria" valor="{{detalhesProduto.categoria}}"></app-label-informacoes>
+            <app-label-informacoes propriedade="Desconto" valor="{{detalhesProduto.desconto | currency:'R$ ':'symbol':'1.2-2'}}"></app-label-informacoes>
+            <app-label-informacoes propriedade="Porte" valor="{{detalhesProduto.porte}}"></app-label-informacoes>
+            <app-label-informacoes propriedade="Sabor" valor="{{detalhesProduto.sabor}}"></app-label-informacoes>
+            <app-label-informacoes propriedade="Estoque" valor="{{detalhesProduto.estoque}}"></app-label-informacoes>
+            <app-label-informacoes propriedade="Fornecedor" valor="{{detalhesProduto.fornecedor}}"></app-label-informacoes>
+            <app-label-informacoes propriedade="Idade" valor="{{detalhesProduto.idade}}"></app-label-informacoes>
+            <app-label-informacoes propriedade="Quantidade vendido" valor="{{detalhesProduto.quantidadeVendido}}"></app-label-informacoes>
+            <app-label-informacoes propriedade="Castrado" valor="{{detalhesProduto.castrado ? 'Sim':'Não'}}"></app-label-informacoes>
         </div>
         <hr>
         <div class="linha-do-tempo-container">
@@ -67,4 +67,7 @@
         </div>
         
     </div>
+    <div *ngIf="loadingSpinner" class="spinner">
+        <mat-spinner></mat-spinner>
+      </div>
 </div>

@@ -52,6 +52,13 @@ hr {
     color: var(--corTexto);
     font-weight: bold;
 }
+.foto {
+  max-width: 63px;
+}
+.acoes {
+  display: flex;
+  gap: 2px
+}
 .grow {
     flex-grow: 1;
 }

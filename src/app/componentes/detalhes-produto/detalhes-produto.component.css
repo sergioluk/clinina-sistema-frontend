@@ -29,20 +29,6 @@
     align-items: flex-start;
     gap: 20px;
   }
-  .spinner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 5;
-  }
-
   .detalhes-container {
     width: 100%;
     display: flex;
@@ -66,7 +52,7 @@
     max-width: 100%;
   }
   .preco-estoque-container {
-    width: 350px;
+    width: 370px;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -133,3 +119,37 @@
 
 
 
+  ::ng-deep .snackbar-sucesso {
+    --mdc-snackbar-container-color: var(--corVerde); /* backgroud */
+    --mdc-snackbar-supporting-text-color: var(--corBranco); /* Cor do texto */
+    --mdc-snackbar-supporting-text-font: Roboto, "Helvetica Neue", sans-serif;
+    --mdc-snackbar-supporting-text-size: var(--fonteNormal);
+  }
+  ::ng-deep .snackbar-sucesso button {
+    --mat-mdc-snack-bar-button-color: var(--corVerde); /* backgroud */
+    --mat-snack-bar-button-color: var(--corBranco); /* Cor do texto */
+  }
+  ::ng-deep .snackbar-falha {
+    --mdc-snackbar-container-color: var(--corVermelho); /* backgroud */
+    --mdc-snackbar-supporting-text-color:var(--corBranco); /* Cor do texto */
+    --mdc-snackbar-supporting-text-font: Roboto, "Helvetica Neue", sans-serif;
+    --mdc-snackbar-supporting-text-size: var(--fonteNormal);
+  }
+  ::ng-deep .snackbar-falha button {
+    --mat-mdc-snack-bar-button-color: var(--corVermelho); /* backgroud */
+    --mat-snack-bar-button-color: var(--corBranco); /* Cor do texto */
+  }
+  
+  .spinner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+  }

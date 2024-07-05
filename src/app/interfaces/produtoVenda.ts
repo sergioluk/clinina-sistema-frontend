@@ -49,4 +49,5 @@ export interface ProdutoVenda {
     porte: string
     fornecedor: string
     castrado: number
+    imagemP: string
   }
