@@ -31,3 +31,22 @@ export interface ProdutoVenda {
     id?: number
     nome: string
   } 
+
+  export interface DetalhesProduto {
+    id?: number
+    produto: string
+    codigoDeBarras: string,
+    categoria: string,
+    sabor: string,
+    idade: string,
+    precoCompra: number
+    preco: number
+    desconto: number
+    estoque: number
+    quantidadeVendido: number
+    animal: string
+    peso: string
+    porte: string
+    fornecedor: string
+    castrado: number
+  }
