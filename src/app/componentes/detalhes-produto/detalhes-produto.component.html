@@ -9,7 +9,7 @@
     <div class="detalhes-container">
         <div class="detalhes-produto">
             <div class="img-produto">
-                <img src="{{detalhesProduto.imagemP}}" alt="Imagem do produto">
+                <img src="{{detalhesProduto.imagemP?detalhesProduto.imagemP:'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg'}}" alt="Imagem do produto">
             </div>
             <div class="preco-estoque-container">
                 <app-caixa-detalhe icone="fa-dollar-sign" [valor]=detalhesProduto.preco titulo="Preço atual" cor="var(--corPrincipal)"></app-caixa-detalhe>

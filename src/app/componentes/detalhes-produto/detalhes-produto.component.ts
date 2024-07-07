@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IconeService } from 'src/app/services/icone.service';
 import { CardHomeService } from '../card-home.service';
 import { DetalhesProduto } from 'src/app/interfaces/produtoVenda';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { CadastroProduto } from '../cadastro-produto/cadastro-produto';
+import { EnviarProdutoService } from 'src/app/services/enviar-produto.service';
 
 @Component({
   selector: 'app-detalhes-produto',
@@ -38,7 +39,9 @@ export class DetalhesProdutoComponent implements OnInit {
     private iconeService: IconeService,
     private route: ActivatedRoute,
     private service: CardHomeService,
-    private snackbar: SnackbarService
+    private snackbar: SnackbarService,
+    private enviarProduto: EnviarProdutoService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -65,10 +68,28 @@ export class DetalhesProdutoComponent implements OnInit {
   }
 
   editarItem() {
-    //Para editar o item, vou precisar converter esse produto para CadastroProduto...
-    // let produto: CadastroProduto = {};
-    // this.enviarProduto.setProduto(produto);
-    // this.router.navigate(['/cadastrarProduto']);
+    let produto: CadastroProduto = {
+      codigoDeBarras: this.detalhesProduto.codigoDeBarras,
+      categoria: this.detalhesProduto.categoria,
+      produto: this.detalhesProduto.produto,
+      imagens: [],
+      sabor: this.detalhesProduto.sabor,
+      idade: this.detalhesProduto.idade,
+      preco: this.detalhesProduto.preco,
+      precoCompra: this.detalhesProduto.precoCompra,
+      peso: this.detalhesProduto.peso,
+      desconto: this.detalhesProduto.desconto,
+      animal: this.detalhesProduto.animal,
+      castrado: this.detalhesProduto.castrado==1?true:false,
+      porte: this.detalhesProduto.porte,
+      informacao: [],
+      fornecedor: this.detalhesProduto.fornecedor,
+      estoque: this.detalhesProduto.estoque,
+      imagemP: this.detalhesProduto.imagemP,
+      id: this.detalhesProduto.id
+    };
+    this.enviarProduto.setProduto(produto);
+    this.router.navigate(['/cadastrarProduto']);
   }
 
   getIcone(icone: string) {
