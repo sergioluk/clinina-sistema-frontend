@@ -50,4 +50,14 @@ export interface ProdutoVenda {
     fornecedor: string
     castrado: number
     imagemP: string
+    valorVendaEstoque: number
+    valorCustoEstoque: number
+    linhaDoTempo: LinhaDoTempo[]
+  }
+  //Usado no DetalhesProduto interface
+  export interface LinhaDoTempo {
+    id: number,
+    precoVenda: number,
+    quantidade: number,
+    dataVenda: Date
   }

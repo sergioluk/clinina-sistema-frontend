@@ -16,8 +16,8 @@
                 <app-caixa-detalhe icone="fa-bag-shopping" [valor]=0 titulo="Valor última compra" cor="#5986B0"></app-caixa-detalhe>
                 <app-caixa-detalhe icone="fa-warehouse" [valor]=detalhesProduto.estoque titulo="Estoque" cor="#5986B0"></app-caixa-detalhe>
                 <app-caixa-detalhe icone="fa-dollar-sign" [valor]=detalhesProduto.precoCompra?detalhesProduto.precoCompra:0 titulo="Valor custo" cor="transparent" borda="1"></app-caixa-detalhe>
-                <app-caixa-detalhe icone="fa-dollar-sign" [valor]=0 titulo="Valor venda estoque" cor="transparent" borda="1"></app-caixa-detalhe>
-                <app-caixa-detalhe icone="fa-dollar-sign" [valor]=0 titulo="Valor custo estoque" cor="transparent" borda="1"></app-caixa-detalhe>
+                <app-caixa-detalhe icone="fa-dollar-sign" [valor]=detalhesProduto.valorVendaEstoque titulo="Valor venda estoque" cor="transparent" borda="1"></app-caixa-detalhe>
+                <app-caixa-detalhe icone="fa-dollar-sign" [valor]=detalhesProduto.valorCustoEstoque titulo="Valor custo estoque" cor="transparent" borda="1"></app-caixa-detalhe>
             </div>
             <app-botao-pequeno cor="var(--corPrincipal)" icone="fa-pencil" texto="Editar" (click)="editarItem()"></app-botao-pequeno>
         </div>
@@ -50,20 +50,7 @@
             </div>
         </div>
         <div class="card-linha-do-tempo-container">
-            <div class="card-container">
-                <div class="tipo">Venda</div>
-                <div class="card-detalhes">
-                    <div class="detalhe">
-                        <fa-icon [icon]="getIcone('fa-money-bill')"></fa-icon>
-                        <span>R$ 150,00</span>
-                    </div>
-                    <div class="detalhe">
-                        <fa-icon [icon]="getIcone('fa-cart-shopping')"></fa-icon>
-                        <span>5</span>
-                    </div>
-                    <span>12/05/2024 19:22</span>
-                </div>
-            </div>
+            <app-linha-do-tempo *ngFor="let item of detalhesProduto.linhaDoTempo; index as i" [valor]=item.precoVenda [quantidade]=item.quantidade [data]=item.dataVenda></app-linha-do-tempo>
         </div>
         
     </div>

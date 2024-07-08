@@ -1,0 +1,17 @@
+.card-container {
+    width: 364px;
+    border: 1px solid var(--corPrincipal);
+    padding: 10px;
+    color: var(--corTexto);
+    box-shadow: 0 4px 4px 0px rgba(0, 0, 0, 0.3);
+  }
+  .tipo {
+    font-weight: bold;
+  }
+  .card-detalhes {
+    display: flex;
+    justify-content: space-between;
+  }
+  .detalhe span {
+    margin-left: 10px;
+  }

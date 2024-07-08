@@ -32,7 +32,10 @@ export class DetalhesProdutoComponent implements OnInit {
     porte: '',
     fornecedor: '',
     castrado: 0,
-    imagemP: ''
+    imagemP: '',
+    valorVendaEstoque: 0,
+    valorCustoEstoque: 0,
+    linhaDoTempo: []
   }
 
   constructor(

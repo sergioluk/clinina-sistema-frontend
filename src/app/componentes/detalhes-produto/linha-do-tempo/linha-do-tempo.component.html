@@ -1,0 +1,14 @@
+<div class="card-container">
+    <div class="tipo">Venda</div>
+    <div class="card-detalhes">
+        <div class="detalhe">
+            <fa-icon [icon]="getIcone('fa-money-bill')"></fa-icon>
+            <span>{{ valor| currency:'R$ ':'symbol':'1.2-2' }}</span>
+        </div>
+        <div class="detalhe">
+            <fa-icon [icon]="getIcone('fa-cart-shopping')"></fa-icon>
+            <span>{{ quantidade }}</span>
+        </div>
+        <span>{{ data | date:'dd/MM/yyyy HH:mm' }}</span>
+    </div>
+</div>
