@@ -43,18 +43,21 @@
         <div class="linha-do-tempo-container">
             <h3>Linha do tempo</h3>
             <div class="botoes-container">
-                <div class="data">7 dias</div>
-                <div class="data">15 dias</div>
-                <div class="data">30 dias</div>
+                <div class="data" [ngClass]="{'selected': botaoSelecionado === '7 dias'}" (click)="selecionarBotao('7 dias')">7 dias</div>
+                <div class="data" [ngClass]="{'selected': botaoSelecionado === '15 dias'}" (click)="selecionarBotao('15 dias')">15 dias</div>
+                <div class="data" [ngClass]="{'selected': botaoSelecionado === '30 dias'}" (click)="selecionarBotao('30 dias')">30 dias</div>
                 <input class="data input" type="number" placeholder="x dias">
             </div>
         </div>
         <div class="card-linha-do-tempo-container">
+            <div *ngIf="detalhesProduto.linhaDoTempo.length <= 0">
+                <span>Nenhuma venda encontrada ou produto nunca foi vendido.</span>
+            </div>
             <app-linha-do-tempo *ngFor="let item of detalhesProduto.linhaDoTempo; index as i" [valor]=item.precoVenda [quantidade]=item.quantidade [data]=item.dataVenda></app-linha-do-tempo>
         </div>
         
     </div>
     <div *ngIf="loadingSpinner" class="spinner">
         <mat-spinner></mat-spinner>
-      </div>
+    </div>
 </div>

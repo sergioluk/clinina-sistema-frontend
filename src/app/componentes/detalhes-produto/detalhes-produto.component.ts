@@ -37,6 +37,8 @@ export class DetalhesProdutoComponent implements OnInit {
     valorCustoEstoque: 0,
     linhaDoTempo: []
   }
+  botaoSelecionado = '';
+  botoes!: HTMLCollectionOf<Element>;
 
   constructor(
     private iconeService: IconeService,
@@ -67,6 +69,8 @@ export class DetalhesProdutoComponent implements OnInit {
         this.snackbar.openSnackBarSucces("Detalhes do Produto Carregado!","Fechar");
       }
     });
+
+    this.botoes = document.getElementsByClassName('data');
   
   }
 
@@ -93,6 +97,10 @@ export class DetalhesProdutoComponent implements OnInit {
     };
     this.enviarProduto.setProduto(produto);
     this.router.navigate(['/cadastrarProduto']);
+  }
+
+  selecionarBotao(valor: string) {
+    this.botaoSelecionado = valor;
   }
 
   getIcone(icone: string) {

@@ -85,7 +85,7 @@
     transition: all 0.3s;
     cursor: pointer;
   }
-  .data:hover {
+  .data:hover, .selected {
     background-color: var(--corPrincipal);
     color: var(--corBranco);
   }
@@ -97,6 +97,7 @@
     gap: 20px;
     flex-wrap: wrap;
   }
+  
   
 
 
