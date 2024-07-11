@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IconeService } from 'src/app/services/icone.service';
 import { CardHomeService } from '../card-home.service';
-import { DetalhesProduto } from 'src/app/interfaces/produtoVenda';
+import { DetalhesProduto, LinhaDoTempo } from 'src/app/interfaces/produtoVenda';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { CadastroProduto } from '../cadastro-produto/cadastro-produto';
@@ -37,8 +37,8 @@ export class DetalhesProdutoComponent implements OnInit {
     valorCustoEstoque: 0,
     linhaDoTempo: []
   }
-  botaoSelecionado = '';
-  botoes!: HTMLCollectionOf<Element>;
+  botaoSelecionado = "30 dias";
+  loadingSpinnerLinhaDoTempo = false;
 
   constructor(
     private iconeService: IconeService,
@@ -69,8 +69,6 @@ export class DetalhesProdutoComponent implements OnInit {
         this.snackbar.openSnackBarSucces("Detalhes do Produto Carregado!","Fechar");
       }
     });
-
-    this.botoes = document.getElementsByClassName('data');
   
   }
 
@@ -101,6 +99,32 @@ export class DetalhesProdutoComponent implements OnInit {
 
   selecionarBotao(valor: string) {
     this.botaoSelecionado = valor;
+    this.detalhesProduto.linhaDoTempo = [];
+
+
+    //Adicionar um spiner no linha do tempo, mudar a linha 122 para false o novo spiner, pegar o valor da ultima compra também
+    const produtoAndValor = {
+      codigoDeBarras: this.detalhesProduto.codigoDeBarras,
+      valor: valor
+    }
+    this.loadingSpinnerLinhaDoTempo = true;
+    this.service.buscarListaLinhaDoTempo(produtoAndValor).subscribe({
+      next: (response: HttpResponse<LinhaDoTempo[]>) => {
+        if (response.body) {
+          this.detalhesProduto.linhaDoTempo = response.body;
+        }
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error("Erro: ", error.message); // Mensagem de erro
+        console.error("Código de status HTTP: ", error.status); // Código de status HTTP do erro
+        this.loadingSpinner = false;
+        this.snackbar.openSnackBarFail("Algo deu errado!", "Fechar");
+      },
+      complete: () => {
+        this.loadingSpinnerLinhaDoTempo = false;
+        this.snackbar.openSnackBarSucces("Detalhes do Produto Carregado!","Fechar");
+      }
+    });
   }
 
   getIcone(icone: string) {

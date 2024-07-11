@@ -13,7 +13,7 @@
             </div>
             <div class="preco-estoque-container">
                 <app-caixa-detalhe icone="fa-dollar-sign" [valor]=detalhesProduto.preco titulo="Preço atual" cor="var(--corPrincipal)"></app-caixa-detalhe>
-                <app-caixa-detalhe icone="fa-bag-shopping" [valor]=0 titulo="Valor última compra" cor="#5986B0"></app-caixa-detalhe>
+                <app-caixa-detalhe icone="fa-bag-shopping" [valor]=detalhesProduto.valorUltimaCompra titulo="Valor última compra" cor="#5986B0"></app-caixa-detalhe>
                 <app-caixa-detalhe icone="fa-warehouse" [valor]=detalhesProduto.estoque titulo="Estoque" cor="#5986B0"></app-caixa-detalhe>
                 <app-caixa-detalhe icone="fa-dollar-sign" [valor]=detalhesProduto.precoCompra?detalhesProduto.precoCompra:0 titulo="Valor custo" cor="transparent" borda="1"></app-caixa-detalhe>
                 <app-caixa-detalhe icone="fa-dollar-sign" [valor]=detalhesProduto.valorVendaEstoque titulo="Valor venda estoque" cor="transparent" borda="1"></app-caixa-detalhe>
@@ -46,10 +46,13 @@
                 <div class="data" [ngClass]="{'selected': botaoSelecionado === '7 dias'}" (click)="selecionarBotao('7 dias')">7 dias</div>
                 <div class="data" [ngClass]="{'selected': botaoSelecionado === '15 dias'}" (click)="selecionarBotao('15 dias')">15 dias</div>
                 <div class="data" [ngClass]="{'selected': botaoSelecionado === '30 dias'}" (click)="selecionarBotao('30 dias')">30 dias</div>
-                <input class="data input" type="number" placeholder="x dias">
+                <div class="data" [ngClass]="{'selected': botaoSelecionado === 'Todos'}" (click)="selecionarBotao('Todos')">Todos</div>
             </div>
         </div>
         <div class="card-linha-do-tempo-container">
+            <div *ngIf="loadingSpinnerLinhaDoTempo" class="spinnerLinhaDoTempo">
+                <mat-spinner></mat-spinner>
+            </div>
             <div *ngIf="detalhesProduto.linhaDoTempo.length <= 0">
                 <span>Nenhuma venda encontrada ou produto nunca foi vendido.</span>
             </div>

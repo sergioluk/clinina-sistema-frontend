@@ -2,15 +2,15 @@ import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CadastroProduto, Categoria, Fiado, Fornecedor, Idade, Mensagem, Relatorio, RelatorioFiado, Sabor, Venda, Vender } from './cadastro-produto/cadastro-produto';
-import { DetalhesProduto, ProdutoVenda } from '../interfaces/produtoVenda';
+import { DetalhesProduto, LinhaDoTempo, ProdutoVenda } from '../interfaces/produtoVenda';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CardHomeService {
 
-  private readonly API = 'https://clinina-backend.onrender.com';
-  //private readonly API = 'http://localhost:8080';
+  //private readonly API = 'https://clinina-backend.onrender.com';
+  private readonly API = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 
@@ -171,6 +171,15 @@ export class CardHomeService {
     let params = new HttpParams().set("codigoDeBarras", codigoDeBarras);
 
     return this.http.get<DetalhesProduto>(url, { params, observe: 'response' });
+  }
+
+  buscarListaLinhaDoTempo(produtoAndValor:{ codigoDeBarras: string, valor: string }): Observable<HttpResponse<LinhaDoTempo[]>> {
+    const url = `${this.API}/produtos/detalhes-produto/linhaDoTempo`;
+    let params = new HttpParams()
+    .set('codigoDeBarras', produtoAndValor.codigoDeBarras)
+    .set('valor', produtoAndValor.valor);
+
+    return this.http.get<LinhaDoTempo[]>(url, {params , observe: 'response'});
   }
 
 }
