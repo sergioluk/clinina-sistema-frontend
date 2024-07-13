@@ -7,6 +7,7 @@ import { RelatorioFiadoComponent } from './componentes/relatorio-fiado/relatorio
 import { EstoqueComponent } from './componentes/estoque/estoque.component';
 import { MensagensComponent } from './componentes/mensagens/mensagens.component';
 import { DetalhesProdutoComponent } from './componentes/detalhes-produto/detalhes-produto.component';
+import { CaixaComponent } from './componentes/caixa/caixa.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'mensagens',
     component: MensagensComponent
+  },
+  {
+    path: 'caixa',
+    component: CaixaComponent
   },
   {
     path: 'detalhes-produto/:codigo',

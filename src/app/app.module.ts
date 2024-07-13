@@ -50,6 +50,7 @@ import { DetalhesProdutoComponent } from './componentes/detalhes-produto/detalhe
 import { CaixaDetalheComponent } from './componentes/detalhes-produto/caixa-detalhe/caixa-detalhe.component';
 import { LabelInformacoesComponent } from './componentes/detalhes-produto/label-informacoes/label-informacoes.component';
 import { LinhaDoTempoComponent } from './componentes/detalhes-produto/linha-do-tempo/linha-do-tempo.component';
+import { CaixaComponent } from './componentes/caixa/caixa.component';
 
 
 @NgModule({
@@ -87,7 +88,8 @@ import { LinhaDoTempoComponent } from './componentes/detalhes-produto/linha-do-t
     DetalhesProdutoComponent,
     CaixaDetalheComponent,
     LabelInformacoesComponent,
-    LinhaDoTempoComponent
+    LinhaDoTempoComponent,
+    CaixaComponent
   ],
   imports: [
     BrowserModule,

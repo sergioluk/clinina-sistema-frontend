@@ -1,0 +1,94 @@
+<div class="caixa-componente__container">
+    <div class="flex">
+      <div class="menu">
+        <fa-icon [icon]="getIcone('fa-bars')"></fa-icon>
+      </div>
+      <h1 class="titulo">CAIXA</h1>
+    </div>
+    <hr>
+    <div class="caixa-container">
+        <div class="entrada-saida-container">
+            <div class="entrada-saida-inputs width">
+                <div class="entrada-saida">
+                    <app-input label="Entrada" placeholder="R$"></app-input>
+                    <app-botao-pequeno icone="fa-circle-check" cor="var(--corVerde)"></app-botao-pequeno>
+                </div>
+                
+                <div class="entrada-saida">
+                    <app-input label="Saída" placeholder="R$"></app-input>
+                <app-botao-pequeno icone="fa-circle-check" cor="var(--corVerde)"></app-botao-pequeno>
+                </div>
+            </div>
+            <app-info titulo="Caixa dinheiro atual" valor="R$ 20,20"></app-info>
+        </div>
+        <div class="tabelas-container">
+            <div class="tabela-container width">
+                <table>
+                    <tr class="cabecalho-tabela">
+                      <th>Descrição</th>
+                      <th class="nome__tabela">Data/Hora</th>
+                      <th>Valor</th>
+                    </tr>
+                    <!-- <tr class="tablerow" *ngFor="let item of listaDeItensVendidos; index as i"> -->
+                    <tr class="tablerow">
+                        <td>Abertura Caixa</td>
+                        <td>10/11/2024 11:20</td>
+                        <td>R$ 150,00</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="tabela-container  width">
+                <table>
+                    <tr class="cabecalho-tabela">
+                      <th>Forma de pagamento</th>
+                      <th class="nome__tabela">Líquido</th>
+                      <th>Conferido</th>
+                      <th>Diferença</th>
+                    </tr>
+                    <tr class="tablerow">
+                        <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')"></fa-icon> Cartão de crédito</td>
+                        <td>R$ 150,00</td>
+                        <td>R$ 150,00</td>
+                        <td>R$ 150,00</td>
+                    </tr>
+                    <tr class="tablerow">
+                        <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')"></fa-icon> Cartão de débito</td>
+                        <td>R$ 150,00</td>
+                        <td>R$ 150,00</td>
+                        <td>R$ 150,00</td>
+                    </tr>
+                    <tr class="tablerow">
+                        <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')"></fa-icon> Dinheiro</td>
+                        <td>R$ 150,00</td>
+                        <td>R$ 150,00</td>
+                        <td>R$ 150,00</td>
+                    </tr>
+                    <tr class="tablerow">
+                        <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')"></fa-icon> Pix</td>
+                        <td>R$ 150,00</td>
+                        <td>R$ 150,00</td>
+                        <td>R$ 150,00</td>
+                    </tr>
+                    <tr class="tablerow">
+                        <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')"></fa-icon> Fiado</td>
+                        <td>R$ 150,00</td>
+                        <td>R$ 150,00</td>
+                        <td>R$ 150,00</td>
+                    </tr>
+                    <tr class="tablerow">
+                        <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')"></fa-icon> Entrada</td>
+                        <td>R$ 150,00</td>
+                        <td>R$ 150,00</td>
+                        <td>R$ 150,00</td>
+                    </tr>
+                    <tr class="tablerow">
+                        <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')"></fa-icon> Saída</td>
+                        <td>R$ 150,00</td>
+                        <td>R$ 150,00</td>
+                        <td>R$ 150,00</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

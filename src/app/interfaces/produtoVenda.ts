@@ -53,6 +53,7 @@ export interface ProdutoVenda {
     valorVendaEstoque: number
     valorCustoEstoque: number
     linhaDoTempo: LinhaDoTempo[]
+    valorUltimaCompra: number
   }
   //Usado no DetalhesProduto interface
   export interface LinhaDoTempo {

@@ -35,7 +35,8 @@ export class DetalhesProdutoComponent implements OnInit {
     imagemP: '',
     valorVendaEstoque: 0,
     valorCustoEstoque: 0,
-    linhaDoTempo: []
+    linhaDoTempo: [],
+    valorUltimaCompra: 0
   }
   botaoSelecionado = "30 dias";
   loadingSpinnerLinhaDoTempo = false;
@@ -101,8 +102,6 @@ export class DetalhesProdutoComponent implements OnInit {
     this.botaoSelecionado = valor;
     this.detalhesProduto.linhaDoTempo = [];
 
-
-    //Adicionar um spiner no linha do tempo, mudar a linha 122 para false o novo spiner, pegar o valor da ultima compra também
     const produtoAndValor = {
       codigoDeBarras: this.detalhesProduto.codigoDeBarras,
       valor: valor
