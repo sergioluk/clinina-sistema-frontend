@@ -25,15 +25,41 @@
             <div class="tabela-container width">
                 <table>
                     <tr class="cabecalho-tabela">
-                      <th>Descrição</th>
-                      <th class="nome__tabela">Data/Hora</th>
-                      <th>Valor</th>
+                      <th>Caixa</th>
+                      <th class="nome__tabela">Valor</th>
+                      <th>Data</th>
+                      <th>Ações</th>
                     </tr>
                     <!-- <tr class="tablerow" *ngFor="let item of listaDeItensVendidos; index as i"> -->
                     <tr class="tablerow">
-                        <td>Abertura Caixa</td>
-                        <td>10/11/2024 11:20</td>
-                        <td>R$ 150,00</td>
+                        <td>Abertura de Caixa</td>
+                        <td>R$ 00,00</td>
+                        <td>13/07/20024 20:35</td>
+                        <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')"></fa-icon></td>
+                    </tr>
+                    <tr class="tablerow">
+                        <td>Recebimento em dinheiro</td>
+                        <td>R$ 00,00</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr class="tablerow">
+                        <td>Troco</td>
+                        <td>R$ 00,00</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr class="tablerow">
+                        <td>Despesas do caixa</td>
+                        <td>R$ 00,00</td>
+                        <td>-</td>
+                        <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')"></fa-icon></td>
+                    </tr>
+                    <tr class="tablerow">
+                        <td>Fechamento de caixa</td>
+                        <td>R$ 00,00</td>
+                        <td>13/07/20024 22:35</td>
+                        <td>-</td>
                     </tr>
                 </table>
             </div>
@@ -90,5 +116,6 @@
                 </table>
             </div>
         </div>
+        <app-botao-pequeno class="btn" texto="Fechar caixa" icone="fa-floppy-disk" cor="var(--corVerde)"></app-botao-pequeno>
     </div>
 </div>
