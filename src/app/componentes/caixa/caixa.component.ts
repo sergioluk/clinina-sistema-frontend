@@ -8,10 +8,17 @@ import { IconeService } from 'src/app/services/icone.service';
 })
 export class CaixaComponent {
 
+  start = 0;
+  end = 0;
 
   constructor(private icone: IconeService) {}
 
   getIcone(icone: string) {
     return this.icone.getIcone(icone);
   }
+
+  pesquisar() {
+
+  }
+
 }

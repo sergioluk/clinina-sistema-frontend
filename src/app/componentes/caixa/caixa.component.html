@@ -8,7 +8,7 @@
     <hr>
     <div class="caixa-container">
         <div class="entrada-saida-container">
-            <div class="entrada-saida-inputs width">
+            <!-- <div class="entrada-saida-inputs width">
                 <div class="entrada-saida">
                     <app-input label="Entrada" placeholder="R$"></app-input>
                     <app-botao-pequeno icone="fa-circle-check" cor="var(--corVerde)"></app-botao-pequeno>
@@ -19,8 +19,24 @@
                 <app-botao-pequeno icone="fa-circle-check" cor="var(--corVerde)"></app-botao-pequeno>
                 </div>
             </div>
-            <app-info titulo="Caixa dinheiro atual" valor="R$ 20,20"></app-info>
+            <app-info titulo="Caixa dinheiro atual" valor="R$ 20,20"></app-info> -->
+
+            <div class="data">
+                <div>
+                  <mat-form-field>
+                    <mat-label>Selecione a data</mat-label>
+                    <mat-date-range-input [rangePicker]="picker" disabled>
+                      <input matStartDate placeholder="Start date" [(ngModel)]="start">
+                      <input matEndDate placeholder="End date" [(ngModel)]="end">
+                    </mat-date-range-input>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-date-range-picker #picker disabled="false"></mat-date-range-picker>
+                  </mat-form-field>
+                </div>
+                <app-botao-pequeno icone="fa-circle-check" texto="Pesquisar" cor="var(--corVerde)" (click)="pesquisar()"></app-botao-pequeno>
+            </div>
         </div>
+        <h1 class="titulo">Meu Caixa Dia 29/06/2021</h1>
         <div class="tabelas-container">
             <div class="tabela-container width">
                 <table>

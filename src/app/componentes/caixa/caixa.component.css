@@ -65,7 +65,11 @@
   .btn {
     width: fit-content;
   }
- 
+  .data {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
 
 
   /*CSS da table*/
