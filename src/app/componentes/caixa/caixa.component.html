@@ -36,7 +36,7 @@
                 <app-botao-pequeno icone="fa-circle-check" texto="Pesquisar" cor="var(--corVerde)" (click)="pesquisar()"></app-botao-pequeno>
             </div>
         </div>
-        <h1 class="titulo">Meu Caixa Dia 29/06/2021</h1>
+        <h1 class="titulo">Meu Caixa Dia {{ mostrarData() }}</h1>
         <div class="tabelas-container">
             <div class="tabela-container width">
                 <table>
@@ -49,9 +49,10 @@
                     <!-- <tr class="tablerow" *ngFor="let item of listaDeItensVendidos; index as i"> -->
                     <tr class="tablerow">
                         <td>Abertura de Caixa</td>
-                        <td>R$ 00,00</td>
+                        <td *ngIf="!modoEdicaoAbertura">R$ 00,00</td>
+                        <td *ngIf="modoEdicaoAbertura"><input type="number"></td>
                         <td>13/07/20024 20:35</td>
-                        <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')"></fa-icon></td>
+                        <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="toggleEdicaoAbertura()"></fa-icon></td>
                     </tr>
                     <tr class="tablerow">
                         <td>Recebimento em dinheiro</td>
@@ -67,9 +68,10 @@
                     </tr>
                     <tr class="tablerow">
                         <td>Despesas do caixa</td>
-                        <td>R$ 00,00</td>
+                        <td *ngIf="!modoEdicaoDespesas">R$ 00,00</td>
+                        <td *ngIf="modoEdicaoDespesas"><input type="number"></td>
                         <td>-</td>
-                        <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')"></fa-icon></td>
+                        <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="toggleEdicaoDespesas()"></fa-icon></td>
                     </tr>
                     <tr class="tablerow">
                         <td>Fechamento de caixa</td>
@@ -133,5 +135,6 @@
             </div>
         </div>
         <app-botao-pequeno class="btn" texto="Fechar caixa" icone="fa-floppy-disk" cor="var(--corVerde)"></app-botao-pequeno>
+        <app-botao-pequeno class="btn" texto="Abrir caixa" icone="fa-floppy-disk" cor="var(--corVerde)"></app-botao-pequeno>
     </div>
 </div>
