@@ -12,6 +12,7 @@ export class CaixaComponent {
   end!: Date;
   modoEdicaoAbertura = false;
   modoEdicaoDespesas = false;
+  caixaAberto = false;
 
   constructor(private icone: IconeService) {}
 

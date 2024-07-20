@@ -134,7 +134,7 @@
                 </table>
             </div>
         </div>
-        <app-botao-pequeno class="btn" texto="Fechar caixa" icone="fa-floppy-disk" cor="var(--corVerde)"></app-botao-pequeno>
-        <app-botao-pequeno class="btn" texto="Abrir caixa" icone="fa-floppy-disk" cor="var(--corVerde)"></app-botao-pequeno>
+        <app-botao-pequeno *ngIf="caixaAberto" class="btn" texto="Fechar caixa" icone="fa-floppy-disk" cor="var(--corVerde)"></app-botao-pequeno>
+        <app-botao-pequeno *ngIf="!caixaAberto" class="btn" texto="Abrir caixa" icone="fa-floppy-disk" cor="var(--corVerde)"></app-botao-pequeno>
     </div>
 </div>
