@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { faTrashCan, faCircleXmark, faCircleLeft, faCircleCheck, faRectangleList, faEnvelope, faEnvelopeOpen, faPaperPlane, faUser } from '@fortawesome/free-regular-svg-icons';
-import { faMagnifyingGlass, faCartPlus, faXmark, faBars, faPencil, faCartShopping, faPlus, faTriangleExclamation, faDollarSign, faMoneyBill, faBagShopping, faWarehouse } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faCartPlus, faXmark, faBars, faPencil, faCartShopping, faPlus, faTriangleExclamation, faDollarSign, faMoneyBill, faBagShopping, faWarehouse, faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { faMoneyBill1, faFloppyDisk, faChartLine, faHandHoldingDollar, faDog, faStethoscope, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({
@@ -18,6 +18,12 @@ export class IconeService {
         break;
       case 'fa-trash-can':
         icone = faTrashCan;
+        break;
+      case 'fa-arrow-right':
+        icone = faArrowRight;
+        break;
+      case 'fa-arrow-left':
+        icone = faArrowLeft;
         break;
       case 'fa-dollar-sign':
         icone = faDollarSign;

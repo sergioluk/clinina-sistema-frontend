@@ -114,6 +114,15 @@ td {
 .nome__tabela {
   width: 50%;
 }
+.caixa__tabela {
+  width: 30%;
+}
+.valor__tabela {
+  width: 20%;
+}
 tr fa-icon {
   font-size: 14px;
+}
+.tablerow input {
+  width: 80px;
 }
