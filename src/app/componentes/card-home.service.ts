@@ -2,15 +2,15 @@ import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CadastroProduto, Categoria, Fiado, Fornecedor, Idade, Mensagem, Relatorio, RelatorioFiado, Sabor, Venda, Vender } from './cadastro-produto/cadastro-produto';
-import { DetalhesProduto, LinhaDoTempo, ProdutoVenda } from '../interfaces/produtoVenda';
+import { Caixa, DetalhesProduto, LinhaDoTempo, ProdutoVenda } from '../interfaces/produtoVenda';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CardHomeService {
 
-  private readonly API = 'https://clinina-backend.onrender.com';
-  //private readonly API = 'http://localhost:8080';
+  //private readonly API = 'https://clinina-backend.onrender.com';
+  private readonly API = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 
@@ -180,6 +180,15 @@ export class CardHomeService {
     .set('valor', produtoAndValor.valor);
 
     return this.http.get<LinhaDoTempo[]>(url, {params , observe: 'response'});
+  }
+  buscarCaixa( data: {start_dia: number, start_mes: number, start_ano: number}): Observable<HttpResponse<Caixa>> {
+    const url = `${this.API}/caixa/buscarCaixa`;
+    const params = new HttpParams()
+    .set('dia', data.start_dia.toString())
+    .set('mes', data.start_mes.toString())
+    .set('ano', data.start_ano.toString())
+
+    return this.http.get<Caixa>(url, {params, observe: 'response'} )
   }
 
 }

@@ -62,3 +62,19 @@ export interface ProdutoVenda {
     quantidade: number,
     dataVenda: Date
   }
+
+  //Usado no Caixa
+  export interface Caixa {
+    id?: number,
+    abertura_data: Date | null,
+    abertura_valor: number,
+    despesas_caixa: number,
+    entrada: number,
+    fechamento_caixa_data: Date | null,
+    fechamento_caixa_valor: number,
+    credito_conferido: number,
+    debito_conferido: number,
+    dinheiro_conferido: number,
+    pix_conferido: number,
+    fiado_conferido: number
+  }
