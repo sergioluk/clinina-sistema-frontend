@@ -18,6 +18,7 @@ export class CaixaComponent implements OnInit {
   modoEdicaoDespesas = false;
   caixaAberto = false;
   loadingSpinner = false;
+  abrirCaixaInput: number = 0;
 
   caixa: Caixa = {
     abertura_data: null,
@@ -50,6 +51,7 @@ export class CaixaComponent implements OnInit {
       next: (response: HttpResponse<Caixa>) => {
         if (response.body != null) {
           this.caixa = response.body;
+          this.abrirCaixaInput = this.caixa.abertura_valor;
         }
         this.loadingSpinner = false;
         this.snackbar.openSnackBarSucces("Pesquisa concluída!","Fechar");
@@ -109,6 +111,13 @@ export class CaixaComponent implements OnInit {
 
   formatarDigito(numero: number) {
     return numero < 10 ? "0" + numero : numero.toString();
+  }
+
+  abrirCaixa() {
+    if (this.abrirCaixaInput == 0) {
+      this.snackbar.openSnackBarFail("Precisa inserir o valor de abertura!!","Fechar");
+      return;
+    }
   }
 
 }

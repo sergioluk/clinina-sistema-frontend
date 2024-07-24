@@ -50,7 +50,7 @@
                     <tr class="tablerow">
                         <td>Abertura de Caixa</td>
                         <td *ngIf="!modoEdicaoAbertura">R$ 00,00</td>
-                        <td *ngIf="modoEdicaoAbertura"><input type="number"></td>
+                        <td *ngIf="modoEdicaoAbertura"><input type="number" [(ngModel)]="abrirCaixaInput"></td>
                         <td>13/07/20024 20:35</td>
                         <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="toggleEdicaoAbertura()"></fa-icon></td>
                     </tr>
@@ -136,7 +136,7 @@
             </div>
         </div>
         <app-botao-pequeno *ngIf="caixaAberto" class="btn" texto="Fechar caixa" icone="fa-floppy-disk" cor="var(--corVerde)"></app-botao-pequeno>
-        <app-botao-pequeno *ngIf="!caixaAberto" class="btn" texto="Abrir caixa" icone="fa-floppy-disk" cor="var(--corVerde)"></app-botao-pequeno>
+        <app-botao-pequeno *ngIf="!caixaAberto" class="btn" texto="Abrir caixa" icone="fa-floppy-disk" cor="var(--corVerde)" (click)="abrirCaixa()" ></app-botao-pequeno>
     </div>
     <div *ngIf="loadingSpinner" class="spinner">
         <mat-spinner></mat-spinner>
