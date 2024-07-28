@@ -4,6 +4,7 @@ import { CardHomeService } from '../card-home.service';
 import { Caixa } from 'src/app/interfaces/produtoVenda';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { AberturaCaixaService } from 'src/app/services/abertura-caixa.service';
 
 @Component({
   selector: 'app-caixa',
@@ -37,12 +38,14 @@ export class CaixaComponent implements OnInit {
   constructor(
     private icone: IconeService,
     private service: CardHomeService,
-    private snackbar: SnackbarService
+    private snackbar: SnackbarService,
+    private caixaService: AberturaCaixaService
   ) {}
 
   ngOnInit() {
     const data = this.getData();
     this.exibirCaixa(data);
+    this.caixaAberto = this.caixaService.verificarCaixa();
   }
 
   exibirCaixa(data: {start_dia: number, start_mes: number, start_ano: number} ) {
@@ -118,6 +121,8 @@ export class CaixaComponent implements OnInit {
       this.snackbar.openSnackBarFail("Precisa inserir o valor de abertura!!","Fechar");
       return;
     }
+    this.caixaService.abrirCaixa();
+    this.caixaAberto = this.caixaService.verificarCaixa();
   }
 
 }
