@@ -5,6 +5,7 @@ import { Caixa } from 'src/app/interfaces/produtoVenda';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { AberturaCaixaService } from 'src/app/services/abertura-caixa.service';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-caixa',
@@ -14,15 +15,15 @@ import { AberturaCaixaService } from 'src/app/services/abertura-caixa.service';
 export class CaixaComponent implements OnInit {
 
   start: Date = new Date();
-  end!: Date;
   modoEdicaoAbertura = false;
   modoEdicaoDespesas = false;
   caixaAberto = false;
   loadingSpinner = false;
   abrirCaixaInput: number = 0;
+  despesasInput: number = 0;
 
   caixa: Caixa = {
-    abertura_data: null,
+    abertura_data: new Date(),
     abertura_valor: 0,
     despesas_caixa: 0,
     entrada: 0,
@@ -43,19 +44,33 @@ export class CaixaComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const data = this.getData();
-    this.exibirCaixa(data);
+    this.exibirCaixa();
     this.caixaAberto = this.caixaService.verificarCaixa();
   }
 
-  exibirCaixa(data: {start_dia: number, start_mes: number, start_ano: number} ) {
+  exibirCaixa() {
+    const data = this.getData();
     this.loadingSpinner = true;
     this.service.buscarCaixa(data).subscribe({
       next: (response: HttpResponse<Caixa>) => {
         if (response.body != null) {
           this.caixa = response.body;
-          this.abrirCaixaInput = this.caixa.abertura_valor;
+        } else {
+          this.caixa = {
+            abertura_data: null,
+            abertura_valor: 0,
+            despesas_caixa: 0,
+            entrada: 0,
+            fechamento_caixa_data: null,
+            fechamento_caixa_valor: 0,
+            credito_conferido: 0,
+            debito_conferido: 0,
+            dinheiro_conferido: 0,
+            pix_conferido: 0,
+            fiado_conferido: 0
+          }
         }
+        this.abrirCaixaInput = this.caixa.abertura_valor;
         this.loadingSpinner = false;
         this.snackbar.openSnackBarSucces("Pesquisa concluída!","Fechar");
       },
@@ -82,9 +97,6 @@ export class CaixaComponent implements OnInit {
     this.modoEdicaoDespesas = !this.modoEdicaoDespesas;
   }
 
-  pesquisar() {
-
-  }
   getData() {
     let start_dia = 0;
     let start_mes = 0;
@@ -123,6 +135,36 @@ export class CaixaComponent implements OnInit {
     }
     this.caixaService.abrirCaixa();
     this.caixaAberto = this.caixaService.verificarCaixa();
+    this.snackbar.openSnackBarSucces("Caixa aberto!!","Fechar");
+  }
+  fecharCaixa() {
+    if (!this.caixaAberto) {
+      this.snackbar.openSnackBarFail("Caixa precisa estar aberto para fazer o fechamento!","Fechar");
+      return;
+    }
+    this.caixa.abertura_valor = this.abrirCaixaInput;
+    this.caixa.despesas_caixa = this.despesasInput;
+
+    this.loadingSpinner = true;
+    this.service.fecharCaixa(this.caixa).subscribe({
+      error: (error: HttpErrorResponse) => {
+        console.error("Erro: ", error.message);
+        console.error("Código de status HTTP: ", error.status);
+        this.snackbar.openSnackBarFail("Algo deu errado!", "Fechar");
+        this.loadingSpinner = false;
+      },
+      complete: () => {
+        console.log("Requisição completa!!!");
+        this.loadingSpinner = false;
+        this.snackbar.openSnackBarSucces("Fechamento de caixa concluído!!","Fechar");
+      }
+    });
+  }
+
+  dateChangeEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+    if (event.value != null)
+      this.start = event.value;
+    this.exibirCaixa();
   }
 
 }

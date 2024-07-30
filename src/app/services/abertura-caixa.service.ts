@@ -5,9 +5,9 @@ import { Injectable } from '@angular/core';
 })
 export class AberturaCaixaService {
 
-  isCaixaAberto: boolean = false;
+  private isCaixaAberto: boolean = false;
 
-  constructor() { }
+  constructor() {}
 
   abrirCaixa() {
     this.isCaixaAberto = true;

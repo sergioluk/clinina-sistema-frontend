@@ -190,5 +190,9 @@ export class CardHomeService {
 
     return this.http.get<Caixa>(url, {params, observe: 'response'} )
   }
+  fecharCaixa(caixa: Caixa): Observable<HttpResponse<Caixa>>{
+    const url = `${this.API}/caixa/fecharCaixa`;
+    return this.http.post<Caixa>(url, caixa, {observe: 'response'});
+  }
 
 }

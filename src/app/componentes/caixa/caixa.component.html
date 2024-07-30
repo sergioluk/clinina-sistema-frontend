@@ -23,17 +23,14 @@
 
             <div class="data">
                 <div>
-                  <mat-form-field>
-                    <mat-label>Selecione a data</mat-label>
-                    <mat-date-range-input [rangePicker]="picker" disabled>
-                      <input matStartDate placeholder="Start date" [(ngModel)]="start">
-                      <input matEndDate placeholder="End date" [(ngModel)]="end">
-                    </mat-date-range-input>
-                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-date-range-picker #picker disabled="false"></mat-date-range-picker>
-                  </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Selecione a data</mat-label>
+                        <input matInput [matDatepicker]="picker" [(ngModel)]="start" (dateChange)="dateChangeEvent('change', $event)" disabled>
+                        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker disabled="false"></mat-datepicker>
+                    </mat-form-field>
                 </div>
-                <app-botao-pequeno icone="fa-circle-check" texto="Pesquisar" cor="var(--corVerde)" (click)="pesquisar()"></app-botao-pequeno>
+                <app-botao-pequeno icone="fa-circle-check" texto="Pesquisar" cor="var(--corVerde)" (click)="exibirCaixa()"></app-botao-pequeno>
             </div>
         </div>
         <h1 class="titulo">Meu Caixa Dia {{ mostrarData() }}</h1>
@@ -46,10 +43,9 @@
                       <th>Data</th>
                       <th>Ações</th>
                     </tr>
-                    <!-- <tr class="tablerow" *ngFor="let item of listaDeItensVendidos; index as i"> -->
                     <tr class="tablerow">
                         <td>Abertura de Caixa</td>
-                        <td *ngIf="!modoEdicaoAbertura">R$ 00,00</td>
+                        <td *ngIf="!modoEdicaoAbertura">{{ abrirCaixaInput | currency:'R$ ':'symbol':'1.2-2' }}</td>
                         <td *ngIf="modoEdicaoAbertura"><input type="number" [(ngModel)]="abrirCaixaInput"></td>
                         <td>13/07/20024 20:35</td>
                         <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="toggleEdicaoAbertura()"></fa-icon></td>
@@ -69,7 +65,7 @@
                     <tr class="tablerow">
                         <td>Despesas do caixa</td>
                         <td *ngIf="!modoEdicaoDespesas">R$ 00,00</td>
-                        <td *ngIf="modoEdicaoDespesas"><input type="number"></td>
+                        <td *ngIf="modoEdicaoDespesas"><input type="number" [(ngModel)]="despesasInput"></td>
                         <td>-</td>
                         <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="toggleEdicaoDespesas()"></fa-icon></td>
                     </tr>
@@ -135,8 +131,8 @@
                 </table>
             </div>
         </div>
-        <app-botao-pequeno *ngIf="caixaAberto" class="btn" texto="Fechar caixa" icone="fa-floppy-disk" cor="var(--corVerde)"></app-botao-pequeno>
-        <app-botao-pequeno *ngIf="!caixaAberto" class="btn" texto="Abrir caixa" icone="fa-floppy-disk" cor="var(--corVerde)" (click)="abrirCaixa()" ></app-botao-pequeno>
+        <app-botao-pequeno *ngIf="caixaAberto" class="btn" texto="Fechar caixa" icone="fa-floppy-disk" cor="var(--corVerde)" (click)="fecharCaixa()"></app-botao-pequeno>
+        <app-botao-pequeno *ngIf="!caixaAberto" class="btn" texto="Abrir caixa" icone="fa-floppy-disk" cor="var(--corVerde)" (click)="abrirCaixa()"></app-botao-pequeno>
     </div>
     <div *ngIf="loadingSpinner" class="spinner">
         <mat-spinner></mat-spinner>
