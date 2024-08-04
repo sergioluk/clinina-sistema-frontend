@@ -29,6 +29,7 @@ export class VendaComponent implements OnInit {
   divAviso : boolean = false;
   pesagem: boolean = false;
   formaDePagamento: boolean = false;
+  statusCaixa: boolean = false;
 
   formulario!: FormGroup;
 

@@ -104,6 +104,12 @@
 .w img {
   max-height: 300px;
 }
+.aberto {
+  color: var(--corVerde);
+}
+.fechado {
+  color: var(--corVermelho);
+}
 .spinner {
   position: absolute;
   top: 0;
