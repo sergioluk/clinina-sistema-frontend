@@ -7,6 +7,7 @@ import { ProdutoVenda } from 'src/app/interfaces/produtoVenda';
 import { TabelaVendaComponent } from './tabela-venda/tabela-venda.component';
 import { IconeService } from 'src/app/services/icone.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
+import { AberturaCaixaService } from 'src/app/services/abertura-caixa.service';
 
 
 
@@ -37,7 +38,8 @@ export class VendaComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private icone: IconeService ,
-    private snackbar: SnackbarService
+    private snackbar: SnackbarService,
+    private caixa: AberturaCaixaService
   ){}
 
   ngOnInit(): void {
@@ -50,6 +52,7 @@ export class VendaComponent implements OnInit {
     });
     this.randomGif();
     this.titulo.emit("oi");
+    this.statusCaixa = this.caixa.verificarCaixa();
   }
   //Novo
  

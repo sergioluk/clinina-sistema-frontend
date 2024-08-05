@@ -192,6 +192,10 @@ export class CardHomeService {
   }
   fecharCaixa(caixa: Caixa): Observable<HttpResponse<Caixa>>{
     const url = `${this.API}/caixa/fecharCaixa`;
+    return this.http.put<Caixa>(url, caixa, {observe: 'response'});
+  }
+  abrirCaixa(caixa: Caixa): Observable<HttpResponse<Caixa>>{
+    const url = `${this.API}/caixa/abrirCaixa`;
     return this.http.post<Caixa>(url, caixa, {observe: 'response'});
   }
 
