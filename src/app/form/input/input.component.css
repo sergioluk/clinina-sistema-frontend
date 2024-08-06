@@ -8,6 +8,7 @@
 }
 .input label {
     width: 100%;
+    color: var(--corTexto);
 }
 .input input {
     width: 100%;
@@ -17,4 +18,7 @@
     border: 1px solid var(--corPrincipal);
     color: var(--corTexto);
     background-color: transparent;
+}
+.bold-label {
+    font-weight: bold;
 }

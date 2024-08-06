@@ -133,9 +133,23 @@ export class CaixaComponent implements OnInit {
       this.snackbar.openSnackBarFail("Precisa inserir o valor de abertura!!","Fechar");
       return;
     }
-    this.caixaService.abrirCaixa();
-    this.caixaAberto = this.caixaService.verificarCaixa();
-    this.snackbar.openSnackBarSucces("Caixa aberto!!","Fechar");
+
+    this.loadingSpinner = true;
+    this.service.abrirCaixa(this.caixa).subscribe({
+      error: (error: HttpErrorResponse) => {
+        console.error("Erro: ", error.message);
+        console.error("Código de status HTTP: ", error.status);
+        this.snackbar.openSnackBarFail("Algo deu errado!", "Fechar");
+        this.loadingSpinner = false;
+      },
+      complete: () => {
+        this.caixaService.abrirCaixa();
+        this.caixaAberto = this.caixaService.verificarCaixa();
+        this.snackbar.openSnackBarSucces("Caixa aberto!!","Fechar");
+        console.log("Requisição completa!!!");
+        this.loadingSpinner = false;
+      }
+    });
   }
   fecharCaixa() {
     if (!this.caixaAberto) {

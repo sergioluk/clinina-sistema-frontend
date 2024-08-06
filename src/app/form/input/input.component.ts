@@ -22,6 +22,7 @@ export class InputComponent<T> implements ControlValueAccessor  {
   @Input() placeholder: string | undefined;
   @Input() for: string | undefined;
   @Input() isReadOnly = false;
+  @Input() negrito: boolean = false;
   //layane
   @Input() control: any;
 

@@ -1,6 +1,6 @@
 <ng-container>
     <div class="input grow">
-        <label for="{{ for }}">{{ label }}</label>
+        <label [ngClass]="{'bold-label': negrito}" for="{{ for }}">{{ label }}</label>
         <!--<input type="{{ type }}" id="{{ for }}" [formControlName]="formControlName">-->
         <input type="{{ type }}" id="{{ for }}" [(ngModel)]="value" placeholder="{{ placeholder }}">
     </div>

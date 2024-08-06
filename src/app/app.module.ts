@@ -51,6 +51,8 @@ import { CaixaDetalheComponent } from './componentes/detalhes-produto/caixa-deta
 import { LabelInformacoesComponent } from './componentes/detalhes-produto/label-informacoes/label-informacoes.component';
 import { LinhaDoTempoComponent } from './componentes/detalhes-produto/linha-do-tempo/linha-do-tempo.component';
 import { CaixaComponent } from './componentes/caixa/caixa.component';
+import { CadastroBanhoETosaComponent } from './componentes/banho-e-tosa/cadastro-banho-e-tosa/cadastro-banho-e-tosa.component';
+import { Select2Component } from './form/select2/select2.component';
 
 
 @NgModule({
@@ -89,7 +91,9 @@ import { CaixaComponent } from './componentes/caixa/caixa.component';
     CaixaDetalheComponent,
     LabelInformacoesComponent,
     LinhaDoTempoComponent,
-    CaixaComponent
+    CaixaComponent,
+    CadastroBanhoETosaComponent,
+    Select2Component
   ],
   imports: [
     BrowserModule,

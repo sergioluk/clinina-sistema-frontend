@@ -198,5 +198,14 @@ export class CardHomeService {
     const url = `${this.API}/caixa/abrirCaixa`;
     return this.http.post<Caixa>(url, caixa, {observe: 'response'});
   }
+  recuperarListaDeRacas() {
+    const apiKey = "live_cprKOZ3ZXdKxkLK8QcjpWY44H4f1ZD9y7Qhj994DHWoXWhPZqzrZrLf836FjmCNZ";
+    const url ="https://api.thedogapi.com/v1/breeds";
+    return this.http.get<any[]>(url, {
+      headers: {
+        'x-api-key': apiKey
+      }
+    });
+  }
 
 }

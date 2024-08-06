@@ -6,7 +6,8 @@
           <fa-icon *ngIf="isEditar" class="editar" [icon]="faPencil" (click)="acaoBtn()"/>
         </div>
         <select id="{{ for }}"  [(ngModel)]="value" >
-          <option *ngFor="let item of lista" value="{{ item.nome }}">{{ item.nome }}</option>
+          <!-- <option *ngFor="let item of lista" value="{{ item }}">{{ item }}</option> -->
+          <option *ngFor="let item of lista" [ngValue]="item">{{ displayItem(item) }}</option>
         </select>
     </div>
 </ng-container>

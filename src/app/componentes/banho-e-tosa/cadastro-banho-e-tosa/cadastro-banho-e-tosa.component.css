@@ -1,0 +1,88 @@
+.caixa-componente__container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: var(--corBranco);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+  }
+  hr {
+    height: 1px;
+    border: 0;
+    border-top: 1px solid var(--corPrincipal);
+  }
+  .menu {
+    font-size: 33px;
+    color: var(--corPrincipal);
+  }
+  .titulo {
+    color: var(--corPrincipal);
+    text-align: center;
+    font-size: 30px;
+    width: 100%;
+  }
+  .flex {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .cadastro-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: stretch;
+  }
+  .dados-flex {
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+
+  }
+  .dados-flex-filho {
+    width: 100%;
+  }
+  fa-icon {
+    margin-right: 5px;
+  }
+  .flex-dados-telefone {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+  }
+  .dados-telefone {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-between;
+  }
+  .flex-endereco {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .obs-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+  }
+  .obs-flex textarea {
+    height: 100px;
+    resize: none;
+    border-color: var(--corPrincipal);
+    padding: 10px;
+  }
+  .btn-flex {
+    display: flex;
+    gap: 20px;
+  }
+  span {
+    font-size: var(--fonteGrande);
+    font-weight: bold;
+    color: var(--corPrincipal);
+  }

@@ -8,6 +8,7 @@ import { EstoqueComponent } from './componentes/estoque/estoque.component';
 import { MensagensComponent } from './componentes/mensagens/mensagens.component';
 import { DetalhesProdutoComponent } from './componentes/detalhes-produto/detalhes-produto.component';
 import { CaixaComponent } from './componentes/caixa/caixa.component';
+import { CadastroBanhoETosaComponent } from './componentes/banho-e-tosa/cadastro-banho-e-tosa/cadastro-banho-e-tosa.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,10 @@ const routes: Routes = [
   {
     path: 'estoque',
     component: EstoqueComponent
+  },
+  {
+    path: 'banho-e-tosa',
+    component: CadastroBanhoETosaComponent
   }
   /*
   {
