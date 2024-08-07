@@ -27,30 +27,27 @@ export class CadastroBanhoETosaComponent implements OnInit {
   ngOnInit(): void {
 
     this.formulario = this.formBuilder.group({
-      codigoDeBarras: ['', Validators.compose([
+      tutor: ['', Validators.compose([
         // Validators.required
       ])],
-      categoria: ['Ração'],
-      produto: ['', Validators.compose([
+      cpf: [''],
+      email: ['', Validators.compose([
         // Validators.required,
         // Validators.minLength(3),
         //Validators.pattern(/(.|\s)*\S(.|\s)*/)
       ])],
-      imagens: ['this.listaDeImagens'],
-      sabor: ['Carne'],
-      idade: ['Adulto'],
-      preco: [],
-      precoCompra: [''],
-      peso: [1],
-      desconto: [0],
-      animal: ['Cachorro'],
-      castrado: [0],
-      porte: ['this.buildPortes()'],
-      informacao: ['this.listaDeInformacao'],
-      fornecedor: ['Sem fornecedor'],
-      estoque: [1],
-      imagemP: [''],
-      lucro: []
+      telefone: [''],
+      celular: [''],
+      nomePet: [''],
+      raca: [],
+      observacao: [''],
+      cep: [''],
+      uf: [''],
+      cidade: [''],
+      bairro: [''],
+      rua: [''],
+      numero: [''],
+      complemento: ['']
     });
 
     this.service.recuperarListaDeRacas().subscribe(lista => this.listaDeRacas = lista);

@@ -15,9 +15,9 @@
                             <fa-icon [icon]="getIcone('fa-user')"></fa-icon>
                             Dados Pessoais
                         </span>
-                        <app-input type="text" for="nomeTutor" label="Nome:" placeholder="Nome do tutor(a)" [negrito]="true" formControlName="precoCompra"></app-input>
-                        <app-input type="text" for="cpf" label="CPF/CNPJ:" placeholder="CPF ou CNPJ" [negrito]="true" formControlName="precoCompra"></app-input>
-                        <app-input type="text" for="email" label="Email:" placeholder="E-mail" [negrito]="true" formControlName="precoCompra"></app-input>
+                        <app-input type="text" for="nomeTutor" label="Nome:" placeholder="Nome do tutor(a)" [negrito]="true" formControlName="telefone"></app-input>
+                        <app-input type="text" for="cpf" label="CPF/CNPJ:" placeholder="CPF ou CNPJ" [negrito]="true" formControlName="telefone"></app-input>
+                        <app-input type="text" for="email" label="Email:" placeholder="E-mail" [negrito]="true" formControlName="telefone"></app-input>
                     </div>
                     
                     <div class="dados-telefone">
@@ -25,8 +25,8 @@
                             <fa-icon [icon]="getIcone('fa-phone')"></fa-icon>
                             Telefone
                         </span>
-                        <app-input type="text" for="telefone" label="Telefone:" placeholder="(xx) xxxxx-xxxx" [negrito]="true" formControlName="precoCompra"></app-input>
-                        <app-input type="text" for="celular" label="Celular:" placeholder="(xx) xxxxx-xxxx" [negrito]="true" formControlName="precoCompra"></app-input>
+                        <app-input type="text" for="telefone" label="Telefone:" placeholder="(xx) xxxxx-xxxx" [negrito]="true" formControlName="telefone"></app-input>
+                        <app-input type="text" for="celular" label="Celular:" placeholder="(xx) xxxxx-xxxx" [negrito]="true" formControlName="telefone"></app-input>
                     </div>
                 </div>
                 <div class="dados-flex-filho flex-endereco">
@@ -35,15 +35,15 @@
                         Endereço
                     </span>
                     <div class="dados-flex">
-                        <app-input class="dados-flex-filho" type="text" for="cep" label="CEP:" placeholder="00000-000" [negrito]="true" formControlName="precoCompra"></app-input>
-                        <app-select2 class="dados-flex-filho" [lista]="listaDeEstados" for="uf" label="UF:" [negrito]="true" formControlName="precoCompra"></app-select2>
+                        <app-input class="dados-flex-filho" type="text" for="cep" label="CEP:" placeholder="00000-000" [negrito]="true" formControlName="telefone"></app-input>
+                        <app-select2 class="dados-flex-filho" [lista]="listaDeEstados" for="uf" label="UF:" [negrito]="true" formControlName="telefone"></app-select2>
                     </div>
-                    <app-input type="text" for="cidade" label="Cidade:" placeholder="Cidade" [negrito]="true" formControlName="precoCompra"></app-input>
-                    <app-input type="text" for="bairro" label="Bairro:" placeholder="Bairro" [negrito]="true" formControlName="precoCompra"></app-input>
-                    <app-input type="text" for="endereco" label="Endereço:" placeholder="Rua/Av" [negrito]="true" formControlName="precoCompra"></app-input>
+                    <app-input type="text" for="cidade" label="Cidade:" placeholder="Cidade" [negrito]="true" formControlName="telefone"></app-input>
+                    <app-input type="text" for="bairro" label="Bairro:" placeholder="Bairro" [negrito]="true" formControlName="telefone"></app-input>
+                    <app-input type="text" for="endereco" label="Endereço:" placeholder="Rua/Av" [negrito]="true" formControlName="telefone"></app-input>
                     <div class="dados-flex">
-                        <app-input class="dados-flex-filho" type="text" for="número" label="Nº:" placeholder="Número" [negrito]="true" formControlName="precoCompra"></app-input>
-                        <app-input class="dados-flex-filho" type="text" for="complemento" label="Complemento:" placeholder="Complemento" [negrito]="true" formControlName="precoCompra"></app-input>
+                        <app-input class="dados-flex-filho" type="text" for="número" label="Nº:" placeholder="Número" [negrito]="true" formControlName="telefone"></app-input>
+                        <app-input class="dados-flex-filho" type="text" for="complemento" label="Complemento:" placeholder="Complemento" [negrito]="true" formControlName="telefone"></app-input>
                     </div>
                 </div>
             </div>
@@ -54,10 +54,10 @@
                     Cadastro rápido do pet
                 </span>
                 <div class="dados-flex">
-                    <app-input class="dados-flex-filho" type="text" for="nomePet" label="Nome do pet:" placeholder="Nome do pet" [negrito]="true" formControlName="precoCompra"></app-input>
-                    <app-select2 class="dados-flex-filho" [lista]="listaDeRacas" for="uf" label="UF:" [negrito]="true" propriedade="name" formControlName="precoCompra"></app-select2>
+                    <app-input class="dados-flex-filho" type="text" for="nomePet" label="Nome do pet:" placeholder="Nome do pet" [negrito]="true" formControlName="telefone"></app-input>
+                    <app-select2 class="dados-flex-filho" [lista]="listaDeRacas" for="raca" label="Raça:" [negrito]="true" propriedade="name" formControlName="telefone"></app-select2>
                 </div>
-                <!-- <app-input type="text" for="tipoCliente" label="Tipo de cliente SELECT:" placeholder="Nome do pet" [negrito]="true" formControlName="precoCompra"></app-input> -->
+                <!-- <app-input type="text" for="tipoCliente" label="Tipo de cliente SELECT:" placeholder="Nome do pet" [negrito]="true" formControlName="telefone"></app-input> -->
                 
             </div>
 
@@ -66,7 +66,7 @@
                     <fa-icon [icon]="getIcone('fa-message')"></fa-icon>
                     Observação:
                 </span>
-                <textarea formControlName="precoCompra"></textarea>
+                <textarea formControlName="telefone"></textarea>
             </div>
 
             <div class="btn-flex">

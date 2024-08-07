@@ -76,6 +76,7 @@
     resize: none;
     border-color: var(--corPrincipal);
     padding: 10px;
+    border-radius: 7px;
   }
   .btn-flex {
     display: flex;
