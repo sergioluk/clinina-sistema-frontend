@@ -1,6 +1,5 @@
-import { Component, Inject, Injector, Input, OnInit, forwardRef } from '@angular/core';
-import { ControlContainer, ControlValueAccessor, FormControl, FormControlDirective, FormControlName, FormGroupDirective, NG_VALUE_ACCESSOR, NgControl, Validators } from '@angular/forms';
-import { Subject } from 'rxjs';
+import { Component, Input, forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-input',

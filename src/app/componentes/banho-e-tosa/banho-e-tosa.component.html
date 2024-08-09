@@ -1,0 +1,69 @@
+<div class="banho__container">
+    <div class="flex">
+      <div class="menu">
+        <fa-icon [icon]="getIcone('fa-bars')"></fa-icon>
+      </div>
+      <h1 class="titulo">BANHO E TOSA</h1>
+    </div>
+    <hr>
+    
+    <div class="btn-end">
+        <app-botao-grande icone="fa-plus" texto="Cadastrar Tutor" cor="var(--corPrincipal)" (click)="cadastrarTutor()"></app-botao-grande>
+    </div>
+    <div class="table__container">
+      <table>
+        <tr class="cabecalho-tabela">
+          <th class="nome__tabela">Nome</th>
+          <th>CPF</th>
+          <th>Telefone</th>
+          <th>Celular</th>
+          <th>Endereço</th>
+          <th>E-mail</th>
+          <th>Ações</th>
+        </tr>
+        
+        <ng-container *ngFor="let tutor of listaDeTutores; let i = index">
+          <tr class="tablerow" (click)="toggleLinhaExpandida(i)">
+            <td>{{ tutor.nome }}</td>
+            <td>{{ tutor.cpf }}</td>
+            <td>{{ tutor.telefone }}</td>
+            <td>{{ tutor.celular }}</td>
+            <td>{{ getEndereco(tutor.endereco) }}</td>
+            <td>{{ tutor.email }}</td>
+            <td>
+              <fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="editarItem(i)"></fa-icon>
+              <!-- <fa-icon class="apagar" [icon]="getIcone('fa-trash-can')" (click)="editarItem(fiado, i)"></fa-icon> -->
+            </td>
+          </tr>
+          <tr *ngIf="linhaExpandida === i">
+            <td colspan="6">
+              <table>
+                <tr class="tr-sem-borda">
+                  <th>Nome</th><th>Raça</th><th>Cor</th><th>Pelagem</th><th>Idade</th><th>Peso</th><th>Obs</th>
+                </tr>
+                <tr class="tr-sem-borda" *ngFor="let animal of listaDeTutores[i].animais">
+                  <td>{{ animal.nome }}</td>
+                  <td>{{ animal.raca }}</td>
+                  <td>{{ animal.cor }}</td>
+                  <td>{{ animal.pelagem }}</td>
+                  <td>{{ getIdade(animal.dataDeNascimento) }}</td>
+                  <td>{{ animal.peso }}kg</td>
+                  <td>{{ animal.obs }}</td>
+                </tr>
+              </table>
+              
+            </td>
+          </tr>
+        </ng-container>
+      </table>
+      
+    </div>
+  
+    <div *ngIf="loadingSpinner" class="spinner">
+      <mat-spinner></mat-spinner>
+    </div>
+  
+  </div>
+  
+  
+  

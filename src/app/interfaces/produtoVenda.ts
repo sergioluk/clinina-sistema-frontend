@@ -78,3 +78,37 @@ export interface ProdutoVenda {
     pix_conferido: number,
     fiado_conferido: number
   }
+
+  //Usado para formulario cadastro tutor
+  export interface Tutor {
+    id?: number,
+    nome: string,
+    cpf: string,
+    email: string
+    telefone: string,
+    celular: string,
+    endereco: Endereco,
+    //servicos: Servicos[],
+    animais: Animais[]
+  }
+  export interface Endereco {
+    id?: number,
+    cep: string,
+    uf: string,
+    cidade: string,
+    bairro: string,
+    rua: string,
+    numero: string,
+    complemento: string,
+  }
+  export interface Animais {
+    id?: number,
+    nome: string,
+    raca: string,
+    cor: string,
+    pelagem: string,
+    dataDeNascimento: Date,
+    peso: number,
+    obs: string,
+    tutor?: Tutor;
+  }

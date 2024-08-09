@@ -9,6 +9,7 @@ import { MensagensComponent } from './componentes/mensagens/mensagens.component'
 import { DetalhesProdutoComponent } from './componentes/detalhes-produto/detalhes-produto.component';
 import { CaixaComponent } from './componentes/caixa/caixa.component';
 import { CadastroBanhoETosaComponent } from './componentes/banho-e-tosa/cadastro-banho-e-tosa/cadastro-banho-e-tosa.component';
+import { BanhoETosaComponent } from './componentes/banho-e-tosa/banho-e-tosa.component';
 
 const routes: Routes = [
   {
@@ -58,6 +59,10 @@ const routes: Routes = [
   },
   {
     path: 'banho-e-tosa',
+    component: BanhoETosaComponent
+  },
+  {
+    path: 'cadastrar-tutor',
     component: CadastroBanhoETosaComponent
   }
   /*

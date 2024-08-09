@@ -3,7 +3,7 @@
       <div class="menu">
         <fa-icon [icon]="getIcone('fa-bars')"></fa-icon>
       </div>
-      <h1 class="titulo">CADASTRO PET</h1>
+      <h1 class="titulo">{{titulo.toUpperCase()}} PET</h1>
     </div>
     <hr>
     <div >
@@ -15,9 +15,9 @@
                             <fa-icon [icon]="getIcone('fa-user')"></fa-icon>
                             Dados Pessoais
                         </span>
-                        <app-input type="text" for="nomeTutor" label="Nome:" placeholder="Nome do tutor(a)" [negrito]="true" formControlName="telefone"></app-input>
-                        <app-input type="text" for="cpf" label="CPF/CNPJ:" placeholder="CPF ou CNPJ" [negrito]="true" formControlName="telefone"></app-input>
-                        <app-input type="text" for="email" label="Email:" placeholder="E-mail" [negrito]="true" formControlName="telefone"></app-input>
+                        <app-input type="text" for="nomeTutor" label="Nome:" placeholder="Nome do tutor(a)" [negrito]="true" formControlName="nome"></app-input>
+                        <app-input type="number" for="cpf" label="CPF/CNPJ:" placeholder="CPF ou CNPJ" [negrito]="true" formControlName="cpf"></app-input>
+                        <app-input type="email" for="email" label="Email:" placeholder="E-mail" [negrito]="true" formControlName="email"></app-input>
                     </div>
                     
                     <div class="dados-telefone">
@@ -25,56 +25,73 @@
                             <fa-icon [icon]="getIcone('fa-phone')"></fa-icon>
                             Telefone
                         </span>
-                        <app-input type="text" for="telefone" label="Telefone:" placeholder="(xx) xxxxx-xxxx" [negrito]="true" formControlName="telefone"></app-input>
-                        <app-input type="text" for="celular" label="Celular:" placeholder="(xx) xxxxx-xxxx" [negrito]="true" formControlName="telefone"></app-input>
+                        <app-input type="tel" for="telefone" label="Telefone:" placeholder="(xx) xxxxx-xxxx" [negrito]="true" formControlName="telefone"></app-input>
+                        <app-input type="tel" for="celular" label="Celular:" placeholder="(xx) xxxxx-xxxx" [negrito]="true" formControlName="celular"></app-input>
                     </div>
                 </div>
-                <div class="dados-flex-filho flex-endereco">
+                <div formGroupName="endereco" class="dados-flex-filho flex-endereco">
                     <span>
                         <fa-icon [icon]="getIcone('fa-house')"></fa-icon>
                         Endereço
                     </span>
                     <div class="dados-flex">
-                        <app-input class="dados-flex-filho" type="text" for="cep" label="CEP:" placeholder="00000-000" [negrito]="true" formControlName="telefone"></app-input>
-                        <app-select2 class="dados-flex-filho" [lista]="listaDeEstados" for="uf" label="UF:" [negrito]="true" formControlName="telefone"></app-select2>
+                        <app-input class="dados-flex-filho" type="number" for="cep" label="CEP:" placeholder="00000-000" [negrito]="true" formControlName="cep"></app-input>
+                        <app-select2 class="dados-flex-filho" [lista]="listaDeEstados" for="uf" label="UF:" [negrito]="true" formControlName="uf"></app-select2>
                     </div>
-                    <app-input type="text" for="cidade" label="Cidade:" placeholder="Cidade" [negrito]="true" formControlName="telefone"></app-input>
-                    <app-input type="text" for="bairro" label="Bairro:" placeholder="Bairro" [negrito]="true" formControlName="telefone"></app-input>
-                    <app-input type="text" for="endereco" label="Endereço:" placeholder="Rua/Av" [negrito]="true" formControlName="telefone"></app-input>
+                    <app-input type="text" for="cidade" label="Cidade:" placeholder="Cidade" [negrito]="true" formControlName="cidade"></app-input>
+                    <app-input type="text" for="bairro" label="Bairro:" placeholder="Bairro" [negrito]="true" formControlName="bairro"></app-input>
+                    <app-input type="text" for="endereco" label="Endereço:" placeholder="Rua/Av" [negrito]="true" formControlName="rua"></app-input>
                     <div class="dados-flex">
-                        <app-input class="dados-flex-filho" type="text" for="número" label="Nº:" placeholder="Número" [negrito]="true" formControlName="telefone"></app-input>
-                        <app-input class="dados-flex-filho" type="text" for="complemento" label="Complemento:" placeholder="Complemento" [negrito]="true" formControlName="telefone"></app-input>
+                        <app-input class="dados-flex-filho" type="number" for="número" label="Nº:" placeholder="Número" [negrito]="true" formControlName="numero"></app-input>
+                        <app-input class="dados-flex-filho" type="text" for="complemento" label="Complemento:" placeholder="Complemento" [negrito]="true" formControlName="complemento"></app-input>
                     </div>
                 </div>
             </div>
 
-            <div class="cadastro-rapido-pet-container">
-                <span>
-                    <fa-icon [icon]="getIcone('fa-paw')"></fa-icon>
-                    Cadastro rápido do pet
-                </span>
-                <div class="dados-flex">
-                    <app-input class="dados-flex-filho" type="text" for="nomePet" label="Nome do pet:" placeholder="Nome do pet" [negrito]="true" formControlName="telefone"></app-input>
-                    <app-select2 class="dados-flex-filho" [lista]="listaDeRacas" for="raca" label="Raça:" [negrito]="true" propriedade="name" formControlName="telefone"></app-select2>
+            <div formArrayName="animais">
+                <div class="cadastro-rapido-pet-container" *ngFor="let animal of formArrayAnimais.controls; let i = index" [formGroupName]="i">
+                    <span>
+                        <fa-icon [icon]="getIcone('fa-paw')"></fa-icon>
+                        Cadastro do pet
+                    </span>
+                    <div class="dados-flex">
+                        <app-input class="dados-flex-filho" type="text" for="nomePet" label="Nome do pet:" placeholder="Nome do pet" [negrito]="true" formControlName="nome"></app-input>
+                        <!-- <app-select2 class="dados-flex-filho" [lista]="listaDeRacas" for="raca" label="Raça:" [negrito]="true" propriedade="name" formControlName="raca"></app-select2> -->
+                        <app-select2 class="dados-flex-filho" [lista]="listaDeRacas" for="raca" label="Raça:" [negrito]="true" formControlName="raca"></app-select2>
+                    </div>
+                    <div class="dados-flex">
+                        <app-input class="dados-flex-filho" type="text" for="cor" label="Cor:" placeholder="Cor do pêlo" [negrito]="true" formControlName="cor"></app-input>
+                        <app-select2 class="dados-flex-filho" [lista]="listaDePelagem" for="tipoPelagem" label="Tipo de Pelagem:" [negrito]="true" formControlName="pelagem"></app-select2>
+                    </div>
+                    <div class="dados-flex">
+                        <app-input class="dados-flex-filho" type="date" for="dataNascimento" label="Data de Nascimento:" placeholder="Data de nascimento: dd/mm/YYY" [negrito]="true" formControlName="dataDeNascimento"></app-input>
+                        <app-input class="dados-flex-filho" type="number" for="peso" label="Peso:" placeholder="kg" [negrito]="true" formControlName="peso"></app-input>
+                    </div>
+                    <!-- <app-input type="text" for="tipoCliente" label="Tipo de cliente SELECT:" placeholder="Nome do pet" [negrito]="true" formControlName="telefone"></app-input> -->
+                    <div class="obs-flex">
+                        <span>
+                            <fa-icon [icon]="getIcone('fa-message')"></fa-icon>
+                            Observação:
+                        </span>
+                        <textarea formControlName="obs"></textarea>
+                    </div>
                 </div>
-                <!-- <app-input type="text" for="tipoCliente" label="Tipo de cliente SELECT:" placeholder="Nome do pet" [negrito]="true" formControlName="telefone"></app-input> -->
-                
-            </div>
-
-            <div class="obs-flex">
-                <span>
-                    <fa-icon [icon]="getIcone('fa-message')"></fa-icon>
-                    Observação:
-                </span>
-                <textarea formControlName="telefone"></textarea>
             </div>
 
             <div class="btn-flex">
-                <app-botao-pequeno cor="var(--corVermelho)" icone="fa-circle-xmark" texto="Cancelar" (click)="cancelar()"></app-botao-pequeno>
-                <app-botao-pequeno cor="var(--corVerde)" icone="fa-floppy-disk" texto="Cadastrar" (click)="cadastrar()"></app-botao-pequeno>
+                <app-botao-pequeno cor="var(--corVerde)" icone="fa-plus" texto="Adicionar Outro Animal" (click)="adicionarAnimal()"></app-botao-pequeno>
+                <div class="btn-acoes">
+                    <app-botao-pequeno cor="var(--corVermelho)" icone="fa-circle-xmark" texto="Cancelar" (click)="cancelar()"></app-botao-pequeno>
+                    <app-botao-pequeno cor="var(--corVerde)" icone="fa-floppy-disk" [texto]="titulo" (click)="cadastrar()"></app-botao-pequeno>
+                </div>
+                
             </div>
+
             
         </form>
 
+    </div>
+    <div *ngIf="loadingSpinner" class="spinner">
+        <mat-spinner></mat-spinner>
     </div>
 </div>

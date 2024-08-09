@@ -2,7 +2,7 @@ import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CadastroProduto, Categoria, Fiado, Fornecedor, Idade, Mensagem, Relatorio, RelatorioFiado, Sabor, Venda, Vender } from './cadastro-produto/cadastro-produto';
-import { Caixa, DetalhesProduto, LinhaDoTempo, ProdutoVenda } from '../interfaces/produtoVenda';
+import { Caixa, DetalhesProduto, LinhaDoTempo, ProdutoVenda, Tutor } from '../interfaces/produtoVenda';
 
 @Injectable({
   providedIn: 'root'
@@ -198,14 +198,26 @@ export class CardHomeService {
     const url = `${this.API}/caixa/abrirCaixa`;
     return this.http.post<Caixa>(url, caixa, {observe: 'response'});
   }
-  recuperarListaDeRacas() {
-    const apiKey = "live_cprKOZ3ZXdKxkLK8QcjpWY44H4f1ZD9y7Qhj994DHWoXWhPZqzrZrLf836FjmCNZ";
-    const url ="https://api.thedogapi.com/v1/breeds";
-    return this.http.get<any[]>(url, {
-      headers: {
-        'x-api-key': apiKey
-      }
-    });
+  cadastrarTutor(tutorData: Tutor): Observable<HttpResponse<Tutor>>{
+    const url = `${this.API}/banho-e-tosa/tutor`;
+    return this.http.post<Tutor>(url, tutorData, {observe: 'response'});
   }
+  pegarListaDeTutores(): Observable<HttpResponse<Tutor[]>>{
+    const url = this.API + "/banho-e-tosa/tutor";
+    return this.http.get<Tutor[]>(url, {observe: 'response'});
+  }
+  alterarTutor(id: number | undefined, tutorData: Tutor): Observable<HttpResponse<Tutor>>{
+    const url = `${this.API}/banho-e-tosa/tutor/${id}`;
+    return this.http.put<Tutor>(url, tutorData, {observe: 'response'});
+  }
+  // recuperarListaDeRacas() {
+  //   const apiKey = "";
+  //   const url ="https://api.thedogapi.com/v1/breeds";
+  //   return this.http.get<any[]>(url, {
+  //     headers: {
+  //       'x-api-key': apiKey
+  //     }
+  //   });
+  // }
 
 }
