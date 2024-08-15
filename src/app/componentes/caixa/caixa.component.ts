@@ -17,14 +17,14 @@ export class CaixaComponent implements OnInit {
   start: Date = new Date();
   modoEdicaoAbertura = false;
   modoEdicaoDespesas = false;
-  caixaAberto = false;
+  caixaAberto: string = 'disponível';
   loadingSpinner = false;
   abrirCaixaInput: number = 0;
   despesasInput: number = 0;
 
   caixa: Caixa = {
     abertura_data: new Date(),
-    abertura_valor: 0,
+    abertura_valor: this.abrirCaixaInput,
     despesas_caixa: 0,
     entrada: 0,
     fechamento_caixa_data: null,
@@ -33,7 +33,8 @@ export class CaixaComponent implements OnInit {
     debito_conferido: 0,
     dinheiro_conferido: 0,
     pix_conferido: 0,
-    fiado_conferido: 0
+    fiado_conferido: 0,
+    status: ''
   }
 
   constructor(
@@ -44,8 +45,9 @@ export class CaixaComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.caixaAberto = this.caixaService.verificarCaixa(); 
     this.exibirCaixa();
-    this.caixaAberto = this.caixaService.verificarCaixa();
+    
   }
 
   exibirCaixa() {
@@ -55,20 +57,15 @@ export class CaixaComponent implements OnInit {
       next: (response: HttpResponse<Caixa>) => {
         if (response.body != null) {
           this.caixa = response.body;
-        } else {
-          this.caixa = {
-            abertura_data: null,
-            abertura_valor: 0,
-            despesas_caixa: 0,
-            entrada: 0,
-            fechamento_caixa_data: null,
-            fechamento_caixa_valor: 0,
-            credito_conferido: 0,
-            debito_conferido: 0,
-            dinheiro_conferido: 0,
-            pix_conferido: 0,
-            fiado_conferido: 0
+          this.abrirCaixaInput = this.caixa.abertura_valor;
+          if (this.caixa.status == "aberto") {
+            this.caixaService.abrirCaixa();
+          } else if (this.caixa.status == "fechado") {
+            this.caixaService.fecharCaixa();
           }
+          this.caixaAberto = this.caixaService.verificarCaixa();
+        } else {
+          this.resetCaixa();
         }
         this.abrirCaixaInput = this.caixa.abertura_valor;
         this.loadingSpinner = false;
@@ -84,6 +81,23 @@ export class CaixaComponent implements OnInit {
         console.log("Requisição completa!!!");
       }
     });
+  }
+
+  resetCaixa() {
+    this.caixa = {
+      abertura_data: this.start,
+      abertura_valor: 0,
+      despesas_caixa: 0,
+      entrada: 0,
+      fechamento_caixa_data: null,
+      fechamento_caixa_valor: 0,
+      credito_conferido: 0,
+      debito_conferido: 0,
+      dinheiro_conferido: 0,
+      pix_conferido: 0,
+      fiado_conferido: 0,
+      status: ''
+    };
   }
 
   getIcone(icone: string) {
@@ -135,12 +149,15 @@ export class CaixaComponent implements OnInit {
     }
 
     this.loadingSpinner = true;
+    this.caixa.status = "aberto";
+    this.caixa.abertura_valor = this.abrirCaixaInput;
     this.service.abrirCaixa(this.caixa).subscribe({
       error: (error: HttpErrorResponse) => {
         console.error("Erro: ", error.message);
         console.error("Código de status HTTP: ", error.status);
         this.snackbar.openSnackBarFail("Algo deu errado!", "Fechar");
         this.loadingSpinner = false;
+        this.caixa.status = '';
       },
       complete: () => {
         this.caixaService.abrirCaixa();
@@ -151,8 +168,9 @@ export class CaixaComponent implements OnInit {
       }
     });
   }
+  
   fecharCaixa() {
-    if (!this.caixaAberto) {
+    if (this.caixaAberto != 'Aberto') {
       this.snackbar.openSnackBarFail("Caixa precisa estar aberto para fazer o fechamento!","Fechar");
       return;
     }
@@ -160,12 +178,14 @@ export class CaixaComponent implements OnInit {
     this.caixa.despesas_caixa = this.despesasInput;
 
     this.loadingSpinner = true;
+    this.caixa.status = "fechado";
     this.service.fecharCaixa(this.caixa).subscribe({
       error: (error: HttpErrorResponse) => {
         console.error("Erro: ", error.message);
         console.error("Código de status HTTP: ", error.status);
         this.snackbar.openSnackBarFail("Algo deu errado!", "Fechar");
         this.loadingSpinner = false;
+        this.caixa.status = 'aberto';
       },
       complete: () => {
         console.log("Requisição completa!!!");

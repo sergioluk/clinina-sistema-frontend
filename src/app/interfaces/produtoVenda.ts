@@ -76,7 +76,8 @@ export interface ProdutoVenda {
     debito_conferido: number,
     dinheiro_conferido: number,
     pix_conferido: number,
-    fiado_conferido: number
+    fiado_conferido: number,
+    status: string
   }
 
   //Usado para formulario cadastro tutor

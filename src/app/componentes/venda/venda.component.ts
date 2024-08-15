@@ -30,7 +30,7 @@ export class VendaComponent implements OnInit {
   divAviso : boolean = false;
   pesagem: boolean = false;
   formaDePagamento: boolean = false;
-  statusCaixa: boolean = false;
+  statusCaixa: string = "disponível";
 
   formulario!: FormGroup;
 
@@ -52,7 +52,11 @@ export class VendaComponent implements OnInit {
     });
     this.randomGif();
     this.titulo.emit("oi");
-    this.statusCaixa = this.caixa.verificarCaixa();
+    
+    this.caixa.exibirCaixa();
+    this.caixa.caixaStatus$.subscribe(status => {
+      this.statusCaixa = status;
+    })
   }
   //Novo
  

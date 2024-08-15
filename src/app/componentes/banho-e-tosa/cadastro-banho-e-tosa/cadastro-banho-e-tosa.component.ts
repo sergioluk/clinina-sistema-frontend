@@ -186,6 +186,7 @@ export class CadastroBanhoETosaComponent implements OnInit {
   ngOnInit(): void {
 
     this.formulario = this.formBuilder.group({
+      id: [],
       nome: ['', Validators.compose([
         // Validators.required
       ])],
@@ -198,6 +199,7 @@ export class CadastroBanhoETosaComponent implements OnInit {
       telefone: [''],
       celular: [''],
       endereco: this.formBuilder.group({
+        id: [],
         cep: [''],
         uf: ['CE'],
         cidade: [''],
@@ -229,12 +231,14 @@ export class CadastroBanhoETosaComponent implements OnInit {
   setarTutorNoFormulario() {
     
     this.formulario.patchValue({
+      id: this.tutor.id,
       nome: this.tutor.nome,
       cpf: this.tutor.cpf,
       email: this.tutor.email,
       telefone: this.tutor.telefone,
       celular: this.tutor.celular,
       endereco: {
+        id: this.tutor.endereco.id,
         cep: this.tutor.endereco.cep,
         uf: this.tutor.endereco.uf,
         cidade: this.tutor.endereco.cidade,
@@ -305,6 +309,7 @@ export class CadastroBanhoETosaComponent implements OnInit {
 
     tutorData.animais.forEach((animal: any) => {
       animal.tutor = {
+        id: tutorData.id,
         nome: tutorData.nome,
         cpf: tutorData.cpf,
         telefone: tutorData.telefone,

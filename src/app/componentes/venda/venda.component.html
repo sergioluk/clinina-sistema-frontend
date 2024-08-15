@@ -3,7 +3,7 @@
     <div class="menu detalhes">
       <fa-icon [icon]="getIcone('fa-bars')"></fa-icon>
     </div>
-    <h1 class="titulo">CLININA - PONTO DE VENDA <span [ngClass]="statusCaixa?'aberto':'fechado'">- CAIXA {{ statusCaixa ? "ABERTO": "FECHADO"}}</span></h1>
+    <h1 class="titulo">CLININA - PONTO DE VENDA <span [ngClass]="statusCaixa == 'aberto' ?'aberto':'fechado'">- CAIXA {{ statusCaixa.toUpperCase() }}</span></h1>
   </div>
   <div class="flex">
     <div class="logo detalhes">

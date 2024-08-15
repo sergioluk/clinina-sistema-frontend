@@ -33,7 +33,7 @@
                 <app-botao-pequeno icone="fa-circle-check" texto="Pesquisar" cor="var(--corVerde)" (click)="exibirCaixa()"></app-botao-pequeno>
             </div>
         </div>
-        <h1 class="titulo">Meu Caixa Dia {{ mostrarData() }}</h1>
+        <h1 class="titulo">Meu Caixa Dia {{ mostrarData() }} - {{ caixaAberto.toUpperCase() }}</h1>
         <div class="tabelas-container">
             <div class="tabela-container width">
                 <table>
@@ -131,8 +131,8 @@
                 </table>
             </div>
         </div>
-        <app-botao-pequeno *ngIf="caixaAberto" class="btn" texto="Fechar caixa" icone="fa-floppy-disk" cor="var(--corVerde)" (click)="fecharCaixa()"></app-botao-pequeno>
-        <app-botao-pequeno *ngIf="!caixaAberto" class="btn" texto="Abrir caixa" icone="fa-floppy-disk" cor="var(--corVerde)" (click)="abrirCaixa()"></app-botao-pequeno>
+        <app-botao-pequeno *ngIf="caixaAberto === 'aberto'" class="btn" texto="Fechar caixa" icone="fa-floppy-disk" cor="var(--corVerde)" (click)="fecharCaixa()"></app-botao-pequeno>
+        <app-botao-pequeno *ngIf="caixaAberto === 'disponível'" class="btn" texto="Abrir caixa" icone="fa-floppy-disk" cor="var(--corVerde)" (click)="abrirCaixa()"></app-botao-pequeno>
     </div>
     <div *ngIf="loadingSpinner" class="spinner">
         <mat-spinner></mat-spinner>
