@@ -33,7 +33,7 @@
                 <app-botao-pequeno icone="fa-circle-check" texto="Pesquisar" cor="var(--corVerde)" (click)="exibirCaixa()"></app-botao-pequeno>
             </div>
         </div>
-        <h1 class="titulo">Meu Caixa Dia {{ mostrarData() }} - {{ caixaAberto.toUpperCase() }}</h1>
+        <h1 class="titulo">Meu Caixa Dia {{ mostrarData() }} - <span [ngClass]="caixaAberto == 'aberto' ?'aberto':'fechado'">{{ caixaAberto.toUpperCase() }}</span></h1>
         <div class="tabelas-container">
             <div class="tabela-container width">
                 <table>
@@ -80,41 +80,52 @@
             <div class="tabela-container  width">
                 <table>
                     <tr class="cabecalho-tabela">
-                      <th class="nome__tabela">Forma de pagamento</th>
-                      <th>Líquido</th>
-                      <th>Conferido</th>
+                      <th>Forma de pagamento</th>
+                      <th class="valor__tabela">Líquido</th>
+                      <th class="valor__tabela">Conferido</th>
                       <th>Diferença</th>
+                      <th>Ações</th>
                     </tr>
                     <tr class="tablerow">
                         <!-- <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')"></fa-icon> Cartão de crédito</td> -->
                         <td><img src="../../../../assets/img/cartao_credito.png" alt="">Cartão de crédito</td>
-                        <td>R$ 150,00</td>
-                        <td>R$ 150,00</td>
-                        <td>R$ 150,00</td>
+                        <td>{{ caixaCompleto.totalCredito | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
+                        <td *ngIf="!modoEdicaoCredito">{{ creditoInput | currency: 'R$ ':'symbol':'1.2-2' }}</td>
+                        <td *ngIf="modoEdicaoCredito"><input type="number" [(ngModel)]="creditoInput"  (change)="changeCredito()"></td>
+                        <td>{{ (caixaCompleto.totalCredito - creditoInput) | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
+                        <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="toggleEdicaoCredito()"></fa-icon></td>
                     </tr>
                     <tr class="tablerow">
                         <td><img src="../../../../assets/img/cartao_debito.png" alt="">Cartão de débito</td>
-                        <td>R$ 150,00</td>
-                        <td>R$ 150,00</td>
-                        <td>R$ 150,00</td>
+                        <td>{{ caixaCompleto.totalDebito | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
+                        <td *ngIf="!modoEdicaoDebito">{{ debitoInput | currency: 'R$ ':'symbol':'1.2-2' }}</td>
+                        <td *ngIf="modoEdicaoDebito"><input type="number" [(ngModel)]="debitoInput" (change)="changeDebito()"></td>
+                        <td>{{ (caixaCompleto.totalDebito - debitoInput) | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
+                        <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="toggleEdicaoDebito()"></fa-icon></td>
                     </tr>
                     <tr class="tablerow">
                         <td><img src="../../../../assets/img/dinheiro.png" alt="">Dinheiro</td>
-                        <td>R$ 150,00</td>
-                        <td>R$ 150,00</td>
-                        <td>R$ 150,00</td>
+                        <td>{{ caixaCompleto.totalDinheiro | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
+                        <td *ngIf="!modoEdicaoDinheiro">{{ dinheiroInput | currency: 'R$ ':'symbol':'1.2-2' }}</td>
+                        <td *ngIf="modoEdicaoDinheiro"><input type="number" [(ngModel)]="dinheiroInput" (change)="changeDinheiro()"></td>
+                        <td>{{ (caixaCompleto.totalDinheiro - dinheiroInput) | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
+                        <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="toggleEdicaoDinheiro()"></fa-icon></td>
                     </tr>
                     <tr class="tablerow">
                         <td><img src="../../../../assets/img/pix.png" alt="">Pix</td>
-                        <td>R$ 150,00</td>
-                        <td>R$ 150,00</td>
-                        <td>R$ 150,00</td>
+                        <td>{{ caixaCompleto.totalPix | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
+                        <td *ngIf="!modoEdicaoPix">{{ pixInput | currency: 'R$ ':'symbol':'1.2-2' }}</td>
+                        <td *ngIf="modoEdicaoPix"><input type="number" [(ngModel)]="pixInput" (change)="changePix()"></td>
+                        <td>{{ (caixaCompleto.totalPix - pixInput) | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
+                        <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="toggleEdicaoPix()"></fa-icon></td>
                     </tr>
                     <tr class="tablerow">
                         <td><img src="../../../../assets/img/fiado.png" alt="">Fiado</td>
-                        <td>R$ 150,00</td>
-                        <td>R$ 150,00</td>
-                        <td>R$ 150,00</td>
+                        <td>{{ caixaCompleto.totalFiado | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
+                        <td *ngIf="!modoEdicaoFiado">{{ fiadoInput | currency: 'R$ ':'symbol':'1.2-2' }}</td>
+                        <td *ngIf="modoEdicaoFiado"><input type="number" [(ngModel)]="fiadoInput" (change)="changeFiado()"></td>
+                        <td>{{ (caixaCompleto.totalFiado - fiadoInput) | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
+                        <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="toggleEdicaoFiado()"></fa-icon></td>
                     </tr>
                     <tr class="tablerow">
                         <td><fa-icon [icon]="getIcone('fa-arrow-right')"></fa-icon>Entrada</td>
@@ -132,7 +143,8 @@
             </div>
         </div>
         <app-botao-pequeno *ngIf="caixaAberto === 'aberto'" class="btn" texto="Fechar caixa" icone="fa-floppy-disk" cor="var(--corVerde)" (click)="fecharCaixa()"></app-botao-pequeno>
-        <app-botao-pequeno *ngIf="caixaAberto === 'disponível'" class="btn" texto="Abrir caixa" icone="fa-floppy-disk" cor="var(--corVerde)" (click)="abrirCaixa()"></app-botao-pequeno>
+        <app-botao-pequeno *ngIf="caixaAberto === 'disponível' || caixaAberto === 'fechado'" class="btn" texto="Abrir caixa" icone="fa-floppy-disk" cor="var(--corVerde)" (click)="abrirCaixa()"></app-botao-pequeno>
+
     </div>
     <div *ngIf="loadingSpinner" class="spinner">
         <mat-spinner></mat-spinner>

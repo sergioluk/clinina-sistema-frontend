@@ -77,7 +77,27 @@ export interface ProdutoVenda {
     dinheiro_conferido: number,
     pix_conferido: number,
     fiado_conferido: number,
-    status: string
+    status: string,
+  }
+  export interface CaixaCompleto {
+    id?: number,
+    abertura_data: Date | null,
+    abertura_valor: number,
+    despesas_caixa: number,
+    entrada: number,
+    fechamento_caixa_data: Date | null,
+    fechamento_caixa_valor: number,
+    credito_conferido: number,
+    debito_conferido: number,
+    dinheiro_conferido: number,
+    pix_conferido: number,
+    fiado_conferido: number,
+    status: string,
+    totalCredito: number,
+    totalDebito: number,
+    totalDinheiro: number,
+    totalPix: number,
+    totalFiado: number 
   }
 
   //Usado para formulario cadastro tutor

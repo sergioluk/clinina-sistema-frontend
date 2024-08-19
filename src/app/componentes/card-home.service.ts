@@ -2,7 +2,7 @@ import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CadastroProduto, Categoria, Fiado, Fornecedor, Idade, Mensagem, Relatorio, RelatorioFiado, Sabor, Venda, Vender } from './cadastro-produto/cadastro-produto';
-import { Caixa, DetalhesProduto, LinhaDoTempo, ProdutoVenda, Tutor } from '../interfaces/produtoVenda';
+import { Caixa, CaixaCompleto, DetalhesProduto, LinhaDoTempo, ProdutoVenda, Tutor } from '../interfaces/produtoVenda';
 
 @Injectable({
   providedIn: 'root'
@@ -181,14 +181,14 @@ export class CardHomeService {
 
     return this.http.get<LinhaDoTempo[]>(url, {params , observe: 'response'});
   }
-  buscarCaixa( data: {start_dia: number, start_mes: number, start_ano: number}): Observable<HttpResponse<Caixa>> {
+  buscarCaixa( data: {start_dia: number, start_mes: number, start_ano: number}): Observable<HttpResponse<CaixaCompleto>> {
     const url = `${this.API}/caixa/buscarCaixa`;
     const params = new HttpParams()
     .set('dia', data.start_dia.toString())
     .set('mes', data.start_mes.toString())
     .set('ano', data.start_ano.toString())
 
-    return this.http.get<Caixa>(url, {params, observe: 'response'} )
+    return this.http.get<CaixaCompleto>(url, {params, observe: 'response'} )
   }
   fecharCaixa(caixa: Caixa): Observable<HttpResponse<Caixa>>{
     const url = `${this.API}/caixa/fecharCaixa`;

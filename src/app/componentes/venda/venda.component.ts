@@ -146,7 +146,12 @@ export class VendaComponent implements OnInit {
     this.toggleCancelarCompra();
   }
   vender() {
+    if (this.statusCaixa != "aberto" ) {
+      this.snackbar.openSnackBarFail("Caixa precisa estar aberto!!!","Fechar");
+      return;
+    }
     if (this.listaDeProdutos.length <= 0) {
+      this.snackbar.openSnackBarFail("Não há produtos na lista!!!","Fechar");
       return;
     }
     this.toggleMetodoPagamento();

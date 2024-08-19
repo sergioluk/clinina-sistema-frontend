@@ -101,7 +101,8 @@
     </form>
     <div class="cadastro__visualizacao">
       <div class="imagem--e--botaoacao flex-column">
-        <app-container-image imagem="../../../assets/img/3.png"></app-container-image>
+        <!-- <app-container-image imagem="../../../assets/img/3.png"></app-container-image> -->
+        <app-container-image imagem="{{ formulario.get('imagemP')?.value }}"></app-container-image>
         <div class="imagens"></div>
         <div class="botoes-conteiner flex-column">
           <app-botao-pequeno cor="var(--corVerde)" icone="fa-floppy-disk" texto="{{ titulo }}" (click)="cadastrarProduto()"></app-botao-pequeno>
