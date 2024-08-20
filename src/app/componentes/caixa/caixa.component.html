@@ -92,7 +92,7 @@
                         <td>{{ caixaCompleto.totalCredito | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
                         <td *ngIf="!modoEdicaoCredito">{{ creditoInput | currency: 'R$ ':'symbol':'1.2-2' }}</td>
                         <td *ngIf="modoEdicaoCredito"><input type="number" [(ngModel)]="creditoInput"  (change)="changeCredito()"></td>
-                        <td>{{ (caixaCompleto.totalCredito - creditoInput) | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
+                        <td>{{ (creditoInput - caixaCompleto.totalCredito) | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
                         <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="toggleEdicaoCredito()"></fa-icon></td>
                     </tr>
                     <tr class="tablerow">
@@ -100,7 +100,7 @@
                         <td>{{ caixaCompleto.totalDebito | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
                         <td *ngIf="!modoEdicaoDebito">{{ debitoInput | currency: 'R$ ':'symbol':'1.2-2' }}</td>
                         <td *ngIf="modoEdicaoDebito"><input type="number" [(ngModel)]="debitoInput" (change)="changeDebito()"></td>
-                        <td>{{ (caixaCompleto.totalDebito - debitoInput) | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
+                        <td>{{ (debitoInput - caixaCompleto.totalDebito) | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
                         <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="toggleEdicaoDebito()"></fa-icon></td>
                     </tr>
                     <tr class="tablerow">
@@ -108,7 +108,7 @@
                         <td>{{ caixaCompleto.totalDinheiro | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
                         <td *ngIf="!modoEdicaoDinheiro">{{ dinheiroInput | currency: 'R$ ':'symbol':'1.2-2' }}</td>
                         <td *ngIf="modoEdicaoDinheiro"><input type="number" [(ngModel)]="dinheiroInput" (change)="changeDinheiro()"></td>
-                        <td>{{ (caixaCompleto.totalDinheiro - dinheiroInput) | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
+                        <td>{{ (dinheiroInput - caixaCompleto.totalDinheiro) | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
                         <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="toggleEdicaoDinheiro()"></fa-icon></td>
                     </tr>
                     <tr class="tablerow">
@@ -116,7 +116,7 @@
                         <td>{{ caixaCompleto.totalPix | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
                         <td *ngIf="!modoEdicaoPix">{{ pixInput | currency: 'R$ ':'symbol':'1.2-2' }}</td>
                         <td *ngIf="modoEdicaoPix"><input type="number" [(ngModel)]="pixInput" (change)="changePix()"></td>
-                        <td>{{ (caixaCompleto.totalPix - pixInput) | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
+                        <td>{{ (pixInput - caixaCompleto.totalPix) | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
                         <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="toggleEdicaoPix()"></fa-icon></td>
                     </tr>
                     <tr class="tablerow">
@@ -124,7 +124,7 @@
                         <td>{{ caixaCompleto.totalFiado | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
                         <td *ngIf="!modoEdicaoFiado">{{ fiadoInput | currency: 'R$ ':'symbol':'1.2-2' }}</td>
                         <td *ngIf="modoEdicaoFiado"><input type="number" [(ngModel)]="fiadoInput" (change)="changeFiado()"></td>
-                        <td>{{ (caixaCompleto.totalFiado - fiadoInput) | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
+                        <td>{{ (fiadoInput - caixaCompleto.totalFiado) | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
                         <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="toggleEdicaoFiado()"></fa-icon></td>
                     </tr>
                     <tr class="tablerow">
