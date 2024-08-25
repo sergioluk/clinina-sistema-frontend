@@ -3,7 +3,7 @@
   <router-outlet></router-outlet>
 </main>
 <app-footer></app-footer>-->
-<app-menu-lateral>
+<app-menu-lateral *ngIf="currentComponent != 'LoginComponent'">
   <router-outlet></router-outlet>
 </app-menu-lateral>
-
+<router-outlet *ngIf="currentComponent == 'LoginComponent'"></router-outlet>

@@ -10,11 +10,12 @@ import { DetalhesProdutoComponent } from './componentes/detalhes-produto/detalhe
 import { CaixaComponent } from './componentes/caixa/caixa.component';
 import { CadastroBanhoETosaComponent } from './componentes/banho-e-tosa/cadastro-banho-e-tosa/cadastro-banho-e-tosa.component';
 import { BanhoETosaComponent } from './componentes/banho-e-tosa/banho-e-tosa.component';
+import { LoginComponent } from './componentes/login/login.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'venda',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   // {
@@ -64,6 +65,10 @@ const routes: Routes = [
   {
     path: 'cadastrar-tutor',
     component: CadastroBanhoETosaComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
   /*
   {

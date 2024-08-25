@@ -6,7 +6,7 @@ import { Login } from '../interfaces/produtoVenda';
 })
 export class LoginService {
 
-  usuario!: Login | null;
+  usuario: Login | null = null;
 
   constructor() { }
 

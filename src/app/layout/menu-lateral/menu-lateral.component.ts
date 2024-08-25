@@ -1,5 +1,6 @@
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CardHomeService } from 'src/app/componentes/card-home.service';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -16,10 +17,20 @@ export class MenuLateralComponent implements OnInit, OnDestroy {
   private tempo = 180000;
 
   constructor(
-    private service: CardHomeService
+    private service: CardHomeService,
+    private login: LoginService,
+    private router: Router
   ) {}
   
   ngOnInit(): void {
+
+    //parte login
+    if (this.login.getUsuario == null) {
+      console.log("hehe")
+      this.router.navigate(['/login']);
+      return;
+    }
+
      // Verifica se já existe um timer ativo e limpa-o
     if(this.timer) {
       clearInterval(this.timer);
