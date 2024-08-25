@@ -47,7 +47,7 @@
                         <td>Abertura de Caixa</td>
                         <td *ngIf="!modoEdicaoAbertura">{{ abrirCaixaInput | currency:'R$ ':'symbol':'1.2-2' }}</td>
                         <td *ngIf="modoEdicaoAbertura"><input type="number" [(ngModel)]="abrirCaixaInput"></td>
-                        <td>13/07/20024 20:35</td>
+                        <td>{{  caixa.abertura_data | date:'dd/MM/YYYY HH:mm' }}</td>
                         <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="toggleEdicaoAbertura()"></fa-icon></td>
                     </tr>
                     <tr class="tablerow">
@@ -56,24 +56,31 @@
                         <td>-</td>
                         <td>-</td>
                     </tr>
-                    <tr class="tablerow">
+                    <!-- <tr class="tablerow">
                         <td>Troco</td>
                         <td>R$ 00,00</td>
                         <td>-</td>
                         <td>-</td>
-                    </tr>
+                    </tr> -->
                     <tr class="tablerow">
                         <td>Despesas do caixa</td>
-                        <td *ngIf="!modoEdicaoDespesas">R$ 00,00</td>
+                        <td *ngIf="!modoEdicaoDespesas">{{ despesasInput | currency:'R$ ':'symbol':'1.2-2' }}</td>
                         <td *ngIf="modoEdicaoDespesas"><input type="number" [(ngModel)]="despesasInput"></td>
                         <td>-</td>
                         <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="toggleEdicaoDespesas()"></fa-icon></td>
                     </tr>
                     <tr class="tablerow">
-                        <td>Fechamento de caixa</td>
-                        <td>R$ 00,00</td>
-                        <td>13/07/20024 22:35</td>
+                        <td>Fechamento de caixa esperado</td>
+                        <td>{{ caixa.abertura_valor - despesasInput + caixa.entrada + caixaCompleto.totalDinheiro | currency:'R$ ':'symbol':'1.2-2'}}</td>
                         <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr class="tablerow">
+                        <td>Fechamento de caixa</td>
+                        <td *ngIf="!modoEdicaoFechamento">{{ fechamentoInput | currency:'R$ ':'symbol':'1.2-2' }}</td>
+                        <td *ngIf="modoEdicaoFechamento"><input type="number" [(ngModel)]="fechamentoInput"></td>
+                        <td>{{  caixa.fechamento_caixa_data | date:'dd/MM/YYYY HH:mm' }}</td>
+                        <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="toggleEdicaoFechamento()"></fa-icon></td>
                     </tr>
                 </table>
             </div>
@@ -127,7 +134,7 @@
                         <td>{{ (fiadoInput - caixaCompleto.totalFiado) | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
                         <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="toggleEdicaoFiado()"></fa-icon></td>
                     </tr>
-                    <tr class="tablerow">
+                    <!-- <tr class="tablerow">
                         <td><fa-icon [icon]="getIcone('fa-arrow-right')"></fa-icon>Entrada</td>
                         <td>R$ 150,00</td>
                         <td>R$ 150,00</td>
@@ -138,7 +145,7 @@
                         <td>R$ 150,00</td>
                         <td>R$ 150,00</td>
                         <td>R$ 150,00</td>
-                    </tr>
+                    </tr> -->
                 </table>
             </div>
         </div>
@@ -150,3 +157,5 @@
         <mat-spinner></mat-spinner>
     </div>
 </div>
+
+<app-login></app-login>

@@ -8,6 +8,7 @@ import { TabelaVendaComponent } from './tabela-venda/tabela-venda.component';
 import { IconeService } from 'src/app/services/icone.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { AberturaCaixaService } from 'src/app/services/abertura-caixa.service';
+import { LoginService } from 'src/app/services/login.service';
 
 
 
@@ -39,7 +40,8 @@ export class VendaComponent implements OnInit {
     private formBuilder: FormBuilder,
     private icone: IconeService ,
     private snackbar: SnackbarService,
-    private caixa: AberturaCaixaService
+    private caixa: AberturaCaixaService,
+    public login: LoginService
   ){}
 
   ngOnInit(): void {

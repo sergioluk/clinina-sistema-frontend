@@ -2,7 +2,7 @@ import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CadastroProduto, Categoria, Fiado, Fornecedor, Idade, Mensagem, Relatorio, RelatorioFiado, Sabor, Venda, Vender } from './cadastro-produto/cadastro-produto';
-import { Caixa, CaixaCompleto, DetalhesProduto, LinhaDoTempo, ProdutoVenda, Tutor } from '../interfaces/produtoVenda';
+import { Caixa, CaixaCompleto, DetalhesProduto, LinhaDoTempo, Login, ProdutoVenda, Tutor } from '../interfaces/produtoVenda';
 
 @Injectable({
   providedIn: 'root'
@@ -209,6 +209,18 @@ export class CardHomeService {
   alterarTutor(id: number | undefined, tutorData: Tutor): Observable<HttpResponse<Tutor>>{
     const url = `${this.API}/banho-e-tosa/tutor/${id}`;
     return this.http.put<Tutor>(url, tutorData, {observe: 'response'});
+  }
+  abrirCaixaSeFechado(id: number): Observable<HttpResponse<any>> {
+    const url = `${this.API}/caixa/${id}/abrirSeFechado`;
+    return this.http.patch<any>(url, {observe: 'response'});
+  }
+  logar(login: Login): Observable<HttpResponse<Login>> {
+    const url = `${this.API}/login`;
+    const params = new HttpParams()
+    .set('usuario', login.usuario)
+    .set('senha', login.senha);
+
+    return this.http.get<Login>(url, { params: params, observe: 'response' });
   }
   // recuperarListaDeRacas() {
   //   const apiKey = "";

@@ -133,3 +133,10 @@ export interface ProdutoVenda {
     obs: string,
     tutor?: Tutor;
   }
+
+  //Login
+  export interface Login {
+    usuario: string,
+    senha: string,
+    grupo: string
+  }

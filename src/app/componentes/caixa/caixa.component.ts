@@ -22,6 +22,7 @@ export class CaixaComponent implements OnInit {
   modoEdicaoDinheiro = false;
   modoEdicaoPix = false;
   modoEdicaoFiado = false;
+  modoEdicaoFechamento = false;
   caixaAberto: string = 'disponível';
   loadingSpinner = false;
   abrirCaixaInput: number = 0;
@@ -31,6 +32,8 @@ export class CaixaComponent implements OnInit {
   dinheiroInput: number = 0;
   pixInput: number = 0;
   fiadoInput: number = 0;
+  fechamentoInput: number = 0;
+  desativar: boolean = false;
 
   caixa: Caixa = {
     abertura_data: new Date(),
@@ -38,7 +41,7 @@ export class CaixaComponent implements OnInit {
     despesas_caixa: 0,
     entrada: 0,
     fechamento_caixa_data: null,
-    fechamento_caixa_valor: 0,
+    fechamento_caixa_valor: this.fechamentoInput,
     credito_conferido: 0,
     debito_conferido: 0,
     dinheiro_conferido: 0,
@@ -53,7 +56,7 @@ export class CaixaComponent implements OnInit {
     despesas_caixa: 0,
     entrada: 0,
     fechamento_caixa_data: null,
-    fechamento_caixa_valor: 0,
+    fechamento_caixa_valor: this.fechamentoInput,
     credito_conferido: 0,
     debito_conferido: 0,
     dinheiro_conferido: 0,
@@ -90,6 +93,7 @@ export class CaixaComponent implements OnInit {
           this.caixaCompleto = response.body;
           this.setarCaixa(this.caixaCompleto);
           this.abrirCaixaInput = this.caixa.abertura_valor;
+          this.fechamentoInput = this.caixa.fechamento_caixa_valor;
           if (this.caixa.status == "aberto") {
             this.caixaService.abrirCaixa();
           } else if (this.caixa.status == "fechado") {
@@ -101,6 +105,7 @@ export class CaixaComponent implements OnInit {
           this.caixaAberto = "disponível";
         }
         this.abrirCaixaInput = this.caixa.abertura_valor;
+        this.fechamentoInput = this.caixa.fechamento_caixa_valor;
         this.loadingSpinner = false;
         this.snackbar.openSnackBarSucces("Pesquisa concluída!","Fechar");
       },
@@ -117,6 +122,7 @@ export class CaixaComponent implements OnInit {
   }
 
   setarCaixa(caixaCompleto: CaixaCompleto) {
+    this.caixa.id = caixaCompleto.id;
     this.caixa.abertura_data = caixaCompleto.abertura_data;
     this.caixa.abertura_valor = caixaCompleto.abertura_valor;
     this.caixa.despesas_caixa = caixaCompleto.despesas_caixa;
@@ -158,6 +164,9 @@ export class CaixaComponent implements OnInit {
   toggleEdicaoDespesas() {
     this.modoEdicaoDespesas = !this.modoEdicaoDespesas;
   }
+  toggleEdicaoFechamento() {
+    this.modoEdicaoFechamento = !this.modoEdicaoFechamento;
+  }
 
   getData() {
     let start_dia = 0;
@@ -196,25 +205,53 @@ export class CaixaComponent implements OnInit {
       return;
     }
 
+    this.desativar = true;
     this.loadingSpinner = true;
-    this.caixa.status = "aberto";
-    this.caixa.abertura_valor = this.abrirCaixaInput;
-    this.service.abrirCaixa(this.caixa).subscribe({
-      error: (error: HttpErrorResponse) => {
-        console.error("Erro: ", error.message);
-        console.error("Código de status HTTP: ", error.status);
-        this.snackbar.openSnackBarFail("Algo deu errado!", "Fechar");
-        this.loadingSpinner = false;
-        this.caixa.status = '';
-      },
-      complete: () => {
-        this.caixaService.abrirCaixa();
-        this.caixaAberto = this.caixaService.verificarCaixa();
-        this.snackbar.openSnackBarSucces("Caixa aberto!!","Fechar");
-        console.log("Requisição completa!!!");
-        this.loadingSpinner = false;
+
+    if (this.caixa.status == "fechado") {
+      if (this.caixa.id == undefined) {
+        return;
       }
-    });
+      this.service.abrirCaixaSeFechado(this.caixa.id).subscribe({
+        error: (error: HttpErrorResponse) => {
+          console.error("Erro: ", error.message);
+          console.error("Código de status HTTP: ", error.status);
+          this.snackbar.openSnackBarFail("Algo deu errado!", "Fechar");
+          this.loadingSpinner = false;
+          this.caixa.status = 'fechado';
+          this.desativar = false;
+        },
+        complete: () => {
+          this.caixaService.abrirCaixa();
+          this.caixaAberto = this.caixaService.verificarCaixa();
+          this.snackbar.openSnackBarSucces("Caixa aberto!!","Fechar");
+          console.log("Requisição completa!!!");
+          this.loadingSpinner = false;
+          this.desativar = false;
+        }
+      });
+    } else {
+      this.caixa.status = "aberto";
+      this.caixa.abertura_valor = this.abrirCaixaInput;
+      this.service.abrirCaixa(this.caixa).subscribe({
+        error: (error: HttpErrorResponse) => {
+          console.error("Erro: ", error.message);
+          console.error("Código de status HTTP: ", error.status);
+          this.snackbar.openSnackBarFail("Algo deu errado!", "Fechar");
+          this.loadingSpinner = false;
+          this.caixa.status = '';
+          this.desativar = false;
+        },
+        complete: () => {
+          this.caixaService.abrirCaixa();
+          this.caixaAberto = this.caixaService.verificarCaixa();
+          this.snackbar.openSnackBarSucces("Caixa aberto!!","Fechar");
+          console.log("Requisição completa!!!");
+          this.loadingSpinner = false;
+          this.desativar = false;
+        }
+      });
+    }
   }
   //Fazer entrada ir pra tabela da esquerda
   fecharCaixa() {
@@ -245,6 +282,8 @@ export class CaixaComponent implements OnInit {
   setarValores() {
     this.caixa.abertura_valor = this.abrirCaixaInput;
     this.caixa.despesas_caixa = this.despesasInput;
+    this.caixa.fechamento_caixa_valor = this.fechamentoInput;
+    this.caixa.fechamento_caixa_data = new Date();
     // this.caixa.credito_conferido = 0;
     // this.caixa.debito_conferido = 0;
     // this.caixa.dinheiro_conferido = 0;
@@ -282,6 +321,7 @@ export class CaixaComponent implements OnInit {
   changeDebito() {
     this.caixa.debito_conferido = this.debitoInput;
   }
+
   changeDinheiro() {
     this.caixa.dinheiro_conferido = this.dinheiroInput;
   }

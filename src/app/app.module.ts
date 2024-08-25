@@ -54,6 +54,7 @@ import { CaixaComponent } from './componentes/caixa/caixa.component';
 import { CadastroBanhoETosaComponent } from './componentes/banho-e-tosa/cadastro-banho-e-tosa/cadastro-banho-e-tosa.component';
 import { Select2Component } from './form/select2/select2.component';
 import { BanhoETosaComponent } from './componentes/banho-e-tosa/banho-e-tosa.component';
+import { LoginComponent } from './componentes/login/login.component';
 
 
 @NgModule({
@@ -95,7 +96,8 @@ import { BanhoETosaComponent } from './componentes/banho-e-tosa/banho-e-tosa.com
     CaixaComponent,
     CadastroBanhoETosaComponent,
     Select2Component,
-    BanhoETosaComponent
+    BanhoETosaComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -53,6 +53,7 @@
       <app-botao-grande texto="VENDER" cor="var(--corVerde)" icone="fa-cart-shopping"
         (click)="vender()"></app-botao-grande>
     </div>
+    <p *ngIf="login.getUsuario()?.usuario">Atendente: {{login.getUsuario()?.usuario}}</p>
     <div class="desconto-total">
       <app-info titulo="Desconto Total" valor="{{ totalDesconto | currency:'R$ ':'symbol':'1.2-2' }}"></app-info>
       <app-info titulo="Total" valor="{{ total | currency:'R$ ':'symbol':'1.2-2' }}"></app-info>
