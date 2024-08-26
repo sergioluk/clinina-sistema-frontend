@@ -17,20 +17,10 @@ export class MenuLateralComponent implements OnInit, OnDestroy {
   private tempo = 180000;
 
   constructor(
-    private service: CardHomeService,
-    private login: LoginService,
-    private router: Router
+    private service: CardHomeService
   ) {}
   
   ngOnInit(): void {
-
-    //parte login
-    if (this.login.getUsuario == null) {
-      console.log("hehe")
-      this.router.navigate(['/login']);
-      return;
-    }
-
      // Verifica se já existe um timer ativo e limpa-o
     if(this.timer) {
       clearInterval(this.timer);

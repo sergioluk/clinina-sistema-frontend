@@ -95,7 +95,7 @@
                     </tr>
                     <tr class="tablerow">
                         <!-- <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')"></fa-icon> Cartão de crédito</td> -->
-                        <td><img src="../../../../assets/img/cartao_credito.png" alt="">Cartão de crédito</td>
+                        <td><img src="assets/img/cartao_credito.png" alt="">Cartão de crédito</td>
                         <td>{{ caixaCompleto.totalCredito | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
                         <td *ngIf="!modoEdicaoCredito">{{ creditoInput | currency: 'R$ ':'symbol':'1.2-2' }}</td>
                         <td *ngIf="modoEdicaoCredito"><input type="number" [(ngModel)]="creditoInput"  (change)="changeCredito()"></td>
@@ -103,7 +103,7 @@
                         <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="toggleEdicaoCredito()"></fa-icon></td>
                     </tr>
                     <tr class="tablerow">
-                        <td><img src="../../../../assets/img/cartao_debito.png" alt="">Cartão de débito</td>
+                        <td><img src="assets/img/cartao_debito.png" alt="">Cartão de débito</td>
                         <td>{{ caixaCompleto.totalDebito | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
                         <td *ngIf="!modoEdicaoDebito">{{ debitoInput | currency: 'R$ ':'symbol':'1.2-2' }}</td>
                         <td *ngIf="modoEdicaoDebito"><input type="number" [(ngModel)]="debitoInput" (change)="changeDebito()"></td>
@@ -111,7 +111,7 @@
                         <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="toggleEdicaoDebito()"></fa-icon></td>
                     </tr>
                     <tr class="tablerow">
-                        <td><img src="../../../../assets/img/dinheiro.png" alt="">Dinheiro</td>
+                        <td><img src="assets/img/dinheiro.png" alt="">Dinheiro</td>
                         <td>{{ caixaCompleto.totalDinheiro | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
                         <td *ngIf="!modoEdicaoDinheiro">{{ dinheiroInput | currency: 'R$ ':'symbol':'1.2-2' }}</td>
                         <td *ngIf="modoEdicaoDinheiro"><input type="number" [(ngModel)]="dinheiroInput" (change)="changeDinheiro()"></td>
@@ -119,7 +119,7 @@
                         <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="toggleEdicaoDinheiro()"></fa-icon></td>
                     </tr>
                     <tr class="tablerow">
-                        <td><img src="../../../../assets/img/pix.png" alt="">Pix</td>
+                        <td><img src="assets/img/pix.png" alt="">Pix</td>
                         <td>{{ caixaCompleto.totalPix | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
                         <td *ngIf="!modoEdicaoPix">{{ pixInput | currency: 'R$ ':'symbol':'1.2-2' }}</td>
                         <td *ngIf="modoEdicaoPix"><input type="number" [(ngModel)]="pixInput" (change)="changePix()"></td>
@@ -127,7 +127,7 @@
                         <td><fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="toggleEdicaoPix()"></fa-icon></td>
                     </tr>
                     <tr class="tablerow">
-                        <td><img src="../../../../assets/img/fiado.png" alt="">Fiado</td>
+                        <td><img src="assets/img/fiado.png" alt="">Fiado</td>
                         <td>{{ caixaCompleto.totalFiado | currency: 'R$ ':'symbol':'1.2-2'  }}</td>
                         <td *ngIf="!modoEdicaoFiado">{{ fiadoInput | currency: 'R$ ':'symbol':'1.2-2' }}</td>
                         <td *ngIf="modoEdicaoFiado"><input type="number" [(ngModel)]="fiadoInput" (change)="changeFiado()"></td>

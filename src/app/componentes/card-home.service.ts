@@ -9,8 +9,8 @@ import { Caixa, CaixaCompleto, DetalhesProduto, LinhaDoTempo, Login, ProdutoVend
 })
 export class CardHomeService {
 
-  //private readonly API = 'https://clinina-backend.onrender.com';
-  private readonly API = 'http://localhost:8080';
+  private readonly API = 'https://clinina-backend.onrender.com';
+  //private readonly API = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 
