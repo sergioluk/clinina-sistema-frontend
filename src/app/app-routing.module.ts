@@ -69,6 +69,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: '**',
+    redirectTo: 'login' // Ou redirecione para uma página de erro como PageNotFoundComponent
   }
   /*
   {

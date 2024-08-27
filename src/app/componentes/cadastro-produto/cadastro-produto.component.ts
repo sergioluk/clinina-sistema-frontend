@@ -148,15 +148,17 @@ export class CadastroProdutoComponent implements OnInit {
         console.log("modo editar");
         this.service.editarProduto(valueSubmit).subscribe(() => {
           this.viewportScroller.scrollToPosition([0, 0]);
-          window.location.reload();
+          // window.location.reload();
           this.snackbar.openSnackBarSucces("Produto alterado com sucesso!", "Fechar");
+          this.router.navigate(['/estoque']);
         });
       } else {
         this.service.criar(valueSubmit).subscribe(() => {
           //this.router.navigate(['/home']);
           this.viewportScroller.scrollToPosition([0, 0]);
-          window.location.reload();
+          // window.location.reload();
           this.snackbar.openSnackBarSucces("Produto cadastrado com sucesso!", "Fechar");
+          this.router.navigate(['/estoque']);
         });
       }
     }
@@ -167,7 +169,7 @@ export class CadastroProdutoComponent implements OnInit {
     this.service.verificarCodigoDeBarras(codigo).subscribe((resultado) => {
       if (resultado == true) {
         alert("Produto Já registrado!!!");
-        window.location.reload();
+        this.router.navigate(['/estoque']);
       }
     });
   }
