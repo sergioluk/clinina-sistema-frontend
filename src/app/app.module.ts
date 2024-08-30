@@ -55,6 +55,7 @@ import { CadastroBanhoETosaComponent } from './componentes/banho-e-tosa/cadastro
 import { Select2Component } from './form/select2/select2.component';
 import { BanhoETosaComponent } from './componentes/banho-e-tosa/banho-e-tosa.component';
 import { LoginComponent } from './componentes/login/login.component';
+import { LancamentoComponent } from './componentes/lancamento/lancamento.component';
 
 
 @NgModule({
@@ -97,7 +98,8 @@ import { LoginComponent } from './componentes/login/login.component';
     CadastroBanhoETosaComponent,
     Select2Component,
     BanhoETosaComponent,
-    LoginComponent
+    LoginComponent,
+    LancamentoComponent
   ],
   imports: [
     BrowserModule,

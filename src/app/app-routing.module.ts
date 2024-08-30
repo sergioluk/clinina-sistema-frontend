@@ -11,6 +11,7 @@ import { CaixaComponent } from './componentes/caixa/caixa.component';
 import { CadastroBanhoETosaComponent } from './componentes/banho-e-tosa/cadastro-banho-e-tosa/cadastro-banho-e-tosa.component';
 import { BanhoETosaComponent } from './componentes/banho-e-tosa/banho-e-tosa.component';
 import { LoginComponent } from './componentes/login/login.component';
+import { LancamentoComponent } from './componentes/lancamento/lancamento.component';
 
 const routes: Routes = [
   {
@@ -69,6 +70,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'lancamento',
+    component: LancamentoComponent
   },
   {
     path: '**',
