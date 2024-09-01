@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { CardHomeService } from 'src/app/componentes/card-home.service';
-import { ProdutoVenda } from 'src/app/interfaces/produtoVenda';
 import { IconeService } from 'src/app/services/icone.service';
 
 @Component({

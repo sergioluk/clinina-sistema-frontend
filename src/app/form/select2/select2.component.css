@@ -8,6 +8,7 @@
   }
   .select label {
     width: 100%;
+    color: var(--corTexto);
   }
   .select select {
     width: 100%;

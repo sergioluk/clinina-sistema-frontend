@@ -20,7 +20,7 @@ export class AppComponent implements OnInit{
   ngOnInit() {
     //Verificar se não está logado e redirecionar para a pagina de login
     if (this.login.getUsuario() == null) {
-      this.router.navigate(['/login']);
+      //this.router.navigate(['/login']);
     }
   }
 

@@ -1,1 +1,75 @@
-<p>lancamento works!</p>
+<div class="lancamento-componente__container">
+    <div class="flex">
+      <div class="menu">
+        <fa-icon [icon]="getIcone('fa-bars')"></fa-icon>
+      </div>
+      <h1 class="titulo">LANÇAMENTOS</h1>
+    </div>
+    <hr>
+    <div class="lancamento-container">
+
+        <form [formGroup]="formulario" class="formulario-container">
+            <app-select2 [lista]="listaPeriodoVisualizacao" for="periodo" label="Período de visualização:" [negrito]="true" formControlName="periodo"></app-select2>
+            <app-input type="date" for="dataInicio" label="Data de Início" placeholder="01/08/2024" [negrito]="true" formControlName="dataInicio"></app-input>
+            <app-input type="date" for="dataFim" label="Data fim" placeholder="31/08/2024" [negrito]="true" formControlName="dataFim"></app-input>
+        </form>
+
+        <div class="pagar-receber-container">
+            <div class="card">
+                <div>
+                    <div class="space-between">
+                        <div class="img-stats">
+                            <fa-icon class="verde" [icon]="getIcone('fa-arrow-right')"></fa-icon>
+                            <p class="verde">A receber</p>
+                        </div>
+                        
+                        <small class="cinza">Atualizado em 27/08/2024</small>
+                    </div>
+                    <p class="valor-card margin-top">R$ 0,00</p>
+                </div>
+                <app-botao-pequeno class="btn-card" cor="var(--corVerde)" texto="Adicionar receita"></app-botao-pequeno>
+            </div>
+            <div class="card">
+                <div>
+                    <div class="space-between">
+                        <div class="img-stats">
+                            <fa-icon class="vermelho" [icon]="getIcone('fa-arrow-left')"></fa-icon>
+                            <p class="vermelho">A pagar</p>
+                        </div>
+                        
+                        <small class="cinza">Atualizado em 27/08/2024</small>
+                    </div>
+                    <p class="valor-card margin-top">-R$ 7.645,90</p>
+                </div>
+                <app-botao-pequeno class="btn-card" cor="var(--corVerde)" texto="Adicionar receita"></app-botao-pequeno>
+            </div>
+            <div class="card">
+                <div class="space-between">
+                    <p>Projeção de saldo</p>
+                    <small class="cinza">Atualizado em 27/08/2024</small>
+                </div>
+                <div class="saldos">
+                    <p class="valor-card">R$ 0,00</p>
+                    <hr>
+                    <div class="space-between">
+                        <p class="cinza">Saldo anterior</p>
+                        <p class="cinza">R$ 2.176,42</p>
+                    </div>
+                    <hr>
+                    <div class="space-between">
+                        <p>Saldo atual</p>
+                        <p>R$ 814,01</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tabelas-container">
+            <div class="tabela-lancamentos">
+                
+            </div>
+            <div class="tabela-categoria"></div>
+        </div>
+
+    </div>
+</div>
