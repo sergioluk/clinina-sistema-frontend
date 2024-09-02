@@ -56,6 +56,7 @@ import { Select2Component } from './form/select2/select2.component';
 import { BanhoETosaComponent } from './componentes/banho-e-tosa/banho-e-tosa.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { LancamentoComponent } from './componentes/lancamento/lancamento.component';
+import { AdicionarLancamentoComponent } from './componentes/lancamento/adicionar-lancamento/adicionar-lancamento.component';
 
 
 @NgModule({
@@ -99,7 +100,8 @@ import { LancamentoComponent } from './componentes/lancamento/lancamento.compone
     Select2Component,
     BanhoETosaComponent,
     LoginComponent,
-    LancamentoComponent
+    LancamentoComponent,
+    AdicionarLancamentoComponent
   ],
   imports: [
     BrowserModule,

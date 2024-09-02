@@ -41,7 +41,7 @@
                     </div>
                     <p class="valor-card margin-top">-R$ 7.645,90</p>
                 </div>
-                <app-botao-pequeno class="btn-card" cor="var(--corVerde)" texto="Adicionar receita"></app-botao-pequeno>
+                <app-botao-pequeno class="btn-card" cor="var(--corVermelho)" texto="Adicionar despesa"></app-botao-pequeno>
             </div>
             <div class="card">
                 <div class="space-between">
@@ -66,10 +66,111 @@
 
         <div class="tabelas-container">
             <div class="tabela-lancamentos">
-                
+                <div class="space-between">
+                    <h5 class="valor-card">Lançamentos</h5>
+                    <div class="btn-tabela-container">
+                        <app-botao-pequeno class="btn-card" texto="Filtros" icone="fa-filter"></app-botao-pequeno>
+                        <app-botao-pequeno class="btn-card" texto="Adicionar lançamentos" icone="fa-plus"></app-botao-pequeno>
+                    </div>
+                </div>
+                <hr>
+                <div class="lancamentos">
+                    <small class="cinza">Hoje, 31 agosto 2024</small>
+                    <div class="linha-vertical"></div>
+
+                    <div class="space-between">
+                        <div class="detalhes">
+                            <div class="img-lancamento">
+                                <fa-icon class="vermelho" [icon]="getIcone('fa-arrow-left')"></fa-icon>
+                            </div>
+                            <div class="nome-detalhes">
+                                <p>Pagamento Vet Com</p>
+                                <p class="cinza">Pagamento de fornecedor a prazo</p>
+                            </div>
+                            <div class="status-flex">
+                                <div class="img-status">
+                                    <fa-icon [icon]="getIcone('fa-pen-to-square')"></fa-icon>
+                                </div>
+                                <small class="verde">Pago</small>
+                            </div>
+                        </div>
+                        <p class="vermelho">-R$ 280,74</p>
+                    </div>
+
+                    <!-- <div class="linha-vertical"></div>
+
+                    <div class="space-between">
+                        <div class="detalhes">
+                            <div class="img-lancamento">
+                                <fa-icon class="vermelho" [icon]="getIcone('fa-arrow-left')"></fa-icon>
+                            </div>
+                            <div class="nome-detalhes">
+                                <p>Pagamento Vet Com</p>
+                                <p class="cinza">Pagamento de fornecedor a prazo</p>
+                            </div>
+                            <div class="status-flex">
+                                <div class="img-status">
+                                    <fa-icon [icon]="getIcone('fa-pen-to-square')"></fa-icon>
+                                </div>
+                                <small class="verde">Pago</small>
+                            </div>
+                        </div>
+                        <p class="vermelho">-R$ 280,74</p>
+                    </div> -->
+
+                    <hr class="hr">
+                </div>
+                <div class="lancamento-btn-container">
+                    <app-botao-pequeno class="btn-card" texto="Mais lançamentos"></app-botao-pequeno>
+                </div>
             </div>
-            <div class="tabela-categoria"></div>
+            <div class="tabela-categoria">
+                <h5 class="valor-card">Por categoria</h5>
+                <hr>
+                <div>
+                    <div class="categoria-acoes">
+                        <div class="acao-selecionada acao">Receitas</div>
+                        <div class="acao">Despesas</div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="graficos-container">
+                    <div class="linha-grafico">
+                        <div class="label-grafico">
+                            <small>Venda no débito</small>
+                            <div class="grafico-maior-cinza">
+                                <div class="grafico-menor-verde"></div>
+                            </div>
+                        </div>
+                        <small>99%</small>
+                    </div>
+
+                    <div class="linha-grafico">
+                        <div class="label-grafico">
+                            <small>Venda no crédito</small>
+                            <div class="grafico-maior-cinza">
+                                <div class="grafico-menor-verde"></div>
+                            </div>
+                        </div>
+                        <small>25%</small>
+                    </div>
+
+                    <div class="linha-grafico">
+                        <div class="label-grafico">
+                            <small>Venda no crédito</small>
+                            <div class="grafico-maior-cinza">
+                                <div class="grafico-menor-verde"></div>
+                            </div>
+                        </div>
+                        <small>25%</small>
+                    </div>
+
+                </div>
+                <p class="gerenciar">Gerenciar categorias</p>
+            </div>
         </div>
 
     </div>
+
+    <app-adicionar-lancamento *ngIf="!janelaAddLancamento" (visivel)="toggleAddLancamento()"></app-adicionar-lancamento>
 </div>

@@ -1,4 +1,4 @@
-<div [ngStyle]="{ 'background-color': cor }" class="btn">
-    <fa-icon [icon]="getIcone()"></fa-icon>
+<div [ngStyle]="{ 'background-color': cor, 'border': borda, 'color': corTexto }" class="btn">
+    <fa-icon *ngIf="mostrarIcone" [icon]="getIcone()"></fa-icon>
     {{ texto }}
 </div>

@@ -9,6 +9,8 @@ import { IconeService } from 'src/app/services/icone.service';
 })
 export class LancamentoComponent implements OnInit {
 
+  janelaAddLancamento: boolean = false;
+
   listaPeriodoVisualizacao = ["Mês passado", "Este mês", "Próximo mês"];
 
   formulario!: FormGroup;
@@ -24,6 +26,10 @@ export class LancamentoComponent implements OnInit {
       dataInicio: [''],
       dataFim: [''],
     });
+  }
+
+  toggleAddLancamento() {
+    this.janelaAddLancamento = !this.janelaAddLancamento;
   }
 
   getIcone(icone: string) {
