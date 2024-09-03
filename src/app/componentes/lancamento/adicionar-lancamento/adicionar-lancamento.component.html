@@ -1,5 +1,12 @@
 <app-janela titulo="Adicionar Lançamento" icone="fa-plus" (toggleJanela)="toggleJanela()">
     <div class="add-lancamento-container">
-        
+        <div class="btn-tipo-lancamento-container">
+            <p>Tipo de lançamento</p>
+            <div class="btns-flex">
+                <div class="btn verde">Receita</div>
+                <div class="btn vermelho">Despesa</div>
+            </div>
+        </div>
+        <app-input type="text" for="descricao" label="Descrição" placeholder="Descrição da receita" formControlName="descricao" [negrito]="true"></app-input>
     </div>
 </app-janela>

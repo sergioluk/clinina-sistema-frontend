@@ -1,4 +1,39 @@
 .add-lancamento-container {
     width: 580px;
-    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--corTexto);
+    font-size: var(--fonteNormal);
+    font-weight: bold;
+}
+p {
+    margin: 0;
+}
+.btn-tipo-lancamento-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.btns-flex {
+    display: flex;
+}
+.btn {
+    width: 100%;
+    border: 1px solid var(--corPrincipal);
+    padding: 8px 0;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    font-weight: normal;
+}
+.verde {
+    background-color: var(--corVerde);
+    border-right: none;
+    color: var(--corBranco);
+}
+.vermelho {
+    background-color: var(--corVermelho);
+    border-left: none;
+    color: var(--corBranco);
 }
