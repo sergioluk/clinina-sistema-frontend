@@ -1,12 +1,43 @@
 <app-janela titulo="Adicionar Lançamento" icone="fa-plus" (toggleJanela)="toggleJanela()">
-    <div class="add-lancamento-container">
+    <form [formGroup]="formulario" class="add-lancamento-container">
         <div class="btn-tipo-lancamento-container">
             <p>Tipo de lançamento</p>
             <div class="btns-flex">
-                <div class="btn verde">Receita</div>
-                <div class="btn vermelho">Despesa</div>
+                <div [ngClass]="{'verde' : tipoLancamento == 'receita' ? true : false }" class="btn" (click)="selecionarLancamento('receita')">Receita</div>
+                <div [ngClass]="{'vermelho' : tipoLancamento == 'despesa' ? true : false }" class="btn" (click)="selecionarLancamento('despesa')">Despesa</div>
             </div>
         </div>
-        <app-input type="text" for="descricao" label="Descrição" placeholder="Descrição da receita" formControlName="descricao" [negrito]="true"></app-input>
-    </div>
+        <app-input type="text" for="descricao" label="Descrição" placeholder="Descrição da {{tipoLancamento == 'receita'?'receita':'despesa'}}" formControlName="descricao" [negrito]="true"></app-input>
+        <div class="flex">
+            <app-select [lista]="tipoLancamento == 'receita' ? listaDeReceita : listaDeDespesa " for="categoria" label="Categoria" formControlName="categoria" [isEditar]="true" propriedade="nome"></app-select>
+            <app-select [lista]="listaDeDespesa" for="subcategoria" label="Subcategoria" formControlName="subcategoria" [isEditar]="true" propriedade="nome"></app-select>
+        </div>
+        <div class="flex">
+            <app-input type="date" for="dataReceita" label="Data {{tipoLancamento == 'receita'?'da receita':'do vencimento'}}" placeholder="01/08/2024" [negrito]="true" formControlName="dataReceita"></app-input>
+            <app-input [ngClass]="{'borda-vermelha': isRecebida && !formulario.get('dataRecebimento')?.value}" type="date" for="dataRecebimento" label="Data {{tipoLancamento == 'receita'?'do recebimento':'do pagamento'}}" placeholder="01/08/2024" [negrito]="true" formControlName="dataRecebimento" (change)="mudancaData()"></app-input>
+        </div>
+        <div class="flex">
+            <app-input type="text" for="valor" label="Valor" placeholder="R$ 0,00" [negrito]="true" formControlName="valor"></app-input>
+            <div>
+                <mat-slide-toggle [(ngModel)]="isRecebida" [ngModelOptions]="{standalone: true}" (change)="limparData()">{{tipoLancamento=='receita'?'Recebida':'Paga'}}</mat-slide-toggle>
+            </div>
+        </div>
+        <div class="flex">
+            <div>
+                <mat-slide-toggle [(ngModel)]="isParcelado" [ngModelOptions]="{standalone: true}" >Parcelado</mat-slide-toggle>
+            </div>
+            <div class="quantas-vezes">
+                <p>Quantas vezes</p>
+                <div class="mais-menos">
+                    <div class="menos" [ngClass]="{'cinza': !isParcelado || menor}" (click)="diminuir()">-</div>
+                    <input type="number" min="2" [(ngModel)]="qtdParcelas" [ngModelOptions]="{standalone: true}" [disabled]="!isParcelado">
+                    <div class="mais" [ngClass]="{'cinza': !isParcelado}" (click)="aumentar()">+</div>
+                </div>
+            </div>
+        </div>
+        <div class="btn-acoes">
+            <app-botao-pequeno cor="var(--corVermelho)" texto="Cancelar" icone="fa-circle-xmark"></app-botao-pequeno>
+            <app-botao-pequeno cor="var(--corVerde)" texto="Salvar" icone="fa-circle-check" (click)="teste()"></app-botao-pequeno>
+        </div>
+    </form>
 </app-janela>

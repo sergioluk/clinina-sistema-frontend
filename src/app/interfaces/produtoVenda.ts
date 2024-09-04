@@ -140,3 +140,17 @@ export interface ProdutoVenda {
     senha: string,
     grupo: string
   }
+
+  //Lançamento
+  export interface ReceitaLancamento {
+    id?: number,
+    nome: string
+  }
+  export interface DespesaLancamento {
+    id?: number,
+    nome: string
+  }
+  export interface CategoriasLancamentos {
+    receitas: ReceitaLancamento[],
+    despesas: DespesaLancamento[]
+  }

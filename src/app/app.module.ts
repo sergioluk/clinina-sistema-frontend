@@ -57,6 +57,7 @@ import { BanhoETosaComponent } from './componentes/banho-e-tosa/banho-e-tosa.com
 import { LoginComponent } from './componentes/login/login.component';
 import { LancamentoComponent } from './componentes/lancamento/lancamento.component';
 import { AdicionarLancamentoComponent } from './componentes/lancamento/adicionar-lancamento/adicionar-lancamento.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -120,7 +121,8 @@ import { AdicionarLancamentoComponent } from './componentes/lancamento/adicionar
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

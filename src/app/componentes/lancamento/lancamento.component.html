@@ -27,7 +27,7 @@
                     </div>
                     <p class="valor-card margin-top">R$ 0,00</p>
                 </div>
-                <app-botao-pequeno class="btn-card" cor="var(--corVerde)" texto="Adicionar receita"></app-botao-pequeno>
+                <app-botao-pequeno class="btn-card" cor="var(--corVerde)" texto="Adicionar receita" (click)="adicionarLancamento('receita')"></app-botao-pequeno>
             </div>
             <div class="card">
                 <div>
@@ -41,7 +41,7 @@
                     </div>
                     <p class="valor-card margin-top">-R$ 7.645,90</p>
                 </div>
-                <app-botao-pequeno class="btn-card" cor="var(--corVermelho)" texto="Adicionar despesa"></app-botao-pequeno>
+                <app-botao-pequeno class="btn-card" cor="var(--corVermelho)" texto="Adicionar despesa" (click)="adicionarLancamento('despesa')"></app-botao-pequeno>
             </div>
             <div class="card">
                 <div class="space-between">
@@ -70,7 +70,7 @@
                     <h5 class="valor-card">Lançamentos</h5>
                     <div class="btn-tabela-container">
                         <app-botao-pequeno class="btn-card" texto="Filtros" icone="fa-filter"></app-botao-pequeno>
-                        <app-botao-pequeno class="btn-card" texto="Adicionar lançamentos" icone="fa-plus"></app-botao-pequeno>
+                        <app-botao-pequeno class="btn-card" texto="Adicionar lançamentos" icone="fa-plus"  (click)="adicionarLancamento('')"></app-botao-pequeno>
                     </div>
                 </div>
                 <hr>
@@ -172,5 +172,5 @@
 
     </div>
 
-    <app-adicionar-lancamento *ngIf="!janelaAddLancamento" (visivel)="toggleAddLancamento()"></app-adicionar-lancamento>
+    <app-adicionar-lancamento *ngIf="janelaAddLancamento" (visivel)="toggleAddLancamento()" [tipoLancamento]="lancamentoSelecionado"></app-adicionar-lancamento>
 </div>

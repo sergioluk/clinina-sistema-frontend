@@ -10,6 +10,7 @@ import { IconeService } from 'src/app/services/icone.service';
 export class LancamentoComponent implements OnInit {
 
   janelaAddLancamento: boolean = false;
+  lancamentoSelecionado = '';
 
   listaPeriodoVisualizacao = ["Mês passado", "Este mês", "Próximo mês"];
 
@@ -26,6 +27,11 @@ export class LancamentoComponent implements OnInit {
       dataInicio: [''],
       dataFim: [''],
     });
+  }
+
+  adicionarLancamento(tipoLancamento: string) {
+    this.lancamentoSelecionado = tipoLancamento;
+    this.toggleAddLancamento();
   }
 
   toggleAddLancamento() {

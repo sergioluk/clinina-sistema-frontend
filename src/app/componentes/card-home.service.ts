@@ -2,7 +2,7 @@ import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CadastroProduto, Categoria, Fiado, Fornecedor, Idade, Mensagem, Relatorio, RelatorioFiado, Sabor, Venda, Vender } from './cadastro-produto/cadastro-produto';
-import { Caixa, CaixaCompleto, DetalhesProduto, LinhaDoTempo, Login, ProdutoVenda, Tutor } from '../interfaces/produtoVenda';
+import { Caixa, CaixaCompleto, CategoriasLancamentos, DetalhesProduto, LinhaDoTempo, Login, ProdutoVenda, Tutor } from '../interfaces/produtoVenda';
 
 @Injectable({
   providedIn: 'root'
@@ -221,6 +221,10 @@ export class CardHomeService {
     .set('senha', login.senha);
 
     return this.http.get<Login>(url, { params: params, observe: 'response' });
+  }
+  pegarCategorias(): Observable<HttpResponse<CategoriasLancamentos>>{
+    const url = this.API + "/lancamentos/categorias";
+    return this.http.get<CategoriasLancamentos>(url, {observe: 'response'});
   }
   // recuperarListaDeRacas() {
   //   const apiKey = "";

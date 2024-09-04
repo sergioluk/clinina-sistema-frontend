@@ -26,6 +26,8 @@ p {
     justify-content: center;
     align-self: center;
     font-weight: normal;
+    cursor: pointer;
+    user-select: none;
 }
 .verde {
     background-color: var(--corVerde);
@@ -36,4 +38,71 @@ p {
     background-color: var(--corVermelho);
     border-left: none;
     color: var(--corBranco);
+}
+.flex {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+.flex app-select, .flex app-input {
+    width: 100%;
+}
+.flex div {
+    width: 100%;
+    align-self: flex-end;
+}
+.quantas-vezes {
+    display: flex;
+    flex-direction: column;
+}
+.mais-menos {
+    display: flex;
+}
+.mais-menos div {
+    height: 30px;
+    width: 30px;
+    background-color: var(--corPrincipal);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--corBranco);
+    transition: all .25s;
+    cursor: pointer;
+    user-select: none;
+}
+.mais-menos div:hover {
+    filter: brightness(80%);
+}
+.mais-menos input {
+    text-align: center;
+    border: 1px solid var(--corPrincipal);
+    width: 100%;
+}
+.mais-menos input:focus {
+    outline: none;
+}
+.mais-menos input[type=number]::-webkit-outer-spin-button,
+.mais-menos input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.mais {
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+.menos {
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+.btn-acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+.cinza {
+    background-color: #888888 !important;
+    cursor: not-allowed !important;
+}
+.borda-vermelha {
+    border-bottom: 4px solid var(--corVermelho);
 }
