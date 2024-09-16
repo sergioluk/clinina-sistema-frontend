@@ -44,7 +44,7 @@ p {
     display: flex;
     gap: 10px;
 }
-.flex app-select, .flex app-input {
+.flex app-select, .flex app-input, .flex app-select2 {
     width: 100%;
 }
 .flex div {

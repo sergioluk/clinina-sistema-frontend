@@ -154,3 +154,29 @@ export interface ProdutoVenda {
     receitas: ReceitaLancamento[],
     despesas: DespesaLancamento[]
   }
+  //Cadastrar Lançamento
+  export interface CadastrarLancamento {
+    id?: number,
+    tipoReceita: string,
+    descricao: string,
+    categoriaId: number,
+    dataDaReceitaVencimento: Date,
+    dataRecebimentoPagamento: Date,
+    valor: number,
+    quantidadeParcelas: number
+  }
+  //Lista Lancamentos
+  export interface ListaLancamento {
+    data: Date,
+    lancamentos: Lancamento[];
+  }
+  export interface Lancamento {
+    id?: number,
+    dataDaReceitaVencimento: Date,
+    status: string,
+    descricao: string,
+    categoriaNome: string,
+    valor: number,
+    tipoReceita: string
+  }
+  

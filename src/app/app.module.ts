@@ -1,6 +1,9 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import {  registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
@@ -59,6 +62,7 @@ import { LancamentoComponent } from './componentes/lancamento/lancamento.compone
 import { AdicionarLancamentoComponent } from './componentes/lancamento/adicionar-lancamento/adicionar-lancamento.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
@@ -124,7 +128,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatNativeDateModule,
     MatSlideToggleModule
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

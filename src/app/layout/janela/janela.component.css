@@ -17,6 +17,7 @@
 .titulo {
     display: flex;
     gap: 10px;
+    user-select: none;
 }
 .fechar {
     font-size: 18px;

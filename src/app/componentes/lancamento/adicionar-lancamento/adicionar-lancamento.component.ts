@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CardHomeService } from '../../card-home.service';
-import { CategoriasLancamentos, DespesaLancamento, ReceitaLancamento } from 'src/app/interfaces/produtoVenda';
+import { CadastrarLancamento, CategoriasLancamentos, DespesaLancamento, ReceitaLancamento } from 'src/app/interfaces/produtoVenda';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 @Component({
@@ -31,12 +31,17 @@ export class AdicionarLancamentoComponent implements OnInit {
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
       descricao: [''],
-      categoria: [''],
+      tipoReceita: [this.tipoLancamento],
+      categoriaId: ['', Validators.compose([
+        Validators.required,
+        // Validators.minLength(3),
+        //Validators.pattern(/(.|\s)*\S(.|\s)*/)
+      ])],
       subcategoria: [''],
-      dataReceita: [''],
-      dataRecebimento: [''],
+      dataDaReceitaVencimento: [''],
+      dataRecebimentoPagamento: [''],
       valor: [''],
-      parcelas: ['']
+      quantidadeParcelas: ['']
     });
     this.getCategorias();
   }
@@ -66,6 +71,13 @@ export class AdicionarLancamentoComponent implements OnInit {
 
   selecionarLancamento(tipo: string) {
     this.tipoLancamento = tipo;
+
+    if (tipo == 'receita') {
+      this.formulario.get('categoriaId')?.setValue(this.listaDeReceita[0]);
+    }
+    if (tipo == 'despesa') {
+      this.formulario.get('categoriaId')?.setValue(this.listaDeDespesa[0]);
+    }
   }
 
   toggleJanela() {
@@ -73,8 +85,42 @@ export class AdicionarLancamentoComponent implements OnInit {
   }
 
   teste(){
-    console.log(this.formulario.get('categoria')?.value);
-    console.log(this.formulario.get('subcategoria')?.value);
+    console.log('categoria: ' + this.formulario.get('categoriaId')?.value);
+    console.log('subcategoria: ' + this.formulario.get('subcategoria')?.value.id);
+  }
+  cadastrarLancamento() {
+    if (!this.formulario.valid) {
+      console.log("nao está valido")
+      return;
+    }
+    const id = this.formulario.get('categoriaId')?.value.id;
+    this.formulario.get('categoriaId')?.setValue(id);
+    this.formulario.get('tipoReceita')?.setValue(this.tipoLancamento);
+    if (this.isParcelado) {
+      this.formulario.get('quantidadeParcelas')?.setValue(this.qtdParcelas);
+    } else {
+      this.formulario.get('quantidadeParcelas')?.setValue(1);
+    }
+    console.log('formularo', this.formulario.value);
+    this.service.cadastrarLancamento(this.formulario.value).subscribe({
+      next: (response: HttpResponse<CadastrarLancamento>) => {
+        if (response.body) {
+          console.log(response.body)
+        }
+        // this.loadingSpinner = false;
+        //this.snackbar.openSnackBarSucces("Vendas encontradas!","Fechar");
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error("Erro: ", error.message);
+        console.error("Código de status HTTP: ", error.status);
+        //this.snackbar.openSnackBarFail("Algo deu errado!", "Fechar");
+        //this.loadingSpinner = false;
+      },
+      complete: () => {
+        console.log("Requisição completa!!!");
+      }
+    });
+
   }
   diminuir() {
     if (!this.isParcelado) {
@@ -96,7 +142,7 @@ export class AdicionarLancamentoComponent implements OnInit {
     this.menor = false;
   }
   mudancaData() {
-    if (this.formulario.get('dataRecebimento')?.value) {
+    if (this.formulario.get('dataRecebimentoPagamento')?.value) {
       this.isRecebida = true;
     } else {
       this.isRecebida = false;
@@ -104,7 +150,7 @@ export class AdicionarLancamentoComponent implements OnInit {
   }
   limparData() {
     if (!this.isRecebida) {
-      this.formulario.get('dataRecebimento')?.setValue('');
+      this.formulario.get('dataRecebimentoPagamento')?.setValue('');
     }
   }
 

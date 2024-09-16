@@ -9,9 +9,9 @@
     <div class="lancamento-container">
 
         <form [formGroup]="formulario" class="formulario-container">
-            <app-select2 [lista]="listaPeriodoVisualizacao" for="periodo" label="Período de visualização:" [negrito]="true" formControlName="periodo"></app-select2>
-            <app-input type="date" for="dataInicio" label="Data de Início" placeholder="01/08/2024" [negrito]="true" formControlName="dataInicio"></app-input>
-            <app-input type="date" for="dataFim" label="Data fim" placeholder="31/08/2024" [negrito]="true" formControlName="dataFim"></app-input>
+            <app-select2 [lista]="listaPeriodoVisualizacao" for="periodo" label="Período de visualização:" [negrito]="true" formControlName="periodo" (change)="pesquisarPorData()"></app-select2>
+            <app-input type="date" for="dataInicio" label="Data de Início" placeholder="01/08/2024" [negrito]="true" formControlName="dataInicio" (change)="getLancamentos()"></app-input>
+            <app-input type="date" for="dataFim" label="Data fim" placeholder="31/08/2024" [negrito]="true" formControlName="dataFim" (change)="getLancamentos()"></app-input>
         </form>
 
         <div class="pagar-receber-container">
@@ -70,15 +70,37 @@
                     <h5 class="valor-card">Lançamentos</h5>
                     <div class="btn-tabela-container">
                         <app-botao-pequeno class="btn-card" texto="Filtros" icone="fa-filter"></app-botao-pequeno>
-                        <app-botao-pequeno class="btn-card" texto="Adicionar lançamentos" icone="fa-plus"  (click)="adicionarLancamento('')"></app-botao-pequeno>
+                        <app-botao-pequeno class="btn-card" texto="Adicionar lançamentos" icone="fa-plus" (click)="adicionarLancamento('')"></app-botao-pequeno>
                     </div>
                 </div>
                 <hr>
-                <div class="lancamentos">
-                    <small class="cinza">Hoje, 31 agosto 2024</small>
+                <div class="lancamentos" *ngFor="let lanc of listaLancamentos; index as i">
+                    <small class="cinza">{{ lanc.data | date:'dd MMMM yyyy':'':'pt-BR' }}</small>
                     <div class="linha-vertical"></div>
 
-                    <div class="space-between">
+                    <div class="flex-column" *ngFor="let lancamento of lanc.lancamentos; index as j">
+                        <div class="space-between">
+                            <div class="detalhes">
+                                <div class="img-lancamento">
+                                    <fa-icon [ngClass]="statusCores(lancamento.tipoReceita)" [icon]="iconeStatus(lancamento.tipoReceita)"></fa-icon>
+                                </div>
+                                <div class="nome-detalhes">
+                                    <p>{{lancamento.descricao}}</p>
+                                    <p class="cinza">{{lancamento.categoriaNome}}</p>
+                                </div>
+                                <div class="status-flex">
+                                    <div class="img-status" [ngStyle]="{'background-color': cor(lancamento.status)}">
+                                        <fa-icon [icon]="getIcone('fa-pen-to-square')"></fa-icon>
+                                    </div>
+                                    <small [ngClass]="statusCores(lancamento.status)">{{lancamento.status}}</small>
+                                </div>
+                            </div>
+                            <p [ngClass]="statusCores(lancamento.tipoReceita)"><span *ngIf="lancamento.tipoReceita == 'despesa'">-</span>{{lancamento.valor | currency:'R$ ':'symbol':'1.2-2' }}</p>
+                        </div>
+                        <div *ngIf="((lanc.lancamentos.length - 1) != j)" class="linha-vertical"></div>
+                    </div>
+
+                    <!-- <div class="space-between">
                         <div class="detalhes">
                             <div class="img-lancamento">
                                 <fa-icon class="vermelho" [icon]="getIcone('fa-arrow-left')"></fa-icon>
@@ -95,7 +117,7 @@
                             </div>
                         </div>
                         <p class="vermelho">-R$ 280,74</p>
-                    </div>
+                    </div> -->
 
                     <!-- <div class="linha-vertical"></div>
 

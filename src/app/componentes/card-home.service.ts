@@ -2,7 +2,7 @@ import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CadastroProduto, Categoria, Fiado, Fornecedor, Idade, Mensagem, Relatorio, RelatorioFiado, Sabor, Venda, Vender } from './cadastro-produto/cadastro-produto';
-import { Caixa, CaixaCompleto, CategoriasLancamentos, DetalhesProduto, LinhaDoTempo, Login, ProdutoVenda, Tutor } from '../interfaces/produtoVenda';
+import { CadastrarLancamento, Caixa, CaixaCompleto, CategoriasLancamentos, DetalhesProduto, LinhaDoTempo, ListaLancamento, Login, ProdutoVenda, Tutor } from '../interfaces/produtoVenda';
 
 @Injectable({
   providedIn: 'root'
@@ -226,6 +226,18 @@ export class CardHomeService {
     const url = this.API + "/lancamentos/categorias";
     return this.http.get<CategoriasLancamentos>(url, {observe: 'response'});
   }
+  cadastrarLancamento(lancamento: CadastrarLancamento): Observable<HttpResponse<CadastrarLancamento>>{
+    const url = `${this.API}/lancamentos`;
+    return this.http.post<CadastrarLancamento>(url, lancamento, {observe: 'response'});
+  }
+  getListaLancamentos(data: {dataInicio: string, dataFim: string}): Observable<HttpResponse<ListaLancamento[]>>{
+    const url = this.API + "/lancamentos/lista";
+    const params = new HttpParams()
+    .set('dataInicio', data.dataInicio)
+    .set('dataFim', data.dataFim)
+    return this.http.get<ListaLancamento[]>(url, {params, observe: 'response'});
+  }
+  
   // recuperarListaDeRacas() {
   //   const apiKey = "";
   //   const url ="https://api.thedogapi.com/v1/breeds";
