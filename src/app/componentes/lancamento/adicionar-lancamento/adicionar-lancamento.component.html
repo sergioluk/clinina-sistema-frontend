@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="btn-acoes">
-            <app-botao-pequeno cor="var(--corVermelho)" texto="Cancelar" icone="fa-circle-xmark"></app-botao-pequeno>
+            <app-botao-pequeno cor="var(--corVermelho)" texto="Cancelar" icone="fa-circle-xmark" (click)="toggleJanela()"></app-botao-pequeno>
             <app-botao-pequeno cor="var(--corVerde)" texto="Salvar" icone="fa-circle-check" (click)="cadastrarLancamento()"></app-botao-pequeno>
         </div>
     </form>

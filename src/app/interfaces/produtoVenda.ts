@@ -173,10 +173,19 @@ export interface ProdutoVenda {
   export interface Lancamento {
     id?: number,
     dataDaReceitaVencimento: Date,
+    dataRecebimentoPagamento: Date,
     status: string,
     descricao: string,
     categoriaNome: string,
     valor: number,
     tipoReceita: string
   }
-  
+  //Pagina completa Lancamentos
+  export interface PaginaLancamentos {
+    aReceber: number,
+    aPagar: number,
+    projecaoSaldo: number,
+    saldoAnterior: number,
+    saldoAtual: number,
+    listaLancamentos: ListaLancamento[]
+  }

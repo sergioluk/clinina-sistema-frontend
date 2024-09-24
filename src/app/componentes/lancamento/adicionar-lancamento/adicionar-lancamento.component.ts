@@ -101,9 +101,26 @@ export class AdicionarLancamentoComponent implements OnInit {
     } else {
       this.formulario.get('quantidadeParcelas')?.setValue(1);
     }
+
+    const dataDaReceitaVencimentoString: string = this.formulario.get('dataDaReceitaVencimento')?.value;
+    const dataRecebimentoPagamentoString: string = this.formulario.get('dataRecebimentoPagamento')?.value;
+
+    // Converta as strings de data para objetos Date
+    const dataDaReceitaVencimento: Date = new Date(dataDaReceitaVencimentoString);
+    const dataRecebimentoPagamento: Date = new Date(dataRecebimentoPagamentoString);
+
+    // Verifique se as datas são válidas antes de chamar toISOString
+    if (!isNaN(dataDaReceitaVencimento.getTime())) {
+      this.formulario.get('dataDaReceitaVencimento')?.setValue(dataDaReceitaVencimento.toISOString());
+    }
+
+    if (!isNaN(dataRecebimentoPagamento.getTime())) {
+      this.formulario.get('dataRecebimentoPagamento')?.setValue(dataRecebimentoPagamento.toISOString());
+    }
+    
     console.log('formularo', this.formulario.value);
     this.service.cadastrarLancamento(this.formulario.value).subscribe({
-      next: (response: HttpResponse<CadastrarLancamento>) => {
+      next: (response: HttpResponse<CadastrarLancamento[]>) => {
         if (response.body) {
           console.log(response.body)
         }
@@ -118,10 +135,12 @@ export class AdicionarLancamentoComponent implements OnInit {
       },
       complete: () => {
         console.log("Requisição completa!!!");
+        this.toggleJanela();
       }
     });
 
   }
+  
   diminuir() {
     if (!this.isParcelado) {
       return;

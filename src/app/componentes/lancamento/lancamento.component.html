@@ -49,16 +49,16 @@
                     <small class="cinza">Atualizado em 27/08/2024</small>
                 </div>
                 <div class="saldos">
-                    <p class="valor-card">R$ 0,00</p>
+                    <p class="valor-card">{{paginaLancamentos.projecaoSaldo | currency:'R$ ':'symbol':'1.2-2' }}</p>
                     <hr>
                     <div class="space-between">
                         <p class="cinza">Saldo anterior</p>
-                        <p class="cinza">R$ 2.176,42</p>
+                        <p class="cinza">{{paginaLancamentos.saldoAnterior | currency:'R$ ':'symbol':'1.2-2' }}</p>
                     </div>
                     <hr>
                     <div class="space-between">
                         <p>Saldo atual</p>
-                        <p>R$ 814,01</p>
+                        <p>{{paginaLancamentos.saldoAtual | currency:'R$ ':'symbol':'1.2-2' }}</p>
                     </div>
                 </div>
             </div>
@@ -74,8 +74,8 @@
                     </div>
                 </div>
                 <hr>
-                <div class="lancamentos" *ngFor="let lanc of listaLancamentos; index as i">
-                    <small class="cinza">{{ lanc.data | date:'dd MMMM yyyy':'':'pt-BR' }}</small>
+                <div class="lancamentos" *ngFor="let lanc of paginaLancamentos.listaLancamentos; index as i">
+                    <small class="cinza">{{ lanc.data | date:'dd MMMM yyyy':'UTC':'pt-BR' }}</small>
                     <div class="linha-vertical"></div>
 
                     <div class="flex-column" *ngFor="let lancamento of lanc.lancamentos; index as j">

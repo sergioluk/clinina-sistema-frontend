@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { IconeService } from 'src/app/services/icone.service';
 import { CardHomeService } from '../card-home.service';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { ListaLancamento } from 'src/app/interfaces/produtoVenda';
+import { ListaLancamento, PaginaLancamentos } from 'src/app/interfaces/produtoVenda';
 
 @Component({
   selector: 'app-lancamento',
@@ -17,7 +17,16 @@ export class LancamentoComponent implements OnInit {
 
   listaPeriodoVisualizacao = ["Mês passado", "Este mês", "Próximo mês"];
 
-  listaLancamentos: ListaLancamento[] = [];
+  //listaLancamentos: ListaLancamento[] = [];
+
+  paginaLancamentos: PaginaLancamentos = {
+    aReceber: 0,
+    aPagar: 0,
+    projecaoSaldo: 0,
+    saldoAnterior: 0,
+    saldoAtual: 0,
+    listaLancamentos: []
+  } 
 
   formulario!: FormGroup;
 
@@ -56,9 +65,9 @@ export class LancamentoComponent implements OnInit {
       dataFim: this.formulario.get('dataFim')?.value
     };
     this.service.getListaLancamentos(data).subscribe({
-      next: (response: HttpResponse<ListaLancamento[]>) => {
+      next: (response: HttpResponse<PaginaLancamentos>) => {
         if (response.body) {
-          this.listaLancamentos = response.body
+          this.paginaLancamentos = response.body
         }
         // this.loadingSpinner = false;
         //this.snackbar.openSnackBarSucces("Vendas encontradas!","Fechar");
