@@ -259,7 +259,7 @@
     border-radius: 7px;
     height: 16px;
     background-color: var(--corVerde);
-    width: 25%;
+    /* width: 25%; */
   }
   .gerenciar {
     margin: 10px auto;

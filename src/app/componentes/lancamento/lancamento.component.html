@@ -23,9 +23,9 @@
                             <p class="verde">A receber</p>
                         </div>
                         
-                        <small class="cinza">Atualizado em 27/08/2024</small>
+                        <small class="cinza">Atualizado em {{paginaLancamentos.atualizadoEm | date:'dd/MM/yyyy':'UTC':'pt-BR'}}</small>
                     </div>
-                    <p class="valor-card margin-top">R$ 0,00</p>
+                    <p class="valor-card margin-top">{{paginaLancamentos.aReceber  | currency:'R$ ':'symbol':'1.2-2'}}</p>
                 </div>
                 <app-botao-pequeno class="btn-card" cor="var(--corVerde)" texto="Adicionar receita" (click)="adicionarLancamento('receita')"></app-botao-pequeno>
             </div>
@@ -37,16 +37,16 @@
                             <p class="vermelho">A pagar</p>
                         </div>
                         
-                        <small class="cinza">Atualizado em 27/08/2024</small>
+                        <small class="cinza">Atualizado em {{paginaLancamentos.atualizadoEm | date:'dd/MM/yyyy':'UTC':'pt-BR'}}</small>
                     </div>
-                    <p class="valor-card margin-top">-R$ 7.645,90</p>
+                    <p class="valor-card margin-top">{{paginaLancamentos.aPagar | currency:'R$ ':'symbol':'1.2-2'}}</p>
                 </div>
                 <app-botao-pequeno class="btn-card" cor="var(--corVermelho)" texto="Adicionar despesa" (click)="adicionarLancamento('despesa')"></app-botao-pequeno>
             </div>
             <div class="card">
                 <div class="space-between">
                     <p>Projeção de saldo</p>
-                    <small class="cinza">Atualizado em 27/08/2024</small>
+                    <small class="cinza">Atualizado em {{paginaLancamentos.atualizadoEm | date:'dd/MM/yyyy':'UTC':'pt-BR'}}</small>
                 </div>
                 <div class="saldos">
                     <p class="valor-card">{{paginaLancamentos.projecaoSaldo | currency:'R$ ':'symbol':'1.2-2' }}</p>
@@ -151,42 +151,34 @@
                 <hr>
                 <div>
                     <div class="categoria-acoes">
-                        <div class="acao-selecionada acao">Receitas</div>
-                        <div class="acao">Despesas</div>
+                        <div [ngClass]="categoriaSelecionada == 'receitas'? 'acao-selecionada':''" class="acao" (click)="clickarCategoria('receitas')">Receitas</div>
+                        <div [ngClass]="categoriaSelecionada == 'despesasf'? 'acao-selecionada':''" class="acao" (click)="clickarCategoria('despesas')">Despesas</div>
                     </div>
                     <hr>
                 </div>
                 <div class="graficos-container">
-                    <div class="linha-grafico">
-                        <div class="label-grafico">
-                            <small>Venda no débito</small>
-                            <div class="grafico-maior-cinza">
-                                <div class="grafico-menor-verde"></div>
+                    <div *ngIf="categoriaSelecionada == 'receitas'">
+                        <div class="linha-grafico" *ngFor="let categoria of paginaLancamentos.listasPorcentagemCategorias.receitas">
+                            <div class="label-grafico">
+                                <small>{{categoria.categoria}}</small>
+                                <div class="grafico-maior-cinza">
+                                    <div [ngStyle]="{width: categoria.porcentagem + '%'}" class="grafico-menor-verde"></div>
+                                </div>
                             </div>
+                            <small>{{categoria.porcentagem}}%</small>
                         </div>
-                        <small>99%</small>
                     </div>
-
-                    <div class="linha-grafico">
-                        <div class="label-grafico">
-                            <small>Venda no crédito</small>
-                            <div class="grafico-maior-cinza">
-                                <div class="grafico-menor-verde"></div>
+                    <div *ngIf="categoriaSelecionada == 'despesas'">
+                        <div class="linha-grafico" *ngFor="let categoria of paginaLancamentos.listasPorcentagemCategorias.despesas">
+                            <div class="label-grafico">
+                                <small>{{categoria.categoria}}</small>
+                                <div class="grafico-maior-cinza">
+                                    <div [ngStyle]="{width: categoria.porcentagem + '%'}" class="grafico-menor-verde"></div>
+                                </div>
                             </div>
+                            <small>{{categoria.porcentagem}}%</small>
                         </div>
-                        <small>25%</small>
                     </div>
-
-                    <div class="linha-grafico">
-                        <div class="label-grafico">
-                            <small>Venda no crédito</small>
-                            <div class="grafico-maior-cinza">
-                                <div class="grafico-menor-verde"></div>
-                            </div>
-                        </div>
-                        <small>25%</small>
-                    </div>
-
                 </div>
                 <p class="gerenciar">Gerenciar categorias</p>
             </div>

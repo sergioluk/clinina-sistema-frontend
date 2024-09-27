@@ -180,6 +180,16 @@ export interface ProdutoVenda {
     valor: number,
     tipoReceita: string
   }
+  //Categoria Porcentagem
+  export interface CategoriaPorcentagem {
+    categoria: string,
+    porcentagem: number
+  }
+  //ListaPorcentagemCategoria
+  export interface ListasPorcentagemCategorias {
+    receitas: CategoriaPorcentagem[],
+    despesas: CategoriaPorcentagem[]
+  }
   //Pagina completa Lancamentos
   export interface PaginaLancamentos {
     aReceber: number,
@@ -187,5 +197,8 @@ export interface ProdutoVenda {
     projecaoSaldo: number,
     saldoAnterior: number,
     saldoAtual: number,
-    listaLancamentos: ListaLancamento[]
+    listaLancamentos: ListaLancamento[],
+    listasPorcentagemCategorias: ListasPorcentagemCategorias,
+    atualizadoEm: Date
   }
+

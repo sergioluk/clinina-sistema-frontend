@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { IconeService } from 'src/app/services/icone.service';
 import { CardHomeService } from '../card-home.service';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { ListaLancamento, PaginaLancamentos } from 'src/app/interfaces/produtoVenda';
+import { ListaLancamento, ListasPorcentagemCategorias, PaginaLancamentos } from 'src/app/interfaces/produtoVenda';
 
 @Component({
   selector: 'app-lancamento',
@@ -14,6 +14,7 @@ export class LancamentoComponent implements OnInit {
 
   janelaAddLancamento: boolean = false;
   lancamentoSelecionado = '';
+  categoriaSelecionada: string = "receitas";
 
   listaPeriodoVisualizacao = ["Mês passado", "Este mês", "Próximo mês"];
 
@@ -25,7 +26,9 @@ export class LancamentoComponent implements OnInit {
     projecaoSaldo: 0,
     saldoAnterior: 0,
     saldoAtual: 0,
-    listaLancamentos: []
+    listaLancamentos: [],
+    listasPorcentagemCategorias: { receitas: [], despesas: [] },
+    atualizadoEm: new Date()
   } 
 
   formulario!: FormGroup;
@@ -123,6 +126,10 @@ export class LancamentoComponent implements OnInit {
   pesquisarPorData() {
     console.log("Inicio: " + this.formulario.get('dataInicio')?.value)
     console.log("Fim: " + this.formulario.get('dataFim')?.value)
+  }
+
+  clickarCategoria(tipo: string) {
+    this.categoriaSelecionada = tipo;
   }
 
   // Define a data de início padrão
