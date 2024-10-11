@@ -12,6 +12,7 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 export class AdicionarLancamentoComponent implements OnInit {
 
   @Output() visivel = new EventEmitter();
+  @Output() atualizarLancamentos = new EventEmitter();
 
   isRecebida = false;
   isParcelado = false;
@@ -117,7 +118,7 @@ export class AdicionarLancamentoComponent implements OnInit {
     if (!isNaN(dataRecebimentoPagamento.getTime())) {
       this.formulario.get('dataRecebimentoPagamento')?.setValue(dataRecebimentoPagamento.toISOString());
     }
-    
+
     console.log('formularo', this.formulario.value);
     this.service.cadastrarLancamento(this.formulario.value).subscribe({
       next: (response: HttpResponse<CadastrarLancamento[]>) => {
@@ -135,12 +136,13 @@ export class AdicionarLancamentoComponent implements OnInit {
       },
       complete: () => {
         console.log("Requisição completa!!!");
+        this.atualizarLancamentos.emit();
         this.toggleJanela();
       }
     });
 
   }
-  
+
   diminuir() {
     if (!this.isParcelado) {
       return;

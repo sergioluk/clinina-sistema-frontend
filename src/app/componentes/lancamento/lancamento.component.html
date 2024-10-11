@@ -22,7 +22,7 @@
                             <fa-icon class="verde" [icon]="getIcone('fa-arrow-right')"></fa-icon>
                             <p class="verde">A receber</p>
                         </div>
-                        
+
                         <small class="cinza">Atualizado em {{paginaLancamentos.atualizadoEm | date:'dd/MM/yyyy':'UTC':'pt-BR'}}</small>
                     </div>
                     <p class="valor-card margin-top">{{paginaLancamentos.aReceber  | currency:'R$ ':'symbol':'1.2-2'}}</p>
@@ -36,7 +36,7 @@
                             <fa-icon class="vermelho" [icon]="getIcone('fa-arrow-left')"></fa-icon>
                             <p class="vermelho">A pagar</p>
                         </div>
-                        
+
                         <small class="cinza">Atualizado em {{paginaLancamentos.atualizadoEm | date:'dd/MM/yyyy':'UTC':'pt-BR'}}</small>
                     </div>
                     <p class="valor-card margin-top">{{paginaLancamentos.aPagar | currency:'R$ ':'symbol':'1.2-2'}}</p>
@@ -176,7 +176,7 @@
                                     <div [ngStyle]="{width: categoria.porcentagem + '%'}" class="grafico-menor-verde"></div>
                                 </div>
                             </div>
-                            <small>{{categoria.porcentagem}}%</small>
+                            <small>{{categoria.porcentagem | number: '1.0-0'}}%</small>
                         </div>
                     </div>
                 </div>
@@ -185,6 +185,8 @@
         </div>
 
     </div>
-
-    <app-adicionar-lancamento *ngIf="janelaAddLancamento" (visivel)="toggleAddLancamento()" [tipoLancamento]="lancamentoSelecionado"></app-adicionar-lancamento>
+    <div *ngIf="loadingSpinner" class="spinner">
+      <mat-spinner></mat-spinner>
+    </div>
+    <app-adicionar-lancamento *ngIf="janelaAddLancamento" (atualizarLancamentos)="getLancamentos()" (visivel)="toggleAddLancamento()" [tipoLancamento]="lancamentoSelecionado"></app-adicionar-lancamento>
 </div>

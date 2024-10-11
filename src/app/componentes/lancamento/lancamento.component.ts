@@ -4,6 +4,7 @@ import { IconeService } from 'src/app/services/icone.service';
 import { CardHomeService } from '../card-home.service';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { ListaLancamento, ListasPorcentagemCategorias, PaginaLancamentos } from 'src/app/interfaces/produtoVenda';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 
 @Component({
   selector: 'app-lancamento',
@@ -13,6 +14,7 @@ import { ListaLancamento, ListasPorcentagemCategorias, PaginaLancamentos } from 
 export class LancamentoComponent implements OnInit {
 
   janelaAddLancamento: boolean = false;
+  loadingSpinner: boolean = false;
   lancamentoSelecionado = '';
   categoriaSelecionada: string = "receitas";
 
@@ -29,14 +31,15 @@ export class LancamentoComponent implements OnInit {
     listaLancamentos: [],
     listasPorcentagemCategorias: { receitas: [], despesas: [] },
     atualizadoEm: new Date()
-  } 
+  }
 
   formulario!: FormGroup;
 
   constructor(
     private icone: IconeService,
     private formBuilder: FormBuilder,
-    private service: CardHomeService
+    private service: CardHomeService,
+    private snackbar: SnackbarService
   ) {}
 
   ngOnInit(): void {
@@ -67,19 +70,20 @@ export class LancamentoComponent implements OnInit {
       dataInicio: this.formulario.get('dataInicio')?.value,
       dataFim: this.formulario.get('dataFim')?.value
     };
+    this.loadingSpinner = true;
     this.service.getListaLancamentos(data).subscribe({
       next: (response: HttpResponse<PaginaLancamentos>) => {
         if (response.body) {
           this.paginaLancamentos = response.body
         }
-        // this.loadingSpinner = false;
-        //this.snackbar.openSnackBarSucces("Vendas encontradas!","Fechar");
+        this.loadingSpinner = false;
+        this.snackbar.openSnackBarSucces("Lançamentos atualizados!","Fechar");
       },
       error: (error: HttpErrorResponse) => {
         console.error("Erro: ", error.message);
         console.error("Código de status HTTP: ", error.status);
-        //this.snackbar.openSnackBarFail("Algo deu errado!", "Fechar");
-        //this.loadingSpinner = false;
+        this.snackbar.openSnackBarFail("Algo deu errado!", "Fechar");
+        this.loadingSpinner = false;
       },
       complete: () => {
         console.log("Requisição completa!!!");
@@ -145,5 +149,5 @@ export class LancamentoComponent implements OnInit {
     const ultimoDia = new Date(dataAtual.getFullYear(), dataAtual.getMonth() + 1, 0); // Último dia do mês atual
     return ultimoDia.toISOString().substring(0, 10); // Formato 'yyyy-MM-dd'
   }
-  
+
 }
