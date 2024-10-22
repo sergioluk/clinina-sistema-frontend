@@ -30,10 +30,11 @@ export class RelatorioComponent implements OnInit {
   listaDeItensVendidos: Relatorio[] = [];
 
   relatorio: RelatorioDTO = {
-    listaTotalVendas: [],
+    listaTotalVendasGrafico: [],
     relatorio: []
   }
   @ViewChild("meuCanvas", {static: true}) elemento!: ElementRef;
+  chart: any;
 
   total: number = 0;
 
@@ -65,23 +66,42 @@ export class RelatorioComponent implements OnInit {
     this._locale = 'pt-BR';
     this._adapter.setLocale(this._locale);
 
-    new Chart(this.elemento.nativeElement, {
+    this.chart = new Chart(this.elemento.nativeElement, {
       type: 'line',
-      data: this.getDataGrafico()
+      data: this.getDataGrafico(),
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            type: 'category',
+          },
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
     });
-
   }
 
   getDataGrafico() {
     //const labels = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
-    const labels = this.getDiasNoMes(this.formulario.get("start")?.value.getFullYear(), this.formulario.get("start")?.value.getMonth() + 1);
+    let ano = this.formulario.get("start")?.value.getFullYear();
+    let mes = this.formulario.get("start")?.value.getMonth() + 1;
+    const labels = this.getDiasNoMes(ano, mes);
+     // Verifique se os dados foram populados corretamente
+    if (!this.relatorio || !this.relatorio.listaTotalVendasGrafico) {
+      console.error("Dados não carregados!");
+      return { labels: [], datasets: [] };
+    }
     const data = {
       labels: labels,
       datasets: [
         {
-          label: "teste",
-          data: this.relatorio.listaTotalVendas,
+          label: "Vendas mês " + mes,
+          data: this.relatorio.listaTotalVendasGrafico,
+          //data: [1,50,700,231,513,123,0,0,0,0,0,0,0,0,0,0,0,0,0],
           borderColor: '#00AEFF',
+          fill: false
         }
       ]
     }
@@ -109,6 +129,22 @@ export class RelatorioComponent implements OnInit {
         }
         this.snackbar.openSnackBarSucces("Vendas encontradas!","Fechar");
         this.calcularTotal();
+
+        // Atualize os dados do gráfico
+        this.chart.data.datasets[0].data = this.relatorio.listaTotalVendasGrafico;
+
+        const mes = this.formulario.get("start")?.value.getMonth() + 1; // Ajuste para o mês
+        const ano = this.formulario.get("start")?.value.getFullYear()
+        // Atualize os labels do gráfico
+        const labels = this.getDiasNoMes(ano, mes);
+        this.chart.data.labels = labels;
+
+        // Atualize o label do dataset (por exemplo, para o mês)
+
+        this.chart.data.datasets[0].label = "Vendas mês " + mes;
+
+        // Atualize o gráfico
+        this.chart.update();
       },
       error: (error: HttpErrorResponse) => {
         console.error("Erro: ", error.message);
@@ -196,7 +232,7 @@ export class RelatorioComponent implements OnInit {
     event.target.src = 'https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg';
   }
 
- 
+
 
 
   calcularTotal() {

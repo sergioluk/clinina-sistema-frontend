@@ -103,7 +103,7 @@ export interface CadastroProduto {
   }
   //Teste Relatorio com Grafico
   export interface RelatorioDTO {
-    listaTotalVendas: number[]
+    listaTotalVendasGrafico: number[]
     relatorio: Relatorio[]
   }
 
