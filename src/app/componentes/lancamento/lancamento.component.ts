@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { IconeService } from 'src/app/services/icone.service';
 import { CardHomeService } from '../card-home.service';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { ListaLancamento, ListasPorcentagemCategorias, PaginaLancamentos } from 'src/app/interfaces/produtoVenda';
 import { SnackbarService } from 'src/app/services/snackbar.service';
+
+
+import { data } from 'jquery';
 
 @Component({
   selector: 'app-lancamento',
@@ -30,17 +33,22 @@ export class LancamentoComponent implements OnInit {
     saldoAtual: 0,
     listaLancamentos: [],
     listasPorcentagemCategorias: { receitas: [], despesas: [] },
-    atualizadoEm: new Date()
+    atualizadoEm: new Date(),
+    totalReceitasPeriodo: 0,
+    totalDespesasPeriodo: 0
   }
 
   formulario!: FormGroup;
+ 
 
   constructor(
     private icone: IconeService,
     private formBuilder: FormBuilder,
     private service: CardHomeService,
-    private snackbar: SnackbarService
-  ) {}
+    private snackbar: SnackbarService,
+  ) {
+   
+  }
 
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
@@ -50,7 +58,13 @@ export class LancamentoComponent implements OnInit {
     });
 
     this.getLancamentos();
+
+    
   }
+
+  
+
+  
 
   adicionarLancamento(tipoLancamento: string) {
     this.lancamentoSelecionado = tipoLancamento;
@@ -134,6 +148,7 @@ export class LancamentoComponent implements OnInit {
 
   clickarCategoria(tipo: string) {
     this.categoriaSelecionada = tipo;
+    console.log(this.categoriaSelecionada)
   }
 
   // Define a data de início padrão

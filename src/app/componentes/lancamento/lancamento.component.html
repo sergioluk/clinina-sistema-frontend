@@ -14,6 +14,8 @@
             <app-input type="date" for="dataFim" label="Data fim" placeholder="31/08/2024" [negrito]="true" formControlName="dataFim" (change)="getLancamentos()"></app-input>
         </form>
 
+        
+
         <div class="pagar-receber-container">
             <div class="card">
                 <div>
@@ -26,6 +28,10 @@
                         <small class="cinza">Atualizado em {{paginaLancamentos.atualizadoEm | date:'dd/MM/yyyy':'UTC':'pt-BR'}}</small>
                     </div>
                     <p class="valor-card margin-top">{{paginaLancamentos.aReceber  | currency:'R$ ':'symbol':'1.2-2'}}</p>
+                    <div class="space-between">
+                        <p>Receitas do período:</p>
+                        <p>{{paginaLancamentos.totalReceitasPeriodo  | currency:'R$ ':'symbol':'1.2-2'}}</p>
+                    </div>
                 </div>
                 <app-botao-pequeno class="btn-card" cor="var(--corVerde)" texto="Adicionar receita" (click)="adicionarLancamento('receita')"></app-botao-pequeno>
             </div>
@@ -40,6 +46,10 @@
                         <small class="cinza">Atualizado em {{paginaLancamentos.atualizadoEm | date:'dd/MM/yyyy':'UTC':'pt-BR'}}</small>
                     </div>
                     <p class="valor-card margin-top">{{paginaLancamentos.aPagar | currency:'R$ ':'symbol':'1.2-2'}}</p>
+                    <div class="space-between">
+                        <p>Despesas do período:</p>
+                        <p>{{paginaLancamentos.totalDespesasPeriodo| currency:'R$ ':'symbol':'1.2-2'}}</p>
+                    </div>
                 </div>
                 <app-botao-pequeno class="btn-card" cor="var(--corVermelho)" texto="Adicionar despesa" (click)="adicionarLancamento('despesa')"></app-botao-pequeno>
             </div>

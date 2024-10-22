@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CadastroProduto, Categoria, Fiado, Fornecedor, Idade, Mensagem, Relatorio, RelatorioFiado, Sabor, Venda, Vender } from './cadastro-produto/cadastro-produto';
+import { CadastroProduto, Categoria, Fiado, Fornecedor, Idade, Mensagem, Relatorio, RelatorioDTO, RelatorioFiado, Sabor, Venda, Vender } from './cadastro-produto/cadastro-produto';
 import { CadastrarLancamento, Caixa, CaixaCompleto, CategoriasLancamentos, DetalhesProduto, LinhaDoTempo, ListaLancamento, Login, PaginaLancamentos, ProdutoVenda, Tutor } from '../interfaces/produtoVenda';
 
 @Injectable({
@@ -109,9 +109,26 @@ export class CardHomeService {
     return this.http.post<Fornecedor>(url, fornecedor);
   }
 
+  // pegarListaDeItensVendidos(data:
+  //   {start_dia: number, start_mes: number, start_ano: number,
+  //     end_dia: number, end_mes: number, end_ano: number}): Observable<HttpResponse<Relatorio[]>>{
+  //   const url = this.API + "/produtos/relatorio";
+
+  //   // Criar os parâmetros da URL
+  //   let params = new HttpParams()
+  //     .set('start_dia', data.start_dia.toString())
+  //     .set('start_mes', data.start_mes.toString())
+  //     .set('start_ano', data.start_ano.toString())
+  //     .set('end_dia', data.end_dia.toString())
+  //     .set('end_mes', data.end_mes.toString())
+  //     .set('end_ano', data.end_ano.toString());
+
+  //   return this.http.get<Relatorio[]>(url, { params, observe: 'response' });
+  // }
+
   pegarListaDeItensVendidos(data:
     {start_dia: number, start_mes: number, start_ano: number,
-      end_dia: number, end_mes: number, end_ano: number}): Observable<HttpResponse<Relatorio[]>>{
+      end_dia: number, end_mes: number, end_ano: number}): Observable<HttpResponse<RelatorioDTO>>{
     const url = this.API + "/produtos/relatorio";
 
     // Criar os parâmetros da URL
@@ -123,7 +140,7 @@ export class CardHomeService {
       .set('end_mes', data.end_mes.toString())
       .set('end_ano', data.end_ano.toString());
 
-    return this.http.get<Relatorio[]>(url, { params, observe: 'response' });
+    return this.http.get<RelatorioDTO>(url, { params, observe: 'response' });
   }
 
   pegarListaDeFiado(): Observable<HttpResponse<RelatorioFiado[]>>{

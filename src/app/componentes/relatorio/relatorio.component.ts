@@ -1,7 +1,7 @@
 import { Component, ElementRef, Inject, LOCALE_ID, OnInit, ViewChild } from '@angular/core';
 import { CardHomeService } from '../card-home.service';
 import { Router } from '@angular/router';
-import { Relatorio } from '../cadastro-produto/cadastro-produto';
+import { Relatorio, RelatorioDTO } from '../cadastro-produto/cadastro-produto';
 import jsPDF from 'jspdf';
 import { IconeService } from 'src/app/services/icone.service';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
@@ -10,7 +10,7 @@ import { MatDatepickerIntl } from '@angular/material/datepicker';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 
-
+import { Chart, registerables } from 'chart.js'
 
 
 
@@ -28,6 +28,13 @@ export class RelatorioComponent implements OnInit {
   loadingSpinner = false;
   formulario!: FormGroup;
   listaDeItensVendidos: Relatorio[] = [];
+
+  relatorio: RelatorioDTO = {
+    listaTotalVendas: [],
+    relatorio: []
+  }
+  @ViewChild("meuCanvas", {static: true}) elemento!: ElementRef;
+
   total: number = 0;
 
   constructor(
@@ -39,7 +46,7 @@ export class RelatorioComponent implements OnInit {
     private _intl: MatDatepickerIntl,
     @Inject(MAT_DATE_LOCALE) private _locale: string,
     private snackbar: SnackbarService
-  ){}
+  ){ Chart.register(...registerables)}
 
   ngOnInit(): void {
 
@@ -58,15 +65,45 @@ export class RelatorioComponent implements OnInit {
     this._locale = 'pt-BR';
     this._adapter.setLocale(this._locale);
 
+    new Chart(this.elemento.nativeElement, {
+      type: 'line',
+      data: this.getDataGrafico()
+    });
+
+  }
+
+  getDataGrafico() {
+    //const labels = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
+    const labels = this.getDiasNoMes(this.formulario.get("start")?.value.getFullYear(), this.formulario.get("start")?.value.getMonth() + 1);
+    const data = {
+      labels: labels,
+      datasets: [
+        {
+          label: "teste",
+          data: this.relatorio.listaTotalVendas,
+          borderColor: '#00AEFF',
+        }
+      ]
+    }
+    return data;
+  }
+
+  getDiasNoMes(ano: number, mes: number): number[] {
+    const diasNoMes = new Date(ano, mes, 0).getDate();
+    return Array.from({length: diasNoMes}, (_, i) => i + 1);
   }
 
   listarProdutos(data: {start_dia: number, start_mes: number, start_ano: number, end_dia: number, end_mes: number, end_ano: number} ) {
     this.loadingSpinner = true;
     this.service.pegarListaDeItensVendidos(data).subscribe({
-      next: (response: HttpResponse<Relatorio[]>) => {
-        this.listaDeItensVendidos = response.body ? response.body : [];
+      next: (response: HttpResponse<RelatorioDTO>) => {
+        //this.listaDeItensVendidos = response.body ? response.body : [];
+        if (response.body) {
+          this.relatorio = response.body;
+        }
         this.loadingSpinner = false;
-        if (this.listaDeItensVendidos.length == 0) {
+        // if (this.listaDeItensVendidos.length == 0) {
+          if (this.relatorio.relatorio.length == 0) {
           this.snackbar.openSnackBarFail("Nenhuma venda encontrada!", "Fechar");
           return;
         }
@@ -164,7 +201,8 @@ export class RelatorioComponent implements OnInit {
 
   calcularTotal() {
     let soma = 0;
-    for (let item of this.listaDeItensVendidos) {
+    // for (let item of this.listaDeItensVendidos) {
+      for (let item of this.relatorio.relatorio) {
       soma += this.calcularParcial(item);
     }
     this.total = soma;

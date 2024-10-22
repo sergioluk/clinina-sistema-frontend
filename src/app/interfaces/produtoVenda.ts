@@ -199,6 +199,8 @@ export interface ProdutoVenda {
     saldoAtual: number,
     listaLancamentos: ListaLancamento[],
     listasPorcentagemCategorias: ListasPorcentagemCategorias,
-    atualizadoEm: Date
+    atualizadoEm: Date,
+    totalReceitasPeriodo: number,
+    totalDespesasPeriodo: number
   }
 

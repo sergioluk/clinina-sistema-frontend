@@ -24,6 +24,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-regular-svg-icons": "^6.5.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "chart.js": "^4.4.5",
     "jquery": "^3.7.1",
     "ngx-slick-carousel": "^15.0.0",
     "rxjs": "~7.8.0",

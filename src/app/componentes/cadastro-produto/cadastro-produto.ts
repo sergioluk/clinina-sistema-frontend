@@ -101,6 +101,11 @@ export interface CadastroProduto {
     pagamento: string
     desconto: number
   }
+  //Teste Relatorio com Grafico
+  export interface RelatorioDTO {
+    listaTotalVendas: number[]
+    relatorio: Relatorio[]
+  }
 
   //Para o relatório de fiado
   export interface RelatorioFiado {

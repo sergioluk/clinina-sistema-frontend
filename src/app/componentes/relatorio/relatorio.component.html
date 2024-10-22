@@ -23,6 +23,10 @@
 
   <h2 class="titulo-data">{{ mostrarData() }}</h2>
 
+  <div>
+    <canvas #meuCanvas></canvas>
+  </div>
+
   <div class="table__container">
     <table>
         <tr class="cabecalho-tabela">
@@ -35,7 +39,8 @@
           <th>Horário</th>
           <th>Forma de pagamento</th>
         </tr>
-      <tr class="tablerow" *ngFor="let item of listaDeItensVendidos; index as i">
+      <!-- <tr class="tablerow" *ngFor="let item of listaDeItensVendidos; index as i"> -->
+      <tr class="tablerow" *ngFor="let item of relatorio.relatorio; index as i">
         <td><img class="table__img" src="{{ item.imagemP }}" alt="Imagem do produto" (error)="handleImageError($event)"></td>
         <td>{{ item.produto }} <span *ngIf="verificarSeFoiFracionado(item.peso)"> ({{ item.peso }})</span></td>
         <td>{{ item.quantidade }}</td>
