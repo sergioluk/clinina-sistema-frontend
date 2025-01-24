@@ -18,6 +18,9 @@ export interface CadastroProduto {
     estoque: number
     imagemP: string
 
+    dataVencimento: Date
+    dataFabricacao: Date
+
     /*
     porte: string
     corante: boolean

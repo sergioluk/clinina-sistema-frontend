@@ -9,8 +9,8 @@ import { CadastrarLancamento, Caixa, CaixaCompleto, CategoriasLancamentos, Detal
 })
 export class CardHomeService {
 
-  //private readonly API = 'https://clinina-backend.onrender.com';
-  private readonly API = 'http://localhost:8080';
+  private readonly API = 'https://clinina-backend.onrender.com';
+  //private readonly API = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 
@@ -254,7 +254,7 @@ export class CardHomeService {
     .set('dataFim', data.dataFim)
     return this.http.get<PaginaLancamentos>(url, {params, observe: 'response'});
   }
-  
+
   // recuperarListaDeRacas() {
   //   const apiKey = "";
   //   const url ="https://api.thedogapi.com/v1/breeds";

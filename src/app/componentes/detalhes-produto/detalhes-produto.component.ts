@@ -70,7 +70,7 @@ export class DetalhesProdutoComponent implements OnInit {
         this.snackbar.openSnackBarSucces("Detalhes do Produto Carregado!","Fechar");
       }
     });
-  
+
   }
 
   editarItem() {
@@ -86,13 +86,17 @@ export class DetalhesProdutoComponent implements OnInit {
       peso: this.detalhesProduto.peso,
       desconto: this.detalhesProduto.desconto,
       animal: this.detalhesProduto.animal,
-      castrado: this.detalhesProduto.castrado==1?true:false,
+      castrado: this.detalhesProduto.castrado == 1 ? true : false,
       porte: this.detalhesProduto.porte,
       informacao: [],
       fornecedor: this.detalhesProduto.fornecedor,
       estoque: this.detalhesProduto.estoque,
       imagemP: this.detalhesProduto.imagemP,
-      id: this.detalhesProduto.id
+      id: this.detalhesProduto.id,
+
+
+      dataVencimento: new Date(),
+      dataFabricacao: new Date()
     };
     this.enviarProduto.setProduto(produto);
     this.router.navigate(['/cadastrarProduto']);

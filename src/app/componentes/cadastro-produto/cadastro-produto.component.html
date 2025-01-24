@@ -22,9 +22,9 @@
           <app-mini-botao class="mini-botao" icone="fa-xmark" cor="var(--corVermelho)" (click)="removerImagem(i)"></app-mini-botao>
         </div>
       </div>
-      
+
       <div class="form_flex">
-        <app-input [ngStyle]="estilos()" type="number" for="precoCompra" label="Preço compra *" placeholder="R$" formControlName="precoCompra" (change)="atualizar()"></app-input>
+        <app-input [ngStyle]="estilos()" type="number" for="precoCompra" label="Preço compra" placeholder="R$" formControlName="precoCompra" (change)="atualizar()"></app-input>
         <app-input [ngStyle]="estilos()" type="number" for="precoVenda" label="Preço venda *" placeholder="R$" formControlName="preco" (change)="atualizarLucro()"></app-input>
         <app-input [ngStyle]="estilos()" type="number" for="lucro" label="Lucro" placeholder="%" formControlName="lucro" (change)="atualizarVenda()"></app-input>
       </div>
@@ -32,6 +32,10 @@
         <app-input [ngStyle]="estilos()" type="number" for="estoque" label="Estoque *" placeholder="R$" formControlName="estoque"></app-input>
       </div>
       <div class="form_flex">
+        <app-input [ngStyle]="estilos()" type="date" for="dataFabricacao" label="Data de fabricação" placeholder="" formControlName="dataFabricacao"></app-input>
+        <app-input [ngStyle]="estilos()" type="date" for="dataVencimento" label="Data de Vencimento" placeholder="" formControlName="dataVencimento"></app-input>
+      </div>
+      <!-- <div class="form_flex">
         <app-select [ngStyle]="estilos()" [lista]="listaDeCategoria" for="categoria" label="Categoria" formControlName="categoria" [isEditar]="true" (acao)="toggleEditarCategoria()"></app-select>
         <app-select [ngStyle]="estilos()" [lista]="listaDeSabor" for="sabor" label="Sabor" formControlName="sabor" [isEditar]="true" (acao)="toggleEditarSabor()"></app-select>
       </div>
@@ -47,25 +51,25 @@
       <div class="form_flex">
         <app-select [ngStyle]="estilos()" [lista]="listaDeFornecedor" for="fornecedor" label="Fornecedor" formControlName="fornecedor" [isEditar]="true" (acao)="toggleEditarFornecedor()"></app-select>
         <app-input [ngStyle]="estilos()" type="number" for="desconto" label="Desconto" placeholder="Desconto" formControlName="desconto"></app-input>
-      </div>
+      </div> -->
       <!--Castrado-->
-      <div class="form_flex">
+      <!-- <div class="form_flex">
         <h3 class="bold tamanho">Castrado</h3>
         <input type="radio" id="castrado" [value]=1 formControlName="castrado">
         <label for="castrado">Sim</label>
         <input type="radio" id="naoCastrado" [value]=0 formControlName="castrado">
         <label for="naoCastrado">Não</label>
       </div>
-      <hr>
+      <hr> -->
       <!--Animal-->
-      <div class="form_flex">
+      <!-- <div class="form_flex">
         <h3  class="bold tamanho">Animal</h3>
         <input type="radio" id="cachorro" value="Cachorro" formControlName="animal">
         <label for="cachorro">Cachorro</label>
-          
+
         <input type="radio" id="gato" value="Gato" formControlName="animal">
         <label for="gato">Gato</label>
-          
+
         <input type="radio" id="passaro" value="Pássaro" formControlName="animal">
         <label for="passaro">Pássaro</label>
       </div>
@@ -77,9 +81,9 @@
         <input type="radio" id="nenhum" value="Nenhum" formControlName="animal">
         <label for="nenhum">Nenhum</label>
       </div>
-      <hr>
+      <hr> -->
       <!--Porte-->
-      <div class="form_flex">
+      <!-- <div class="form_flex">
         <h3 class="bold tamanho">Porte</h3>
         <div class="form_flex" formArrayName="porte" *ngFor="let item of getPorteControls(); let i = index">
           <input id="{{ i }}" type="checkbox" [formControlName]="i">
@@ -96,8 +100,8 @@
           <input type="text" id="info{{i}}" placeholder="Digite as informações" [formControl]="getInformacoesByIndex(i)" (keyup)="populandoListaDeInformacao(i)" (change)="populandoListaDeImagens(i)">
           <app-mini-botao class="mini-botao" icone="fa-xmark" cor="var(--corVermelho)" (click)="removerInformacao(i)"></app-mini-botao>
         </div>
-      </div>
-      
+      </div> -->
+
     </form>
     <div class="cadastro__visualizacao">
       <div class="imagem--e--botaoacao flex-column">
@@ -109,7 +113,7 @@
           <app-botao-pequeno cor="var(--corVermelho)" icone="fa-circle-xmark" texto="Cancelar" (click)="cancelar()"></app-botao-pequeno>
         </div>
       </div>
-      <div class="informacoes">
+      <!-- <div class="informacoes">
         <app-info titulo="Código de barras" valor="{{ formulario.get('codigoDeBarras')?.value }}"></app-info>
         <app-info titulo="Nome do produto" valor="{{ formulario.get('produto')?.value }}"></app-info>
         <div class="info_flex">
@@ -133,15 +137,14 @@
           <app-info class="grow" titulo="Animal" valor="{{ formulario.get('animal')?.value }}"></app-info>
         </div>
         <app-info titulo="Porte" valor="{{ formulario.get('porte')?.value }}"></app-info>
-        <!-- <app-info titulo="Informações" valor=""></app-info>
-        <li *ngFor="let informacao of listaDeInformacao">{{ informacao }}</li> -->
-      </div>
+
+      </div> -->
     </div>
   </div>
 
   <!-- janelaEditarCategoria -->
   <app-gerenciar-opcao *ngIf="janelaGerenciar" (toggleJanelaGerenciar)="fecharJanelaGerenciar()" tipo="{{tipo}}" [lista]="lista"></app-gerenciar-opcao>
-  
+
 </div>
 
 

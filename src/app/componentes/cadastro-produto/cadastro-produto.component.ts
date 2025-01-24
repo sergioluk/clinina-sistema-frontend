@@ -81,7 +81,9 @@ export class CadastroProdutoComponent implements OnInit {
     fornecedor: ['Sem fornecedor'],
     estoque: [1],
     imagemP: [''],
-    lucro: []
+    lucro: [],
+    dataFabricacao: [],
+    dataVencimento: []
   });
 
   this.formularioSecundario = new FormGroup({
@@ -373,7 +375,7 @@ export class CadastroProdutoComponent implements OnInit {
     }
 
     console.log('Unidade: ' + this.formularioSecundario.get('unidadeNovaForm')?.value);
-    
+
 
     console.log(this.formulario);
   }
@@ -542,7 +544,7 @@ export class CadastroProdutoComponent implements OnInit {
     this.listaDeInformacao[index] = informacao;
   }
 
- 
+
   adicionarInformacao() {
     this.informacoesFormArray.push(new FormControl(''));
     this.listaDeInformacao.push('');
