@@ -108,6 +108,7 @@ export class CadastroProdutoComponent implements OnInit {
     this.produto = produtoRecebido;
     this.enviarProduto.clearProduto();
     this.setarProdutoNoFormulario();
+    console.log("Vamos lá: " + this.produto.dataVencimento + " Fabricacao: " + this.produto.dataFabricacao);
   }
 
 }
@@ -189,6 +190,8 @@ export class CadastroProdutoComponent implements OnInit {
     this.populandoListaDeImagens(0);
     this.formulario.get('preco')?.setValue(this.produto.preco);
     this.formulario.get('estoque')?.setValue(this.produto.estoque);
+    this.formulario.get('dataFabricacao')?.setValue(this.produto.dataFabricacao);
+    this.formulario.get('dataVencimento')?.setValue(this.produto.dataVencimento);
   }
   cancelar() {
     this.router.navigate(['/venda']);
