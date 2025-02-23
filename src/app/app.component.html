@@ -5,11 +5,11 @@
 <app-footer></app-footer>-->
 
 
-<app-menu-lateral *ngIf="login.getUsuario() != null && dev == false">
+<!-- <app-menu-lateral *ngIf="login.getUsuario() != null">
   <router-outlet></router-outlet>
 </app-menu-lateral>
-<router-outlet *ngIf="login.getUsuario() == null && dev == false"></router-outlet>
+<router-outlet *ngIf="login.getUsuario() == null"></router-outlet> -->
 
-<app-menu-lateral *ngIf="dev">
+<app-menu-lateral>
   <router-outlet></router-outlet>
-</app-menu-lateral>
+</app-menu-lateral> -->

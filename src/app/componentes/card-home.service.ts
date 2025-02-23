@@ -257,19 +257,7 @@ export class CardHomeService {
     .set('dataFim', data.dataFim)
     return this.http.get<PaginaLancamentos>(url, {params, observe: 'response'});
   }
-  getlancamentoById(id: number): Observable<HttpResponse<CadastrarLancamento>> {
-    const url = this.API + "/lancamentos/selecionar/" + id;
-    return this.http.get<CadastrarLancamento>(url, {observe: 'response'})
-  }
-  cadastrarCliente(cliente: Cliente): Observable<HttpResponse<Cliente>>{
-    const url = `${this.API}/clientes`;
-    return this.http.post<Cliente>(url, cliente, {observe: 'response'});
-  }
-  listarClientes(): Observable<HttpResponse<Cliente[]>>{
-    const url = this.API + "/clientes";
-    return this.http.get<Cliente[]>(url, {observe: 'response'});
-  }
-  
+
   // recuperarListaDeRacas() {
   //   const apiKey = "";
   //   const url ="https://api.thedogapi.com/v1/breeds";

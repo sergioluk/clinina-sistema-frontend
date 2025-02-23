@@ -379,6 +379,7 @@ export class CadastroProdutoComponent implements OnInit {
 
     console.log('Unidade: ' + this.formularioSecundario.get('unidadeNovaForm')?.value);
 
+
     console.log(this.formulario);
   }
 

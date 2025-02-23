@@ -113,7 +113,7 @@
           <app-botao-pequeno cor="var(--corVermelho)" icone="fa-circle-xmark" texto="Cancelar" (click)="cancelar()"></app-botao-pequeno>
         </div>
       </div>
-       <!-- <div class="informacoes">
+      <div class="informacoes">
         <app-info titulo="Código de barras" valor="{{ formulario.get('codigoDeBarras')?.value }}"></app-info>
         <app-info titulo="Nome do produto" valor="{{ formulario.get('produto')?.value }}"></app-info>
         <div class="info_flex">
@@ -137,7 +137,9 @@
           <app-info class="grow" titulo="Animal" valor="{{ formulario.get('animal')?.value }}"></app-info>
         </div>
         <app-info titulo="Porte" valor="{{ formulario.get('porte')?.value }}"></app-info>
-      </div> -->
+        <!-- <app-info titulo="Informações" valor=""></app-info>
+        <li *ngFor="let informacao of listaDeInformacao">{{ informacao }}</li> -->
+      </div>
     </div>
   </div>
 
