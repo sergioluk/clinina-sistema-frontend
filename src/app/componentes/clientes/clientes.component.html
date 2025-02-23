@@ -1,0 +1,40 @@
+<div class="clientes-componente__container">
+    <div class="flex">
+      <div class="menu">
+        <fa-icon [icon]="getIcone('fa-bars')"></fa-icon>
+      </div>
+      <h1 class="titulo">CLIENTES</h1>
+    </div>
+    <hr>
+    <div class="clientes-container">
+
+        <form [formGroup]="formulario">
+            <app-input type="text" for="nome" label="Nome" placeholder="Nome do cliente" formControlName="nome"></app-input>
+            <app-input type="text" for="telefone" label="Telefone" placeholder="(85) 9 9999-8888" formControlName="telefone"></app-input>
+        </form>
+        <div class="btn">
+            <app-botao-pequeno cor="var(--corVerde)" icone="fa-floppy-disk" texto="Cadastrar" (click)="cadastrarCliente()"></app-botao-pequeno>
+            <app-botao-pequeno cor="var(--corVermelho)" icone="fa-circle-xmark" texto="Cancelar" (click)="cancelar()"></app-botao-pequeno>
+        </div>
+
+        <div class="table__container">
+          <table>
+              <tr class="cabecalho-tabela">
+                <th class="nome__tabela">Nome do produto</th>
+                <th>Telefone</th>
+              </tr>
+            <tr class="tablerow" *ngFor="let cliente of clientes; index as i">
+              <td>{{ cliente.nome }}</td>
+              <td>{{ cliente.telefone}}</td>
+            </tr>
+          </table>
+        </div>
+        
+    </div>
+
+
+
+    <div *ngIf="loadingSpinner" class="spinner">
+        <mat-spinner></mat-spinner>
+      </div>
+</div>

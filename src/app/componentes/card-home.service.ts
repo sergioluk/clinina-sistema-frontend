@@ -2,15 +2,15 @@ import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CadastroProduto, Categoria, Fiado, Fornecedor, Idade, Mensagem, Relatorio, RelatorioDTO, RelatorioFiado, Sabor, Venda, Vender } from './cadastro-produto/cadastro-produto';
-import { CadastrarLancamento, Caixa, CaixaCompleto, CategoriasLancamentos, DetalhesProduto, LinhaDoTempo, ListaLancamento, Login, PaginaLancamentos, ProdutoVenda, Tutor } from '../interfaces/produtoVenda';
+import { CadastrarLancamento, Caixa, CaixaCompleto, CategoriasLancamentos, Cliente, DetalhesProduto, LinhaDoTempo, ListaLancamento, Login, PaginaLancamentos, ProdutoVenda, Tutor } from '../interfaces/produtoVenda';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CardHomeService {
 
-  //private readonly API = 'https://clinina-backend.onrender.com';
-  private readonly API = 'http://localhost:8080';
+  private readonly API = 'https://clinina-backend.onrender.com';
+  //private readonly API = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 
@@ -49,6 +49,9 @@ export class CardHomeService {
 
   vender(produtos: Vender[]): Observable<HttpResponse<Vender[]>>{
     const url = `${this.API}/vender`;
+    for(let p of produtos) {
+      console.log("Id cliente: " + p.idCliente);
+    }
     return this.http.post<Vender[]>(url, produtos, {observe: 'response'});
   }
   cadastrarFiado(produtos: Vender[]): Observable<HttpResponse<Vender[]>>{
@@ -253,6 +256,18 @@ export class CardHomeService {
     .set('dataInicio', data.dataInicio)
     .set('dataFim', data.dataFim)
     return this.http.get<PaginaLancamentos>(url, {params, observe: 'response'});
+  }
+  getlancamentoById(id: number): Observable<HttpResponse<CadastrarLancamento>> {
+    const url = this.API + "/lancamentos/selecionar/" + id;
+    return this.http.get<CadastrarLancamento>(url, {observe: 'response'})
+  }
+  cadastrarCliente(cliente: Cliente): Observable<HttpResponse<Cliente>>{
+    const url = `${this.API}/clientes`;
+    return this.http.post<Cliente>(url, cliente, {observe: 'response'});
+  }
+  listarClientes(): Observable<HttpResponse<Cliente[]>>{
+    const url = this.API + "/clientes";
+    return this.http.get<Cliente[]>(url, {observe: 'response'});
   }
   
   // recuperarListaDeRacas() {

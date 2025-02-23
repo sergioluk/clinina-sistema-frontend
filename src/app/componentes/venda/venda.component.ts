@@ -54,14 +54,14 @@ export class VendaComponent implements OnInit {
     });
     this.randomGif();
     this.titulo.emit("oi");
-    
+
     this.caixa.exibirCaixa();
     this.caixa.caixaStatus$.subscribe(status => {
       this.statusCaixa = status;
     })
   }
   //Novo
- 
+
   @Output() titulo = new EventEmitter<string>();
 
   abrirEditar = false;
@@ -69,6 +69,7 @@ export class VendaComponent implements OnInit {
   metodoPagamento = false;
   janelaProcurarProduto = false;
   janelaProdutoPeso = false;
+  notaFiscal = false;
   totalDesconto: number = 0;
   src = '';
   loadingSpinner = false;
@@ -99,7 +100,7 @@ export class VendaComponent implements OnInit {
   }
   @ViewChild(TabelaVendaComponent) tabela! : TabelaVendaComponent;
   //@ViewChild(TabelaVendaComponent) editarProduto! : EditarDescQtdComponent;
-  
+
   getIcone(icone: string) {
     return this.icone.getIcone(icone);
   }
@@ -131,12 +132,16 @@ export class VendaComponent implements OnInit {
   }
   toggleMetodoPagamento() {
     this.metodoPagamento = !this.metodoPagamento;
+    this.toggleNotaFiscal();
   }
   toggleProcurarProduto () {
     this.janelaProcurarProduto = !this.janelaProcurarProduto;
   }
   toggleProdutoPeso() {
     this.janelaProdutoPeso = !this.janelaProdutoPeso;
+  }
+  toggleNotaFiscal() {
+    this.notaFiscal = !this.notaFiscal;
   }
   abrirProcurarProduto() {
     this.toggleProcurarProduto();
@@ -180,7 +185,7 @@ export class VendaComponent implements OnInit {
     } else {
       this.totalDesconto = totalDescontoCalculado;
     }
-    
+
   }
 
   selecionarProduto(produto : ProdutoVenda){
@@ -213,7 +218,7 @@ export class VendaComponent implements OnInit {
   mostrarOuEsconderGif() {
     return (this.listaDeProdutos.length <= 0 ? 'mostrar' : 'esconder');
   }
-  
+
   randomGif() {
     const gifs = [
       'https://www.portaldodog.com.br/wp-content/uploads/2014/08/tumblr_n06l2mXy1T1scjbypo1_500.gif',
@@ -259,9 +264,9 @@ export class VendaComponent implements OnInit {
     imagemP: ''
   }
   */
-  
 
-  
+
+
   listaDeProdutosAntigoApagar: VendaComQtd[] = [];
 
   produtoPesagem: VendaComQtd = {
@@ -274,8 +279,8 @@ export class VendaComponent implements OnInit {
     quantidade: 1
   }
 
-  
- 
+
+
 
   venda(){
 
@@ -292,6 +297,7 @@ export class VendaComponent implements OnInit {
           data: new Date(),
           pagamento: this.formulario.get('formaPagamento')?.value,
           desconto: produto.desconto,
+          idCliente: 0,
           nome: this.formulario.get('nome')?.value,
           telefone: this.formulario.get('telefone')?.value,
           endereco: this.formulario.get('endereco')?.value
@@ -306,7 +312,8 @@ export class VendaComponent implements OnInit {
           peso: produto.peso,
           data: new Date(),
           pagamento: this.formulario.get('formaPagamento')?.value,
-          desconto: produto.desconto
+          desconto: produto.desconto,
+          idCliente: 0
         }
         listaDeVenda.push(produtosVender);
       }
@@ -538,7 +545,7 @@ export class VendaComponent implements OnInit {
     this.fecharModalPesagem();
   }
 
-  
+
 
   ehFiado(){
     if (this.formulario.get('formaPagamento')?.value == 'Fiado'){

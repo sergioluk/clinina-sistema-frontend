@@ -18,6 +18,9 @@ export interface CadastroProduto {
     estoque: number
     imagemP: string
 
+    dataVencimento: Date
+    dataFabricacao: Date
+
     /*
     porte: string
     corante: boolean
@@ -65,6 +68,7 @@ export interface CadastroProduto {
     data: Date
     pagamento: string
     desconto: number
+    idCliente: number
     nome?: string
     telefone?: string
     endereco?: string

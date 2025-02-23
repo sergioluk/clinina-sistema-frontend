@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { faTrashCan, faCircleXmark, faCircleLeft, faCircleCheck, faRectangleList, faEnvelope, faEnvelopeOpen, faPaperPlane, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
-import { faMagnifyingGlass, faCartPlus, faXmark, faBars, faPencil, faCartShopping, faPlus, faTriangleExclamation, faDollarSign, faMoneyBill, faBagShopping, faWarehouse, faArrowRight, faArrowLeft, faHouse, faPhone, faPaw, faMessage, faRightToBracket, faFilter } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faCartPlus, faXmark, faBars, faPencil, faCartShopping, faPlus, faTriangleExclamation, faDollarSign, faMoneyBill, faBagShopping, faWarehouse, faArrowRight, faArrowLeft, faHouse, faPhone, faPaw, faMessage, faRightToBracket, faFilter, faPerson, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { faMoneyBill1, faFloppyDisk, faChartLine, faHandHoldingDollar, faDog, faStethoscope, faCircleInfo, faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({
@@ -61,8 +61,14 @@ export class IconeService {
       case 'fa-paper-plane':
         icone = faPaperPlane;
         break;
+      case 'fa-person':
+        icone = faPerson;
+        break;
       case 'fa-pencil':
         icone = faPencil;
+        break;
+      case 'fa-check':
+        icone = faCheck;
         break;
       case 'fa-magnifying-glass':
         icone = faMagnifyingGlass;

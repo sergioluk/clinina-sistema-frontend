@@ -49,6 +49,24 @@
                     <app-input label="Endereço" type="text" placeholder="Rua Natal 1611" for="endereco" formControlName="endereco"></app-input>
                 </div>
             </div>
+
+            <div class="clientes">
+                <div class="label">
+                    <label>Cliente</label>
+                    <app-mini-botao class="mini-botao" icone="fa-plus" cor="var(--corVerde)" (click)="toggleAddCLiente()"></app-mini-botao>
+                </div>
+                <form class="formCliente" *ngIf="isAddCliente" [formGroup]="formularioCliente">
+                    <app-input type="text" for="nome" label="Nome" placeholder="Nome do cliente" formControlName="nome"></app-input>
+                    <app-input type="text" for="telefone" label="Telefone" placeholder="(85) 9 9999-8888" formControlName="telefone"></app-input>
+                    <app-mini-botao class="mini-botao" icone="fa-check" cor="var(--corVerde)" (click)="adicionarCliente()"></app-mini-botao>
+                </form>
+                <ng-select formControlName="idCliente">
+                    <ng-option value="0">Selecione o cliente</ng-option>
+                    <ng-option *ngFor="let cliente of listaDeClientes" [value]="cliente.id">{{cliente.nome}} | {{cliente.telefone}}</ng-option>
+                </ng-select>
+            </div>
+            
+
             
         </form>
     </div>

@@ -1,0 +1,53 @@
+<app-janela titulo="Nota fiscal" icone="fa-pencil" (toggleJanela)="toggleJanela()">
+  <div #notaFiscal class="container">
+    <h1>Clinina</h1>
+    <p>Rua Natal, 1116, Henrique Jorge, Fortaleza-CE</p>
+    <p>Venda: 287</p>
+    <hr>
+    <table>
+      <tr class="cabecalho-tabela">
+        <th>Item</th>
+        <th class="nome__tabela">Descrição</th>
+        <th>Qtd</th>
+        <th>Valor Un.</th>
+        <th>Desc.</th>
+        <th>Total</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Ração Golgen muito gosta de carne com feijao</td>
+        <td>2 un</td>
+        <td>50,23</td>
+        <td>3,00</td>
+        <td>47,00</td>
+      </tr>
+    <!-- <tr class="tablerow" *ngFor="let item of listaVenda; index as i">
+      <td>{{ item.produto }} <span *ngIf="verificarSeFoiFracionado(item.peso)"> ({{ item.peso }})</span></td>
+      <td>{{ item.quantidade }}</td>
+      <td>{{ item.precoUnitario | currency:'R$ ':'symbol':'1.2-2' }}</td>
+      <td>{{ item.desconto ? item.desconto : "-" }}</td>
+      <td>{{ calcularParcial(item) | currency:'R$ ':'symbol':'1.2-2' }}</td>
+      <td>{{ item.data | date:'HH:mm'  }}</td>
+      <td>{{ item.pagamento }}</td>
+    </tr> -->
+    </table>
+    <hr>
+    <div class="detalhes">
+      <div class="space-between"><p>QTD ITENS</p><p>001</p></div>
+      <div class="space-between"><p>DESCONTO</p><p>9,90</p></div>
+      <div class="space-between"><p>VALOR TOTAL</p><p>30,00</p></div>
+      <div class="space-between"><p>FORMA DE PAGAMENTO</p><p>DINHEIRO</p></div>
+      <div class="space-between"><p>TROCO</p><p>-</p></div>
+    </div>
+    <hr>
+    <div class="space-between">
+      <p>CONSUMIDOR:</p>
+      <p>Laravel</p>
+      <p>85999984740</p>
+    </div>
+    <div class="acoes">
+      <app-botao-pequeno class="btn" cor="var(--corVerde)" icone="fa-check" texto="Gerar PDF" (click)="gerarPDF()"></app-botao-pequeno>
+      <app-botao-pequeno class="btn" cor="var(--corVerde)" icone="fa-check" texto="Ok" (click)="toggleJanela()"></app-botao-pequeno>
+    </div>
+  </div>
+</app-janela>

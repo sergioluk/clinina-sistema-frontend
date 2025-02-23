@@ -131,6 +131,10 @@
     display: flex;
     gap: 20px;
   }
+  .selecionar {
+    /* background-color: aqua; */
+    cursor: pointer;
+  }
   .lancamentos small {
     font-size: var(--fontePequena);
   }
@@ -278,7 +282,6 @@
   .gerenciar:hover {
     text-decoration: none;
   }
-
 
   ::ng-deep .snackbar-sucesso {
     --mdc-snackbar-container-color: var(--corVerde); /* backgroud */

@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CardHomeService } from '../../card-home.service';
-import { CadastrarLancamento, CategoriasLancamentos, DespesaLancamento, ReceitaLancamento } from 'src/app/interfaces/produtoVenda';
+import { CadastrarLancamento, CategoriasLancamentos, DespesaLancamento, Lancamento, ReceitaLancamento } from 'src/app/interfaces/produtoVenda';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-adicionar-lancamento',
@@ -11,9 +12,10 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 })
 export class AdicionarLancamentoComponent implements OnInit {
 
+  @Input() id = 0;
   @Output() visivel = new EventEmitter();
   @Output() atualizarLancamentos = new EventEmitter();
-
+  
   isRecebida = false;
   isParcelado = false;
   menor = false;
@@ -21,6 +23,7 @@ export class AdicionarLancamentoComponent implements OnInit {
   formulario!: FormGroup;
   listaDeReceita: ReceitaLancamento[] = [];
   listaDeDespesa: DespesaLancamento[] = [];
+  lancamentoSelecionado!: CadastrarLancamento;
 
   @Input() tipoLancamento = '';
 
@@ -45,6 +48,22 @@ export class AdicionarLancamentoComponent implements OnInit {
       quantidadeParcelas: ['']
     });
     this.getCategorias();
+    console.log("id selecionado " + this.id)
+    if (this.id > 0) {
+      this.getLancamentoById(this.id);
+      
+    }
+  }
+
+  preencherFormulario(l: CadastrarLancamento) {
+    this.formulario.get("descricao")?.setValue(l.descricao);
+    this.formulario.get("tipoReceita")?.setValue(l.tipoReceita);
+    this.formulario.get("categoriaId")?.setValue(l.categoriaId);
+    this.formulario.get("subcategoria")?.setValue('');
+    this.formulario.get("dataDaReceitaVencimento")?.setValue(l.dataDaReceitaVencimento);
+    this.formulario.get("dataRecebimentoPagamento")?.setValue(l.dataRecebimentoPagamento);
+    this.formulario.get("valor")?.setValue(l.valor);
+    this.formulario.get("quantidadeParcelas")?.setValue('');
   }
 
   getCategorias() {
@@ -68,6 +87,30 @@ export class AdicionarLancamentoComponent implements OnInit {
         console.log("Requisição completa!!!");
       }
     });
+  }
+
+  getLancamentoById(id: number) {
+    this.service.getlancamentoById(id).subscribe({
+      next: (response: HttpResponse<CadastrarLancamento>) => {
+        if (response.body) {
+          this.lancamentoSelecionado = response.body;
+
+          this.tipoLancamento = this.lancamentoSelecionado.tipoReceita;
+          this.preencherFormulario(this.lancamentoSelecionado);
+        }
+        // this.loadingSpinner = false;
+        //this.snackbar.openSnackBarSucces("Vendas encontradas!","Fechar");
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error("Erro: ", error.message);
+        console.error("Código de status HTTP: ", error.status);
+        //this.snackbar.openSnackBarFail("Algo deu errado!", "Fechar");
+        //this.loadingSpinner = false;
+      },
+      complete: () => {
+        console.log("Requisição completa!!!");
+      }
+    })
   }
 
   selecionarLancamento(tipo: string) {

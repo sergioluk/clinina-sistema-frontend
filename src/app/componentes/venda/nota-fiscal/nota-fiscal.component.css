@@ -1,0 +1,54 @@
+.container {
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+
+  width: 100%; /* Garante que a largura respeite o espaço do PDF */
+}
+
+h1, p {
+  margin: 0;
+}
+
+td, th {
+  word-wrap: break-word;
+}
+
+.detalhes {
+  width: 100%;
+}
+
+hr {
+  border-style: dashed;
+  margin: 5px 0;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+
+  flex-wrap: wrap; /* Permite que os elementos quebrem para a próxima linha se necessário */
+  gap: 5px; /* Adiciona espaçamento entre os elementos */
+}
+
+.space-between p {
+  text-align: end;
+  min-width: 50px; /* Define um tamanho mínimo */
+  max-width: 200px; /* Evita que cresça demais */
+  white-space: nowrap; /* Impede a quebra automática de linha */
+  overflow: hidden; /* Evita que o conteúdo transborde */
+  text-overflow: ellipsis; /* Adiciona "..." se o texto for cortado */
+
+  flex-shrink: 0; /* Impede que os textos sejam reduzidos */
+  margin: 0;
+}
+
+.acoes {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn {
+  width: fit-content;
+}

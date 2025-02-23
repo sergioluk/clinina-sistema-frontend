@@ -61,6 +61,9 @@ import { LoginComponent } from './componentes/login/login.component';
 import { LancamentoComponent } from './componentes/lancamento/lancamento.component';
 import { AdicionarLancamentoComponent } from './componentes/lancamento/adicionar-lancamento/adicionar-lancamento.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { ClientesComponent } from './componentes/clientes/clientes.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { NotaFiscalComponent } from './componentes/venda/nota-fiscal/nota-fiscal.component';
 
 registerLocaleData(localePt);
 
@@ -106,7 +109,9 @@ registerLocaleData(localePt);
     BanhoETosaComponent,
     LoginComponent,
     LancamentoComponent,
-    AdicionarLancamentoComponent
+    AdicionarLancamentoComponent,
+    ClientesComponent,
+    NotaFiscalComponent
   ],
   imports: [
     BrowserModule,
@@ -126,7 +131,8 @@ registerLocaleData(localePt);
     MatSnackBarModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    NgSelectModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]

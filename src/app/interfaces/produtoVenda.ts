@@ -171,7 +171,7 @@ export interface ProdutoVenda {
     lancamentos: Lancamento[];
   }
   export interface Lancamento {
-    id?: number,
+    id: number,
     dataDaReceitaVencimento: Date,
     dataRecebimentoPagamento: Date,
     status: string,
@@ -202,5 +202,12 @@ export interface ProdutoVenda {
     atualizadoEm: Date,
     totalReceitasPeriodo: number,
     totalDespesasPeriodo: number
+  }
+
+  //Cadastrar Cliente
+  export interface Cliente {
+    id?: number,
+    nome: string,
+    telefone: string,
   }
 

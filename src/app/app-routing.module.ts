@@ -12,6 +12,7 @@ import { CadastroBanhoETosaComponent } from './componentes/banho-e-tosa/cadastro
 import { BanhoETosaComponent } from './componentes/banho-e-tosa/banho-e-tosa.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { LancamentoComponent } from './componentes/lancamento/lancamento.component';
+import { ClientesComponent } from './componentes/clientes/clientes.component';
 
 const routes: Routes = [
   {
@@ -74,6 +75,10 @@ const routes: Routes = [
   {
     path: 'lancamento',
     component: LancamentoComponent
+  },
+  {
+    path: 'clientes',
+    component: ClientesComponent
   },
   {
     path: '**',

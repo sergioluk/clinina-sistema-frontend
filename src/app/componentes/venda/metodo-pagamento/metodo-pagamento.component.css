@@ -118,8 +118,28 @@
     border-right: 1px solid;
 }
 
+.clientes {
+    font-size: var(--fonteNormal);
+    color: var(--corTexto);
+}
+.mini-botao {
+    max-width: fit-content;
+    max-height: fit-content;
+}
+.label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+.formCliente {
+    display: flex;
+    flex-direction: column;
+}
 
-
+.formCliente app-mini-botao {
+    align-self: flex-end;
+    margin: 5px 0;
+}
 
 
 

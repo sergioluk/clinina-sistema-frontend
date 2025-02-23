@@ -12,6 +12,7 @@ export class AppComponent implements OnInit{
   title = 'clinina';
 
   //Custom meu pra baixo
+  dev = true;
 
   constructor(private router: Router, public login: LoginService) {}
 
@@ -19,8 +20,11 @@ export class AppComponent implements OnInit{
 
   ngOnInit() {
     //Verificar se não está logado e redirecionar para a pagina de login
+    if (this.dev) {
+      return;
+    }
     if (this.login.getUsuario() == null) {
-      //this.router.navigate(['/login']);
+      this.router.navigate(['/login']);
     }
   }
 

@@ -89,7 +89,7 @@
                     <div class="linha-vertical"></div>
 
                     <div class="flex-column" *ngFor="let lancamento of lanc.lancamentos; index as j">
-                        <div class="space-between">
+                        <div class="space-between selecionar" (click)="selecionarLancamento(i,j)">
                             <div class="detalhes">
                                 <div class="img-lancamento">
                                     <fa-icon [ngClass]="statusCores(lancamento.tipoReceita)" [icon]="iconeStatus(lancamento.tipoReceita)"></fa-icon>
@@ -109,46 +109,6 @@
                         </div>
                         <div *ngIf="((lanc.lancamentos.length - 1) != j)" class="linha-vertical"></div>
                     </div>
-
-                    <!-- <div class="space-between">
-                        <div class="detalhes">
-                            <div class="img-lancamento">
-                                <fa-icon class="vermelho" [icon]="getIcone('fa-arrow-left')"></fa-icon>
-                            </div>
-                            <div class="nome-detalhes">
-                                <p>Pagamento Vet Com</p>
-                                <p class="cinza">Pagamento de fornecedor a prazo</p>
-                            </div>
-                            <div class="status-flex">
-                                <div class="img-status">
-                                    <fa-icon [icon]="getIcone('fa-pen-to-square')"></fa-icon>
-                                </div>
-                                <small class="verde">Pago</small>
-                            </div>
-                        </div>
-                        <p class="vermelho">-R$ 280,74</p>
-                    </div> -->
-
-                    <!-- <div class="linha-vertical"></div>
-
-                    <div class="space-between">
-                        <div class="detalhes">
-                            <div class="img-lancamento">
-                                <fa-icon class="vermelho" [icon]="getIcone('fa-arrow-left')"></fa-icon>
-                            </div>
-                            <div class="nome-detalhes">
-                                <p>Pagamento Vet Com</p>
-                                <p class="cinza">Pagamento de fornecedor a prazo</p>
-                            </div>
-                            <div class="status-flex">
-                                <div class="img-status">
-                                    <fa-icon [icon]="getIcone('fa-pen-to-square')"></fa-icon>
-                                </div>
-                                <small class="verde">Pago</small>
-                            </div>
-                        </div>
-                        <p class="vermelho">-R$ 280,74</p>
-                    </div> -->
 
                     <hr class="hr">
                 </div>
@@ -198,5 +158,5 @@
     <div *ngIf="loadingSpinner" class="spinner">
       <mat-spinner></mat-spinner>
     </div>
-    <app-adicionar-lancamento *ngIf="janelaAddLancamento" (atualizarLancamentos)="getLancamentos()" (visivel)="toggleAddLancamento()" [tipoLancamento]="lancamentoSelecionado"></app-adicionar-lancamento>
+    <app-adicionar-lancamento *ngIf="janelaAddLancamento" (atualizarLancamentos)="getLancamentos()" (visivel)="toggleAddLancamento()" [tipoLancamento]="lancamentoSelecionado" [id]= "id"></app-adicionar-lancamento>
 </div>

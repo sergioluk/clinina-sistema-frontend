@@ -16,6 +16,7 @@ import { data } from 'jquery';
 })
 export class LancamentoComponent implements OnInit {
 
+  id = 0;
   janelaAddLancamento: boolean = false;
   loadingSpinner: boolean = false;
   lancamentoSelecionado = '';
@@ -45,7 +46,7 @@ export class LancamentoComponent implements OnInit {
     private icone: IconeService,
     private formBuilder: FormBuilder,
     private service: CardHomeService,
-    private snackbar: SnackbarService,
+    private snackbar: SnackbarService
   ) {
    
   }
@@ -110,6 +111,17 @@ export class LancamentoComponent implements OnInit {
       return this.getIcone("fa-arrow-right");
     }
     return this.getIcone("fa-arrow-left");
+  }
+
+  selecionarLancamento(index1: number, index2: number) {
+    console.log('clicou ' + index1 + " " + index2)
+    let id = this.paginaLancamentos.listaLancamentos[index1].lancamentos[index2].id;
+    if (id == 0) {
+      return;
+    }
+    this.toggleAddLancamento();
+    this.id = id;
+    console.log("Id da lista " + this.id)
   }
 
   statusCores(status: string) {
