@@ -12,7 +12,7 @@ export class AppComponent implements OnInit{
   title = 'clinina';
 
   //Custom meu pra baixo
-  dev = true;
+  dev = false;
 
   constructor(private router: Router, public login: LoginService) {}
 

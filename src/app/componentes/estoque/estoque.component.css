@@ -132,7 +132,7 @@ table {
     font-size: var(--fontePequena);
     height: 17px;
   }
-  
+
   th, td, tr {
     text-align: start;
     border: none;
@@ -157,7 +157,7 @@ table {
     height: 25px;
   }
   .nome__tabela {
-    width: 50%;
+    max-width: 50%;
   }
   tr fa-icon {
     font-size: 14px;

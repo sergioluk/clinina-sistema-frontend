@@ -22,6 +22,12 @@ export class CardHomeService {
     return this.http.get<CadastroProduto[]>(this.API);
   }
 
+  listarProdutos(filtros: any): Observable<CadastroProduto[]> {
+    const url = `${this.API}/produtos/listar`;
+    return this.http.get<CadastroProduto[]>(url, { params: filtros });
+  }
+
+
   pesquisarPorCodigoDeBarras(codigoDeBarras: string): Observable<HttpResponse<ProdutoVenda>>{
     const url = `${this.API}/produtos/codigo-de-barras/${codigoDeBarras}`;
     return this.http.get<ProdutoVenda>(url, {observe: 'response'});
@@ -47,12 +53,12 @@ export class CardHomeService {
     return this.http.put<CadastroProduto>(url, produto);
   }
 
-  vender(produtos: Vender[]): Observable<HttpResponse<Vender[]>>{
+  vender(produtos: Vender[]): Observable<HttpResponse<number>>{
     const url = `${this.API}/vender`;
     for(let p of produtos) {
       console.log("Id cliente: " + p.idCliente);
     }
-    return this.http.post<Vender[]>(url, produtos, {observe: 'response'});
+    return this.http.post<number>(url, produtos, {observe: 'response'});
   }
   cadastrarFiado(produtos: Vender[]): Observable<HttpResponse<Vender[]>>{
     const url = `${this.API}/produtos/cadastrarFiado`;
@@ -256,6 +262,19 @@ export class CardHomeService {
     .set('dataInicio', data.dataInicio)
     .set('dataFim', data.dataFim)
     return this.http.get<PaginaLancamentos>(url, {params, observe: 'response'});
+  }
+
+  getlancamentoById(id: number): Observable<HttpResponse<CadastrarLancamento>> {
+    const url = this.API + "/lancamentos/selecionar/" + id;
+    return this.http.get<CadastrarLancamento>(url, {observe: 'response'})
+  }
+  cadastrarCliente(cliente: Cliente): Observable<HttpResponse<Cliente>>{
+    const url = `${this.API}/clientes`;
+    return this.http.post<Cliente>(url, cliente, {observe: 'response'});
+  }
+  listarClientes(): Observable<HttpResponse<Cliente[]>>{
+    const url = this.API + "/clientes";
+    return this.http.get<Cliente[]>(url, {observe: 'response'});
   }
 
   // recuperarListaDeRacas() {

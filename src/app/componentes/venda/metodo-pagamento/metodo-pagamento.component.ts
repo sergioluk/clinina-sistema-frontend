@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Cliente, ProdutoVenda } from 'src/app/interfaces/produtoVenda';
+import { Cliente, NotaFiscal, ProdutoVenda } from 'src/app/interfaces/produtoVenda';
 import { Vender } from '../../cadastro-produto/cadastro-produto';
 import { CardHomeService } from '../../card-home.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
@@ -22,11 +22,24 @@ export class MetodoPagamentoComponent implements OnInit{
   listaDeClientes: Cliente[] = [];
   isAddCliente = false;
 
+  cliente: Cliente = {
+    nome: '',
+    telefone: ''
+  }
+  dadosNotaFiscal: NotaFiscal = {
+    id: 0,
+    listaDeProdutos: [],
+    formaPagamento: '',
+    cliente: this.cliente
+  }
+
+  @Output() enviarDadosNotaFiscal = new EventEmitter<NotaFiscal>();
+
   constructor(private formBuilder: FormBuilder,
      private service: CardHomeService,
      private snackbar: SnackbarService
     ){}
-  
+
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
       formaPagamento: 'Crédito',
@@ -39,7 +52,7 @@ export class MetodoPagamentoComponent implements OnInit{
       nome: [''],
       telefone: ['']
     });
-    
+
     this.atualizarClientes();
   }
 
@@ -98,7 +111,16 @@ export class MetodoPagamentoComponent implements OnInit{
           endereco: this.formulario.get('endereco')?.value
         }
         listaDeVenda.push(produtosVender);
-      }
+    }
+
+    this.cliente = this.getCliente(this.formulario.get('idCliente')?.value);
+    let dadosNotaFiscal:NotaFiscal = {
+      id: 0,
+      listaDeProdutos: this.listaDeProdutos,
+      formaPagamento: this.formulario.get('formaPagamento')?.value,
+      cliente: this.cliente
+    }
+    this.dadosNotaFiscal = JSON.parse(JSON.stringify(dadosNotaFiscal));
 
     if (listaDeVenda.length <= 0) {
       alert("Não há produtos na lista!!");
@@ -119,10 +141,15 @@ export class MetodoPagamentoComponent implements OnInit{
     this.service.vender(listaDeVenda).subscribe({
       //this.router.navigate(['/home']);
       //window.location.reload();
-      next: (response: HttpResponse<Vender[]>) => {
+      next: (response: HttpResponse<number>) => {
         this.aplicarLimpar.emit();
         this.toggleJanela();
         console.log("resposta: " + response.body);
+        let id : number | null = response.body;
+        if (id != null) {
+          this.dadosNotaFiscal.id = id;
+        }
+        this.enviarDadosNotaFiscal.emit(this.dadosNotaFiscal);
       },
       error: (error: HttpErrorResponse) => {
         this.snackbar.openSnackBarFail("Algo deu errado!: " + error.status, "Fechar");
@@ -130,11 +157,24 @@ export class MetodoPagamentoComponent implements OnInit{
       },
       complete: () => {
         console.log("Requisição completa!!!");
+
         this.spinnerEmitter.emit("false");
         this.snackbar.openSnackBarSucces("Venda concluída com sucesso!","Fechar");
       }
 
     });
+  }
+  getCliente(id: number) {
+    let cliente: Cliente = {
+      nome: '',
+      telefone: ''
+    };
+    for (let c of this.listaDeClientes) {
+      if (c.id == id) {
+        cliente = c;
+      }
+    }
+    return cliente
   }
   cadastrarFiado(listaDeVenda: Vender[]) {
     this.service.cadastrarFiado(listaDeVenda).subscribe({

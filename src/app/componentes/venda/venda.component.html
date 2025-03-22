@@ -68,11 +68,11 @@
   <app-cancelar-venda *ngIf="abrirCancelarCompra" (aplicarLimpar)="limparTabela()"
     (visivel)="toggleCancelarCompra()"></app-cancelar-venda>
   <app-metodo-pagamento *ngIf="metodoPagamento" (aplicarLimpar)="limparTabela()" (visivel)="toggleMetodoPagamento()"
-    [listaDeProdutos]="listaDeProdutos" (spinnerEmitter)="toggleSpinner($event)"></app-metodo-pagamento>
+    [listaDeProdutos]="listaDeProdutos" (spinnerEmitter)="toggleSpinner($event)" (enviarDadosNotaFiscal)="setarNotaFiscalDados($event)"></app-metodo-pagamento>
   <app-pesquisar-produto *ngIf="janelaProcurarProduto" (visivel)="toggleProcurarProduto()"
     [listaDeProdutos]="listaDeProdutos" (enviarProdutoParaAdd)="enviarProdutoParaAdd($event)" (enviarProdutoComPesoParaAdd)="enviarProdutoComPesoParaAdd($event)"
      (spinnerEmitter)="toggleSpinner($event)"></app-pesquisar-produto>
   <app-produto-peso *ngIf="janelaProdutoPeso" (visivel)="toggleProdutoPeso()" [produtoComPeso]="produtoComPeso"
     (adicionarProdutoComPeso)="enviarProdutoParaAdd($event)"></app-produto-peso>
-  <app-nota-fiscal *ngIf="notaFiscal" (visivel)="toggleNotaFiscal()"></app-nota-fiscal>
+  <app-nota-fiscal *ngIf="notaFiscal" (visivel)="toggleNotaFiscal()" [notaFiscalDados]="notaFiscalDados"></app-nota-fiscal>
 </div>

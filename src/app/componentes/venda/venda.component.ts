@@ -3,7 +3,7 @@ import { VendaComQtd, Vender } from '../cadastro-produto/cadastro-produto';
 import { CardHomeService } from '../card-home.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ProdutoVenda } from 'src/app/interfaces/produtoVenda';
+import { NotaFiscal, ProdutoVenda } from 'src/app/interfaces/produtoVenda';
 import { TabelaVendaComponent } from './tabela-venda/tabela-venda.component';
 import { IconeService } from 'src/app/services/icone.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
@@ -32,6 +32,8 @@ export class VendaComponent implements OnInit {
   pesagem: boolean = false;
   formaDePagamento: boolean = false;
   statusCaixa: string = "disponível";
+
+  notaFiscalDados!: NotaFiscal;
 
   formulario!: FormGroup;
 
@@ -132,6 +134,8 @@ export class VendaComponent implements OnInit {
   }
   toggleMetodoPagamento() {
     this.metodoPagamento = !this.metodoPagamento;
+  }
+  abrirNotaFiscal(){
     this.toggleNotaFiscal();
   }
   toggleProcurarProduto () {
@@ -161,6 +165,7 @@ export class VendaComponent implements OnInit {
       this.snackbar.openSnackBarFail("Não há produtos na lista!!!","Fechar");
       return;
     }
+    //this.abrirNotaFiscal();
     this.toggleMetodoPagamento();
   }
 
@@ -543,6 +548,11 @@ export class VendaComponent implements OnInit {
     //this.calcularTotal();
 
     this.fecharModalPesagem();
+  }
+
+  setarNotaFiscalDados(notaFiscal: NotaFiscal) {
+    this.notaFiscalDados = notaFiscal;
+    this.toggleNotaFiscal();
   }
 
 

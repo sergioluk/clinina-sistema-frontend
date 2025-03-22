@@ -1,3 +1,5 @@
+import { Vender } from "../componentes/cadastro-produto/cadastro-produto"
+
 //usado só na tabela de venda, pagina de Venda
 export interface ProdutoVenda {
     id: number
@@ -30,7 +32,7 @@ export interface ProdutoVenda {
   export interface ListaId {
     id?: number
     nome: string
-  } 
+  }
 
   export interface DetalhesProduto {
     id?: number
@@ -97,7 +99,7 @@ export interface ProdutoVenda {
     totalDebito: number,
     totalDinheiro: number,
     totalPix: number,
-    totalFiado: number 
+    totalFiado: number
   }
 
   //Usado para formulario cadastro tutor
@@ -209,5 +211,21 @@ export interface ProdutoVenda {
     id?: number,
     nome: string,
     telefone: string,
+  }
+
+  //Nota Fiscal
+  export interface NotaFiscal {
+    id: number,
+    listaDeProdutos: ProdutoVenda[],
+    formaPagamento: string,
+    cliente: Cliente
+  }
+
+  //Dados Metodo Pagamento para Nota Fiscal
+  export interface EnviarDadosNotaFiscal {
+    id: number,
+    listaDeProdutos: ProdutoVenda[],
+    formaPagamento: string,
+    cliente: Cliente
   }
 

@@ -16,10 +16,17 @@
             <app-botao-grande icone="fa-plus" texto="Novo Produto" cor="var(--corPrincipal)" (click)="cadastrarProduto()"></app-botao-grande>
         </div>
         <hr>
+
         <div class="filtros__container">
+          <div class="filtros">
+            <label *ngFor="let filtro of filtrosDisponiveis">
+              <input type="checkbox" [(ngModel)]="filtrosSelecionados[filtro.key]"> {{ filtro.label }}
+            </label>
+          </div>
+
             <!--Criar itens por páginas-->
         </div>
-        <div class="table__container">
+        <!-- <div class="table__container">
             <table *ngIf="loadingSpinner == false; else loading">
                 <tr class="cabecalho-tabela">
                   <th>Foto</th>
@@ -32,7 +39,7 @@
                   <th>Peso</th>
                   <th>Ações</th>
                 </tr>
-              <tr class="tablerow" *ngFor="let item of listaDeProdutos; index as i"> 
+              <tr class="tablerow" *ngFor="let item of listaDeProdutos; index as i">
                 <td class="foto"><img class="table__img" src="{{ item.imagemP }}" alt="Imagem do produto"></td>
                 <td>{{ item.codigoDeBarras }}</td>
                 <td>{{ item.produto }}</td>
@@ -47,7 +54,41 @@
                 </td>
               </tr>
             </table>
-        </div>
+        </div> -->
+        <div class="table__container">
+          <table *ngIf="loadingSpinner == false; else loading">
+            <tr class="cabecalho-tabela">
+              <th *ngIf="filtrosSelecionados['imagemP']">Foto</th>
+              <th *ngIf="filtrosSelecionados['codigoDeBarras']">Código</th>
+              <th class="nome__tabela" *ngIf="filtrosSelecionados['produto']">Nome do produto</th>
+              <th *ngIf="filtrosSelecionados['estoque']">Estoque</th>
+              <th *ngIf="filtrosSelecionados['precoCompra']">P. custo</th>
+              <th *ngIf="filtrosSelecionados['preco']">P. venda</th>
+              <th *ngIf="filtrosSelecionados['lucro']">Lucro</th>
+              <th *ngIf="filtrosSelecionados['peso']">Peso</th>
+              <th *ngIf="filtrosSelecionados['dataVencimento']">Data Vencimento</th>
+              <th *ngIf="filtrosSelecionados['dataVencimento']">Dias para Vencer</th>
+              <th>Ações</th>
+            </tr>
+            <tr class="tablerow" *ngFor="let item of listaDeProdutos; index as i">
+              <td *ngIf="filtrosSelecionados['imagemP']" class="foto">
+                <img class="table__img" src="{{ item.imagemP }}" alt="Imagem do produto">
+              </td>
+              <td *ngIf="filtrosSelecionados['codigoDeBarras']">{{ item.codigoDeBarras }}</td>
+              <td *ngIf="filtrosSelecionados['produto']">{{ item.produto }}</td>
+              <td *ngIf="filtrosSelecionados['estoque']">{{ item.estoque }}</td>
+              <td *ngIf="filtrosSelecionados['precoCompra']">{{ item.precoCompra | currency:'R$ ':'symbol':'1.2-2' }}</td>
+              <td *ngIf="filtrosSelecionados['preco']">{{ item.preco | currency:'R$ ':'symbol':'1.2-2' }}</td>
+              <td *ngIf="filtrosSelecionados['lucro']">{{ calcularLucro(item) }}</td>
+              <td *ngIf="filtrosSelecionados['peso']">{{ item.peso }}</td>
+              <td *ngIf="filtrosSelecionados['dataVencimento']">{{ item.dataVencimento }}</td>
+              <td *ngIf="filtrosSelecionados['dataVencimento']">{{ calcularDiasParaVencer(item.dataVencimento) }}</td>
+              <td class="acoes">
+                <fa-icon class="editar" title="Detalhes" [icon]="getIcone('fa-circle-info')" routerLink="/detalhes-produto/{{item.codigoDeBarras}}"></fa-icon>
+                <fa-icon class="editar" [icon]="getIcone('fa-pencil')" (click)="editarItem(i)"></fa-icon>
+              </td>
+            </tr>
+          </table>
     </div>
     <ng-template #loading>
       <div class="loading">
