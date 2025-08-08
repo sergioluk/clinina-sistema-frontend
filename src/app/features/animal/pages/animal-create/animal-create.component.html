@@ -1,0 +1,138 @@
+
+<h1 class="titulo">{{ isEditMode ? "Editar" : "Cadastrar"}} Animal</h1>
+
+<div class="tutor-cabecalho" *ngIf="tutor">
+  <h3><strong>Tutor selecionado:</strong></h3>
+  <div>
+    <p><strong>Nome:</strong> {{ tutor.pessoa.nome }}</p>
+    <p><strong>CPF:</strong> <span class="descricao"> {{ tutor.pessoa.cpf || 'Não informado' }}</span></p>
+    <p><strong>Telefone:</strong> <span class="descricao"> {{ tutor.pessoa.telefone || 'Não informado' }}</span></p>
+    <p><strong>Celular:</strong> <span class="descricao"> {{ tutor.pessoa.celular || 'Não informado' }}</span></p>
+  </div>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="img">
+    <div *ngIf="!form.get('foto')?.value" class="add-imagem">
+      <fa-icon [icon]="getIcone('fa-circle-plus')"></fa-icon>
+      <br>
+      ADICIONAR
+      <br>
+      FOTO DE PERFIL
+      <br>
+      (OPCIONAL)
+    </div>
+    <img *ngIf="form.get('foto')?.value" src="https://cdn-icons-png.flaticon.com/512/4823/4823463.png" alt="Foto do animal">
+  </div>
+  <div class="campos">
+    <mat-form-field>
+      <mat-label>Nome</mat-label>
+      <input matInput type="text" placeholder="Digite o nome do animal" formControlName="nome">
+      <button *ngIf="form.get('nome')?.value" matSuffix matIconButton aria-label="Clear" (click)="limparCampo('nome')">
+        <mat-icon aria-hidden="false" fontIcon="close"></mat-icon>
+      </button>
+    </mat-form-field>
+
+    <div class="campos-flex">
+      <!-- Espécie -->
+      <mat-form-field>
+        <mat-label>Espécie</mat-label>
+        <mat-select formControlName="especie">
+          <mat-option value="CAO">Cão</mat-option>
+          <mat-option value="GATO">Gato</mat-option>
+          <mat-option value="OUTRO">Outro</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!-- Raça -->
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Raça</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="raca"
+          [matAutocomplete]="autoRaca"
+          (input)="filtrarRacas()"
+        >
+        <mat-autocomplete #autoRaca="matAutocomplete">
+          <mat-option *ngFor="let raca of racasFiltradas" [value]="raca">
+            {{ raca }}
+          </mat-option>
+        </mat-autocomplete>
+        <mat-error *ngIf="form.get('raca')?.hasError('racaInvalida')">
+          Raça inválida. Escolha uma das opções sugeridas.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="campos-flex">
+      <!-- Sexo -->
+      <mat-form-field>
+        <mat-label>Sexo</mat-label>
+          <mat-select formControlName="sexo">
+            <mat-option value="Macho">Macho</mat-option>
+            <mat-option value="Femea">Fêmea</mat-option>
+          </mat-select>
+      </mat-form-field>
+      <!-- Pelagem -->
+      <mat-form-field>
+        <mat-label>Pelagem</mat-label>
+        <mat-select formControlName="pelagem">
+          <mat-option *ngFor="let pelagem of listaDePelagem" [value]=pelagem >{{pelagem}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="campos-flex">
+      <!-- Cor -->
+      <mat-form-field appearance="fill">
+        <mat-label>Cor</mat-label>
+        <input matInput type="text" placeholder="Digite a Cor" formControlName="cor">
+        <button *ngIf="form.get('cor')?.value" matSuffix matIconButton aria-label="Clear" (click)="limparCampo('cor')">
+          <mat-icon aria-hidden="false" fontIcon="close"></mat-icon>
+        </button>
+      </mat-form-field>
+
+      <!-- Data de Nascimento -->
+      <mat-form-field appearance="fill">
+        <mat-label>Data de Nascimento</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dataNascimento">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="campos-flex">
+      <!-- Tamanho -->
+      <mat-form-field>
+        <mat-label>Tamanho</mat-label>
+          <mat-select formControlName="tamanho">
+            <mat-option value="PEQUENO">Pequeno</mat-option>
+            <mat-option value="MEDIO">Médio</mat-option>
+            <mat-option value="GRANDE">Grande</mat-option>
+          </mat-select>
+      </mat-form-field>
+
+      <!-- Castrado -->
+      <mat-form-field>
+        <mat-label>Castrado</mat-label>
+          <mat-select formControlName="castrado">
+            <mat-option [value]=false >Não</mat-option>
+            <mat-option [value]=true >Sim</mat-option>
+          </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- Observações -->
+    <mat-form-field>
+      <mat-label>Observações</mat-label>
+      <textarea matInput formControlName="observacoes"></textarea>
+    </mat-form-field>
+
+    <button class="btn" type="submit" [disabled]="form.invalid">
+      {{ isEditMode ? 'Atualizar' : 'Cadastrar' }}
+    </button>
+  </div>
+
+</form>
+
+<div>{{form.value | json}}</div>

@@ -1,0 +1,164 @@
+
+<h1 class="titulo">AGENDAR</h1>
+
+<form class="formulario-container" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <div class="imagem-container">
+    <img [src]=img alt="Foto do animal">
+  </div>
+  <div class="campos">
+    <div *ngIf="animal.nome != ''">
+      <p class="nome">{{animal.nome}}</p>
+      <p class="descricao">Tutor: {{animal.tutorNome}}</p>
+    </div>
+
+    <div class="campos-flex">
+      <!-- Data -->
+      <mat-form-field appearance="fill">
+        <mat-label>Data</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="data">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <div class="fit"> </div>
+
+
+    </div>
+
+    <div class="campos-flex">
+      <!-- Hora de Entrada -->
+      <mat-form-field appearance="fill">
+        <mat-label>Hora de Entrada</mat-label>
+        <input matInput [ngxMatTimepicker]="timePickerEntrada" [format]=24 formControlName="horaEntrada">
+        <ngx-mat-timepicker #timePickerEntrada></ngx-mat-timepicker>
+      </mat-form-field>
+
+      <!-- Hora de Saída -->
+      <mat-form-field appearance="fill">
+        <mat-label>Hora de Saída</mat-label>
+        <input matInput [ngxMatTimepicker]="timePickerSaida" [format]=24 formControlName="horaSaida">
+        <ngx-mat-timepicker #timePickerSaida></ngx-mat-timepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="campos-flex">
+      <!-- Tipo -->
+      <mat-form-field>
+        <mat-label>Tipo</mat-label>
+          <mat-select formControlName="tipo">
+            <mat-option value="AVULSO">Avulso</mat-option>
+            <mat-option value="PACOTE">Pacote</mat-option>
+          </mat-select>
+      </mat-form-field>
+      <!-- Status -->
+      <mat-form-field>
+      <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+          <mat-option value="PRE_AGENDADO">Pré-agendado</mat-option>
+          <mat-option value="ENCAIXE">Encaixe</mat-option>
+          <mat-option value="ATENDENDO">Atendendo</mat-option>
+          <mat-option value="PRONTO">Pronto</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
+    <!-- Serviços -->
+    <div class="servicos">
+      <label>Serviços:</label>
+      <div class="servicos-flex">
+        <div *ngFor="let servico of servicos">
+          <mat-checkbox
+            [checked]="form.value.servicosIds.includes(servico.id)"
+            (change)="onServicoToggle(servico.id, $event)">
+            {{ servico.nome }}
+          </mat-checkbox>
+        </div>
+      </div>
+
+    </div>
+    <!-- Observações -->
+    <mat-form-field>
+      <mat-label>Observações</mat-label>
+      <textarea matInput formControlName="observacoes"></textarea>
+    </mat-form-field>
+
+    <!-- Descrição -->
+    <mat-form-field>
+      <mat-label>Descrição</mat-label>
+      <textarea matInput formControlName="descricao"></textarea>
+    </mat-form-field>
+
+    <button class="btn" type="submit" [disabled]="form.invalid">
+      {{ isEditMode ? 'Atualizar' : 'Agendar' }}
+    </button>
+
+    <div>{{form.value | json}}</div>
+
+  </div>
+
+
+  <!-- <label>Data Entrada:</label>
+  <input type="datetime-local" formControlName="dataEntrada" />
+
+  <label>Data Saída:</label>
+  <input type="datetime-local" formControlName="dataSaida" />
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Data Saída</mat-label>
+    <input matInput placeholder="Ex. Pizza" value="Sushi">
+  </mat-form-field> -->
+
+
+
+
+
+
+
+
+
+  <!-- <label>Tipo:</label>
+  <select formControlName="tipo">
+    <option value="AVULSO">Avulso</option>
+    <option value="PACOTE">Pacote</option>
+  </select> -->
+
+
+  <!-- <label>Status:</label>
+  <select formControlName="status">
+    <option value="PRE_AGENDADO">Pré-agendado</option>
+    <option value="ENCAIXE">Encaixe</option>
+    <option value="ATENDENDO">Atendendo</option>
+    <option value="PRONTO">Pronto</option>
+  </select> -->
+
+
+
+  <!-- <label>Descrição:</label>
+  <textarea formControlName="descricao"></textarea> -->
+
+
+
+  <!-- <label>Observações:</label>
+  <textarea formControlName="observacoes"></textarea> -->
+
+
+
+  <!-- <label>Serviços:</label>
+  <div *ngFor="let servico of servicos">
+    <input
+      type="checkbox"
+      [value]="servico.id"
+      (change)="onServicoToggle(servico.id, $event)"
+      [checked]="form.value.servicosIds.includes(servico.id)"
+    />
+    {{ servico.nome }}
+  </div> -->
+
+
+
+
+
+</form>
+

@@ -81,6 +81,31 @@ const routes: Routes = [
     component: ClientesComponent
   },
   {
+    path: 'tutores',
+    loadChildren: () =>
+      import('./features/tutor/tutor.module').then((m) => m.TutorModule),
+  },
+  {
+    path: 'animais',
+    loadChildren: () =>
+      import('./features/animal/animal.module').then((m) => m.AnimalModule),
+  },
+  {
+    path: 'banho-e-tosa/agendamentos',
+    loadChildren: () =>
+      import('./features/agendamento/agendamento.module').then((m) => m.AgendamentoModule),
+  },
+  {
+    path: 'banho-e-tosa/servicos',
+    loadChildren: () =>
+      import('./features/servico/servico.module').then((m) => m.ServicoModule),
+  },
+  {
+    path: 'clientes2',
+    loadChildren: () =>
+      import('./features/cliente/cliente.module').then((m) => m.ClienteModule),
+  },
+  {
     path: '**',
     redirectTo: 'login' // Ou redirecione para uma página de erro como PageNotFoundComponent
   }

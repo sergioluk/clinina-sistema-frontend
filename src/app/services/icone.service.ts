@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { faTrashCan, faCircleXmark, faCircleLeft, faCircleCheck, faRectangleList, faEnvelope, faEnvelopeOpen, faPaperPlane, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
-import { faMagnifyingGlass, faCartPlus, faXmark, faBars, faPencil, faCartShopping, faPlus, faTriangleExclamation, faDollarSign, faMoneyBill, faBagShopping, faWarehouse, faArrowRight, faArrowLeft, faHouse, faPhone, faPaw, faMessage, faRightToBracket, faFilter, faPerson, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faCartPlus, faXmark, faBars, faPencil, faCartShopping, faPlus, faTriangleExclamation, faDollarSign, faMoneyBill, faBagShopping, faWarehouse, faArrowRight, faArrowLeft, faHouse, faPhone, faPaw, faMessage, faRightToBracket, faFilter, faPerson, faCheck, faShower, faScissors, faCar, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { faMoneyBill1, faFloppyDisk, faChartLine, faHandHoldingDollar, faDog, faStethoscope, faCircleInfo, faUser } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({
@@ -82,6 +82,9 @@ export class IconeService {
       case 'fa-circle-xmark':
         icone = faCircleXmark;
         break;
+      case 'fa-circle-plus':
+        icone = faCirclePlus;
+        break;
       case 'fa-cart-shopping':
         icone = faCartShopping;
         break;
@@ -129,6 +132,15 @@ export class IconeService {
         break;
       case 'fa-circle-info':
         icone = faCircleInfo;
+        break;
+      case 'fa-shower':
+        icone = faShower;
+        break;
+      case 'fa-scissors':
+        icone = faScissors;
+        break;
+      case 'fa-car':
+        icone = faCar;
         break;
       default:
         icone = faBars;

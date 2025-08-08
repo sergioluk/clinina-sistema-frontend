@@ -1,0 +1,69 @@
+.servicos__container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  background-color: var(--corBranco);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+hr {
+  height: 1px;
+  border: 0;
+  border-top: 1px solid var(--corPrincipal);
+}
+.menu {
+  font-size: 33px;
+  color: var(--corPrincipal);
+}
+.titulo {
+  color: var(--corPrincipal);
+  text-align: center;
+  font-size: 30px;
+  width: 100%;
+}
+.flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px;
+}
+.filtro-novo-servico {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+table {
+  width: 100%;
+}
+
+/* .mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+} */
+.filtro-novo-servico mat-form-field {
+  width: 40%;
+}
+.apagar {
+  color: var(--corVermelho);
+  cursor: pointer;
+  padding: 3px 5px;
+  border-radius: 3px;
+  transition: all 0.3s;
+}
+.editar {
+  color: var(--corVerde);
+  margin-right: 10px;
+  padding: 3px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.3s;
+}
+.editar:hover {
+  background-color: var(--corVerde);
+  color: var(--corBranco);
+}
+.apagar:hover {
+  background-color: var(--corVermelho);
+  color: var(--corBranco);
+}

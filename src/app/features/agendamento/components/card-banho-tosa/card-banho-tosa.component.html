@@ -1,0 +1,23 @@
+<ng-container>
+  <div class="card-info">
+    <div>
+        <p>
+          <strong>{{agendamento?.animalNome}}</strong>
+          <small> {{agendamento?.especie}} {{agendamento?.sexo}} {{agendamento?.raca}}, {{agendamento?.tamanho}}, {{agendamento?.pelagem}}</small>
+        </p>
+        <p class="obs">{{agendamento?.observacoes}}</p>
+      </div>
+      <hr>
+      <div class="card-info-flex">
+        <div class="card-info-servicos">
+          <p class="horario">{{agendamento?.horaEntrada}}</p>
+          <p>{{agendamento?.tipo}}</p>
+          <p *ngFor="let servico of agendamento?.servicos">{{servico.nome}}</p>
+          <p>{{agendamento?.tutorNome}}</p>
+        </div>
+        <div class="card-info-foto">
+          <img src={{agendamento?.foto}} alt="Foto do pet">
+        </div>
+    </div>
+  </div>
+</ng-container>

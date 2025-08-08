@@ -1,0 +1,28 @@
+<p>cliente-list works!</p>
+<h2>Lista de Clientes</h2>
+<button routerLink="/clientes2/novo">Novo Cliente</button>
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>CPF</th>
+      <th>Telefone</th>
+      <th>Celular</th>
+      <th>Email</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cliente of clientes">
+      <td>{{ cliente.pessoa.nome }}</td>
+      <td>{{ cliente.pessoa.cpf }}</td>
+      <td>{{ cliente.pessoa.telefone }}</td>
+      <td>{{ cliente.pessoa.celular }}</td>
+      <td>{{ cliente.pessoa.email }}</td>
+      <td>
+        <button (click)="editar(cliente.id!)">Editar</button>
+        <button (click)="excluir(cliente.id!)">Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

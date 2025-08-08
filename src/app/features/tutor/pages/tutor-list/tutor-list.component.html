@@ -1,0 +1,29 @@
+<p>tutor-list works!</p>
+<h2>Lista de Tutores</h2>
+
+<a routerLink="/tutores/novo">Cadastrar Novo Tutor</a>
+
+<table border="1" cellPadding="5">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>CPF</th>
+      <th>Celular</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tutor of tutores">
+      <td>{{ tutor.id }}</td>
+      <td>{{ tutor.pessoa.nome }}</td>
+      <td>{{ tutor.pessoa.cpf }}</td>
+      <td>{{ tutor.pessoa.celular }}</td>
+      <td>{{ tutor.pessoa.email }}</td>
+      <td>
+        <button [routerLink]="['/tutores/editar', tutor.id]">Editar</button>
+        <button (click)="deletarTutor(tutor.id!)">Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

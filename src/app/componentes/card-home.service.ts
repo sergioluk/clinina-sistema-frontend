@@ -4,13 +4,15 @@ import { Observable } from 'rxjs';
 import { CadastroProduto, Categoria, Fiado, Fornecedor, Idade, Mensagem, Relatorio, RelatorioDTO, RelatorioFiado, Sabor, Venda, Vender } from './cadastro-produto/cadastro-produto';
 import { CadastrarLancamento, Caixa, CaixaCompleto, CategoriasLancamentos, Cliente, DetalhesProduto, LinhaDoTempo, ListaLancamento, Login, PaginaLancamentos, ProdutoVenda, Tutor } from '../interfaces/produtoVenda';
 
+import { API_BASE_URL } from '../shared/constants';
+
 @Injectable({
   providedIn: 'root'
 })
 export class CardHomeService {
 
-  private readonly API = 'https://clinina-backend.onrender.com';
-  //private readonly API = 'http://localhost:8080';
+  //private readonly API = 'https://clinina-backend-2.onrender.com';
+  private readonly API = API_BASE_URL;
 
   constructor(private http: HttpClient) { }
 

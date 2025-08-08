@@ -1,0 +1,27 @@
+<h2>{{ isEditMode ? 'Editar Cliente' : 'Cadastrar Cliente' }}</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <fieldset>
+    <legend>Dados Pessoais</legend>
+    <input formControlName="nome" placeholder="Nome" />
+    <input formControlName="cpf" placeholder="CPF" />
+    <input formControlName="telefone" placeholder="Telefone" />
+    <input formControlName="celular" placeholder="Celular" />
+    <input formControlName="email" placeholder="Email" />
+  </fieldset>
+
+  <fieldset formGroupName="endereco">
+    <legend>Endereço</legend>
+    <input formControlName="cep" placeholder="CEP" />
+    <input formControlName="rua" placeholder="Rua" />
+    <input formControlName="numero" placeholder="Número" />
+    <input formControlName="bairro" placeholder="Bairro" />
+    <input formControlName="cidade" placeholder="Cidade" />
+    <input formControlName="uf" placeholder="UF" />
+    <input formControlName="complemento" placeholder="Complemento" />
+  </fieldset>
+
+  <button type="submit" [disabled]="form.invalid">
+    {{ isEditMode ? 'Atualizar' : 'Cadastrar' }}
+  </button>
+</form>

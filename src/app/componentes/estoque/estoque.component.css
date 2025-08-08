@@ -1,7 +1,7 @@
 .cadastro__container {
     width: 100%;
     min-height: 100vh;
-    padding: 20px;
+    padding: 10px;
     background-color: var(--corBranco);
     display: flex;
     flex-direction: column;

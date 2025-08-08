@@ -1,0 +1,171 @@
+
+<h1 class="titulo">{{ isEditMode ? "Editar" : "Cadastrar"}} Tutor</h1>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)" expanded="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="mat-titulo"> Identificação </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="campos">
+
+        <!-- Nome -->
+        <mat-form-field>
+          <mat-label>Nome</mat-label>
+          <input matInput type="text" placeholder="Digite o nome do tutor" formControlName="nome">
+          <button *ngIf="form.get('nome')?.value" matSuffix matIconButton aria-label="Clear" (click)="limparCampo('nome')">
+            <mat-icon aria-hidden="false" fontIcon="close"></mat-icon>
+          </button>
+        </mat-form-field>
+
+        <div class="campos-flex">
+          <!-- Email -->
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput type="email" placeholder="Digite o email do tutor" formControlName="email">
+            <button *ngIf="form.get('email')?.value" matSuffix matIconButton aria-label="Clear" (click)="limparCampo('email')">
+              <mat-icon aria-hidden="false" fontIcon="close"></mat-icon>
+            </button>
+          </mat-form-field>
+
+          <!-- CPF -->
+          <mat-form-field>
+            <mat-label>CPF</mat-label>
+            <input matInput type="text" placeholder="Digite o CPF do tutor" formControlName="cpf">
+            <button *ngIf="form.get('cpf')?.value" matSuffix matIconButton aria-label="Clear" (click)="limparCampo('cpf')">
+              <mat-icon aria-hidden="false" fontIcon="close"></mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+
+        <div class="campos-flex">
+          <!-- Celular -->
+          <mat-form-field>
+            <mat-label>Celular</mat-label>
+            <input matInput type="tel" placeholder="Digite o celular do tutor" formControlName="celular">
+            <button *ngIf="form.get('celular')?.value" matSuffix matIconButton aria-label="Clear" (click)="limparCampo('celular')">
+              <mat-icon aria-hidden="false" fontIcon="close"></mat-icon>
+            </button>
+          </mat-form-field>
+
+          <!-- Telefone -->
+          <mat-form-field>
+            <mat-label>Telefone</mat-label>
+            <input matInput type="tel" placeholder="Digite o telefone do tutor" formControlName="telefone">
+            <button *ngIf="form.get('telefone')?.value" matSuffix matIconButton aria-label="Clear" (click)="limparCampo('telefone')">
+              <mat-icon aria-hidden="false" fontIcon="close"></mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)" expanded="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="mat-titulo"> Endereço </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="campos" formGroupName="endereco">
+        <div class="campos-flex">
+          <!-- CEP -->
+          <mat-form-field>
+            <mat-label>CEP</mat-label>
+            <input matInput type="text" placeholder="Digite o CEP do tutor" formControlName="cep">
+            <button *ngIf="form.get('cep')?.value" matSuffix matIconButton aria-label="Clear" (click)="limparCampo('cep')">
+              <mat-icon aria-hidden="false" fontIcon="close"></mat-icon>
+            </button>
+            <mat-error *ngIf="form.get('endereco.cep')?.hasError('cepNaoEncontrado')">
+              CEP não encontrado. Verifique e tente novamente.
+            </mat-error>
+            <mat-error *ngIf="form.get('endereco.cep')?.hasError('cepInvalido')">
+              CEP inválido. Digite 8 números.
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Rua -->
+          <mat-form-field class="rua">
+            <mat-label>Rua</mat-label>
+            <input matInput type="text" placeholder="Digite o rua do tutor" formControlName="rua">
+            <button *ngIf="form.get('rua')?.value" matSuffix matIconButton aria-label="Clear" (click)="limparCampo('rua')">
+              <mat-icon aria-hidden="false" fontIcon="close"></mat-icon>
+            </button>
+          </mat-form-field>
+
+          <!-- Número -->
+          <mat-form-field>
+            <mat-label>Número</mat-label>
+            <input matInput type="text" placeholder="Digite o número" formControlName="numero">
+            <button *ngIf="form.get('numero')?.value" matSuffix matIconButton aria-label="Clear" (click)="limparCampo('numero')">
+              <mat-icon aria-hidden="false" fontIcon="close"></mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+
+        <div class="campos-flex">
+          <!-- Bairro -->
+          <mat-form-field>
+            <mat-label>Bairro</mat-label>
+            <input matInput type="text" placeholder="Digite o bairro do tutor" formControlName="bairro">
+            <button *ngIf="form.get('bairro')?.value" matSuffix matIconButton aria-label="Clear" (click)="limparCampo('bairro')">
+              <mat-icon aria-hidden="false" fontIcon="close"></mat-icon>
+            </button>
+          </mat-form-field>
+
+          <!-- Complemento -->
+          <mat-form-field>
+            <mat-label>Complemento</mat-label>
+            <input matInput type="text" placeholder="Digite o complemento" formControlName="complemento">
+            <button *ngIf="form.get('complemento')?.value" matSuffix matIconButton aria-label="Clear" (click)="limparCampo('complemento')">
+              <mat-icon aria-hidden="false" fontIcon="close"></mat-icon>
+            </button>
+          </mat-form-field>
+
+          <!-- UF -->
+          <mat-form-field appearance="fill">
+            <mat-label>UF</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="uf"
+              [matAutocomplete]="autoUF"
+              (input)="filtrarUF()"
+            >
+            <mat-autocomplete #autoUF="matAutocomplete">
+              <mat-option *ngFor="let uf of listaUFFiltradas" [value]="uf">
+                {{ uf }}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="form.get('endereco.uf')?.hasError('ufInvalida')">
+              UF inválido.
+            </mat-error>
+          </mat-form-field>
+
+          <!-- Cidade -->
+          <mat-form-field>
+            <mat-label>Cidade</mat-label>
+            <input matInput type="text" placeholder="Digite a cidade" formControlName="cidade">
+            <button *ngIf="form.get('cidade')?.value" matSuffix matIconButton aria-label="Clear" (click)="limparCampo('cidade')">
+              <mat-icon aria-hidden="false" fontIcon="close"></mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+      </div>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <div class="div-btn">
+    <button class="btn" type="submit" [disabled]="form.invalid">
+      {{ isEditMode ? 'Atualizar' : 'Cadastrar' }}
+    </button>
+  </div>
+
+
+</form>
+
+<div>{{ form.value | json }}</div>

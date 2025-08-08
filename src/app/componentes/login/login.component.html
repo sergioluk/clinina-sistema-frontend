@@ -2,8 +2,8 @@
     <div class="login-container" [formGroup]="formulario">
         <img src="assets/img/menu-logo.png" alt="Logo Clinina">
         <h2>Acesse sua conta</h2>
-        <app-input label="Usuário" type="text" placeholder="Digite seu usuário" for="usario" formControlName="usuario" [negrito]="true" (keydown.enter)="logar()"></app-input>
-        <app-input label="Senha" type="password" placeholder="Digite sua senha" for="senha" formControlName="senha" [negrito]="true"  (keydown.enter)="logar()"></app-input>
+        <app-input label="Usuário" type="text" placeholder="Digite seu usuário:" for="usario" formControlName="usuario" [negrito]="true" (keydown.enter)="logar()"></app-input>
+        <app-input label="Senha" type="password" placeholder="Digite sua senha:" for="senha" formControlName="senha" [negrito]="true"  (keydown.enter)="logar()"></app-input>
         <p *ngIf="loginFalhou">Usuário ou senha incorreta!</p>
         <app-botao-pequeno texto="Entrar" cor="var(--corPrincipal)" icone="fa-right-to-bracket" (click)="logar()"></app-botao-pequeno>
     </div>

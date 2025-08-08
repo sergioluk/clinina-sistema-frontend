@@ -1,0 +1,119 @@
+<h1>Nova Consulta</h1>
+
+<div class="padding">
+  <div class="campo-de-pesquisa">
+    <fa-icon [icon]="getIcone('fa-magnifying-glass')"></fa-icon>
+    <input type="text" placeholder="{{getPlaceholder()}}" [formControl]="busca"  autofocus>
+  </div>
+</div>
+
+
+<div class="pesquisa-container" *ngIf="modo !== 'criar-animal' || busca.value.length >= 2, else aviso">
+
+  <mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)" expanded="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="titulo"> Tutores ({{resultadosTutores.length}}) </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="container-acordeon">
+        <div class="informacoes" *ngFor="let tutor of resultadosTutores">
+          <div class="dflex">
+            <div>
+              <p class="nome">{{tutor.nome}}</p>
+              <p class="descricao">
+                CPF {{tutor.cpf || "NÃO INFORMADO"}} - Celular {{tutor.celular || "NÃO INFORMADO"}} - Telefone {{tutor.telefone || "NÃO INFORMADO"}}
+              </p>
+            </div>
+            <div *ngIf="modo === 'criar-animal'" class="btn-selecionar-animal" (click)="selecionarTutor(tutor)">SELECIONAR TUTOR(A)</div>
+          </div>
+          <mat-expansion-panel (opened)="abrirPainelAnimais(tutor.id)" (closed)="fecharPainelAnimais(tutor.id)">
+            <mat-expansion-panel-header>
+              <mat-panel-title class="titulo"> {{isPainelAnimalAberto(tutor.id) ? 'Ocultar' : 'Ver'}} Animais do(a) Tutor(a) </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="tutor-animais-container">
+
+              <div class="card-tutor-animal" *ngFor="let animal of tutor.animais">
+                <div class="flex">
+                  <div class="card-tutor-animal-img">
+                    <img src="{{animal.foto}}" alt="Foto do animal">
+                  </div>
+                  <div>
+                    <div class="card-tutor-animal-nome">{{animal.nome}}</div>
+                    <div>Raça: <span class="descricao">{{animal.raca}}</span></div>
+                    <div>Idade: <span class="descricao">{{calcularIdade(animal.dataNascimento)}}</span></div>
+                  </div>
+                </div>
+                <div *ngIf="modo !=='criar-animal'" class="selecao" (click)="selecionarAnimal(animal)">SELECIONAR ANIMAL</div>
+              </div>
+
+              <div class="novo-animal" (click)="selecionarTutor(tutor)">
+                <fa-icon [icon]="getIcone('fa-circle-plus')" ></fa-icon>
+                <p>Cadastrar Novo Animal</p>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </div>
+
+      </div>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <mat-accordion *ngIf="modo !== 'criar-animal'">
+    <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)" expanded="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title class="titulo"> Animais ({{resultadosAnimais.length}}) </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="container-acordeon">
+        <div class="informacoes" *ngFor="let animal of resultadosAnimais">
+          <div class="selecionar-animal-container">
+            <div class="flex">
+              <div class="card-tutor-animal-img">
+                <img src="{{animal.foto}}" alt="Foto do animal">
+              </div>
+              <div>
+                <div class="nome">{{animal.nomePet}}</div>
+                <div>ID: {{animal.id}} - <span class="descricao">{{animal.raca}} Pelo {{animal.pelagem}} - {{calcularIdade(animal.dataNascimento)}}</span></div>
+                <div>Tutor(a): <span class="descricao">{{animal.nomeTutor}}</span></div>
+              </div>
+            </div>
+            <div class="btn-selecionar-animal" (click)="selecionarAnimal(animal)">SELECIONAR ANIMAL</div>
+          </div>
+          <mat-expansion-panel (opened)="abrirPainelTutor(animal.id)" (closed)="fecharPainelTutor(animal.id)">
+            <mat-expansion-panel-header>
+              <mat-panel-title class="titulo"> {{isPainelTutorAberto(animal.id) ? 'Ocultar' : 'Ver'}} Informações do(a) Tutor(a) </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="informacoes-tutor">
+              <div>
+                <p class="descricao">Nome</p>
+                <p class="info">{{animal.nomeTutor}}</p>
+              </div>
+              <div>
+                <p class="descricao">CPF</p>
+                <p class="info">{{animal.cpf || 'Não informado'}}</p>
+              </div>
+              <div>
+                <p class="descricao">Celular</p>
+                <p class="info">{{animal.celular || 'Não informado'}}</p>
+              </div>
+              <div>
+                <p class="descricao">Telefone</p>
+                <p class="info">{{animal.telefone || 'Não informado'}}</p>
+              </div>
+            </div>
+
+          </mat-expansion-panel>
+        </div>
+
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+
+</div>
+
+<ng-template #aviso>
+  <div class="aviso padding pesquisa-container">
+    Para cadastrar um animal, é preciso antes selecionar o(a) tutor(a) a quem este animal ficará vinculado
+  </div>
+</ng-template>

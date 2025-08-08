@@ -1,0 +1,28 @@
+<p>animal-list works!</p>
+<h2>Lista de Animais</h2>
+
+<button routerLink="/animais/novo">Novo Animal</button>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Espécie</th>
+      <th>Tutor</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let animal of animais">
+      <td>{{ animal.id }}</td>
+      <td>{{ animal.nome }}</td>
+      <td>{{ animal.especie }}</td>
+      <td>{{ animal.tutorId }}</td>
+      <td>
+        <button (click)="editar(animal.id!)">Editar</button>
+        <button (click)="excluir(animal.id!)">Excluir</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,144 @@
+
+<div class="cadastro__container">
+  <div class="flex">
+    <div class="menu">
+      <fa-icon [icon]="getIcone('fa-bars')"></fa-icon>
+    </div>
+    <h1 class="titulo">AGENDAMENTO</h1>
+  </div>
+  <hr>
+  <!-- <app-consulta></app-consulta> -->
+  <div class="container-agendamento">
+    <div class="acoes-conteiner">
+      <div class="acoes">
+        <ng-select>
+          <ng-option value="0">Selecione o cliente</ng-option>
+          <ng-option *ngFor="let cliente of listaDeClientes" [value]="cliente.id">{{cliente.pessoa.nome}} | {{cliente.pessoa.telefone}}</ng-option>
+        </ng-select>
+        <app-botao-pequeno cor="var(--corPrincipal)" texto="Agendar" icone="fa-plus" (click)="agendar()"></app-botao-pequeno>
+        <app-botao-pequeno cor="var(--corPrincipal)" texto="Consultar" icone="fa-magnifying-glass"></app-botao-pequeno>
+      </div>
+      <div class="criar-tutor-animal-flex">
+        <app-botao-pequeno cor="var(--corPrincipal)" texto="Novo Tutor(a)" icone="fa-plus" (click)="novoTutor()"></app-botao-pequeno>
+        <app-botao-pequeno cor="var(--corPrincipal)" texto="Novo Animal" icone="fa-plus" (click)="novoAnimal()"></app-botao-pequeno>
+      </div>
+    </div>
+
+    <div class="calendario">
+      <full-calendar [options]="calendarOptions">
+        <ng-template #eventContent let-arg>
+          <div [ngClass]="corDoCard(arg.event.extendedProps.agendamentoStatus)" class="card-evento">
+            <div>
+              {{arg.event.start | date:'HH:mm'}} - {{arg.event.extendedProps.agendamentoStatus.toLowerCase()}}
+            </div>
+            <div>
+              <!-- Verifica se há categoria 'taxi' -->
+              <fa-icon
+                *ngIf="temCategoria(arg.event.extendedProps.categorias, 'taxi')"
+                class="icone"
+                [icon]="getIcone('fa-car')">
+              </fa-icon>
+              <!-- Verifica se há categoria 'banho' -->
+              <fa-icon
+                *ngIf="temCategoria(arg.event.extendedProps.categorias, 'banho')"
+                class="icone"
+                [icon]="getIcone('fa-shower')">
+              </fa-icon>
+
+              <!-- Verifica se há categoria 'tosa' -->
+              <fa-icon
+                *ngIf="temCategoria(arg.event.extendedProps.categorias, 'tosa')"
+                class="icone"
+                [icon]="getIcone('fa-scissors')">
+              </fa-icon>
+
+              {{arg.event.extendedProps.animalNome}}
+              -
+              {{arg.event.extendedProps.animalTutor}}
+            </div>
+
+
+          </div>
+        </ng-template>
+      </full-calendar>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <app-input-simples placeholder="Digite o nome do produto ou código de barras" (texto)="pesquisar($event)"></app-input-simples> -->
+ <!-- <ng-select formControlName="idCliente"> -->
+
+
+
+
+<!-- <full-calendar
+  [plugins]="calendarPlugins"
+  [initialView]="'timeGridWeek'"
+  [headerToolbar]="headerToolbar"
+  [events]="agendamentos2"
+  (dateClick)="onDateClick($event)"
+  (eventClick)="onEventClick($event)"
+  [slotMinTime]="'08:00:00'"
+  [slotMaxTime]="'18:00:00'"
+>
+</full-calendar> -->
+
+<!-- <div class="card-evento">
+  08:00
+  <fa-icon class="editar" [icon]="getIcone('fa-car')"></fa-icon>
+  <fa-icon class="editar" [icon]="getIcone('fa-shower')"></fa-icon>
+  <fa-icon class="editar" [icon]="getIcone('fa-scissors')"></fa-icon>
+  Mel
+  -
+  Sergio
+</div> -->
+
+
+
+<div class="cards-container">
+
+  <div class="card-status-container corCinza">
+    <h2>Pré agendado</h2>
+    <div class="card-status-list" id="preAgendadosList" cdkDropList #preAgendadoList="cdkDropList" [cdkDropListData]="preAgendadosList" [cdkDropListConnectedTo]="[encaixeList,atendendoList,prontoList]" (cdkDropListDropped)="drop($event)">
+      <app-card-banho-tosa *ngFor="let agendamento of preAgendadosList" cdkDrag
+      [agendamento]=agendamento
+      ></app-card-banho-tosa>
+    </div>
+  </div>
+
+  <div class="card-status-container corLaranja">
+    <h2>Encaixe</h2>
+    <div class="card-status-list" id="encaixesList" cdkDropList #encaixeList="cdkDropList" [cdkDropListData]="encaixesList" [cdkDropListConnectedTo]="[preAgendadoList,atendendoList,prontoList]" (cdkDropListDropped)="drop($event)">
+      <app-card-banho-tosa *ngFor="let agendamento of encaixesList" cdkDrag
+      [agendamento]=agendamento
+      ></app-card-banho-tosa>
+    </div>
+  </div>
+
+  <div class="card-status-container corRoxo">
+    <h2>Atendendo</h2>
+    <div class="card-status-list" id="atendendosList" cdkDropList #atendendoList="cdkDropList" [cdkDropListData]="atendendosList" [cdkDropListConnectedTo]="[preAgendadoList,encaixeList,prontoList]" (cdkDropListDropped)="drop($event)">
+      <app-card-banho-tosa *ngFor="let agendamento of atendendosList" cdkDrag
+      [agendamento]=agendamento
+      ></app-card-banho-tosa>
+    </div>
+  </div>
+
+  <div class="card-status-container corVerde">
+    <h2>Pronto</h2>
+    <div class="card-status-list" id="prontosList" cdkDropList #prontoList="cdkDropList" [cdkDropListData]="prontosList" [cdkDropListConnectedTo]="[preAgendadoList,encaixeList,prontoList,atendendoList]" (cdkDropListDropped)="drop($event)">
+      <app-card-banho-tosa *ngFor="let agendamento of prontosList" cdkDrag
+      [agendamento]=agendamento
+      ></app-card-banho-tosa>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+

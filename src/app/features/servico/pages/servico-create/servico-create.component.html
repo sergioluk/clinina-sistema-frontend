@@ -1,0 +1,49 @@
+
+<h2 class="titulo">{{ isEditMode ? 'Editar Serviço' : 'Novo Serviço' }}</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="campos">
+    <div class="campos-flex">
+      <!-- Nome -->
+      <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input matInput type="text" placeholder="Digite o nome da categoria" formControlName="nome">
+        <button *ngIf="form.get('nome')?.value" matSuffix matIconButton aria-label="Clear" (click)="limparCampo('nome')">
+          <mat-icon aria-hidden="false" fontIcon="close"></mat-icon>
+        </button>
+      </mat-form-field>
+      <!-- Descrição -->
+      <mat-form-field>
+        <mat-label>Descrição</mat-label>
+        <input matInput type="text" placeholder="Digite a descrição da categoria" formControlName="descricao">
+        <button *ngIf="form.get('descricao')?.value" matSuffix matIconButton aria-label="Clear" (click)="limparCampo('descricao')">
+          <mat-icon aria-hidden="false" fontIcon="close"></mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div class="campos-flex">
+      <!-- Preço -->
+      <mat-form-field>
+        <mat-label>Preço</mat-label>
+        <input matInput type="number" placeholder="Digite o preco da categoria" formControlName="preco">
+        <button *ngIf="form.get('preco')?.value" matSuffix matIconButton aria-label="Clear" (click)="limparCampo('preco')">
+          <mat-icon aria-hidden="false" fontIcon="close"></mat-icon>
+        </button>
+      </mat-form-field>
+      <!-- Categoria -->
+      <mat-form-field>
+        <mat-label>Categoria</mat-label>
+        <mat-select formControlName="categoria">
+          <mat-option value="banho">Banho</mat-option>
+          <mat-option value="tosa">Tosa</mat-option>
+          <mat-option value="taxi">Táxi dog</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <button class="btn" type="submit" [disabled]="form.invalid">
+    {{ isEditMode ? 'Atualizar' : 'Cadastrar' }}
+  </button>
+  </div>
+</form>
+<div>{{ form.value | json}}</div>
+<div>{{servicoId}}</div>

@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@ng-select/ng-select/themes/default.theme.css";
+
 *{
   padding: 0;
   margin: 0;
@@ -40,12 +41,17 @@ a {
   /* font-weight: bold; */
 }
 
+.calendario a {
+  color: #000;
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .divs{
   border: 1px solid greenyellow;
 }
+
 
 ::ng-deep .snackbar-sucesso {
   --mdc-snackbar-container-color: var(--corVerde); /* backgroud */
@@ -67,4 +73,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   --mat-mdc-snack-bar-button-color: var(--corVermelho); /* backgroud */
   --mat-snack-bar-button-color: var(--corBranco); /* Cor do texto */
 }
+
+.cdk-overlay-container {
+  z-index: 1060 !important;
+}
+
 

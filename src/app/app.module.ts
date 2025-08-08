@@ -25,11 +25,11 @@ import { InfoComponent } from './layout/info/info.component';
 import { BotaoGrandeComponent } from './layout/botao-grande/botao-grande.component';
 import { ContainerImageComponent } from './layout/container-image/container-image.component';
 import { MenuOpcaoComponent } from './layout/menu-opcao/menu-opcao.component';
-import { InputSimplesComponent } from './layout/input-simples/input-simples.component';
+//import { InputSimplesComponent } from './layout/input-simples/input-simples.component';
 import { TabelaVendaComponent } from './componentes/venda/tabela-venda/tabela-venda.component';
 import { JanelaComponent } from './layout/janela/janela.component';
 import { InputComponent } from './form/input/input.component';
-import { BotaoPequenoComponent } from './layout/botao-pequeno/botao-pequeno.component';
+
 import { EditarDescQtdComponent } from './componentes/venda/editar-desc-qtd/editar-desc-qtd.component';
 import { CancelarVendaComponent } from './componentes/venda/cancelar-venda/cancelar-venda.component';
 import { MetodoPagamentoComponent } from './componentes/venda/metodo-pagamento/metodo-pagamento.component';
@@ -64,9 +64,11 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { ClientesComponent } from './componentes/clientes/clientes.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NotaFiscalComponent } from './componentes/venda/nota-fiscal/nota-fiscal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SharedModule } from './shared/shared.module';
 
 registerLocaleData(localePt);
-
+////InputSimplesComponent,
 @NgModule({
   declarations: [
     AppComponent,
@@ -79,11 +81,10 @@ registerLocaleData(localePt);
     BotaoGrandeComponent,
     ContainerImageComponent,
     MenuOpcaoComponent,
-    InputSimplesComponent,
+
     TabelaVendaComponent,
     JanelaComponent,
     InputComponent,
-    BotaoPequenoComponent,
     EditarDescQtdComponent,
     CancelarVendaComponent,
     MetodoPagamentoComponent,
@@ -132,7 +133,9 @@ registerLocaleData(localePt);
     MatDatepickerModule,
     MatNativeDateModule,
     MatSlideToggleModule,
-    NgSelectModule
+    NgSelectModule,
+    NgbModule,
+    SharedModule
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]
