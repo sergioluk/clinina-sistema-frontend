@@ -36,11 +36,14 @@ export class LancamentoComponent implements OnInit {
     listasPorcentagemCategorias: { receitas: [], despesas: [] },
     atualizadoEm: new Date(),
     totalReceitasPeriodo: 0,
-    totalDespesasPeriodo: 0
+    totalDespesasPeriodo: 0,
+    totalVendasBanhoETosa: 0,
+    totalVendasConsultorio: 0,
+    totalVendasLoja: 0
   }
 
   formulario!: FormGroup;
- 
+
 
   constructor(
     private icone: IconeService,
@@ -48,7 +51,7 @@ export class LancamentoComponent implements OnInit {
     private service: CardHomeService,
     private snackbar: SnackbarService
   ) {
-   
+
   }
 
   ngOnInit(): void {
@@ -60,12 +63,12 @@ export class LancamentoComponent implements OnInit {
 
     this.getLancamentos();
 
-    
+
   }
 
-  
 
-  
+
+
 
   adicionarLancamento(tipoLancamento: string) {
     this.lancamentoSelecionado = tipoLancamento;
@@ -176,5 +179,32 @@ export class LancamentoComponent implements OnInit {
     const ultimoDia = new Date(dataAtual.getFullYear(), dataAtual.getMonth() + 1, 0); // Último dia do mês atual
     return ultimoDia.toISOString().substring(0, 10); // Formato 'yyyy-MM-dd'
   }
+
+  get totalGeral(): number {
+  return (
+    this.paginaLancamentos.totalVendasBanhoETosa +
+    this.paginaLancamentos.totalVendasConsultorio +
+    this.paginaLancamentos.totalVendasLoja
+  );
+}
+
+get percentualBanhoETosa(): number {
+  return this.totalGeral > 0
+    ? (this.paginaLancamentos.totalVendasBanhoETosa / this.totalGeral) * 100
+    : 0;
+}
+
+get percentualConsultorio(): number {
+  return this.totalGeral > 0
+    ? (this.paginaLancamentos.totalVendasConsultorio / this.totalGeral) * 100
+    : 0;
+}
+
+get percentualLoja(): number {
+  return this.totalGeral > 0
+    ? (this.paginaLancamentos.totalVendasLoja / this.totalGeral) * 100
+    : 0;
+}
+
 
 }

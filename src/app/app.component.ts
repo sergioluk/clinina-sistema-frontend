@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
 import { LoginService } from './services/login.service';
+import { dev } from './shared/constants';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ export class AppComponent implements OnInit{
   title = 'clinina';
 
   //Custom meu pra baixo
-  dev = false;
+  dev = dev;
 
   constructor(private router: Router, public login: LoginService) {}
 

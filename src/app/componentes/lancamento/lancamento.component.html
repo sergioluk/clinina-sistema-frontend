@@ -14,7 +14,7 @@
             <app-input type="date" for="dataFim" label="Data fim" placeholder="31/08/2024" [negrito]="true" formControlName="dataFim" (change)="getLancamentos()"></app-input>
         </form>
 
-        
+
 
         <div class="pagar-receber-container">
             <div class="card">
@@ -32,6 +32,7 @@
                         <p>Receitas do período:</p>
                         <p>{{paginaLancamentos.totalReceitasPeriodo  | currency:'R$ ':'symbol':'1.2-2'}}</p>
                     </div>
+
                 </div>
                 <app-botao-pequeno class="btn-card" cor="var(--corVerde)" texto="Adicionar receita" (click)="adicionarLancamento('receita')"></app-botao-pequeno>
             </div>
@@ -59,7 +60,8 @@
                     <small class="cinza">Atualizado em {{paginaLancamentos.atualizadoEm | date:'dd/MM/yyyy':'UTC':'pt-BR'}}</small>
                 </div>
                 <div class="saldos">
-                    <p class="valor-card">{{paginaLancamentos.projecaoSaldo | currency:'R$ ':'symbol':'1.2-2' }}</p>
+                    <!-- <p class="valor-card">{{paginaLancamentos.projecaoSaldo | currency:'R$ ':'symbol':'1.2-2' }}</p> -->
+                    <p>Saldo: {{(paginaLancamentos.totalReceitasPeriodo - paginaLancamentos.totalDespesasPeriodo) | currency:'R$ ':'symbol':'1.2-2'}}</p>
                     <hr>
                     <div class="space-between">
                         <p class="cinza">Saldo anterior</p>
@@ -117,7 +119,28 @@
                 </div>
             </div>
             <div class="tabela-categoria">
-                <h5 class="valor-card">Por categoria</h5>
+              <h5 class="valor-card">Por categoria</h5>
+                <div class="space-between">
+                    <p>Banho e Tosa:</p>
+                    <p>
+                      {{paginaLancamentos.totalVendasBanhoETosa  | currency:'R$ ':'symbol':'1.2-2'}}
+                      ({{ percentualBanhoETosa | number:'1.0-2' }}%)
+                    </p>
+                </div>
+                <div class="space-between">
+                    <p>Consultório:</p>
+                    <p>
+                      {{paginaLancamentos.totalVendasConsultorio  | currency:'R$ ':'symbol':'1.2-2'}}
+                      ({{ percentualConsultorio | number:'1.0-2' }}%)
+                    </p>
+                </div>
+                <div class="space-between">
+                    <p>Loja:</p>
+                    <p>
+                      {{paginaLancamentos.totalVendasLoja  | currency:'R$ ':'symbol':'1.2-2'}}
+                      ({{ percentualLoja | number:'1.0-2' }}%)
+                    </p>
+                </div>
                 <hr>
                 <div>
                     <div class="categoria-acoes">

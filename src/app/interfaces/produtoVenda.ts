@@ -203,7 +203,10 @@ export interface ProdutoVenda {
     listasPorcentagemCategorias: ListasPorcentagemCategorias,
     atualizadoEm: Date,
     totalReceitasPeriodo: number,
-    totalDespesasPeriodo: number
+    totalDespesasPeriodo: number,
+    totalVendasBanhoETosa: number,
+    totalVendasConsultorio: number,
+    totalVendasLoja: number
   }
 
   //Cadastrar Cliente

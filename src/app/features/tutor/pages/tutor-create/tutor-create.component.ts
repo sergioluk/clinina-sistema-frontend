@@ -35,17 +35,17 @@ export class TutorCreateComponent implements OnInit {
 
     this.form = this.fb.group({
       nome: ['', Validators.required],
-      cpf: ['', Validators.required],
+      cpf: [''],
       telefone: [''],
       celular: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.email]],
       endereco: this.fb.group({
-        cep: ['', [Validators.required, this.cepValidator.bind(this)]],
-        rua: ['', Validators.required],
-        numero: ['', Validators.required],
-        bairro: ['', Validators.required],
-        cidade: ['', Validators.required],
-        uf: ['', [Validators.required, this.UFValidaValidator.bind(this)]],
+        cep: ['', [ this.cepValidator.bind(this)]],
+        rua: ['' ],
+        numero: ['' ],
+        bairro: ['' ],
+        cidade: ['' ],
+        uf: ['', [ this.UFValidaValidator.bind(this)]],
         complemento: [''],
       }),
     });
